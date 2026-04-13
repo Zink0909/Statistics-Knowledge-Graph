@@ -1,9 +1,7 @@
 import { useRef, useEffect, useCallback, useState } from "react";
+import * as d3 from "d3";
 import type { KGNode, KGEdge, SimNode, SimLink, EdgeType } from "../../types";
 import { DOMAIN_COLOR, EDGE_COLOR, ROLE_SIZE } from "../../lib/constants";
-
-// We load D3 from a CDN script tag in index.html — declare globals
-declare const d3: typeof import("d3");
 
 interface Props {
   nodes: KGNode[];
