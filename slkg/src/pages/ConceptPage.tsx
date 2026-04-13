@@ -2,6 +2,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getNode, getOutEdges, getInEdges, getNode as gn } from "../lib/graphUtils";
 import { DOMAIN_COLOR, DOMAIN_BG, EDGE_COLOR, EDGE_DESCRIPTION, EDGE_TYPES } from "../lib/constants";
 import type { EdgeType, KGEdge } from "../types";
+import DomainBadge from "../components/ui/DomainBadge";
+import { CONTENT } from "../data/content";
 import ContentCard from "../components/ui/ContentCard";
 
 function EdgeGroup({ et, edges, idKey }: { et: EdgeType; edges: KGEdge[]; idKey: "s" | "t" }) {
@@ -56,11 +58,12 @@ export default function ConceptPage() {
   const domColor = (DOMAIN_COLOR as Record<string, string>)[node.domain] ?? "#888";
   const domBg    = (DOMAIN_BG   as Record<string, string>)[node.domain] ?? "#f5f5f5";
 
+  // Group by edge type
   const outByType = EDGE_TYPES.reduce<Record<EdgeType, KGEdge[]>>(
     (acc, et) => { acc[et] = outEdges.filter(e => e.et === et); return acc; },
     {} as Record<EdgeType, KGEdge[]>
   );
-  const inByType = EDGE_TYPES.reduce<Record<EdgeType, KGEdge[]>>(
+  const inByType  = EDGE_TYPES.reduce<Record<EdgeType, KGEdge[]>>(
     (acc, et) => { acc[et] = inEdges.filter(e => e.et === et); return acc; },
     {} as Record<EdgeType, KGEdge[]>
   );
@@ -123,11 +126,11 @@ export default function ConceptPage() {
           </div>
         </div>
 
-        {/* Stats */}
+        {/* Stats row */}
         <div className="grid grid-cols-4 gap-3 mb-6">
           {[
-            { label: "Outgoing",     value: outEdges.length },
-            { label: "Incoming",     value: inEdges.length  },
+            { label: "Outgoing",  value: outEdges.length },
+            { label: "Incoming",  value: inEdges.length  },
             { label: "Unique types", value: new Set([...outEdges, ...inEdges].map(e => e.et)).size },
             { label: "Avg confidence",
               value: (([...outEdges, ...inEdges].reduce((s, e) => s + e.c, 0) /
@@ -140,16 +143,79 @@ export default function ConceptPage() {
           ))}
         </div>
 
-        {/* Content */}
+        {/* Content card */}
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-stone-700 mb-3">Concept overview</h2>
           <ContentCard nodeId={node.id} />
         </div>
 
+        {/* Content card */}
+        {CONTENT[node.id] && (() => {
+          const c = CONTENT[node.id];
+          return (
+            <div className="card px-6 py-5 mb-6 space-y-4">
+              {/* Definition */}
+              <div>
+                <div className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">Definition</div>
+                <p className="text-sm text-stone-700 leading-relaxed">{c.definition}</p>
+              </div>
+
+              {/* Formula */}
+              {c.formula && (
+                <div>
+                  <div className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">Formula</div>
+                  <div className="bg-stone-50 rounded-lg px-4 py-3 font-mono text-sm text-stone-700 overflow-x-auto">
+                    {c.formula}
+                  </div>
+                </div>
+              )}
+
+              {/* Parameters */}
+              {c.parameters && c.parameters.length > 0 && (
+                <div>
+                  <div className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">Key parameters</div>
+                  <ul className="space-y-0.5">
+                    {c.parameters.map((p, i) => (
+                      <li key={i} className="text-sm text-stone-600 flex items-start gap-2">
+                        <span className="text-stone-300 mt-1 flex-shrink-0">·</span>
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Intuition */}
+              <div>
+                <div className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">Intuition</div>
+                <p className="text-sm text-stone-600 leading-relaxed italic">{c.intuition}</p>
+              </div>
+
+              {/* Confusion */}
+              {c.confusion && (
+                <div className="border-l-2 border-amber-300 pl-3">
+                  <div className="text-[10px] font-semibold text-amber-600 uppercase tracking-wider mb-1">Common confusion</div>
+                  <p className="text-sm text-stone-600 leading-relaxed">{c.confusion}</p>
+                </div>
+              )}
+
+              {/* Example */}
+              {c.example && (
+                <div className="border-l-2 border-stone-200 pl-3">
+                  <div className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">Example</div>
+                  <p className="text-sm text-stone-600 leading-relaxed">{c.example}</p>
+                </div>
+              )}
+            </div>
+          );
+        })()}
+
         {/* Relationships */}
         <div className="grid grid-cols-2 gap-6">
           <div className="card px-5 py-4">
-            <h2 className="text-sm font-semibold text-stone-700 mb-4">Outgoing relationships</h2>
+            <h2 className="text-sm font-semibold text-stone-700 mb-4">
+              Outgoing relationships
+            </h2>
             {EDGE_TYPES.filter(et => outByType[et].length > 0).map(et => (
               <EdgeGroup key={et} et={et} edges={outByType[et]} idKey="t" />
             ))}
@@ -159,7 +225,9 @@ export default function ConceptPage() {
           </div>
 
           <div className="card px-5 py-4">
-            <h2 className="text-sm font-semibold text-stone-700 mb-4">Incoming relationships</h2>
+            <h2 className="text-sm font-semibold text-stone-700 mb-4">
+              Incoming relationships
+            </h2>
             {EDGE_TYPES.filter(et => inByType[et].length > 0).map(et => (
               <EdgeGroup key={et} et={et} edges={inByType[et]} idKey="s" />
             ))}
@@ -168,7 +236,6 @@ export default function ConceptPage() {
             )}
           </div>
         </div>
-
       </div>
     </div>
   );

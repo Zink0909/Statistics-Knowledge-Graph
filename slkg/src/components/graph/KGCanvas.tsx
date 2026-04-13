@@ -305,10 +305,40 @@ export default function KGCanvas({
   // ── Resize observer ──────────────────────────────────────────────────────────
   useEffect(() => {
     resize();
-    const ro = new ResizeObserver(resize);
+    const ro = new ResizeObserver(() => {
+      const prevW = stateRef.current.W;
+      const prevH = stateRef.current.H;
+      resize();
+      const nextW = stateRef.current.W;
+      const nextH = stateRef.current.H;
+      // Canvas just got real dimensions for the first time — restart sim
+      if ((prevW === 0 || prevH === 0) && nextW > 0 && nextH > 0) {
+        const st = stateRef.current;
+        if (st.sim) { st.sim.stop(); st.sim = null; }
+        if (st.nodes.length > 0) {
+          st.nodes.forEach(n => {
+            if (!n.x || Math.abs(n.x) < 1) {
+              n.x = nextW / 2 + (Math.random() - 0.5) * 300;
+              n.y = nextH / 2 + (Math.random() - 0.5) * 300;
+            }
+          });
+          const count = st.nodes.length;
+          const charge = Math.max(-700, -90 - count * 4);
+          const linkDist = count < 20 ? 110 : count < 60 ? 88 : 70;
+          st.sim = d3.forceSimulation(st.nodes as unknown as d3.SimulationNodeDatum[])
+            .force("link",   d3.forceLink(st.links).id((d: unknown) => (d as SimNode).id).distance(linkDist).strength(0.4))
+            .force("charge", d3.forceManyBody().strength(charge).distanceMax(400))
+            .force("center", d3.forceCenter(nextW / 2, nextH / 2).strength(0.06))
+            .force("col",    d3.forceCollide().radius((d: unknown) => nodeRadius((d as SimNode).role) + 3))
+            .alphaDecay(0.025)
+            .on("tick", render);
+          setTimeout(() => { if (st.sim) st.sim.alphaTarget(0); }, 6000);
+        }
+      }
+    });
     if (wrapRef.current) ro.observe(wrapRef.current);
     return () => ro.disconnect();
-  }, [resize]);
+  }, [resize, render]);
 
   return (
     <div ref={wrapRef} className={`relative w-full h-full ${className}`}>
