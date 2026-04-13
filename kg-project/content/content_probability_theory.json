@@ -1,0 +1,278 @@
+{
+  "domain": "Probability Theory",
+  "generated": "2026-04-12",
+  "nodes": {
+    "random_variables": {
+      "definition": "A random variable is a function that assigns a numerical value to each outcome of a random experiment, providing a way to quantify uncertainty.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Think of a random variable as a rule that converts unpredictable outcomes (like a die roll) into numbers you can do math with.",
+      "common_confusion": "A random variable is not itself random — it is a fixed function. The randomness comes from the underlying experiment.",
+      "example_use": "Let X be the number of heads in 10 coin flips; X is a random variable taking values 0 through 10."
+    },
+    "discrete_random_variables": {
+      "definition": "A random variable whose possible values form a finite or countably infinite set.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Discrete means you can list all possible values — like counts of events.",
+      "common_confusion": "Discrete does not require a finite number of values; the Poisson distribution takes infinitely many discrete values (0, 1, 2, ...).",
+      "example_use": "The number of defective items in a batch of 100 is a discrete random variable."
+    },
+    "probability_mass_function": {
+      "definition": "A function p(x) that gives the probability that a discrete random variable X takes exactly the value x, satisfying p(x) ≥ 0 and Σ p(x) = 1.",
+      "formula": "p(x) = P(X = x)",
+      "parameters": null,
+      "intuition": "The PMF tells you how the total probability of 1 is spread across all possible discrete outcomes.",
+      "common_confusion": "PMF applies only to discrete random variables. For continuous variables, use the probability density function (PDF) instead.",
+      "example_use": "For a fair die, p(x) = 1/6 for x ∈ {1, 2, 3, 4, 5, 6}."
+    },
+    "continuous_random_variables": {
+      "definition": "A random variable that can take any value in an interval of the real line, with probability assigned to ranges rather than individual points.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Continuous means the possible values form a smooth range — like a temperature measurement that could be any real number.",
+      "common_confusion": "For a continuous random variable, P(X = x) = 0 for any single value x. Probability only makes sense over intervals.",
+      "example_use": "The exact height of a randomly selected person is a continuous random variable."
+    },
+    "probability_density_function": {
+      "definition": "A non-negative function f(x) such that the probability of X falling in [a, b] is the integral of f over that interval, with total integral equal to 1.",
+      "formula": "P(a ≤ X ≤ b) = ∫ₐᵇ f(x) dx,  ∫₋∞^∞ f(x) dx = 1",
+      "parameters": null,
+      "intuition": "The PDF is like a height map — taller regions have more probability density, meaning outcomes there are more likely.",
+      "common_confusion": "f(x) is not a probability. It can exceed 1. Only integrals of f give probabilities.",
+      "example_use": "The normal PDF f(x) = (1/σ√2π) exp(-(x-μ)²/2σ²) describes the bell curve."
+    },
+    "distribution_functions": {
+      "definition": "The family of functions that describe how probability is distributed over the possible values of a random variable.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Distribution functions are the complete specification of a random variable's probabilistic behavior.",
+      "common_confusion": null,
+      "example_use": "Specifying that X ~ N(0,1) fully determines its distribution function."
+    },
+    "cumulative_distribution_function": {
+      "definition": "The function F(x) = P(X ≤ x), giving the probability that the random variable takes a value less than or equal to x.",
+      "formula": "F(x) = P(X ≤ x) = ∫₋∞ˣ f(t) dt",
+      "parameters": null,
+      "intuition": "The CDF accumulates probability from left to right. It always starts near 0 and increases to 1.",
+      "common_confusion": "The CDF is defined for both discrete and continuous random variables. For discrete variables it is a step function.",
+      "example_use": "F(1.96) ≈ 0.975 for the standard normal tells us 97.5% of values fall below 1.96."
+    },
+    "joint_distributions": {
+      "definition": "A distribution that describes the simultaneous probabilistic behavior of two or more random variables.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "A joint distribution captures not just how each variable behaves alone, but how they relate to each other.",
+      "common_confusion": "Knowing both marginal distributions is not enough to recover the joint distribution without additional information about dependence.",
+      "example_use": "The joint distribution of height and weight in a population describes how they co-vary."
+    },
+    "joint_probability_mass_function": {
+      "definition": "A function p(x, y) = P(X = x, Y = y) giving the probability that two discrete random variables simultaneously take specific values.",
+      "formula": "p(x, y) = P(X = x, Y = y),  ΣΣ p(x,y) = 1",
+      "parameters": null,
+      "intuition": "The joint PMF is a table of probabilities for every combination of outcomes of X and Y.",
+      "common_confusion": null,
+      "example_use": "Rolling two dice: p(x, y) = 1/36 for each (x, y) pair where x, y ∈ {1,...,6}."
+    },
+    "joint_probability_density_function": {
+      "definition": "A non-negative function f(x, y) such that probabilities over regions are given by double integrals, with total integral equal to 1.",
+      "formula": "P((X,Y) ∈ A) = ∬_A f(x,y) dx dy",
+      "parameters": null,
+      "intuition": "The joint PDF is a surface over the (x, y) plane — higher surface values mean that combination of values is more probable.",
+      "common_confusion": null,
+      "example_use": "The bivariate normal distribution has a joint PDF forming an elliptical bell shape."
+    },
+    "marginal_distribution": {
+      "definition": "The distribution of a single variable obtained from a joint distribution by summing (discrete) or integrating (continuous) over the other variables.",
+      "formula": "p_X(x) = Σ_y p(x,y)  or  f_X(x) = ∫ f(x,y) dy",
+      "parameters": null,
+      "intuition": "Marginalizing means averaging out the variables you don't care about, leaving only the one you do.",
+      "common_confusion": "The marginal distribution of X tells you nothing about how X and Y are related — it discards all dependence information.",
+      "example_use": "From the joint height-weight distribution, integrating out weight gives the marginal distribution of height."
+    },
+    "functions_of_random_variables": {
+      "definition": "If X is a random variable and g is a function, then Y = g(X) is also a random variable whose distribution is derived from X's distribution.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Transforming a random variable creates a new random variable — and its distribution can be derived from the original.",
+      "common_confusion": null,
+      "example_use": "If X ~ N(0,1) then X² ~ χ²(1)."
+    },
+    "linear_combination_of_random_variables": {
+      "definition": "A random variable of the form Y = a₁X₁ + a₂X₂ + ... + aₙXₙ where the aᵢ are constants.",
+      "formula": "E[Y] = Σ aᵢ E[Xᵢ],  Var(Y) = Σᵢ Σⱼ aᵢ aⱼ Cov(Xᵢ, Xⱼ)",
+      "parameters": null,
+      "intuition": "Linear combinations are the building blocks of statistics — means, totals, and contrasts are all linear combinations.",
+      "common_confusion": "The variance formula requires covariance terms unless the variables are independent.",
+      "example_use": "The sample mean X̄ = (X₁ + ... + Xₙ)/n is a linear combination with all aᵢ = 1/n."
+    },
+    "distribution_of_sum_of_independent_random_variables": {
+      "definition": "The distribution of X + Y when X and Y are independent, obtained via convolution of their individual distributions.",
+      "formula": "f_{X+Y}(z) = ∫ f_X(x) f_Y(z-x) dx",
+      "parameters": null,
+      "intuition": "Adding independent random variables convolves their distributions — the result is generally more spread out and, by CLT, more normal.",
+      "common_confusion": "Independence is essential. The sum of dependent variables requires knowledge of the joint distribution.",
+      "example_use": "The sum of n independent N(μ, σ²) variables follows N(nμ, nσ²)."
+    },
+    "convolution_of_probability_density_functions": {
+      "definition": "The mathematical operation that yields the PDF of the sum of two independent continuous random variables.",
+      "formula": "(f * g)(z) = ∫₋∞^∞ f(x) g(z-x) dx",
+      "parameters": null,
+      "intuition": "Convolution slides one distribution over another, computing how much overlap occurs at each position.",
+      "common_confusion": null,
+      "example_use": "Convolving two uniform(0,1) densities gives the triangular distribution on (0,2)."
+    },
+    "conditional_probability_and_conditional_distributions": {
+      "definition": "The framework for updating probabilities or distributions given partial information about the outcome.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Conditioning means restricting your view to a subset of possibilities — recalculating probabilities given what you know.",
+      "common_confusion": null,
+      "example_use": "Given a positive test result, the conditional probability of having a disease is updated via Bayes' theorem."
+    },
+    "conditional_probability": {
+      "definition": "The probability of event A given that event B has occurred, defined as P(A|B) = P(A ∩ B) / P(B).",
+      "formula": "P(A|B) = P(A ∩ B) / P(B),  P(B) > 0",
+      "parameters": null,
+      "intuition": "Conditioning on B restricts the sample space to outcomes where B occurred, then re-normalizes.",
+      "common_confusion": "P(A|B) ≠ P(B|A) in general. Confusing these is the base-rate fallacy.",
+      "example_use": "P(rain tomorrow | cloudy today) updates tomorrow's rain probability given today's weather."
+    },
+    "chain_rule_for_probabilities": {
+      "definition": "The rule that expresses the joint probability of multiple events as a product of conditional probabilities.",
+      "formula": "P(A₁ ∩ A₂ ∩ ... ∩ Aₙ) = P(A₁) P(A₂|A₁) P(A₃|A₁,A₂) ⋯ P(Aₙ|A₁,...,Aₙ₋₁)",
+      "parameters": null,
+      "intuition": "Break a complex joint probability into a sequence of simpler conditional probabilities, each conditioning on everything before.",
+      "common_confusion": null,
+      "example_use": "P(A,B,C) = P(A) · P(B|A) · P(C|A,B)"
+    },
+    "conditional_distribution": {
+      "definition": "The distribution of random variable X given that Y = y, obtained by fixing Y and renormalizing the joint distribution.",
+      "formula": "f_{X|Y}(x|y) = f(x,y) / f_Y(y)",
+      "parameters": null,
+      "intuition": "Slice the joint distribution at a fixed value of Y — the conditional distribution is that slice, rescaled to integrate to 1.",
+      "common_confusion": "The conditional distribution of X|Y=y is a full distribution over X, not just a single number.",
+      "example_use": "In a bivariate normal, X|Y=y is itself normal with mean and variance depending on y."
+    },
+    "conditional_expectation": {
+      "definition": "The expected value of a random variable X given information about another variable Y, denoted E[X|Y].",
+      "formula": "E[X|Y=y] = ∫ x f_{X|Y}(x|y) dx",
+      "parameters": null,
+      "intuition": "Conditional expectation updates your best guess of X after learning Y — it is itself a random variable (a function of Y).",
+      "common_confusion": "E[X|Y] is a random variable (it varies with Y), while E[X] is a constant.",
+      "example_use": "E[salary | years of experience] gives the average salary for a given experience level."
+    },
+    "independence_structure": {
+      "definition": "The collection of independence relationships among random variables in a probability model.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Independence structure describes which variables carry information about each other and which do not.",
+      "common_confusion": null,
+      "example_use": "In an IID sample, all observations are independent — knowing one tells you nothing about another."
+    },
+    "independent_random_variables": {
+      "definition": "Random variables X and Y are independent if knowing the value of one gives no information about the other: f(x,y) = f_X(x) f_Y(y).",
+      "formula": "P(X ∈ A, Y ∈ B) = P(X ∈ A) · P(Y ∈ B)",
+      "parameters": null,
+      "intuition": "Independence means the joint distribution factors — the variables have no relationship whatsoever.",
+      "common_confusion": "Uncorrelated does not imply independent. Zero correlation only rules out linear dependence.",
+      "example_use": "Two separate coin flips are independent random variables."
+    },
+    "independent_identically_distributed_random_variables": {
+      "definition": "A sequence of random variables that are mutually independent and each follows the same probability distribution.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "IID means each observation is a fresh, unrelated draw from the same population — the foundation of most classical statistics.",
+      "common_confusion": "IID is a strong assumption. Time series data, clustered data, and repeated measures all violate independence.",
+      "example_use": "A random sample of n measurements from a population is modeled as IID."
+    },
+    "mutual_independence": {
+      "definition": "A collection of random variables X₁, ..., Xₙ is mutually independent if any subcollection is independent — the joint distribution factors completely.",
+      "formula": "P(X₁ ∈ A₁, ..., Xₙ ∈ Aₙ) = ∏ᵢ P(Xᵢ ∈ Aᵢ)",
+      "parameters": null,
+      "intuition": "Mutual independence is stronger than pairwise independence — every subset of variables must be independent of every other subset.",
+      "common_confusion": "Pairwise independence does not imply mutual independence.",
+      "example_use": "The components of an IID random sample are mutually independent."
+    },
+    "expectation_and_moments": {
+      "definition": "The family of summary statistics that describe the location, spread, and shape of a distribution through weighted averages of powers of the random variable.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Moments compress an entire distribution into a few numbers — mean captures location, variance captures spread.",
+      "common_confusion": null,
+      "example_use": "The first four moments (mean, variance, skewness, kurtosis) give a fairly complete picture of a distribution."
+    },
+    "expected_value": {
+      "definition": "The probability-weighted average of all possible values of a random variable, representing its long-run average outcome.",
+      "formula": "E[X] = Σ x p(x)  or  E[X] = ∫ x f(x) dx",
+      "parameters": null,
+      "intuition": "The expected value is the center of gravity of the distribution — where it would balance if placed on a scale.",
+      "common_confusion": "The expected value need not be a possible value of X. E[die roll] = 3.5, which you can never actually roll.",
+      "example_use": "E[X] = np for a Binomial(n, p) random variable."
+    },
+    "variance": {
+      "definition": "The expected squared deviation from the mean, measuring how spread out the distribution is around its center.",
+      "formula": "Var(X) = E[(X - μ)²] = E[X²] - (E[X])²",
+      "parameters": null,
+      "intuition": "Variance measures average squared distance from the mean — larger variance means the distribution is more spread out.",
+      "common_confusion": "Variance is in squared units. Take the square root to get standard deviation, which is in the same units as X.",
+      "example_use": "Var(X) = np(1-p) for a Binomial(n, p) random variable."
+    },
+    "covariance": {
+      "definition": "A measure of the linear co-movement between two random variables, defined as the expected product of their deviations from their means.",
+      "formula": "Cov(X,Y) = E[(X - μ_X)(Y - μ_Y)] = E[XY] - E[X]E[Y]",
+      "parameters": null,
+      "intuition": "Positive covariance means the variables tend to move together; negative means they move in opposite directions.",
+      "common_confusion": "Covariance is scale-dependent. Dividing by the product of standard deviations gives the correlation, which is scale-free.",
+      "example_use": "Cov(X, X) = Var(X)."
+    },
+    "correlation": {
+      "definition": "The standardized covariance between two random variables, always in [-1, 1], measuring the strength and direction of their linear relationship.",
+      "formula": "ρ(X,Y) = Cov(X,Y) / (σ_X σ_Y)",
+      "parameters": ["ρ: correlation coefficient, ρ ∈ [-1, 1]"],
+      "intuition": "Correlation of ±1 means a perfect linear relationship; 0 means no linear relationship (but possibly nonlinear dependence).",
+      "common_confusion": "Correlation measures only linear association. Two variables can be strongly dependent with correlation 0.",
+      "example_use": "A correlation of 0.8 between study hours and exam score suggests a strong positive linear relationship."
+    },
+    "limit_laws": {
+      "definition": "Theorems describing the behavior of functions of random variables as the sample size grows to infinity.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Limit laws tell us that with enough data, randomness averages out in predictable ways.",
+      "common_confusion": null,
+      "example_use": "The LLN and CLT together justify using sample means to estimate population means."
+    },
+    "weak_law_of_large_numbers": {
+      "definition": "For IID random variables with finite mean μ, the sample mean X̄ₙ converges in probability to μ as n → ∞.",
+      "formula": "P(|X̄ₙ - μ| > ε) → 0  as  n → ∞,  for all ε > 0",
+      "parameters": null,
+      "intuition": "With more data, the sample average becomes an increasingly reliable estimate of the true mean.",
+      "common_confusion": "The LLN says the average converges, not individual observations. Individual draws remain random no matter how large n gets.",
+      "example_use": "A casino's average profit per game converges to the house edge as the number of games grows."
+    },
+    "central_limit_theorem": {
+      "definition": "For IID random variables with mean μ and variance σ², the standardized sample mean converges in distribution to the standard normal as n → ∞.",
+      "formula": "√n (X̄ₙ - μ) / σ →_d N(0, 1)",
+      "parameters": null,
+      "intuition": "Sums of many small independent random influences — regardless of their individual distributions — tend to follow a normal distribution.",
+      "common_confusion": "The CLT applies to the distribution of the sample mean, not individual observations. Individual draws keep their original distribution.",
+      "example_use": "Even if individual insurance claims are skewed, the average claim over thousands of policies is approximately normal."
+    },
+    "probability_inequalities": {
+      "definition": "Bounds on probabilities that hold without knowledge of the exact distribution, derived from moment information alone.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Probability inequalities trade precision for generality — they work for any distribution satisfying simple conditions.",
+      "common_confusion": null,
+      "example_use": "Chebyshev's inequality provides a conservative but universally valid confidence bound."
+    },
+    "chebyshev_inequality": {
+      "definition": "For any random variable with mean μ and variance σ², the probability of deviating from the mean by more than k standard deviations is at most 1/k².",
+      "formula": "P(|X - μ| ≥ kσ) ≤ 1/k²",
+      "parameters": ["k: number of standard deviations (k > 0)"],
+      "intuition": "At least 75% of values lie within 2 standard deviations of the mean, for any distribution — a universal guarantee.",
+      "common_confusion": "Chebyshev bounds are often very loose for specific distributions like the normal, where the actual tail probability is much smaller.",
+      "example_use": "With k=3, at least 88.9% of any distribution lies within 3 standard deviations of the mean."
+    }
+  }
+}

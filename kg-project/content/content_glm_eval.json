@@ -1,0 +1,414 @@
+{
+  "domain": "Generalized Linear Models and Model Evaluation",
+  "generated": "2026-04-12",
+  "nodes": {
+    "generalized_linear_model": {
+      "definition": "A flexible generalization of linear regression that allows the response variable to have a non-normal distribution and links the linear predictor to the mean via a link function.",
+      "formula": "g(μᵢ) = xᵢᵀβ,  μᵢ = E[Yᵢ|Xᵢ],  Yᵢ ~ exponential family",
+      "parameters": ["g(·): link function", "μ: conditional mean", "φ: dispersion parameter"],
+      "intuition": "GLMs extend regression to non-normal responses — binary outcomes, counts, and positive-only data all have natural GLM formulations.",
+      "common_confusion": "Linear regression is a GLM with identity link and normal distribution. Logistic regression is a GLM with logit link and Bernoulli distribution.",
+      "example_use": "Logistic regression for binary outcomes, Poisson regression for counts, Gamma regression for positive continuous data."
+    },
+    "random_component": {
+      "definition": "The probability distribution assumed for the response variable Y in a GLM, which must belong to the exponential family.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The random component specifies the noise model — it determines the shape of the distribution around the fitted mean.",
+      "common_confusion": null,
+      "example_use": "Binomial for binary outcomes, Poisson for counts, Gamma for positive continuous data."
+    },
+    "systematic_component": {
+      "definition": "The linear predictor η = Xβ in a GLM, representing the linear combination of predictors that is linked to the conditional mean.",
+      "formula": "η = β₀ + β₁X₁ + ... + βₚXₚ",
+      "parameters": null,
+      "intuition": "The systematic component is the regression part of the GLM — it is identical in form to linear regression.",
+      "common_confusion": null,
+      "example_use": "In logistic regression, η = log(p/(1-p)) is the systematic component linked to the probability via the logit."
+    },
+    "linear_predictor": {
+      "definition": "The quantity η = xᵀβ in a GLM, the linear combination of predictors before applying the inverse link function to obtain the conditional mean.",
+      "formula": "η = xᵀβ = β₀ + β₁x₁ + ... + βₚxₚ",
+      "parameters": null,
+      "intuition": "The linear predictor lives on the unrestricted real line — the link function transforms it to the appropriate scale for the mean.",
+      "common_confusion": null,
+      "example_use": "In Poisson regression, η = log(μ) and μ = exp(η) — predictions must be exponentiated to get the expected count."
+    },
+    "link_function": {
+      "definition": "The function g(·) in a GLM that relates the linear predictor η to the conditional mean μ: g(μ) = η, or equivalently μ = g⁻¹(η).",
+      "formula": "g(μ) = η = xᵀβ",
+      "parameters": null,
+      "intuition": "The link function maps the constrained mean (e.g. a probability in [0,1]) to the unconstrained real line where regression operates.",
+      "common_confusion": "The link function links the mean to the linear predictor, not the response to the predictors directly.",
+      "example_use": "Logit link: g(p) = log(p/(1-p)) for Binomial; log link: g(μ) = log(μ) for Poisson."
+    },
+    "deviance": {
+      "definition": "A measure of GLM goodness of fit: D = 2[ℓ(saturated model) - ℓ(fitted model)], analogous to residual sum of squares in linear regression.",
+      "formula": "D = 2[ℓ(ŷ_sat) - ℓ(ŷ_fit)]",
+      "parameters": null,
+      "intuition": "Deviance measures how far the fitted model is from a perfect fit — lower deviance means better fit.",
+      "common_confusion": "For normal GLMs, deviance equals SSE. For other families, deviance has different formulas but the same interpretation.",
+      "example_use": "The likelihood ratio test between nested GLMs uses the difference in deviances, which follows a chi-square distribution."
+    },
+    "logit_link": {
+      "definition": "The link function g(p) = log(p/(1-p)) = logit(p) used in logistic regression to map probabilities to the real line.",
+      "formula": "g(p) = log(p/(1-p)),  p = e^η/(1+e^η) = 1/(1+e^{-η})",
+      "parameters": null,
+      "intuition": "The logit transforms a probability from [0,1] to (-∞, ∞), allowing the full linear predictor to map to valid probabilities.",
+      "common_confusion": null,
+      "example_use": "In logistic regression, log odds = β₀ + β₁x, so eᵝ¹ is the odds ratio for a unit increase in x."
+    },
+    "logistic_regression_model": {
+      "definition": "A GLM for binary outcomes where the log-odds of the probability is modeled as a linear function of predictors: log(p/(1-p)) = xᵀβ.",
+      "formula": "log(p/(1-p)) = β₀ + β₁x₁ + ... + βₚxₚ,  p = 1/(1+e^{-xᵀβ})",
+      "parameters": ["β: log-odds coefficients; eᵝ is the odds ratio per unit increase in x"],
+      "intuition": "Logistic regression bends a linear predictor into an S-shaped probability curve — it is the natural model for binary outcomes.",
+      "common_confusion": "Logistic regression coefficients are log odds ratios, not probability differences. Convert by exponentiating for odds ratios.",
+      "example_use": "Predicting whether a loan defaults (1) or not (0) from borrower characteristics."
+    },
+    "poisson_regression_model": {
+      "definition": "A GLM for count outcomes where the log of the expected count is modeled as a linear function of predictors: log(μ) = xᵀβ.",
+      "formula": "log(μ) = β₀ + β₁x₁ + ... + βₚxₚ,  μ = e^{xᵀβ}",
+      "parameters": ["β: log rate coefficients; eᵝ is the rate ratio per unit increase in x"],
+      "intuition": "Poisson regression models count data using a log link, ensuring predicted counts are always positive.",
+      "common_confusion": "Poisson regression assumes the mean equals the variance. Over-dispersion (variance > mean) requires negative binomial regression.",
+      "example_use": "Modeling the number of accidents per intersection as a function of traffic volume and road characteristics."
+    },
+    "gamma_regression_model": {
+      "definition": "A GLM for positive continuous outcomes where the response follows a Gamma distribution, typically using a log or inverse link function.",
+      "formula": "g(μ) = xᵀβ,  Y ~ Gamma(μ, φ)",
+      "parameters": null,
+      "intuition": "Gamma regression is appropriate for right-skewed positive data like insurance claims, where the variance grows with the mean.",
+      "common_confusion": "Unlike log-transforming Y in linear regression, Gamma regression directly models the non-normal distribution of Y.",
+      "example_use": "Modeling insurance claim amounts or hospital lengths of stay."
+    },
+    "hierarchical_model": {
+      "definition": "A model where parameters at one level are themselves modeled as random variables drawn from a higher-level distribution, allowing for nested data structures.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Hierarchical models handle nested data — students within schools, measurements within patients — by partially pooling information across groups.",
+      "common_confusion": "Hierarchical and mixed models are related; both handle grouped data, but hierarchical models emphasize the Bayesian perspective of priors on parameters.",
+      "example_use": "Modeling student test scores with school-level random effects to account for within-school correlation."
+    },
+    "logistic_function": {
+      "definition": "The function σ(x) = 1/(1+e^{-x}), mapping any real number to (0,1), used as the inverse logit link in logistic regression.",
+      "formula": "σ(x) = 1/(1+e^{-x}) = e^x/(1+e^x)",
+      "parameters": null,
+      "intuition": "The logistic function produces the S-shaped probability curve in logistic regression — it squashes the entire real line into the (0,1) interval.",
+      "common_confusion": "The logistic function is the inverse of the logit: σ(logit(p)) = p and logit(σ(x)) = x.",
+      "example_use": "Predicted probabilities in logistic regression are obtained by applying the logistic function to the linear predictor."
+    },
+    "link_functions": {
+      "definition": "The family of monotone differentiable functions used in GLMs to link the conditional mean to the linear predictor.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Different response types require different link functions — the choice of link determines the scale on which effects are assumed linear.",
+      "common_confusion": null,
+      "example_use": "Common links: identity (normal), logit (Bernoulli), log (Poisson), inverse (Gamma)."
+    },
+    "glm_regression_models": {
+      "definition": "The class of specific GLM instances defined by choosing a particular exponential family distribution and canonical link function.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Each GLM regression model is a specific combination of distribution and link — logistic, Poisson, and Gamma regression are the most common.",
+      "common_confusion": null,
+      "example_use": "Choosing between logistic regression (Bernoulli + logit) and linear probability model (Bernoulli + identity) for binary outcomes."
+    },
+    "model_fit": {
+      "definition": "A measure of how well a statistical model reproduces the observed data, assessed through deviance, likelihood, or residual analysis.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Model fit answers: how close are the model's predictions to the actual data?",
+      "common_confusion": "Good fit on training data does not guarantee good predictive performance on new data — overfitting can give excellent fit with poor generalization.",
+      "example_use": "Comparing the deviance of a logistic regression model to a null model to assess overall fit."
+    },
+    "foundations_of_model_evaluation": {
+      "definition": "The framework for assessing how well statistical models explain observed data and generalize to new data, balancing fit and complexity.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Model evaluation is the discipline of asking 'how good is this model?' — not just for training data, but for future predictions.",
+      "common_confusion": null,
+      "example_use": "Using AIC, cross-validation, and residual analysis together to evaluate a regression model."
+    },
+    "goodness_of_fit": {
+      "definition": "A measure of how well a model's predictions match the observed data, assessed through statistics like R², deviance, or chi-square tests.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Goodness of fit quantifies the gap between model predictions and reality — high GOF means the model closely tracks the data.",
+      "common_confusion": "Good in-sample fit does not imply good prediction. Overfit models have perfect in-sample fit but poor out-of-sample performance.",
+      "example_use": "A Hosmer-Lemeshow test for logistic regression goodness of fit."
+    },
+    "in_sample_mse": {
+      "definition": "The mean squared error computed on the training data: MSE_train = (1/n)Σ(yᵢ - ŷᵢ)², measuring how well the model fits the observed data.",
+      "formula": "MSE_train = (1/n)Σᵢ(yᵢ - ŷᵢ)²",
+      "parameters": null,
+      "intuition": "In-sample MSE measures how well the model explains the data it was fit on — it is optimistic about predictive performance.",
+      "common_confusion": "In-sample MSE always decreases as model complexity increases. It is not a reliable guide for model selection.",
+      "example_use": "Comparing in-sample MSE across different models to check that adding predictors improves fit."
+    },
+    "adjusted_r_squared": {
+      "definition": "A version of R² that penalizes for the number of predictors: R²_adj = 1 - [(1-R²)(n-1)/(n-p-1)].",
+      "formula": "R²_adj = 1 - (1-R²)(n-1)/(n-p-1)",
+      "parameters": ["n: sample size", "p: number of predictors"],
+      "intuition": "Adjusted R² penalizes for model complexity — unlike R², it can decrease when uninformative predictors are added.",
+      "common_confusion": "Adjusted R² can be negative for very poor models. It is a heuristic, not a formal model selection criterion like AIC.",
+      "example_use": "Using adjusted R² to compare regression models with different numbers of predictors."
+    },
+    "r_squared": {
+      "definition": "The coefficient of determination: R² = 1 - SSE/SST, the proportion of variance in Y explained by the regression model.",
+      "formula": "R² = 1 - SSE/SST = SSR/SST",
+      "parameters": null,
+      "intuition": "R² measures the fraction of Y's variation the model explains — higher is better, but more predictors always increases R².",
+      "common_confusion": "A high R² does not guarantee a good model — it could reflect overfitting. And low R² does not mean the regression is worthless if the relationships are precisely estimated.",
+      "example_use": "R²=0.75 means the predictors explain 75% of the variance in the response."
+    },
+    "expected_out_of_sample_mse": {
+      "definition": "The expected prediction error on new, unseen data: E[(Y_new - ŷ_new)²], decomposable into bias², variance, and irreducible noise.",
+      "formula": "E[(Y - f̂(X))²] = [Bias(f̂(X))]² + Var(f̂(X)) + σ²",
+      "parameters": null,
+      "intuition": "Out-of-sample MSE is the true measure of predictive performance — it penalizes both bias (wrong on average) and variance (inconsistent).",
+      "common_confusion": "In-sample MSE is always ≤ out-of-sample MSE. The gap between them measures overfitting.",
+      "example_use": "Estimated via cross-validation when the true out-of-sample MSE cannot be computed."
+    },
+    "generalization_error": {
+      "definition": "The error of a model on new, unseen data — the expected loss when the model is applied to the true data-generating distribution.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Generalization error is the ultimate measure of model quality — it captures how well the model will perform in the real world.",
+      "common_confusion": "Low training error does not guarantee low generalization error. Only out-of-sample evaluation (test set or CV) measures generalization.",
+      "example_use": "A model with 2% training error and 20% test error has poor generalization due to overfitting."
+    },
+    "parsimony_principle": {
+      "definition": "The principle that, among models with similar predictive performance, the simpler model should be preferred — also known as Occam's razor.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Parsimony says don't add complexity without a payoff — simpler models generalize better and are easier to interpret.",
+      "common_confusion": null,
+      "example_use": "Choosing a 3-predictor model over a 10-predictor model when both have similar cross-validated MSE."
+    },
+    "overfitting": {
+      "definition": "The phenomenon where a model fits the training data too closely, capturing noise rather than the true signal, leading to poor performance on new data.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "An overfit model has memorized the training data — it performs perfectly in-sample but fails on new data because it learned the noise.",
+      "common_confusion": "Overfitting is a property of the model-data relationship, not the model alone. The same model may overfit with n=20 but not with n=2000.",
+      "example_use": "A polynomial of degree n-1 perfectly fits n data points but wildly oscillates between them."
+    },
+    "penalty_term": {
+      "definition": "A term added to an objective function (like AIC's 2p or ridge regression's λΣβⱼ²) that penalizes model complexity to discourage overfitting.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Penalty terms impose a cost for complexity — they force the model to justify each additional parameter with improved fit.",
+      "common_confusion": "Different penalty terms lead to different model selection criteria. AIC uses 2p, BIC uses log(n)·p.",
+      "example_use": "The 2p penalty in AIC penalizes each additional parameter by 2 units of log-likelihood."
+    },
+    "model_diagnostics": {
+      "definition": "Statistical and graphical tools for detecting violations of model assumptions, identifying influential observations, and assessing overall model adequacy.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Model diagnostics are the quality checks before drawing conclusions — they reveal whether the model is a valid description of the data.",
+      "common_confusion": null,
+      "example_use": "Residual plots, QQ-plots, leverage plots, and Cook's distance together form a comprehensive diagnostic suite."
+    },
+    "leverage_diagnostic": {
+      "definition": "The use of leverage values hᵢᵢ from the hat matrix to identify observations with unusual predictor values that may unduly influence the fit.",
+      "formula": "Flag if hᵢᵢ > 2(p+1)/n",
+      "parameters": null,
+      "intuition": "High-leverage diagnostics identify observations that sit far out in predictor space — they have the potential to pull the fitted model toward themselves.",
+      "common_confusion": null,
+      "example_use": "Plotting leverage values to identify observations that may disproportionately influence regression estimates."
+    },
+    "correlation_matrix_inspection": {
+      "definition": "The examination of pairwise correlations among predictors to detect potential multicollinearity before fitting a regression model.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "High pairwise correlations (|r| > 0.7 or 0.8) are early warnings of multicollinearity that could destabilize coefficient estimates.",
+      "common_confusion": "Multicollinearity can exist without high pairwise correlations (exact relationship among three or more variables). VIF provides a more complete diagnosis.",
+      "example_use": "Computing the correlation matrix of all predictors before building a multiple regression model."
+    },
+    "model_selection": {
+      "definition": "The process of choosing among competing statistical models based on criteria that balance goodness of fit against model complexity.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Model selection is about finding the simplest model that explains the data well — avoiding both underfitting and overfitting.",
+      "common_confusion": "No single model selection criterion is universally best. AIC targets predictive accuracy; BIC targets the true model.",
+      "example_use": "Using AIC to compare 5 candidate regression models with different predictor sets."
+    },
+    "information_criteria": {
+      "definition": "Model selection statistics derived from the log-likelihood penalized for complexity, including AIC and BIC.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Information criteria provide a single number summarizing the tradeoff between fit and complexity — lower is better.",
+      "common_confusion": "AIC and BIC are only meaningful for comparisons within the same dataset. They cannot be compared across datasets or different response variables.",
+      "example_use": "Selecting the best subset of predictors by comparing AIC values across candidate models."
+    },
+    "akaike_information_criterion": {
+      "definition": "A model selection criterion: AIC = -2ℓ(θ̂) + 2p, penalizing log-likelihood by twice the number of parameters.",
+      "formula": "AIC = -2ℓ(θ̂) + 2p",
+      "parameters": ["ℓ(θ̂): maximized log-likelihood", "p: number of parameters"],
+      "intuition": "AIC estimates expected out-of-sample prediction error — it penalizes complexity just enough to select the best predictive model.",
+      "common_confusion": "AIC is designed for predictive accuracy; BIC is designed for model identification. For large n, BIC selects sparser models than AIC.",
+      "example_use": "Model with AIC=245 is preferred over model with AIC=263, all else equal."
+    },
+    "bayesian_information_criterion": {
+      "definition": "A model selection criterion: BIC = -2ℓ(θ̂) + p·log(n), with a stronger penalty for parameters than AIC, especially for large n.",
+      "formula": "BIC = -2ℓ(θ̂) + p·log(n)",
+      "parameters": ["p: number of parameters", "n: sample size"],
+      "intuition": "BIC's larger penalty for complexity relative to AIC means it tends to select simpler models — it targets the true model rather than the best predictor.",
+      "common_confusion": "For n > 8, log(n) > 2 so BIC penalizes additional parameters more heavily than AIC, selecting sparser models.",
+      "example_use": "In a large dataset, BIC may prefer a 3-predictor model while AIC prefers a 5-predictor model."
+    },
+    "mallows_cp": {
+      "definition": "A model selection criterion for linear regression: Cₚ = SSEₚ/σ̂² - n + 2p, where models with Cₚ ≈ p are considered adequate.",
+      "formula": "Cₚ = SSEₚ/σ̂² - n + 2p",
+      "parameters": ["SSEₚ: residual sum of squares for p-predictor model", "σ̂²: estimated error variance from full model"],
+      "intuition": "Mallows' Cₚ measures total mean squared error of predictions — models with Cₚ close to the number of parameters have acceptable bias.",
+      "common_confusion": null,
+      "example_use": "Plotting Cₚ vs p for all subsets and selecting models where Cₚ ≈ p."
+    },
+    "all_subsets_regression": {
+      "definition": "A model selection procedure that fits every possible subset of predictors and selects the best model by some criterion (AIC, BIC, Cₚ, adjusted R²).",
+      "formula": null,
+      "parameters": null,
+      "intuition": "All subsets regression exhaustively evaluates every possible model — it finds the global optimum but is computationally infeasible for many predictors.",
+      "common_confusion": "With p predictors there are 2ᵖ subsets. All subsets becomes infeasible for p > 20-30 without specialized algorithms.",
+      "example_use": "With 10 predictors, all subsets regression evaluates 2¹⁰ = 1024 models."
+    },
+    "stepwise_selection": {
+      "definition": "An automated model selection procedure that adds or removes predictors one at a time based on a criterion like AIC or p-value threshold.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Stepwise selection navigates the model space greedily — it is fast but not guaranteed to find the global optimum.",
+      "common_confusion": "Stepwise selection based on p-values inflates Type I error and produces confidence intervals that are too narrow — use AIC-based selection instead.",
+      "example_use": "Forward stepwise selection starts with no predictors and adds the most significant one at each step."
+    },
+    "forward_stepwise_selection": {
+      "definition": "A stepwise selection procedure that starts with no predictors and iteratively adds the predictor most improving a model selection criterion.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Forward selection builds the model up from nothing — at each step it asks 'which predictor helps most?'",
+      "common_confusion": "Forward selection cannot remove a predictor once added, even if it becomes redundant when later predictors are included.",
+      "example_use": "Starting with an intercept-only model and iteratively adding predictors based on AIC improvement."
+    },
+    "backward_stepwise_selection": {
+      "definition": "A stepwise selection procedure that starts with all predictors and iteratively removes the predictor whose removal least worsens a model selection criterion.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Backward selection prunes the full model — at each step it asks 'which predictor contributes least?'",
+      "common_confusion": "Backward selection requires fitting the full model, which may be impossible if p > n.",
+      "example_use": "Starting with all 15 predictors and removing the least significant one at each step until AIC stops improving."
+    },
+    "anova_model_comparison": {
+      "definition": "The use of an ANOVA F-test to compare the fit of two nested regression models, testing whether the additional parameters in the larger model significantly improve fit.",
+      "formula": "F = [(SSE_reduced - SSE_full)/(df_full - df_reduced)] / [SSE_full/df_full]",
+      "parameters": null,
+      "intuition": "ANOVA model comparison asks: do the extra predictors in the larger model explain significantly more variation than expected by chance?",
+      "common_confusion": "ANOVA comparison only works for nested models — one model must be a special case of the other.",
+      "example_use": "Testing whether adding 3 interaction terms to a regression model significantly improves fit."
+    },
+    "f_test_for_nested_models": {
+      "definition": "A hypothesis test comparing two nested linear regression models using an F-statistic based on the difference in residual sums of squares.",
+      "formula": "F = [(SSE_R - SSE_F)/q] / [SSE_F/(n-p-1)]  ~  F(q, n-p-1)",
+      "parameters": ["q: number of additional parameters in the full model", "SSE_R, SSE_F: residual SS for reduced and full models"],
+      "intuition": "The nested F-test checks whether the extra predictors in the full model explain enough additional variance to justify their inclusion.",
+      "common_confusion": null,
+      "example_use": "Testing whether a set of demographic controls significantly improves a regression model for wages."
+    },
+    "resampling": {
+      "definition": "The process of repeatedly drawing samples from an existing dataset to estimate sampling distributions, model performance, or confidence intervals.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Resampling uses the data itself to simulate what repeated sampling from the population would look like.",
+      "common_confusion": null,
+      "example_use": "Bootstrap resampling and cross-validation are the two main resampling techniques in statistics."
+    },
+    "data_splitting": {
+      "definition": "The partition of a dataset into training and test sets to provide an unbiased estimate of out-of-sample prediction error.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Holding out a test set before fitting creates an unbiased evaluation — the model never sees the test data during training.",
+      "common_confusion": "The test set must be set aside before any modeling decisions are made, including preprocessing. Otherwise the evaluation is optimistic.",
+      "example_use": "Splitting 1000 observations into 800 training and 200 test observations for model evaluation."
+    },
+    "cross_validation": {
+      "definition": "A resampling method for estimating out-of-sample prediction error by repeatedly fitting the model on subsets of the data and evaluating on the remaining subset.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Cross-validation makes every observation serve as both training and test data — it gives a more stable estimate of generalization error than a single split.",
+      "common_confusion": "Cross-validation estimates prediction error for the model-building procedure, not for a single fixed model. The procedure includes all preprocessing steps.",
+      "example_use": "10-fold cross-validation estimates the prediction error of a ridge regression model."
+    },
+    "k_fold_cross_validation": {
+      "definition": "Cross-validation that divides data into k equal folds, trains on k-1 folds and tests on the remaining fold, repeating k times and averaging test errors.",
+      "formula": "CV_k = (1/k)Σⱼ MSE_j",
+      "parameters": ["k: number of folds (common values: 5 or 10)"],
+      "intuition": "Each observation is used for testing exactly once — k-fold CV makes efficient use of the data compared to a single train/test split.",
+      "common_confusion": "Smaller k (like 5) has higher bias but lower variance in the CV estimate. Larger k (like n, LOOCV) has lower bias but higher variance.",
+      "example_use": "5-fold CV splits 500 observations into 5 groups of 100, cycling through each as the test set."
+    },
+    "leave_one_out_cross_validation": {
+      "definition": "Cross-validation where k equals n — each observation is held out once, the model is fit on n-1 observations, and error is computed on the single held-out observation.",
+      "formula": "LOOCV = (1/n)Σᵢ(yᵢ - ŷ₍₋ᵢ₎)²",
+      "parameters": null,
+      "intuition": "LOOCV makes maximum use of data for training at the cost of fitting n separate models — computationally expensive but low bias.",
+      "common_confusion": "For linear regression, LOOCV can be computed in closed form from a single fit using the hat matrix: LOOCV = (1/n)Σ[eᵢ/(1-hᵢᵢ)]².",
+      "example_use": "LOOCV is practical for linear regression but expensive for nonlinear models with large n."
+    },
+    "prediction_error": {
+      "definition": "The error made when predicting a new outcome: (Y_new - ŷ_new), with expected squared prediction error = Var(Y) + Var(ŷ) + Bias²(ŷ).",
+      "formula": "E[(Y_new - ŷ_new)²] = σ² + Var(ŷ_new) + Bias²(ŷ_new)",
+      "parameters": null,
+      "intuition": "Prediction error has three sources: irreducible noise (σ²), estimation variance, and bias — only the last two can be reduced by the modeler.",
+      "common_confusion": "Even a perfect model has irreducible prediction error σ² due to the noise in the response.",
+      "example_use": "The expected prediction error for a new observation in linear regression is σ²(1 + xₙₑw^ᵀ(XᵀX)⁻¹xₙₑw)."
+    },
+    "model_complexity": {
+      "definition": "A measure of how flexible a model is, related to the number of free parameters, the degree of nonlinearity, or the capacity to fit complex patterns.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "More complex models can fit more patterns but risk overfitting — complexity is what you trade for fit.",
+      "common_confusion": "Model complexity and model quality are not the same. A complex model is not necessarily a good model.",
+      "example_use": "A degree-10 polynomial has higher complexity than a linear model and will fit training data better but may generalize worse."
+    },
+    "stepwise_selection_methods": {
+      "definition": "The family of automated predictor selection algorithms — forward, backward, and combined — that iteratively add or remove predictors to optimize a criterion.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Stepwise methods navigate the exponentially large model space using a greedy heuristic — fast but not globally optimal.",
+      "common_confusion": "Stepwise selection based on p-values does not control family-wise error rate and should be avoided for inference. Use it for exploratory model building only.",
+      "example_use": "Combined forward-backward stepwise selection using AIC as the selection criterion."
+    },
+    "subset_selection_methods": {
+      "definition": "Model selection approaches that choose the best subset of predictors from the full set, including all subsets, forward, backward, and best subset selection.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Subset selection finds the most relevant predictors by explicitly evaluating models with different predictor combinations.",
+      "common_confusion": null,
+      "example_use": "Best subset selection (via Leaps-and-bounds algorithm) finds the optimal k-predictor model for each k."
+    },
+    "hypothesis_based_model_comparison": {
+      "definition": "The use of formal hypothesis tests (F-tests, likelihood ratio tests) to compare nested statistical models.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Hypothesis-based comparison asks whether the more complex model is significantly better — it provides a principled way to decide between nested models.",
+      "common_confusion": "Hypothesis tests compare nested models only. AIC/BIC can compare non-nested models.",
+      "example_use": "Using an F-test to decide whether to include a set of interaction terms in a regression model."
+    },
+    "resampling_and_validation": {
+      "definition": "The family of methods that use data resampling (bootstrap, cross-validation) or data splitting to estimate model performance and uncertainty.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Resampling and validation methods are the modern alternative to purely analytical inference — they work for any model without distributional assumptions.",
+      "common_confusion": null,
+      "example_use": "Using 10-fold CV to estimate prediction error and bootstrap to get confidence intervals for model coefficients."
+    },
+    "cp_based_selection": {
+      "definition": "Model selection using Mallows' Cₚ statistic to identify subsets of predictors that minimize total mean squared prediction error.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Cₚ-based selection aims to minimize prediction error by balancing model fit and the number of predictors.",
+      "common_confusion": null,
+      "example_use": "Plotting Cₚ against p to identify the 'elbow' where adding more predictors no longer reduces prediction error."
+    }
+  }
+}

@@ -1,0 +1,470 @@
+{
+  "domain": "Statistical Inference",
+  "generated": "2026-04-12",
+  "nodes": {
+    "foundations_of_inference": {
+      "definition": "The branch of statistics concerned with drawing conclusions about population parameters from sample data, quantifying uncertainty in those conclusions.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Statistical inference is the formal machinery for learning from data under uncertainty — turning observations into principled statements about the world.",
+      "common_confusion": null,
+      "example_use": "Estimating the population mean income from a survey sample and constructing a confidence interval around that estimate."
+    },
+    "frequentist_inference": {
+      "definition": "A framework for statistical inference that interprets probability as long-run frequency and evaluates procedures by their repeated-sampling behavior.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Frequentist methods ask: if we repeated this experiment many times, how would our procedure perform on average?",
+      "common_confusion": "Frequentist confidence intervals do not mean 'the parameter is in this interval with 95% probability' — the parameter is fixed, not random.",
+      "example_use": "A 95% confidence interval procedure covers the true parameter in 95% of repeated samples."
+    },
+    "parameter": {
+      "definition": "A numerical characteristic of a population or probability model, typically unknown and to be estimated from data.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Parameters are the unknowns that define a model — estimating them is the central task of statistical inference.",
+      "common_confusion": "Parameters describe populations; statistics describe samples. The sample mean is a statistic that estimates the population mean parameter.",
+      "example_use": "The mean μ and variance σ² of a normal distribution are its parameters."
+    },
+    "parameter_space": {
+      "definition": "The set of all possible values a parameter can take, defining the scope of the statistical model.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The parameter space constrains what models are considered — for example, a variance must be positive, so σ² ∈ (0, ∞).",
+      "common_confusion": null,
+      "example_use": "For a Binomial model, the parameter space is p ∈ (0, 1)."
+    },
+    "continuous_parameter": {
+      "definition": "A parameter that can take any value in a continuous range, such as a mean, variance, or regression coefficient.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Most statistical parameters are continuous — they live on the real line or a continuous subset of it.",
+      "common_confusion": null,
+      "example_use": "The regression slope β ∈ ℝ is a continuous parameter."
+    },
+    "discrete_parameter": {
+      "definition": "A parameter that can only take values from a discrete set, such as the number of mixture components or the degrees of freedom.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Discrete parameters arise when the model structure itself is unknown — selecting the number of clusters is a discrete parameter problem.",
+      "common_confusion": null,
+      "example_use": "The number of components k in a Gaussian mixture model is a discrete parameter."
+    },
+    "population_mean": {
+      "definition": "The average of a numerical variable across all members of a population, denoted μ.",
+      "formula": "μ = (1/N) Σᵢ xᵢ  (finite population)",
+      "parameters": null,
+      "intuition": "The population mean is the true center of the distribution — what the sample mean tries to estimate.",
+      "common_confusion": "The population mean is a fixed unknown constant. The sample mean X̄ is a random variable that estimates it.",
+      "example_use": "The mean height of all adults in a country is a population parameter estimated from a sample survey."
+    },
+    "population_variance": {
+      "definition": "The average squared deviation of a variable from its population mean, measuring the spread of the entire population.",
+      "formula": "σ² = (1/N) Σᵢ (xᵢ - μ)²",
+      "parameters": null,
+      "intuition": "Population variance quantifies how spread out the true distribution is — the sample variance S² estimates it.",
+      "common_confusion": "The sample variance divides by n-1 (not n) to be an unbiased estimator of σ².",
+      "example_use": "The variance of exam scores across all students in a school is a population parameter."
+    },
+    "population_proportion": {
+      "definition": "The fraction of a population with a particular characteristic, denoted p.",
+      "formula": "p = (number with characteristic) / N",
+      "parameters": null,
+      "intuition": "Population proportion is the true probability of a binary outcome in the population.",
+      "common_confusion": null,
+      "example_use": "The proportion of voters supporting a candidate in an election is estimated from a poll."
+    },
+    "independent_random_samples": {
+      "definition": "A sample of n observations drawn independently from the same population, forming the basis of most classical statistical methods.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Independent random sampling ensures each observation carries fresh, unrelated information about the population.",
+      "common_confusion": "In practice, sampling without replacement from a finite population introduces weak dependence. If the population is large relative to the sample, this is negligible.",
+      "example_use": "Drawing 100 voters at random from a voter registry yields an independent random sample."
+    },
+    "empirical_distribution": {
+      "definition": "The distribution that places equal probability mass 1/n on each of the n observed data points, serving as a nonparametric estimate of the population distribution.",
+      "formula": "F̂_n(x) = (1/n) Σᵢ 1(Xᵢ ≤ x)",
+      "parameters": null,
+      "intuition": "The empirical distribution is the simplest possible estimate of the true distribution — just treat the data as the population.",
+      "common_confusion": null,
+      "example_use": "The bootstrap method samples from the empirical distribution to approximate sampling distributions."
+    },
+    "sample_mean": {
+      "definition": "The arithmetic average of n observed values, X̄ = (1/n)Σ Xᵢ, used as an estimator of the population mean μ.",
+      "formula": "X̄ = (1/n) Σᵢ₌₁ⁿ Xᵢ",
+      "parameters": null,
+      "intuition": "The sample mean is the most natural estimator of center — unbiased, consistent, and asymptotically normal by the CLT.",
+      "common_confusion": "The sample mean is a random variable with its own distribution (the sampling distribution). It is not the same as μ.",
+      "example_use": "The average of 50 measurements estimates the true mean of the measurement process."
+    },
+    "sample_variance": {
+      "definition": "The average squared deviation from the sample mean, computed with divisor n-1 to produce an unbiased estimator of σ².",
+      "formula": "S² = (1/(n-1)) Σᵢ (Xᵢ - X̄)²",
+      "parameters": null,
+      "intuition": "Dividing by n-1 instead of n corrects for the fact that deviations are measured from the estimated mean X̄, not the true mean μ.",
+      "common_confusion": "Dividing by n gives the MLE of σ² (biased). Dividing by n-1 gives the unbiased estimator. The difference matters most for small n.",
+      "example_use": "S² estimates the variability of measurements in an experiment."
+    },
+    "sample_standard_deviation": {
+      "definition": "The square root of the sample variance, S = √S², providing a spread measure in the same units as the data.",
+      "formula": "S = √[(1/(n-1)) Σᵢ (Xᵢ - X̄)²]",
+      "parameters": null,
+      "intuition": "Standard deviation is variance expressed in the original units — easier to interpret and compare to the mean.",
+      "common_confusion": "S is not an unbiased estimator of σ even though S² is unbiased for σ². Jensen's inequality ensures E[S] < σ.",
+      "example_use": "A standard deviation of 5 cm in height measurements tells us most values are within ~5 cm of the mean."
+    },
+    "sample_covariance": {
+      "definition": "The sample analog of covariance, measuring the linear co-movement between two variables in a dataset.",
+      "formula": "S_XY = (1/(n-1)) Σᵢ (Xᵢ - X̄)(Yᵢ - Ȳ)",
+      "parameters": null,
+      "intuition": "Sample covariance estimates how two variables tend to move together in the data.",
+      "common_confusion": null,
+      "example_use": "The sample covariance between height and weight is positive, indicating taller people tend to weigh more."
+    },
+    "sample_proportion": {
+      "definition": "The fraction of sample observations with a particular characteristic, p̂ = k/n, used to estimate the population proportion p.",
+      "formula": "p̂ = k/n",
+      "parameters": null,
+      "intuition": "The sample proportion is an unbiased, consistent estimator of the population proportion.",
+      "common_confusion": null,
+      "example_use": "If 42 of 100 surveyed voters support a candidate, p̂ = 0.42 estimates the true support level."
+    },
+    "sampling_distributions": {
+      "definition": "The probability distribution of a statistic (like X̄ or S²) over all possible samples of size n from the population.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "A sampling distribution describes how much a statistic would vary if we repeatedly drew new samples — it quantifies estimator uncertainty.",
+      "common_confusion": "The sampling distribution is not the distribution of the data. It is the distribution of a summary statistic computed from the data.",
+      "example_use": "The sampling distribution of X̄ is N(μ, σ²/n) when sampling from a normal population."
+    },
+    "sampling_distribution": {
+      "definition": "The distribution of a specific statistic computed from repeated random samples of the same size from the same population.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "If you drew thousands of samples and computed X̄ each time, the histogram of those X̄ values would approximate its sampling distribution.",
+      "common_confusion": null,
+      "example_use": "The sampling distribution of the sample mean has standard error σ/√n."
+    },
+    "standard_error": {
+      "definition": "The standard deviation of a statistic's sampling distribution, measuring the typical variability of the statistic across samples.",
+      "formula": "SE(X̄) = σ/√n  (estimated as S/√n when σ unknown)",
+      "parameters": null,
+      "intuition": "Standard error tells you how precisely the statistic estimates its target — smaller SE means more reliable estimates.",
+      "common_confusion": "Standard error is the standard deviation of the estimator, not of the data. Confusing the two leads to wrong confidence intervals.",
+      "example_use": "With n=100 and S=10, the standard error of X̄ is 10/√100 = 1."
+    },
+    "bootstrapped_sampling_distribution": {
+      "definition": "An approximation to the sampling distribution of a statistic obtained by repeatedly resampling with replacement from the observed data.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The bootstrap pretends the empirical distribution is the true population and simulates what sampling variability would look like.",
+      "common_confusion": "The bootstrap approximates the sampling distribution of a statistic, not the population distribution of the data.",
+      "example_use": "Bootstrap the median to get a confidence interval when the analytical sampling distribution is unknown."
+    },
+    "large_sample_inference": {
+      "definition": "Inference methods that rely on asymptotic approximations (typically the CLT or MLE theory) that become valid as sample size grows.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Large-sample methods trade exact results for generality — they work for almost any distribution when n is large enough.",
+      "common_confusion": "How large n needs to be depends on the problem. For heavy-tailed distributions, n may need to be very large for the CLT approximation to be adequate.",
+      "example_use": "Wald confidence intervals for MLE estimates rely on large-sample normality of the MLE."
+    },
+    "large_sample_distribution_of_the_mle": {
+      "definition": "Under regularity conditions, the MLE θ̂ is asymptotically normal: √n(θ̂ - θ₀) →_d N(0, I(θ₀)⁻¹) where I(θ₀) is the Fisher information.",
+      "formula": "√n(θ̂ - θ₀) →_d N(0, [I(θ₀)]⁻¹)",
+      "parameters": null,
+      "intuition": "MLEs are approximately normal for large samples — this justifies Wald confidence intervals and z-tests for any parametric model.",
+      "common_confusion": "This is an asymptotic result. For small samples, the MLE may be far from normal, especially for skewed or bounded parameters.",
+      "example_use": "The asymptotic normality of the logistic regression MLE justifies z-tests for regression coefficients."
+    },
+    "normal_approximation": {
+      "definition": "The use of the normal distribution to approximate the distribution of a statistic, justified by the Central Limit Theorem.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "When n is large, the normal approximation converts difficult probability calculations into simple z-score lookups.",
+      "common_confusion": "The normal approximation can be poor for small samples, rare events, or heavily skewed distributions.",
+      "example_use": "Approximating the Binomial(n, p) distribution by N(np, np(1-p)) for large n."
+    },
+    "point_estimation": {
+      "definition": "The use of a single value (a statistic) to estimate an unknown population parameter.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Point estimation boils down all the data to a single best guess for the unknown parameter.",
+      "common_confusion": "A point estimate ignores uncertainty. Always pair a point estimate with a measure of precision (SE, CI).",
+      "example_use": "The sample mean X̄ = 4.7 is a point estimate of the population mean μ."
+    },
+    "estimator": {
+      "definition": "A function of the sample data used to estimate an unknown parameter; a rule that maps data to an estimate.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "An estimator is a recipe — plug in data, get out an estimate. The estimator itself is a random variable with its own distribution.",
+      "common_confusion": "An estimator is a function (random variable); an estimate is its realized value for a specific dataset.",
+      "example_use": "T(X₁,...,Xₙ) = X̄ is an estimator of μ; T(3,5,4,6) = 4.5 is an estimate."
+    },
+    "unbiased_estimator": {
+      "definition": "An estimator whose expected value equals the true parameter value: E[T(X)] = θ for all θ.",
+      "formula": "E[T(X)] = θ",
+      "parameters": null,
+      "intuition": "An unbiased estimator is correct on average — it neither systematically overshoots nor undershoots the true value.",
+      "common_confusion": "Unbiasedness is a desirable but not sufficient property. A biased estimator with lower variance may have smaller mean squared error.",
+      "example_use": "The sample mean X̄ is an unbiased estimator of μ. The sample variance S² is unbiased for σ²."
+    },
+    "bias": {
+      "definition": "The systematic difference between the expected value of an estimator and the true parameter: Bias(T) = E[T(X)] - θ.",
+      "formula": "Bias(T) = E[T(X)] - θ",
+      "parameters": null,
+      "intuition": "Bias measures the estimator's tendency to consistently over- or under-estimate the true value.",
+      "common_confusion": "MSE = Variance + Bias². Reducing bias can increase variance (the bias-variance trade-off).",
+      "example_use": "The MLE of σ² divides by n (not n-1), giving a negative bias of -σ²/n."
+    },
+    "consistency": {
+      "definition": "An estimator Tₙ is consistent if it converges in probability to the true parameter as n → ∞: Tₙ →_p θ.",
+      "formula": "P(|Tₙ - θ| > ε) → 0  as  n → ∞",
+      "parameters": null,
+      "intuition": "Consistency means more data guarantees a better estimate — in the limit, you recover the truth exactly.",
+      "common_confusion": "Consistency is a large-sample property. An estimator can be consistent but have large bias or variance for finite n.",
+      "example_use": "The sample mean is consistent for μ by the Law of Large Numbers."
+    },
+    "estimate": {
+      "definition": "The specific numerical value produced by applying an estimator to an observed dataset.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "An estimate is the output of the estimation recipe applied to your actual data — a single number.",
+      "common_confusion": null,
+      "example_use": "Applying the sample mean estimator to {3, 5, 4, 6} gives the estimate 4.5."
+    },
+    "bias_corrected_estimate": {
+      "definition": "An estimate adjusted to remove the known bias of an estimator: T* = T - Bias(T).",
+      "formula": "T* = T - B̂ias(T)",
+      "parameters": null,
+      "intuition": "If you know your estimator is systematically off, subtract the bias to get a corrected value.",
+      "common_confusion": "Bias correction increases variance. The corrected estimator may have higher MSE despite being unbiased.",
+      "example_use": "The bootstrap bias-corrected estimate subtracts the estimated bootstrap bias from the original estimate."
+    },
+    "interval_estimation": {
+      "definition": "Estimation that produces a range of plausible values for a parameter rather than a single point, quantifying uncertainty.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Interval estimates acknowledge that a single number cannot fully capture parameter uncertainty — a range is more honest.",
+      "common_confusion": null,
+      "example_use": "Reporting a 95% confidence interval (3.2, 5.8) rather than just the point estimate 4.5."
+    },
+    "confidence_interval": {
+      "definition": "An interval [L(X), U(X)] constructed from sample data such that the procedure covers the true parameter with probability 1-α across repeated samples.",
+      "formula": "P(L(X) ≤ θ ≤ U(X)) = 1 - α",
+      "parameters": ["1-α: confidence level (typically 0.90, 0.95, or 0.99)"],
+      "intuition": "A 95% CI is a random interval that traps the true parameter in 95% of repeated experiments — not a 95% probability statement about this particular interval.",
+      "common_confusion": "A 95% CI does NOT mean 'there is a 95% probability the parameter is in this interval.' The parameter is fixed; the interval is random.",
+      "example_use": "A 95% CI for μ: X̄ ± 1.96 σ/√n when σ is known and the population is normal."
+    },
+    "confidence_level": {
+      "definition": "The probability 1-α that the confidence interval procedure captures the true parameter value over repeated samples.",
+      "formula": "1 - α  (common values: 0.90, 0.95, 0.99)",
+      "parameters": ["α: significance level"],
+      "intuition": "Higher confidence level means wider intervals — there is a direct trade-off between precision and reliability.",
+      "common_confusion": "Confidence level is a property of the procedure, not of any single computed interval.",
+      "example_use": "A 99% CI is wider than a 95% CI for the same data, reflecting higher guaranteed coverage."
+    },
+    "large_sample_confidence_interval": {
+      "definition": "A confidence interval constructed using the normal approximation to the sampling distribution of the statistic, valid for large n.",
+      "formula": "estimate ± z_{α/2} · SE",
+      "parameters": ["z_{α/2}: critical value from N(0,1), e.g. 1.96 for 95% CI"],
+      "intuition": "When n is large, the CLT guarantees approximate normality, making z-based intervals valid for any distribution.",
+      "common_confusion": "The large-sample CI is approximate, not exact. For small samples, use t-intervals or exact methods.",
+      "example_use": "X̄ ± 1.96 S/√n is a large-sample 95% CI for μ."
+    },
+    "t_confidence_interval": {
+      "definition": "A confidence interval for a normal population mean using the t-distribution when σ² is unknown, especially appropriate for small samples.",
+      "formula": "X̄ ± t_{α/2, n-1} · S/√n",
+      "parameters": ["t_{α/2, n-1}: critical value from t-distribution with n-1 degrees of freedom"],
+      "intuition": "The t-interval replaces the z critical value with a larger t critical value to account for the extra uncertainty from estimating σ.",
+      "common_confusion": "The t-CI assumes normality of the population. For large n, the t and z critical values are nearly identical.",
+      "example_use": "For n=15 and 95% confidence: X̄ ± 2.145 S/√15."
+    },
+    "confidence_interval_for_difference_of_means": {
+      "definition": "A confidence interval for μ₁ - μ₂, the difference between two population means, constructed from two independent samples.",
+      "formula": "(X̄₁ - X̄₂) ± t_{α/2} · SE(X̄₁ - X̄₂)",
+      "parameters": null,
+      "intuition": "Comparing two groups requires an interval for their difference — if it excludes 0, the means are significantly different.",
+      "common_confusion": "The pooled vs. unpooled standard error choice depends on whether equal variances can be assumed.",
+      "example_use": "Constructing a 95% CI for the difference in mean blood pressure between a treatment and control group."
+    },
+    "confidence_interval_for_population_variance": {
+      "definition": "A confidence interval for σ² based on the chi-square distribution of (n-1)S²/σ².",
+      "formula": "[(n-1)S²/χ²_{α/2}, (n-1)S²/χ²_{1-α/2}]",
+      "parameters": null,
+      "intuition": "Unlike CI for the mean, the CI for variance is asymmetric because the chi-square distribution is right-skewed.",
+      "common_confusion": "This interval assumes the population is exactly normal. It is not robust to departures from normality.",
+      "example_use": "A 95% CI for the variance of a manufacturing process to check if it meets specifications."
+    },
+    "large_sample_confidence_interval_using_mle": {
+      "definition": "A confidence interval derived from the asymptotic normality of the MLE: θ̂ ± z_{α/2} / √(nI(θ̂)).",
+      "formula": "θ̂ ± z_{α/2} · √(I(θ̂)⁻¹/n)",
+      "parameters": null,
+      "intuition": "MLE theory provides standard errors for free — the Fisher information gives the asymptotic variance.",
+      "common_confusion": null,
+      "example_use": "Confidence intervals for logistic regression coefficients use the MLE asymptotic normality result."
+    },
+    "wald_confidence_interval": {
+      "definition": "A confidence interval of the form θ̂ ± z_{α/2} · SE(θ̂), based on the normal approximation to the distribution of the MLE.",
+      "formula": "θ̂ ± z_{α/2} · SE(θ̂)",
+      "parameters": null,
+      "intuition": "The Wald interval is the simplest and most widely used form of CI — estimate plus or minus a multiple of its standard error.",
+      "common_confusion": "Wald intervals can have poor coverage for proportions near 0 or 1, or for small samples. The Wilson interval performs better in those cases.",
+      "example_use": "A Wald 95% CI for a proportion: p̂ ± 1.96 √(p̂(1-p̂)/n)."
+    },
+    "likelihood": {
+      "definition": "The likelihood of parameter θ given observed data x is L(θ; x) = f(x; θ), the data density evaluated at the observed data as a function of θ.",
+      "formula": "L(θ; x) = f(x; θ) = ∏ᵢ f(xᵢ; θ)  (IID case)",
+      "parameters": null,
+      "intuition": "The likelihood measures how probable the observed data would be under different parameter values — higher likelihood means the data is more consistent with that parameter.",
+      "common_confusion": "The likelihood is not a probability distribution over θ. It is a function of θ for fixed observed data x.",
+      "example_use": "For n Bernoulli observations with k successes: L(p; k) = p^k (1-p)^(n-k)."
+    },
+    "log_likelihood": {
+      "definition": "The natural logarithm of the likelihood function, ℓ(θ) = log L(θ; x), used because it converts products to sums and is easier to maximize.",
+      "formula": "ℓ(θ) = log L(θ; x) = Σᵢ log f(xᵢ; θ)",
+      "parameters": null,
+      "intuition": "Taking the log makes the math tractable — products become sums, and the logarithm is monotone so it doesn't change where the maximum is.",
+      "common_confusion": null,
+      "example_use": "For normal data: ℓ(μ, σ²) = -n/2 log(2πσ²) - Σ(xᵢ-μ)²/(2σ²)."
+    },
+    "maximum_likelihood_estimation": {
+      "definition": "A method of estimating parameters by finding the value θ̂ that maximizes the likelihood (or equivalently the log-likelihood) of the observed data.",
+      "formula": "θ̂_MLE = argmax_θ L(θ; x) = argmax_θ ℓ(θ; x)",
+      "parameters": null,
+      "intuition": "MLE finds the parameter value that makes the observed data most probable — the best explanation for what was seen.",
+      "common_confusion": "MLE maximizes the likelihood of the data given θ, not the probability of θ given the data. That is Bayesian posterior maximization.",
+      "example_use": "The MLE of μ for normal data is X̄; the MLE of p for Binomial data is k/n."
+    },
+    "maximum_likelihood_estimator": {
+      "definition": "The specific estimator θ̂ that results from applying maximum likelihood estimation to a given parametric model.",
+      "formula": "θ̂ = argmax_θ Σᵢ log f(Xᵢ; θ)",
+      "parameters": null,
+      "intuition": "The MLE is the gold standard for parametric estimation — it is consistent, asymptotically efficient, and invariant under reparameterization.",
+      "common_confusion": "The MLE is not always unbiased. For example, the MLE of σ² divides by n, not n-1, giving a biased (but consistent) estimator.",
+      "example_use": "In logistic regression, the MLE of β is found by iterative numerical optimization."
+    },
+    "regularity_conditions": {
+      "definition": "Technical conditions on the parametric model (differentiability, identifiability, bounded support, etc.) required for MLE asymptotic theory to hold.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Regularity conditions are the fine print of MLE theory — they ensure the log-likelihood is well-behaved enough for asymptotic normality to apply.",
+      "common_confusion": "Common violations include: uniform distribution (support depends on parameter), or a model with non-differentiable likelihood.",
+      "example_use": "The Uniform(0, θ) model violates regularity conditions — its MLE θ̂ = X_(n) is not asymptotically normal."
+    },
+    "numerical_maximization_methods": {
+      "definition": "Iterative algorithms for finding the maximum of the log-likelihood when a closed-form solution does not exist.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Most likelihoods in real models cannot be maximized analytically — numerical methods climb the log-likelihood surface iteratively.",
+      "common_confusion": null,
+      "example_use": "Logistic regression, mixed models, and neural networks all require numerical optimization to find the MLE."
+    },
+    "newton_raphson_method": {
+      "definition": "An iterative algorithm for finding the maximum of the log-likelihood using first and second derivatives: θ_{t+1} = θ_t - [ℓ''(θ_t)]⁻¹ ℓ'(θ_t).",
+      "formula": "θ_{t+1} = θ_t - [ℓ''(θ_t)]⁻¹ ℓ'(θ_t)",
+      "parameters": null,
+      "intuition": "Newton-Raphson uses local curvature information to take smarter steps toward the maximum than simple gradient ascent.",
+      "common_confusion": "Newton-Raphson can diverge or converge to a local maximum. It requires the log-likelihood to be concave near the solution.",
+      "example_use": "Used in IRLS (Iteratively Reweighted Least Squares) to fit GLMs including logistic regression."
+    },
+    "bisection_method": {
+      "definition": "A root-finding algorithm that repeatedly halves an interval until the score function (likelihood derivative) equals zero.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Bisection is slower than Newton-Raphson but guaranteed to converge for one-dimensional problems with a sign change.",
+      "common_confusion": null,
+      "example_use": "Finding the MLE of an exponential family parameter when Newton-Raphson is numerically unstable."
+    },
+    "fisher_information": {
+      "definition": "A measure of the amount of information that observable data carries about an unknown parameter, equal to the variance of the score function.",
+      "formula": "I(θ) = E[(∂/∂θ log f(X;θ))²] = -E[∂²/∂θ² log f(X;θ)]",
+      "parameters": null,
+      "intuition": "High Fisher information means the data is very informative about θ — the likelihood is sharply peaked around the true value.",
+      "common_confusion": "Fisher information is about the data's informativeness, not the parameter's uncertainty. These are related but distinct concepts.",
+      "example_use": "The asymptotic variance of the MLE is 1/(nI(θ)) — more information means a more precise estimate."
+    },
+    "expected_fisher_information": {
+      "definition": "The Fisher information computed as the expected value of the squared score, taken over the data distribution.",
+      "formula": "I(θ) = E_θ[(∂/∂θ log f(X;θ))²]",
+      "parameters": null,
+      "intuition": "Expected Fisher information averages over all possible datasets — it is a property of the model at a given θ, not of the observed data.",
+      "common_confusion": null,
+      "example_use": "The expected Fisher information for a Bernoulli(p) model is 1/(p(1-p))."
+    },
+    "observed_fisher_information": {
+      "definition": "The Fisher information evaluated at the MLE using the observed data: J(θ̂) = -ℓ''(θ̂), the negative curvature of the log-likelihood at the maximum.",
+      "formula": "J(θ̂) = -∂²ℓ(θ)/∂θ²|_{θ=θ̂}",
+      "parameters": null,
+      "intuition": "Observed Fisher information uses the actual data rather than expectations — it gives the curvature of the likelihood at the MLE.",
+      "common_confusion": "Expected and observed Fisher information agree asymptotically but differ in finite samples. Observed information is more commonly used for standard errors.",
+      "example_use": "The standard error of the MLE is approximately 1/√J(θ̂)."
+    },
+    "score_function": {
+      "definition": "The derivative of the log-likelihood with respect to θ, equal to zero at the MLE: s(θ) = ∂ℓ(θ)/∂θ.",
+      "formula": "s(θ) = ∂/∂θ log L(θ; x) = Σᵢ ∂/∂θ log f(xᵢ; θ)",
+      "parameters": null,
+      "intuition": "The score function measures how much the log-likelihood increases as you move the parameter — it is zero at the maximum.",
+      "common_confusion": "The score has mean zero under the true parameter: E_θ[s(θ)] = 0. This is a key identity used in deriving MLE properties.",
+      "example_use": "Setting the score to zero and solving gives the MLE estimating equations."
+    },
+    "likelihood_ratio": {
+      "definition": "The ratio of the likelihood under two different parameter values, used to compare models and construct test statistics.",
+      "formula": "Λ = L(θ₀; x) / L(θ̂; x)",
+      "parameters": null,
+      "intuition": "A likelihood ratio near 1 means both parameter values explain the data equally well; a small ratio means θ₀ is much worse than θ̂.",
+      "common_confusion": null,
+      "example_use": "The likelihood ratio test statistic is -2 log Λ, which follows a chi-square distribution asymptotically under H₀."
+    },
+    "method_of_moments": {
+      "definition": "A parameter estimation method that equates population moments (functions of θ) to sample moments and solves for θ.",
+      "formula": "Set E[Xᵏ] = (1/n)Σ Xᵢᵏ and solve for θ",
+      "parameters": null,
+      "intuition": "Method of moments says: find the parameter that makes the theoretical mean/variance match what you observed.",
+      "common_confusion": "Method of moments estimates are often less efficient than MLE. They are simpler to compute but can be inconsistent if moments don't uniquely identify the distribution.",
+      "example_use": "For a Gamma(α, β) distribution, setting theoretical mean and variance equal to sample mean and variance gives MOM estimates."
+    },
+    "least_squares_estimation": {
+      "definition": "A parameter estimation method that minimizes the sum of squared differences between observed values and model predictions.",
+      "formula": "β̂ = argmin_β Σᵢ (yᵢ - f(xᵢ; β))²",
+      "parameters": null,
+      "intuition": "Least squares finds the parameters that make the model's predictions as close as possible to the data, in a squared-error sense.",
+      "common_confusion": "OLS is the MLE when errors are normal. For non-normal errors, least squares may not be the most efficient estimator.",
+      "example_use": "Fitting a line to data by minimizing the sum of squared vertical distances from the line."
+    },
+    "bootstrap": {
+      "definition": "A resampling method that approximates the sampling distribution of a statistic by repeatedly resampling with replacement from the observed data.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The bootstrap simulates the act of taking many samples from the population by treating the observed data as a proxy for the population.",
+      "common_confusion": "The bootstrap cannot overcome small sample bias or fix a fundamentally flawed study design — it only approximates sampling variability.",
+      "example_use": "Use 1000 bootstrap samples to construct a confidence interval for the median when the analytical formula is unknown."
+    },
+    "non_parametric_bootstrap": {
+      "definition": "The standard bootstrap that resamples with replacement directly from the observed data, making no assumptions about the population distribution.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The non-parametric bootstrap is assumption-free — it lets the data speak for itself without imposing a distributional model.",
+      "common_confusion": null,
+      "example_use": "Bootstrap the correlation coefficient between two variables to get a confidence interval without assuming bivariate normality."
+    },
+    "parametric_bootstrap": {
+      "definition": "A bootstrap that resamples from a fitted parametric model rather than from the raw data, assuming the model is correctly specified.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The parametric bootstrap uses the fitted model to simulate data — it can be more efficient than non-parametric if the model is correct.",
+      "common_confusion": "If the parametric model is misspecified, the parametric bootstrap can give misleading results.",
+      "example_use": "Fit a normal distribution to data, then generate bootstrap samples from N(X̄, S²) to assess estimator variability."
+    },
+    "bootstrap_percentile_method": {
+      "definition": "A bootstrap confidence interval formed by taking the α/2 and 1-α/2 quantiles of the bootstrap distribution of the statistic.",
+      "formula": "CI = [θ̂*_{(α/2)}, θ̂*_{(1-α/2)}]",
+      "parameters": null,
+      "intuition": "Cut off the extreme bootstrap values and use the middle 95% as your confidence interval.",
+      "common_confusion": "The percentile method can have poor coverage if the statistic's distribution is skewed. The BCa (bias-corrected accelerated) method improves on this.",
+      "example_use": "Sort 1000 bootstrap estimates and take the 25th and 975th values as the 95% CI bounds."
+    }
+  }
+}

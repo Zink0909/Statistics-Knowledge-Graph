@@ -1,0 +1,473 @@
+{
+  "random_variables": {
+    "definition": "A random variable is a function that assigns a real number to each outcome in a sample space, providing a numerical representation of the result of a random experiment.",
+    "formula": null,
+    "parameters": null,
+    "intuition": "A random variable translates uncertain outcomes (like 'heads' or 'tails') into numbers (0 or 1) so that probability theory can be applied mathematically.",
+    "confusion": "A random variable is not a variable in the algebraic sense — it is a function defined on a sample space. Its 'randomness' comes from the underlying probability space, not the variable itself.",
+    "example": "The number of heads in 10 coin flips; the height of a randomly selected person."
+  },
+  "discrete_random_variables": {
+    "definition": "A random variable that takes values in a countable set — either finite or countably infinite.",
+    "formula": null,
+    "parameters": null,
+    "intuition": "If you can list all possible values (even if the list goes on forever), the variable is discrete. Probabilities are assigned to individual points.",
+    "confusion": "Countably infinite sets (like the integers) are still discrete. 'Discrete' does not mean 'finite'.",
+    "example": "The number of defective items in a batch; the count of customer arrivals per hour."
+  },
+  "probability_mass_function": {
+    "definition": "A function P(X = x) that gives the probability that a discrete random variable X takes exactly the value x, satisfying P(X = x) ≥ 0 and Σ P(X = x) = 1.",
+    "formula": "P(X = x) ≥ 0 for all x; Σₓ P(X = x) = 1",
+    "parameters": null,
+    "intuition": "The PMF is a complete probability recipe for a discrete variable — it tells you exactly how likely each possible value is.",
+    "confusion": "The PMF gives probabilities at specific points. For continuous random variables, individual points have probability zero; the PDF is used instead.",
+    "example": "For a fair die: P(X = k) = 1/6 for k = 1, 2, ..., 6."
+  },
+  "continuous_random_variables": {
+    "definition": "A random variable whose possible values form an uncountable set (typically an interval), and for which the probability of taking any exact value is zero.",
+    "formula": null,
+    "parameters": null,
+    "intuition": "Continuous variables model quantities measured on a scale — height, temperature, time. Because there are infinitely many values, probabilities are assigned to intervals, not points.",
+    "confusion": "P(X = x) = 0 for any specific x does not mean x is impossible. It means a single point has zero width and contributes no probability mass.",
+    "example": "The waiting time until the next event; the exact temperature of a room."
+  },
+  "probability_density_function": {
+    "definition": "A non-negative function f(x) such that the probability X falls in [a, b] equals the integral of f over that interval, and the total integral over all reals equals 1.",
+    "formula": "P(a ≤ X ≤ b) = ∫ₐᵇ f(x) dx;  ∫₋∞^∞ f(x) dx = 1",
+    "parameters": null,
+    "intuition": "The PDF describes the 'density' of probability at each point — not the probability itself. High density means values in that region are relatively likely.",
+    "confusion": "f(x) can exceed 1 — it is a density, not a probability. Only integrals of f give probabilities.",
+    "example": "Standard normal PDF: f(x) = (1/√(2π)) exp(-x²/2)."
+  },
+  "cumulative_distribution_function": {
+    "definition": "The CDF F(x) = P(X ≤ x) gives the probability that a random variable X takes a value less than or equal to x. It is non-decreasing, right-continuous, with limits 0 at -∞ and 1 at +∞.",
+    "formula": "F(x) = P(X ≤ x);  F(-∞) = 0,  F(+∞) = 1",
+    "parameters": null,
+    "intuition": "The CDF accumulates probability from left to right. Reading off F(x) tells you what fraction of the distribution lies at or below x.",
+    "confusion": "The CDF is defined for both discrete and continuous random variables. For discrete variables, it is a step function; for continuous, it is smooth.",
+    "example": "P(Z ≤ 1.96) ≈ 0.975 from the standard normal CDF."
+  },
+  "joint_probability_mass_function": {
+    "definition": "For two or more discrete random variables, the joint PMF P(X = x, Y = y) gives the probability that X equals x and Y equals y simultaneously.",
+    "formula": "P(X = x, Y = y) ≥ 0;  Σₓ Σᵧ P(X = x, Y = y) = 1",
+    "parameters": null,
+    "intuition": "The joint PMF fully describes how two (or more) discrete variables behave together — including any dependence between them.",
+    "confusion": "Knowing both marginals P(X = x) and P(Y = y) is not sufficient to recover the joint PMF unless X and Y are independent.",
+    "example": "Rolling two dice: P(X = 2, Y = 5) = 1/36."
+  },
+  "joint_probability_density_function": {
+    "definition": "For two or more continuous random variables, the joint PDF f(x, y) is a non-negative function such that probabilities over regions are computed by double integration, and the total integral equals 1.",
+    "formula": "P((X,Y) ∈ A) = ∬_A f(x,y) dx dy;  ∬ f(x,y) dx dy = 1",
+    "parameters": null,
+    "intuition": "The joint PDF describes how probability is distributed over a 2D (or higher-dimensional) space — high values indicate regions where both variables are likely to fall together.",
+    "confusion": "Like the univariate PDF, f(x, y) can exceed 1. It is a density, not a probability.",
+    "example": "Bivariate normal distribution with correlation ρ."
+  },
+  "marginal_distribution": {
+    "definition": "The distribution of a single variable obtained from a joint distribution by summing (discrete) or integrating (continuous) over all values of the other variable(s).",
+    "formula": "Discrete: P(X = x) = Σᵧ P(X = x, Y = y)\nContinuous: f_X(x) = ∫ f(x,y) dy",
+    "parameters": null,
+    "intuition": "Marginalisation 'collapses' the joint distribution along one dimension, leaving only the distribution of the variable you care about.",
+    "confusion": "The marginals alone do not determine the joint distribution. Two pairs of variables can have identical marginals but very different joint distributions (e.g. independent vs correlated).",
+    "example": "From the joint distribution of (height, weight), integrating out weight gives the marginal distribution of height."
+  },
+  "linear_combination_of_random_variables": {
+    "definition": "A new random variable formed as a weighted sum aX + bY + c, where X and Y are random variables and a, b, c are constants.",
+    "formula": "Z = aX + bY + c\nE[Z] = aE[X] + bE[Y] + c\nVar(Z) = a²Var(X) + b²Var(Y) + 2ab·Cov(X,Y)",
+    "parameters": [
+      {
+        "name": "a, b",
+        "description": "scalar coefficients"
+      },
+      {
+        "name": "c",
+        "description": "additive constant"
+      }
+    ],
+    "intuition": "Linearity of expectation means the mean of a sum is always the sum of the means. Variance picks up covariance terms when variables are dependent.",
+    "confusion": "The formula Var(aX + bY) = a²Var(X) + b²Var(Y) holds only when X and Y are uncorrelated. Otherwise the covariance term must be added.",
+    "example": "Portfolio return: R = w₁R₁ + w₂R₂ where wᵢ are portfolio weights."
+  },
+  "distribution_of_sum_of_independent_random_variables": {
+    "definition": "When X and Y are independent, the distribution of Z = X + Y is determined by the convolution of their individual distributions.",
+    "formula": "Discrete: P(Z = z) = Σₓ P(X = x)·P(Y = z − x)\nContinuous: f_Z(z) = ∫ f_X(x)·f_Y(z − x) dx",
+    "parameters": null,
+    "intuition": "Adding independent random variables 'mixes' their distributions. The Normal distribution is stable under addition: the sum of independent normals is normal.",
+    "confusion": "Convolution applies only to independent variables. For dependent variables, the joint distribution must be used.",
+    "example": "The sum of n independent Poisson(λ) variables is Poisson(nλ)."
+  },
+  "convolution_of_probability_density_functions": {
+    "definition": "The mathematical operation (f * g)(z) = ∫ f(x)·g(z − x) dx that yields the PDF of the sum of two independent continuous random variables with PDFs f and g.",
+    "formula": "(f_X * f_Y)(z) = ∫₋∞^∞ f_X(x)·f_Y(z − x) dx",
+    "parameters": null,
+    "intuition": "Convolution slides one density over another, computing how much they overlap at each point. This overlap determines the probability of each sum value.",
+    "confusion": "Convolution gives the distribution of the sum X + Y. It does not apply to products or other combinations of random variables.",
+    "example": "Convolving two Uniform(0,1) PDFs produces the triangular distribution on [0, 2]."
+  },
+  "conditional_probability": {
+    "definition": "The probability of event A given that event B has occurred: P(A|B) = P(A ∩ B) / P(B), defined when P(B) > 0.",
+    "formula": "P(A|B) = P(A ∩ B) / P(B)",
+    "parameters": null,
+    "intuition": "Conditioning restricts attention to the world where B is true, then re-normalises probabilities within that world.",
+    "confusion": "P(A|B) ≠ P(B|A) in general. Confusing the two is the base rate fallacy — a common error in medical testing and legal reasoning.",
+    "example": "P(disease | positive test) ≠ P(positive test | disease)."
+  },
+  "chain_rule_for_probabilities": {
+    "definition": "The identity P(A₁ ∩ A₂ ∩ … ∩ Aₙ) = P(A₁)·P(A₂|A₁)·P(A₃|A₁,A₂)·…·P(Aₙ|A₁,…,Aₙ₋₁), which decomposes any joint probability into a product of conditional probabilities.",
+    "formula": "P(A₁ ∩ … ∩ Aₙ) = ∏ᵢ P(Aᵢ | A₁,…,Aᵢ₋₁)",
+    "parameters": null,
+    "intuition": "Any joint event can be built up sequentially: the probability of a sequence of events equals the probability of the first, times the probability of the second given the first, and so on.",
+    "confusion": "The chain rule is exact and always valid — it is an identity, not an approximation. Independence simplifies it by collapsing the conditioning.",
+    "example": "P(draw ace then king) = P(ace) × P(king | ace drawn) = (4/52)(4/51)."
+  },
+  "conditional_distribution": {
+    "definition": "The distribution of a random variable X given that another variable Y = y has been observed, obtained by taking the appropriate slice of the joint distribution and renormalising.",
+    "formula": "Discrete: P(X = x | Y = y) = P(X=x, Y=y) / P(Y=y)\nContinuous: f_{X|Y}(x|y) = f(x,y) / f_Y(y)",
+    "parameters": null,
+    "intuition": "Conditioning on Y = y fixes one dimension of the joint distribution, leaving a (renormalised) distribution over the remaining dimension.",
+    "confusion": "The conditional distribution is a full distribution over X, not just a single number. It changes shape as the conditioning value y changes.",
+    "example": "In a bivariate normal, the conditional distribution of X given Y = y is also normal, with mean and variance depending on y."
+  },
+  "conditional_expectation": {
+    "definition": "E[X | Y = y] is the expected value of X computed under the conditional distribution of X given Y = y. As a function of y, E[X | Y] is itself a random variable.",
+    "formula": "E[X | Y = y] = Σₓ x·P(X=x|Y=y)  (discrete)\nE[X | Y = y] = ∫ x·f_{X|Y}(x|y) dx  (continuous)\nLaw of total expectation: E[X] = E[E[X|Y]]",
+    "parameters": null,
+    "intuition": "Conditional expectation is the best prediction of X given knowledge of Y, in the mean-squared error sense.",
+    "confusion": "E[X|Y] is a function of Y, making it a random variable. E[X|Y = y] is a number. The distinction matters in the law of total expectation.",
+    "example": "The posterior mean in Bayesian inference is a conditional expectation: E[θ | data]."
+  },
+  "independent_random_variables": {
+    "definition": "Random variables X and Y are independent if the joint distribution factors: P(X ∈ A, Y ∈ B) = P(X ∈ A)·P(Y ∈ B) for all sets A, B. Equivalently, the joint PDF/PMF equals the product of marginals.",
+    "formula": "f(x,y) = f_X(x)·f_Y(y)  for all x, y",
+    "parameters": null,
+    "intuition": "Independence means knowing the value of one variable gives you no information about the other. The variables do not interact.",
+    "confusion": "Uncorrelated does not imply independent. Zero correlation (Cov(X,Y) = 0) is a necessary but not sufficient condition for independence, except in the multivariate normal case.",
+    "example": "Two separate fair coin flips are independent; the results of consecutive draws without replacement are not."
+  },
+  "independent_identically_distributed_random_variables": {
+    "definition": "A sequence of random variables X₁, X₂, …, Xₙ is i.i.d. if every variable has the same distribution and all variables are mutually independent.",
+    "formula": null,
+    "parameters": null,
+    "intuition": "i.i.d. is the clean mathematical model for a random sample: each observation is drawn independently from the same population, with no memory or dependence between draws.",
+    "confusion": "i.i.d. is an assumption, not a fact. Time-series data (stock returns, measurements over time) is typically not i.i.d. due to serial correlation.",
+    "example": "Rolling a fair die 100 times produces an i.i.d. sample from Uniform{1,2,3,4,5,6}."
+  },
+  "mutual_independence": {
+    "definition": "A collection of random variables X₁, …, Xₙ is mutually independent if the joint distribution factors into the product of all marginals for every subset of variables.",
+    "formula": "P(X₁ ∈ A₁, …, Xₙ ∈ Aₙ) = ∏ᵢ P(Xᵢ ∈ Aᵢ)",
+    "parameters": null,
+    "intuition": "Mutual independence is stronger than pairwise independence. It means no subset of variables carries information about the others.",
+    "confusion": "Pairwise independence (every pair is independent) does not imply mutual independence. A classical counterexample exists with three binary variables.",
+    "example": "The results of n independent coin flips are mutually independent."
+  },
+  "expected_value": {
+    "definition": "The expected value (mean) E[X] is the probability-weighted average of all possible values of X, representing the long-run average outcome over many repetitions.",
+    "formula": "Discrete: E[X] = Σₓ x·P(X = x)\nContinuous: E[X] = ∫₋∞^∞ x·f(x) dx\nLinearity: E[aX + bY] = aE[X] + bE[Y]",
+    "parameters": null,
+    "intuition": "Think of E[X] as the balancing point of the distribution — the value that, if you received it every time instead of a random draw, would leave you equally well off in the long run.",
+    "confusion": "E[X] need not be a value that X can actually take (e.g. E[die roll] = 3.5). It is also not the same as the most likely value (mode).",
+    "example": "E[fair die] = (1+2+3+4+5+6)/6 = 3.5."
+  },
+  "variance": {
+    "definition": "Var(X) = E[(X − E[X])²] measures the average squared deviation of X from its mean, quantifying the spread or dispersion of the distribution.",
+    "formula": "Var(X) = E[X²] − (E[X])²\nVar(aX + b) = a²·Var(X)\nVar(X + Y) = Var(X) + Var(Y) + 2·Cov(X,Y)",
+    "parameters": null,
+    "intuition": "Variance captures how far values typically stray from the mean. Higher variance means more spread-out, more uncertain outcomes.",
+    "confusion": "Variance is in squared units of X. The standard deviation σ = √Var(X) is in the same units as X and is often more interpretable.",
+    "example": "Var(fair die) = E[X²] − (3.5)² = 91/6 − 12.25 ≈ 2.92."
+  },
+  "covariance": {
+    "definition": "Cov(X, Y) = E[(X − E[X])(Y − E[Y])] measures the degree to which X and Y deviate from their means in the same or opposite directions simultaneously.",
+    "formula": "Cov(X,Y) = E[XY] − E[X]·E[Y]\nCov(X,X) = Var(X)\nCov(aX, bY) = ab·Cov(X,Y)",
+    "parameters": null,
+    "intuition": "Positive covariance means X and Y tend to be large together; negative means when one is large, the other tends to be small. Zero covariance means no linear relationship.",
+    "confusion": "Covariance depends on the scales of X and Y, making it hard to compare across different pairs. Correlation normalises covariance to [−1, 1] and is scale-free.",
+    "example": "Height and weight of people have positive covariance; temperature and heating bills have negative covariance."
+  },
+  "correlation": {
+    "definition": "The Pearson correlation coefficient ρ(X, Y) = Cov(X, Y) / (σ_X · σ_Y) is a scale-free measure of linear association between X and Y, bounded in [−1, 1].",
+    "formula": "ρ(X,Y) = Cov(X,Y) / (√Var(X) · √Var(Y))\nρ = ±1 ⟺ perfect linear relationship",
+    "parameters": [
+      {
+        "name": "ρ",
+        "description": "correlation coefficient, in [−1, 1]"
+      }
+    ],
+    "intuition": "ρ = 1 means X and Y move in perfect lockstep; ρ = −1 means they move in exact opposition; ρ = 0 means no linear relationship (but possibly nonlinear dependence).",
+    "confusion": "Correlation measures only linear association. Variables can be perfectly dependent (e.g. Y = X²) yet have zero correlation if the relationship is nonlinear and symmetric.",
+    "example": "ρ ≈ 0.8 between study hours and exam scores suggests a strong positive linear trend."
+  },
+  "weak_law_of_large_numbers": {
+    "definition": "For i.i.d. random variables with mean μ, the sample mean X̄ₙ converges in probability to μ as n → ∞: for any ε > 0, P(|X̄ₙ − μ| > ε) → 0.",
+    "formula": "X̄ₙ →ᵖ μ  as  n → ∞\nP(|X̄ₙ − μ| > ε) → 0  for all ε > 0",
+    "parameters": [
+      {
+        "name": "μ",
+        "description": "population mean E[X]"
+      },
+      {
+        "name": "ε",
+        "description": "arbitrary positive tolerance"
+      }
+    ],
+    "intuition": "As you collect more data, the sample average gets arbitrarily close to the true mean with high probability. The law formalises the intuition behind averaging.",
+    "confusion": "The WLLN gives convergence in probability, not almost-sure convergence (that is the Strong LLN). The distinction matters in formal proofs but not in most applied settings.",
+    "example": "The average of n fair coin flips converges to 0.5 as n → ∞."
+  },
+  "central_limit_theorem": {
+    "definition": "For i.i.d. random variables with mean μ and finite variance σ², the standardised sample mean √n(X̄ₙ − μ)/σ converges in distribution to N(0, 1) as n → ∞.",
+    "formula": "√n(X̄ₙ − μ)/σ →ᵈ N(0,1)\nEquivalently: X̄ₙ ≈ N(μ, σ²/n) for large n",
+    "parameters": [
+      {
+        "name": "μ",
+        "description": "population mean"
+      },
+      {
+        "name": "σ²",
+        "description": "population variance"
+      },
+      {
+        "name": "n",
+        "description": "sample size"
+      }
+    ],
+    "intuition": "No matter the shape of the original distribution, averages of many i.i.d. draws become approximately normal. This is why the normal distribution appears so often in practice.",
+    "confusion": "The CLT applies to the distribution of the sample mean, not to individual observations. It requires finite variance; heavy-tailed distributions (infinite variance) do not satisfy this.",
+    "example": "Average income from n = 100 people is approximately normal even if individual incomes are highly skewed."
+  },
+  "chebyshev_inequality": {
+    "definition": "For any random variable X with mean μ and variance σ², and for any k > 0: P(|X − μ| ≥ kσ) ≤ 1/k². Equivalently, P(|X − μ| ≥ t) ≤ σ²/t².",
+    "formula": "P(|X − μ| ≥ kσ) ≤ 1/k²\nP(|X − μ| ≥ t) ≤ Var(X)/t²",
+    "parameters": [
+      {
+        "name": "k",
+        "description": "number of standard deviations from the mean"
+      },
+      {
+        "name": "σ²",
+        "description": "variance of X"
+      }
+    ],
+    "intuition": "Chebyshev gives a distribution-free upper bound on how often X strays far from its mean. It only requires finite variance — no distributional assumptions.",
+    "confusion": "Chebyshev bounds are often very loose. For a normal distribution, P(|X−μ| ≥ 2σ) ≈ 0.05, but Chebyshev only guarantees ≤ 0.25. Tighter bounds exist for specific distributions.",
+    "example": "For any distribution with mean 0 and variance 1: P(|X| ≥ 3) ≤ 1/9 ≈ 0.11."
+  },
+  "exponential_family": {
+    "definition": "A parametric family of distributions whose PDF/PMF can be written as f(x|θ) = h(x) exp(η(θ)·T(x) − A(θ)), where T(x) is the sufficient statistic, η(θ) is the natural parameter, and A(θ) is the log-partition function.",
+    "formula": "f(x|θ) = h(x) exp(η(θ)ᵀT(x) − A(θ))",
+    "parameters": [
+      {
+        "name": "T(x)",
+        "description": "sufficient statistic"
+      },
+      {
+        "name": "η(θ)",
+        "description": "natural (canonical) parameter"
+      },
+      {
+        "name": "A(θ)",
+        "description": "log-partition function (normalising constant)"
+      }
+    ],
+    "intuition": "The exponential family is the 'correct' family for GLMs — it includes normal, binomial, Poisson, gamma, and many others. Its structure makes MLE, sufficient statistics, and conjugate priors tractable.",
+    "confusion": "Not every useful distribution is in the exponential family. The Cauchy distribution, for example, is not. Membership requires a specific factored form.",
+    "example": "Normal, Bernoulli, Poisson, Gamma, Beta, and Multinomial distributions are all exponential family members."
+  },
+  "bernoulli_distribution": {
+    "definition": "The distribution of a single binary trial that succeeds with probability p and fails with probability 1 − p.",
+    "formula": "P(X = 1) = p,  P(X = 0) = 1 − p\nE[X] = p,  Var(X) = p(1−p)",
+    "parameters": [
+      {
+        "name": "p",
+        "description": "probability of success, p ∈ (0,1)"
+      }
+    ],
+    "intuition": "The simplest non-trivial distribution: one flip of a biased coin. It is the building block for the Binomial distribution.",
+    "confusion": "The Bernoulli is a special case of Binomial(n=1, p). The outcome is always 0 or 1, never a probability value — p is the parameter, not the outcome.",
+    "example": "Whether a randomly selected patient responds to treatment (1 = yes, 0 = no)."
+  },
+  "binomial_distribution": {
+    "definition": "The distribution of the number of successes in n independent Bernoulli trials each with success probability p.",
+    "formula": "P(X = k) = C(n,k) pᵏ (1−p)ⁿ⁻ᵏ\nE[X] = np,  Var(X) = np(1−p)",
+    "parameters": [
+      {
+        "name": "n",
+        "description": "number of trials"
+      },
+      {
+        "name": "p",
+        "description": "success probability per trial"
+      }
+    ],
+    "intuition": "Count the heads in n coin flips. The shape shifts from right-skewed (small p) to left-skewed (large p) to symmetric (p = 0.5).",
+    "confusion": "Binomial requires the trials to be independent and p to be constant. When sampling without replacement from a finite population, the Hypergeometric distribution applies instead.",
+    "example": "Number of defective items in a batch of 50, where each item is defective with probability 0.05."
+  },
+  "geometric_distribution": {
+    "definition": "The distribution of the number of trials needed to obtain the first success in a sequence of independent Bernoulli trials, each with success probability p.",
+    "formula": "P(X = k) = (1−p)^(k−1) p,  k = 1, 2, 3, …\nE[X] = 1/p,  Var(X) = (1−p)/p²",
+    "parameters": [
+      {
+        "name": "p",
+        "description": "probability of success on each trial"
+      }
+    ],
+    "intuition": "How many times do you roll a die before getting a 6? The geometric distribution answers this kind of question. It has the memoryless property: past failures give no information about future trials.",
+    "confusion": "Two parameterisations exist: number of trials until first success (support 1,2,…) and number of failures before first success (support 0,1,…). They differ by 1.",
+    "example": "Number of job applications before receiving the first offer."
+  },
+  "poisson_distribution": {
+    "definition": "The distribution of the number of events occurring in a fixed interval of time or space, when events occur independently at a constant average rate λ.",
+    "formula": "P(X = k) = e^(−λ) λᵏ / k!,  k = 0, 1, 2, …\nE[X] = λ,  Var(X) = λ",
+    "parameters": [
+      {
+        "name": "λ",
+        "description": "rate parameter — mean (and variance) of the distribution, λ > 0"
+      }
+    ],
+    "intuition": "The Poisson is the limit of Binomial(n, p) as n → ∞, p → 0, with np = λ fixed. It models rare events: radioactive decays, website visits per second, typos per page.",
+    "confusion": "The Poisson assumes events occur independently. If events cluster (overdispersion), the negative binomial distribution is often a better fit.",
+    "example": "Number of emails arriving in one hour if the average rate is λ = 20 per hour."
+  },
+  "trinomial_distribution": {
+    "definition": "The distribution of counts across three categories in n independent trials, each resulting in outcome 1, 2, or 3 with probabilities p₁, p₂, p₃ = 1 − p₁ − p₂.",
+    "formula": "P(X₁=k₁, X₂=k₂, X₃=k₃) = n!/(k₁!k₂!k₃!) p₁^k₁ p₂^k₂ p₃^k₃\nE[Xᵢ] = npᵢ,  Var(Xᵢ) = npᵢ(1−pᵢ)",
+    "parameters": [
+      {
+        "name": "n",
+        "description": "number of trials"
+      },
+      {
+        "name": "p₁, p₂",
+        "description": "probabilities of outcomes 1 and 2; p₃ = 1 − p₁ − p₂"
+      }
+    ],
+    "intuition": "The trinomial is the multinomial with exactly three categories — rock-paper-scissors, or classifying items as good/defective/borderline.",
+    "confusion": "The trinomial is a special case of the Multinomial distribution with k = 3 categories. The marginal distribution of each count is Binomial.",
+    "example": "In 50 trials where each trial yields A (30%), B (50%), or C (20%), the joint count (nA, nB, nC) follows a Trinomial(50, 0.3, 0.5)."
+  },
+  "uniform_distribution": {
+    "definition": "A distribution where all values in an interval [a, b] are equally likely. The PDF is constant at 1/(b−a) over [a, b] and zero elsewhere.",
+    "formula": "f(x) = 1/(b−a)  for  a ≤ x ≤ b\nE[X] = (a+b)/2,  Var(X) = (b−a)²/12",
+    "parameters": [
+      {
+        "name": "a",
+        "description": "lower bound"
+      },
+      {
+        "name": "b",
+        "description": "upper bound"
+      }
+    ],
+    "intuition": "Maximum entropy distribution on a bounded interval — it represents complete ignorance about where in [a, b] a value falls.",
+    "confusion": "Uniform(0, 1) is the standard reference distribution. The CDF of any continuous random variable follows Uniform(0, 1) — this is the probability integral transform.",
+    "example": "The arrival time of a bus that comes at a uniformly random point within a 10-minute window."
+  },
+  "normal_distribution": {
+    "definition": "A continuous probability distribution fully characterised by its mean μ and variance σ², with a bell-shaped, symmetric PDF. Also called the Gaussian distribution.",
+    "formula": "f(x) = (1/√(2πσ²)) exp(−(x−μ)²/(2σ²))\nE[X] = μ,  Var(X) = σ²",
+    "parameters": [
+      {
+        "name": "μ",
+        "description": "mean — controls location (centre of the bell)"
+      },
+      {
+        "name": "σ²",
+        "description": "variance — controls spread (width of the bell); σ is the standard deviation"
+      }
+    ],
+    "intuition": "The normal distribution arises naturally as the limit of sums of many small independent contributions (CLT). It is the default model for measurement error, natural variation, and large-sample approximations.",
+    "confusion": "σ is the standard deviation; σ² is the variance. The standard normal N(0,1) has μ=0, σ=1. A normal distribution is fully determined by just two parameters.",
+    "example": "Heights in a homogeneous population; OLS residuals under the normal error model; large-sample distribution of the MLE."
+  },
+  "students_t_distribution": {
+    "definition": "A symmetric, bell-shaped distribution with heavier tails than the normal, parameterised by degrees of freedom ν. Arises as the distribution of (X̄ − μ)/(S/√n) under normality with unknown variance.",
+    "formula": "f(t) ∝ (1 + t²/ν)^(−(ν+1)/2)\nE[T] = 0 (ν > 1),  Var(T) = ν/(ν−2) (ν > 2)",
+    "parameters": [
+      {
+        "name": "ν",
+        "description": "degrees of freedom — controls tail heaviness; as ν → ∞, t → N(0,1)"
+      }
+    ],
+    "intuition": "When the population variance is unknown and estimated from data, there is additional uncertainty. The t-distribution accounts for this by spreading probability into its tails relative to the normal.",
+    "confusion": "As ν increases, the t-distribution converges to N(0,1). For ν ≥ 30, the difference is practically negligible. Small ν gives very heavy tails.",
+    "example": "The t(3) distribution used in inference for a sample of n=4 from a normal population with unknown variance."
+  },
+  "chi_square_distribution": {
+    "definition": "If Z₁, …, Zₖ are independent standard normal variables, then X = Z₁² + … + Zₖ² follows a chi-square distribution with k degrees of freedom, written χ²(k).",
+    "formula": "X = Σᵢ Zᵢ²,  Zᵢ ~ N(0,1) i.i.d.\nE[X] = k,  Var(X) = 2k",
+    "parameters": [
+      {
+        "name": "k",
+        "description": "degrees of freedom — equals the number of squared standard normals summed"
+      }
+    ],
+    "intuition": "Chi-square arises naturally when squaring normal variables — it governs the distribution of sample variances and the test statistic for goodness-of-fit tests.",
+    "confusion": "The chi-square is right-skewed, not symmetric. As k → ∞ it approaches normality (by CLT). For inference on a single variance, df = n−1.",
+    "example": "(n−1)S²/σ² ~ χ²(n−1) when sampling from a normal population with variance σ²."
+  },
+  "f_distribution": {
+    "definition": "If U ~ χ²(d₁) and V ~ χ²(d₂) are independent, then F = (U/d₁)/(V/d₂) follows an F-distribution with degrees of freedom d₁ and d₂.",
+    "formula": "F = (χ²(d₁)/d₁) / (χ²(d₂)/d₂)\nE[F] = d₂/(d₂−2) for d₂ > 2",
+    "parameters": [
+      {
+        "name": "d₁",
+        "description": "numerator degrees of freedom"
+      },
+      {
+        "name": "d₂",
+        "description": "denominator degrees of freedom"
+      }
+    ],
+    "intuition": "The F-distribution compares two variance estimates. It appears in ANOVA and regression F-tests to assess whether explained variance significantly exceeds residual variance.",
+    "confusion": "The F-distribution is always positive and right-skewed. Note that F(1, d₂) = t²(d₂): squaring a t-statistic gives an F with 1 numerator degree of freedom.",
+    "example": "The F-statistic in overall regression significance testing: F = (RSS_reduced − RSS_full)/q / (RSS_full/(n−p))."
+  },
+  "gamma_distribution": {
+    "definition": "A flexible two-parameter distribution on positive reals, parameterised by shape α and rate β (or scale θ = 1/β). Models waiting times for the α-th event in a Poisson process.",
+    "formula": "f(x) = (βᵅ/Γ(α)) x^(α−1) e^(−βx),  x > 0\nE[X] = α/β,  Var(X) = α/β²",
+    "parameters": [
+      {
+        "name": "α",
+        "description": "shape parameter (α > 0) — controls skewness"
+      },
+      {
+        "name": "β",
+        "description": "rate parameter (β > 0); scale = 1/β"
+      }
+    ],
+    "intuition": "The gamma generalises the exponential (α = 1) and chi-square (α = k/2, β = 1/2). It is very flexible for modelling positive, right-skewed data.",
+    "confusion": "Two parameterisations exist: (shape α, rate β) and (shape α, scale θ = 1/β). Check which convention is used — it affects the mean formula.",
+    "example": "Total waiting time until the 5th customer arrives in a Poisson process; insurance claim amounts."
+  },
+  "exponential_distribution": {
+    "definition": "The distribution of the time between consecutive events in a Poisson process with rate λ. It is the only continuous distribution with the memoryless property.",
+    "formula": "f(x) = λ e^(−λx),  x ≥ 0\nE[X] = 1/λ,  Var(X) = 1/λ²",
+    "parameters": [
+      {
+        "name": "λ",
+        "description": "rate parameter (λ > 0); mean = 1/λ"
+      }
+    ],
+    "intuition": "The exponential distribution has no memory: given that a component has survived t hours, the remaining lifetime distribution is the same as new. This is the continuous analogue of the geometric distribution.",
+    "confusion": "The rate λ is not the mean — the mean is 1/λ. This is a frequent source of parameterisation errors. Some texts use the mean θ = 1/λ as the parameter instead.",
+    "example": "Time between earthquakes above a given magnitude; lifetime of a component under constant failure rate."
+  },
+  "beta_distribution": {
+    "definition": "A flexible distribution on [0, 1] parameterised by shape parameters α and β, commonly used to model probabilities and proportions.",
+    "formula": "f(x) = x^(α−1)(1−x)^(β−1)/B(α,β),  x ∈ [0,1]\nE[X] = α/(α+β),  Var(X) = αβ/((α+β)²(α+β+1))",
+    "parameters": [
+      {
+        "name": "α",
+        "description": "shape parameter controlling weight toward 1"
+      },
+      {
+        "name": "β",
+        "description": "shape parameter controlling weight toward 0"
+      }
+    ],
+    "intuition": "Beta(1,1) is Uniform(0,1). Larger α pushes mass toward 1; larger β pushes mass toward 0. Equal α = β gives a symmetric distribution around 0.5.",
+    "confusion": "The beta distribution is the conjugate prior for the Bernoulli/Binomial likelihood in Bayesian inference. After observing k successes in n trials, Beta(α+k, β+n−k) is the posterior.",
+    "example": "Prior distribution for the probability p of a coin landing heads; model for the proportion of defective items in a batch."
+  }
+}

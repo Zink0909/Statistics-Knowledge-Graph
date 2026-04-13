@@ -1,0 +1,742 @@
+{
+  "domain": "Regression and Linear Models",
+  "generated": "2026-04-12",
+  "nodes": {
+    "regression_framework": {
+      "definition": "The general statistical framework for modeling the relationship between a response variable and one or more predictor variables.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Regression is the formal machinery for asking 'how does Y change when X changes?' — it quantifies relationships and enables prediction.",
+      "common_confusion": null,
+      "example_use": "Modeling house prices as a function of size, location, and number of bedrooms."
+    },
+    "regression_analysis": {
+      "definition": "The statistical process of estimating the relationship between a dependent variable and one or more independent variables using a sample of data.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Regression analysis is the full workflow: specify a model, estimate its parameters, check assumptions, and interpret results.",
+      "common_confusion": "Regression describes association, not causation. Establishing causality requires experimental design or causal inference methods.",
+      "example_use": "Analyzing how advertising spend relates to sales revenue after controlling for seasonality."
+    },
+    "linear_regression": {
+      "definition": "A regression model in which the conditional mean of Y is a linear function of the predictors: E[Y|X] = β₀ + β₁X₁ + ... + βₚXₚ.",
+      "formula": "Y = β₀ + β₁X₁ + ... + βₚXₚ + ε",
+      "parameters": ["β₀: intercept", "β₁,...,βₚ: regression coefficients", "ε: error term with E[ε]=0"],
+      "intuition": "Linear regression finds the hyperplane through the predictor space that best explains the response — 'best' meaning smallest squared errors.",
+      "common_confusion": "'Linear' refers to linearity in the parameters, not in the predictors. Polynomial regression is a linear model.",
+      "example_use": "Predicting student GPA from hours studied and prior test scores."
+    },
+    "simple_linear_regression": {
+      "definition": "Linear regression with a single predictor: Y = β₀ + β₁X + ε, the simplest form of regression analysis.",
+      "formula": "Y = β₀ + β₁X + ε,  β̂₁ = Σ(xᵢ-x̄)(yᵢ-ȳ) / Σ(xᵢ-x̄)²",
+      "parameters": ["β₀: intercept (value of Y when X=0)", "β₁: slope (change in Y per unit change in X)"],
+      "intuition": "Simple linear regression fits a straight line through a scatterplot — the line that minimizes squared vertical distances.",
+      "common_confusion": "The slope estimates the association between X and Y, not the causal effect of X on Y.",
+      "example_use": "Fitting a line to predict weight from height."
+    },
+    "multiple_linear_regression": {
+      "definition": "Linear regression with two or more predictors, modeling E[Y|X₁,...,Xₚ] = β₀ + β₁X₁ + ... + βₚXₚ.",
+      "formula": "Y = Xβ + ε,  β̂ = (XᵀX)⁻¹Xᵀy",
+      "parameters": ["β₀,...,βₚ: regression coefficients", "X: n×(p+1) design matrix"],
+      "intuition": "Multiple regression controls for confounders — each coefficient estimates the effect of one predictor holding all others fixed.",
+      "common_confusion": "Coefficients change when predictors are added or removed. Adding a correlated predictor can reverse the sign of an existing coefficient (Simpson's paradox).",
+      "example_use": "Predicting salary from years of experience, education level, and job title."
+    },
+    "dependent_variable": {
+      "definition": "The outcome variable Y that the regression model aims to explain or predict, also called the response variable.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The dependent variable is what you are trying to understand — it depends on (is influenced by) the predictors.",
+      "common_confusion": "The label 'dependent' describes the modeling role, not necessarily a causal relationship.",
+      "example_use": "In a salary regression, annual salary is the dependent variable."
+    },
+    "independent_variable": {
+      "definition": "A predictor variable X used to explain or predict the dependent variable, also called a covariate, regressor, or feature.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Independent variables are the inputs to the regression — they explain variation in the response.",
+      "common_confusion": "In observational studies, 'independent' variables are often correlated with each other, violating the spirit of the term.",
+      "example_use": "In a salary regression, years of experience and education level are independent variables."
+    },
+    "numeric_variable": {
+      "definition": "A predictor that takes continuous or discrete numerical values and enters the regression model directly.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Numeric variables are the natural inputs to regression — their coefficients measure the change in Y per unit change in X.",
+      "common_confusion": null,
+      "example_use": "Age, income, and temperature are numeric variables."
+    },
+    "categorical_variable": {
+      "definition": "A variable that takes values from a finite set of categories, requiring special encoding (dummy variables) to enter a regression model.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Categorical variables cannot enter regression directly — they must be converted to numbers via dummy encoding.",
+      "common_confusion": "Treating a categorical variable as numeric (e.g. coding categories 1, 2, 3) imposes an artificial ordering and equal spacing.",
+      "example_use": "Region (North, South, East, West) is a categorical variable requiring 3 dummy variables."
+    },
+    "factor_variable": {
+      "definition": "A categorical variable in a statistical model, where each level represents a distinct group and effects are estimated relative to a reference level.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "A factor variable partitions observations into discrete groups — the regression estimates a separate adjustment for each group.",
+      "common_confusion": null,
+      "example_use": "Treatment group (A, B, C) is a factor variable in a clinical trial analysis."
+    },
+    "nominal_predictor": {
+      "definition": "A categorical predictor with no natural ordering among its levels, requiring full dummy variable encoding.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Nominal predictors have categories that are purely qualitative — like colors or country names — with no implied ranking.",
+      "common_confusion": null,
+      "example_use": "Country of origin is a nominal predictor — there is no natural ordering of countries."
+    },
+    "categorical_predictor": {
+      "definition": "Any predictor variable with a finite number of distinct categories, encoded as dummy variables in a regression model.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Categorical predictors let regression models fit different intercepts (or slopes) for different groups.",
+      "common_confusion": null,
+      "example_use": "Gender encoded as a dummy variable (0/1) in a wage regression."
+    },
+    "reference_level": {
+      "definition": "The baseline category of a factor variable against which all other levels are compared in a dummy variable encoding.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The reference level is the group assigned all zeros — every other group's coefficient measures its difference from this baseline.",
+      "common_confusion": "The choice of reference level changes the coefficients but not the overall fit or predicted values.",
+      "example_use": "With region (North, South, East, West), setting North as reference level: coefficients for South, East, West measure differences from North."
+    },
+    "polynomial_predictor": {
+      "definition": "A predictor entered as X, X², X³, etc. to model nonlinear (curved) relationships within the linear model framework.",
+      "formula": "Y = β₀ + β₁X + β₂X² + ... + βₖXᵏ + ε",
+      "parameters": null,
+      "intuition": "Polynomial predictors let a linear model fit curves — the model is still linear in parameters, just nonlinear in X.",
+      "common_confusion": "High-degree polynomials overfit badly. Use orthogonal polynomials or splines for smoother fits.",
+      "example_use": "Modeling crop yield as a quadratic function of rainfall: Y = β₀ + β₁X + β₂X²."
+    },
+    "linear_relationship": {
+      "definition": "A relationship between two variables where a unit change in X is associated with a constant change in Y, regardless of X's current value.",
+      "formula": "E[Y|X] = β₀ + β₁X",
+      "parameters": null,
+      "intuition": "A linear relationship plots as a straight line — the effect of X on Y is the same at every value of X.",
+      "common_confusion": "Many real relationships are approximately linear over a limited range but nonlinear globally.",
+      "example_use": "Assuming a linear relationship between hours studied and exam score improvement."
+    },
+    "linear_trend": {
+      "definition": "A systematic linear change in a variable over time or across values of a predictor, captured by a nonzero slope coefficient.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "A linear trend means the response increases (or decreases) at a constant rate as the predictor increases.",
+      "common_confusion": null,
+      "example_use": "A positive linear trend in CO₂ levels over decades."
+    },
+    "intercept": {
+      "definition": "The coefficient β₀ in a regression model, representing the expected value of Y when all predictors equal zero.",
+      "formula": "β₀ = E[Y | X₁=0, X₂=0, ..., Xₚ=0]",
+      "parameters": null,
+      "intuition": "The intercept anchors the regression line or hyperplane — it sets the baseline level of Y.",
+      "common_confusion": "The intercept is often not directly interpretable if X=0 is outside the observed range of the data.",
+      "example_use": "In a salary regression, the intercept estimates salary when all predictors are zero (may be meaningless)."
+    },
+    "slope": {
+      "definition": "The coefficient β₁ in simple regression, or a partial regression coefficient in multiple regression, measuring the change in E[Y] per unit increase in the corresponding predictor.",
+      "formula": "β₁ = ΔE[Y] / ΔX",
+      "parameters": null,
+      "intuition": "The slope tells you how steeply Y changes with X — positive means Y increases, negative means it decreases.",
+      "common_confusion": "In multiple regression, each slope is a partial effect — the change in Y per unit of Xⱼ holding all other predictors constant.",
+      "example_use": "A slope of 5000 in a salary regression means each additional year of experience is associated with $5000 higher salary."
+    },
+    "error_term": {
+      "definition": "The unobservable random component ε in a regression model, representing all variation in Y not explained by the predictors.",
+      "formula": "εᵢ = Yᵢ - (β₀ + β₁X₁ᵢ + ... + βₚXₚᵢ)",
+      "parameters": null,
+      "intuition": "The error term absorbs everything the model doesn't explain — measurement error, omitted variables, and inherent randomness.",
+      "common_confusion": "The error term ε is unobserved. Residuals eᵢ = Yᵢ - Ŷᵢ are the observed estimates of the errors.",
+      "example_use": "Two people with identical observed characteristics may have different salaries — the difference is captured by the error term."
+    },
+    "variance_of_the_error_term": {
+      "definition": "The constant variance σ² = Var(εᵢ) assumed for all error terms in classical linear regression (homoscedasticity assumption).",
+      "formula": "Var(εᵢ) = σ²  for all  i",
+      "parameters": ["σ²: error variance, estimated by S² = RSS/(n-p-1)"],
+      "intuition": "Constant error variance means the spread of Y around the regression line is the same everywhere — violations create heteroscedasticity.",
+      "common_confusion": null,
+      "example_use": "In a wage regression, if residuals are larger for high earners, the constant variance assumption is violated."
+    },
+    "interaction_effect": {
+      "definition": "The phenomenon where the effect of one predictor on Y depends on the value of another predictor, modeled by including a product term X₁·X₂.",
+      "formula": "Y = β₀ + β₁X₁ + β₂X₂ + β₃X₁X₂ + ε",
+      "parameters": ["β₃: interaction coefficient — how much β₁ changes per unit of X₂"],
+      "intuition": "An interaction means 'it depends' — the effect of X₁ on Y is not constant but varies with X₂.",
+      "common_confusion": "Including an interaction term without the main effects (X₁ and X₂) is usually wrong — the hierarchy principle says main effects should be included.",
+      "example_use": "The effect of studying on exam score may depend on sleep quality — an interaction between study hours and sleep."
+    },
+    "design_matrix": {
+      "definition": "The n×(p+1) matrix X of predictor values used in matrix formulation of regression, with the first column typically all ones for the intercept.",
+      "formula": "X = [[1, x₁₁, ..., x₁ₚ], ..., [1, xₙ₁, ..., xₙₚ]]",
+      "parameters": null,
+      "intuition": "The design matrix organizes all predictor information into a single structure, enabling compact matrix algebra for estimation.",
+      "common_confusion": null,
+      "example_use": "For simple linear regression with n observations: X is n×2 with a column of ones and a column of x values."
+    },
+    "dummy_variable": {
+      "definition": "A binary (0/1) indicator variable created to represent membership in a category, used to include categorical predictors in regression.",
+      "formula": "Dₖ = 1 if observation belongs to category k, 0 otherwise",
+      "parameters": null,
+      "intuition": "Dummy variables convert qualitative group membership into numbers that regression can handle.",
+      "common_confusion": "For a categorical variable with k levels, include only k-1 dummy variables to avoid perfect multicollinearity (the dummy variable trap).",
+      "example_use": "Three regions (A, B, C) require two dummy variables: D_A and D_B (with C as reference)."
+    },
+    "dummy_encoding": {
+      "definition": "The process of creating k-1 binary dummy variables from a categorical variable with k levels, dropping one level as the reference.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Dummy encoding translates a categorical variable into a form that fits within the linear regression framework.",
+      "common_confusion": null,
+      "example_use": "Encoding education level (High School, Bachelor, Master, PhD) as three dummy variables."
+    },
+    "dummy_variable_encoding": {
+      "definition": "The specific implementation of dummy encoding in a regression model, specifying which category serves as the reference level.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The choice of reference category does not affect model fit — only the interpretation of the coefficients changes.",
+      "common_confusion": null,
+      "example_use": "R's default dummy encoding uses the first alphabetical level as the reference category."
+    },
+    "ordinary_least_squares": {
+      "definition": "The method of estimating regression coefficients by minimizing the sum of squared residuals: β̂ = argmin_β Σ(yᵢ - xᵢᵀβ)².",
+      "formula": "β̂ = (XᵀX)⁻¹Xᵀy",
+      "parameters": null,
+      "intuition": "OLS finds the coefficient vector that makes the regression predictions as close as possible to the observed data, measured by squared error.",
+      "common_confusion": "OLS is the MLE when errors are normally distributed. It is BLUE (Best Linear Unbiased Estimator) under the Gauss-Markov conditions.",
+      "example_use": "Fitting a linear regression model to predict house prices using OLS."
+    },
+    "best_linear_unbiased_estimator": {
+      "definition": "An estimator that is linear in Y, unbiased for β, and has the smallest variance among all linear unbiased estimators — the property guaranteed by the Gauss-Markov theorem for OLS.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "BLUE means OLS is the most efficient linear unbiased estimator — no other linear unbiased method can beat it under Gauss-Markov conditions.",
+      "common_confusion": "BLUE requires the Gauss-Markov conditions: zero-mean errors, homoscedasticity, and no serial correlation. Violations break the BLUE property.",
+      "example_use": "Under homoscedastic, uncorrelated errors, OLS estimates are BLUE by the Gauss-Markov theorem."
+    },
+    "partial_regression_coefficient": {
+      "definition": "A regression coefficient βⱼ in multiple regression, representing the expected change in Y per unit increase in Xⱼ holding all other predictors constant.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The partial coefficient isolates the unique contribution of one predictor after removing the effects of all others.",
+      "common_confusion": "'Holding other predictors constant' is a statistical concept — in observational data, changing one predictor often means others change too.",
+      "example_use": "The coefficient on education in a wage regression estimates the wage increase per year of schooling, controlling for experience."
+    },
+    "distribution_of_ols_estimators": {
+      "definition": "Under normal errors, β̂ ~ N(β, σ²(XᵀX)⁻¹), providing the basis for t-tests and confidence intervals in regression.",
+      "formula": "β̂ ~ N(β, σ²(XᵀX)⁻¹)",
+      "parameters": null,
+      "intuition": "The OLS estimator is itself normally distributed under the normal linear model — this distribution is what makes t-tests for coefficients valid.",
+      "common_confusion": "This exact normality requires normal errors. For non-normal errors, the distribution of β̂ is only approximately normal (via CLT) for large n.",
+      "example_use": "The sampling distribution of β̂₁ is N(β₁, σ²/Σ(xᵢ-x̄)²)."
+    },
+    "total_sum_of_squares": {
+      "definition": "The total variability in Y around its mean: SST = Σ(yᵢ - ȳ)², measuring how much Y varies before any predictors are considered.",
+      "formula": "SST = Σᵢ (yᵢ - ȳ)²",
+      "parameters": null,
+      "intuition": "SST is the baseline — it measures how much you'd be wrong if you just predicted ȳ for everyone.",
+      "common_confusion": null,
+      "example_use": "SST = SSR + SSE is the fundamental decomposition: total variation = explained + unexplained."
+    },
+    "regression_sum_of_squares": {
+      "definition": "The variation in Y explained by the regression model: SSR = Σ(ŷᵢ - ȳ)², measuring how much the fitted values differ from the overall mean.",
+      "formula": "SSR = Σᵢ (ŷᵢ - ȳ)²",
+      "parameters": null,
+      "intuition": "SSR measures how much of Y's variation the predictors capture — larger SSR means the model explains more.",
+      "common_confusion": null,
+      "example_use": "R² = SSR/SST is the proportion of total variation explained by the regression."
+    },
+    "residual_sum_of_squares": {
+      "definition": "The unexplained variation in Y after fitting the model: SSE = Σ(yᵢ - ŷᵢ)², also called the sum of squared errors.",
+      "formula": "SSE = Σᵢ (yᵢ - ŷᵢ)² = Σᵢ eᵢ²",
+      "parameters": null,
+      "intuition": "SSE measures how far the fitted values are from the actual data — smaller SSE means a better fit.",
+      "common_confusion": "OLS minimizes SSE by definition. Adding any predictor to the model will always decrease SSE, even if the predictor is uninformative.",
+      "example_use": "The error variance estimate σ̂² = SSE/(n-p-1)."
+    },
+    "sum_of_squared_errors": {
+      "definition": "Another name for the residual sum of squares: SSE = Σ(yᵢ - ŷᵢ)², the quantity minimized by OLS.",
+      "formula": "SSE = Σᵢ (yᵢ - ŷᵢ)²",
+      "parameters": null,
+      "intuition": "SSE is the objective function of OLS — minimizing it gives the least squares estimates.",
+      "common_confusion": null,
+      "example_use": "OLS is defined as the estimator that minimizes SSE."
+    },
+    "variance_decomposition": {
+      "definition": "The partition of total variance into components: SST = SSR + SSE, separating explained and unexplained variation.",
+      "formula": "SST = SSR + SSE,  i.e., Σ(yᵢ-ȳ)² = Σ(ŷᵢ-ȳ)² + Σ(yᵢ-ŷᵢ)²",
+      "parameters": null,
+      "intuition": "Variance decomposition is the accounting identity of regression — total variation equals what the model explains plus what it doesn't.",
+      "common_confusion": "This decomposition holds exactly only for models with an intercept and fitted by OLS.",
+      "example_use": "ANOVA tables are organized around this variance decomposition."
+    },
+    "coefficient_of_determination": {
+      "definition": "R² = SSR/SST, the proportion of total variance in Y explained by the regression model, ranging from 0 to 1.",
+      "formula": "R² = SSR/SST = 1 - SSE/SST",
+      "parameters": null,
+      "intuition": "R² tells you what fraction of Y's variation is captured by the predictors — R²=0.8 means 80% explained.",
+      "common_confusion": "R² always increases when predictors are added, even useless ones. Use adjusted R² or information criteria for model comparison.",
+      "example_use": "R²=0.65 means the predictors explain 65% of the variation in the response."
+    },
+    "prediction": {
+      "definition": "The use of an estimated regression model to forecast the value of Y for a new observation with given predictor values.",
+      "formula": "Ŷ_new = x_new^ᵀ β̂",
+      "parameters": null,
+      "intuition": "Prediction applies the fitted model to new inputs — the goal of predictive modeling.",
+      "common_confusion": "Predictions outside the range of the training data (extrapolation) are unreliable.",
+      "example_use": "Using a fitted salary regression to predict the salary of a new employee with given qualifications."
+    },
+    "fitted_value": {
+      "definition": "The model's prediction for an observation in the training data: ŷᵢ = xᵢᵀβ̂, also called the predicted value.",
+      "formula": "ŷᵢ = xᵢᵀβ̂ = x̂ᵢᵀ(XᵀX)⁻¹Xᵀy",
+      "parameters": null,
+      "intuition": "Fitted values are the regression model's best guesses for the training data — the vertical projections onto the regression line.",
+      "common_confusion": "Fitted values are not observations — they are model-derived estimates of the conditional mean E[Y|X=xᵢ].",
+      "example_use": "The fitted value ŷᵢ and residual eᵢ = yᵢ - ŷᵢ together reconstruct the observed value."
+    },
+    "residual": {
+      "definition": "The difference between the observed response and the fitted value: eᵢ = yᵢ - ŷᵢ, an estimate of the true error term εᵢ.",
+      "formula": "eᵢ = yᵢ - ŷᵢ",
+      "parameters": null,
+      "intuition": "Residuals are what the model gets wrong — analyzing them reveals whether model assumptions hold.",
+      "common_confusion": "Residuals are not the same as error terms. Errors εᵢ are unobservable; residuals eᵢ are computable from data.",
+      "example_use": "Plotting residuals vs. fitted values to check for heteroscedasticity or nonlinearity."
+    },
+    "standardized_residual": {
+      "definition": "A residual divided by an estimate of its standard deviation: rᵢ = eᵢ / (σ̂√(1-hᵢᵢ)), enabling comparison across observations.",
+      "formula": "rᵢ = eᵢ / (σ̂√(1-hᵢᵢ))",
+      "parameters": ["hᵢᵢ: leverage of observation i"],
+      "intuition": "Standardized residuals put all residuals on the same scale — values beyond ±2 or ±3 flag potential outliers.",
+      "common_confusion": null,
+      "example_use": "Standardized residuals larger than 3 in absolute value suggest the observation may be an outlier."
+    },
+    "studentized_residual": {
+      "definition": "A residual divided by an estimate of its standard deviation computed without observation i: tᵢ = eᵢ / (S₍₋ᵢ₎√(1-hᵢᵢ)), following a t-distribution.",
+      "formula": "tᵢ = eᵢ / (S₍₋ᵢ₎√(1-hᵢᵢ))",
+      "parameters": null,
+      "intuition": "Studentized residuals are more sensitive than standardized residuals for outlier detection because they use a leave-one-out variance estimate.",
+      "common_confusion": "Externally studentized (deleted) residuals use S₍₋ᵢ₎ (leave-one-out); internally studentized use the full dataset S.",
+      "example_use": "Externally studentized residuals follow a t(n-p-2) distribution, enabling formal outlier tests."
+    },
+    "residual_variance": {
+      "definition": "The estimate of the error variance from residuals: σ̂² = SSE/(n-p-1), where p is the number of predictors.",
+      "formula": "σ̂² = SSE/(n-p-1) = Σeᵢ² / (n-p-1)",
+      "parameters": ["n-p-1: residual degrees of freedom"],
+      "intuition": "Residual variance measures how much scatter remains around the fitted line — smaller values indicate a better-fitting model.",
+      "common_confusion": "Dividing by n-p-1 rather than n makes σ̂² an unbiased estimator of σ².",
+      "example_use": "S = √σ̂² is the residual standard error reported in regression output."
+    },
+    "residual_analysis": {
+      "definition": "The examination of regression residuals to check model assumptions and identify problematic observations.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "If the model is correctly specified, residuals should look like random noise. Systematic patterns reveal violations.",
+      "common_confusion": null,
+      "example_use": "A funnel shape in a residuals-vs-fitted plot indicates heteroscedasticity."
+    },
+    "residual_plot": {
+      "definition": "A graphical diagnostic tool plotting residuals against fitted values or predictors to check regression assumptions.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "A well-fitted model has residuals scattered randomly around zero with no pattern — any systematic shape suggests a problem.",
+      "common_confusion": "Residual plots should be checked before trusting inference results. Inference based on a misspecified model is unreliable.",
+      "example_use": "Plotting eᵢ vs ŷᵢ to check for nonlinearity or heteroscedasticity."
+    },
+    "outlier": {
+      "definition": "An observation with an unusually large residual, meaning Y is far from what the model predicts given its X values.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Outliers stand out vertically — their Y values are unexpected given their X values.",
+      "common_confusion": "Outliers (large residuals) and high-leverage points (unusual X values) are different problems requiring different diagnostics.",
+      "example_use": "An observation with studentized residual |tᵢ| > 3 is flagged as a potential outlier."
+    },
+    "cooks_distance": {
+      "definition": "A measure of how much the estimated regression coefficients change when observation i is deleted: Dᵢ = eᵢ²hᵢᵢ / (p σ̂²(1-hᵢᵢ)²).",
+      "formula": "Dᵢ = [eᵢ² / (p σ̂²)] · [hᵢᵢ/(1-hᵢᵢ)²]",
+      "parameters": null,
+      "intuition": "Cook's distance combines outlier magnitude with leverage — an influential point is one that substantially changes the fitted model if removed.",
+      "common_confusion": "A point can have high Cook's distance due to high leverage even if its residual is small, or due to a large residual even with modest leverage.",
+      "example_use": "Dᵢ > 1 (or > 4/n) is a common rule-of-thumb for flagging influential observations."
+    },
+    "hat_matrix": {
+      "definition": "The projection matrix H = X(XᵀX)⁻¹Xᵀ such that ŷ = Hy, projecting observed Y onto the column space of X.",
+      "formula": "H = X(XᵀX)⁻¹Xᵀ,  ŷ = Hy",
+      "parameters": null,
+      "intuition": "The hat matrix 'puts the hat on Y' — it transforms observed values into fitted values through a linear projection.",
+      "common_confusion": null,
+      "example_use": "The diagonal elements hᵢᵢ of H are the leverages; e = (I-H)y gives the residuals."
+    },
+    "leverage": {
+      "definition": "The diagonal element hᵢᵢ of the hat matrix, measuring how far observation i's predictor values are from the center of the predictor space.",
+      "formula": "hᵢᵢ = xᵢᵀ(XᵀX)⁻¹xᵢ,  0 ≤ hᵢᵢ ≤ 1,  Σhᵢᵢ = p+1",
+      "parameters": null,
+      "intuition": "High-leverage points have unusual X values — they have the potential to pull the fitted line strongly toward themselves.",
+      "common_confusion": "High leverage alone is not harmful — a high-leverage point on the regression line is not influential. It becomes influential if it is also an outlier.",
+      "example_use": "hᵢᵢ > 2(p+1)/n is a common rule-of-thumb for high leverage."
+    },
+    "high_leverage_point": {
+      "definition": "An observation with unusually large leverage hᵢᵢ, meaning its predictor values are far from the average predictor values.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "High-leverage points are outliers in X-space — they sit far from the bulk of the data in the predictor dimensions.",
+      "common_confusion": null,
+      "example_use": "An observation with x value 5 standard deviations from the mean has high leverage in simple regression."
+    },
+    "homoscedasticity": {
+      "definition": "The assumption that the variance of the error term is constant across all observations: Var(εᵢ) = σ² for all i.",
+      "formula": "Var(εᵢ|Xᵢ) = σ²  (constant)",
+      "parameters": null,
+      "intuition": "Homoscedasticity means the spread of Y around the regression line is the same everywhere — a uniform-width band.",
+      "common_confusion": "Homoscedasticity is required for OLS to be BLUE. Violations (heteroscedasticity) don't bias estimates but inflate standard errors.",
+      "example_use": "In an income regression, if residuals are larger for high-income observations, homoscedasticity is violated."
+    },
+    "normality_of_errors": {
+      "definition": "The assumption that the error terms follow a normal distribution: εᵢ ~ N(0, σ²), required for exact t and F tests in finite samples.",
+      "formula": "ε ~ N(0, σ²I)",
+      "parameters": null,
+      "intuition": "Normality of errors makes the distribution of β̂ exactly normal, enabling exact inference. For large samples, the CLT makes this less critical.",
+      "common_confusion": "Normality of errors is about the errors, not the response Y or the predictors X. Y can be non-normal due to non-normal X distributions.",
+      "example_use": "QQ-plots of residuals check the normality assumption."
+    },
+    "pairwise_correlation": {
+      "definition": "The Pearson correlation between two predictors Xⱼ and Xₖ, used to detect potential multicollinearity problems.",
+      "formula": "r_{jk} = Cov(Xⱼ, Xₖ)/(SD(Xⱼ)SD(Xₖ))",
+      "parameters": null,
+      "intuition": "Highly correlated predictors carry similar information — including both creates collinearity problems.",
+      "common_confusion": "High pairwise correlation between two predictors indicates collinearity, but multicollinearity can exist without any single high pairwise correlation.",
+      "example_use": "A correlation of 0.95 between height and weight in a regression suggests multicollinearity."
+    },
+    "pearson_correlation_coefficient": {
+      "definition": "The standardized measure of linear association between two variables: r = Cov(X,Y)/(SD(X)·SD(Y)), ranging from -1 to 1.",
+      "formula": "r = Σ(xᵢ-x̄)(yᵢ-ȳ) / √[Σ(xᵢ-x̄)² Σ(yᵢ-ȳ)²]",
+      "parameters": null,
+      "intuition": "Pearson correlation measures how closely two variables track each other linearly — ±1 is perfect linear relationship, 0 is no linear association.",
+      "common_confusion": "In simple regression, r² equals R². This connection breaks down in multiple regression.",
+      "example_use": "r=0.85 between study hours and exam scores indicates a strong positive linear association."
+    },
+    "multicollinearity": {
+      "definition": "A condition where two or more predictors in a regression model are highly correlated, making it difficult to estimate their individual effects precisely.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Multicollinearity means the predictors carry redundant information — it inflates standard errors and makes individual coefficients unstable.",
+      "common_confusion": "Multicollinearity does not bias OLS estimates but inflates their variances. Predictions may still be reliable even with severe multicollinearity.",
+      "example_use": "Including both 'years of education' and 'highest degree' as predictors creates multicollinearity."
+    },
+    "perfect_multicollinearity": {
+      "definition": "An extreme case where one predictor is an exact linear combination of others, making XᵀX singular and OLS impossible to compute.",
+      "formula": "Xβ = 0 for some β ≠ 0  ⟹  XᵀX is singular",
+      "parameters": null,
+      "intuition": "Perfect multicollinearity means one predictor is completely redundant — the model cannot distinguish their individual effects.",
+      "common_confusion": null,
+      "example_use": "Including all k dummy variables for a k-level factor (dummy variable trap) creates perfect multicollinearity."
+    },
+    "linear_dependence_among_predictors": {
+      "definition": "The condition where one predictor can be expressed as a linear combination of others, leading to a rank-deficient design matrix.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Linearly dependent predictors make OLS fail — the design matrix is singular and cannot be inverted.",
+      "common_confusion": null,
+      "example_use": "If X₃ = 2X₁ + X₂, the predictors are linearly dependent and OLS cannot estimate separate effects."
+    },
+    "variance_inflation_factor": {
+      "definition": "A measure of multicollinearity for predictor Xⱼ: VIF_j = 1/(1-R²_j), where R²_j is the R² from regressing Xⱼ on all other predictors.",
+      "formula": "VIF_j = 1/(1 - R²_j)",
+      "parameters": null,
+      "intuition": "VIF tells you how much the variance of β̂_j is inflated due to correlation with other predictors — VIF=10 means variance is 10× what it would be with uncorrelated predictors.",
+      "common_confusion": "VIF > 10 is a common rule-of-thumb for problematic multicollinearity, but the threshold depends on the application.",
+      "example_use": "VIF = 8 for the 'years of education' coefficient suggests its standard error is √8 ≈ 2.8 times larger due to collinearity."
+    },
+    "tolerance": {
+      "definition": "The reciprocal of VIF: TOL_j = 1/VIF_j = 1 - R²_j, measuring the proportion of variance in Xⱼ not explained by other predictors.",
+      "formula": "TOL_j = 1 - R²_j = 1/VIF_j",
+      "parameters": null,
+      "intuition": "Low tolerance means a predictor is nearly redundant — almost all its variation is explained by other predictors.",
+      "common_confusion": null,
+      "example_use": "Tolerance < 0.1 (VIF > 10) is often used as a threshold for problematic collinearity."
+    },
+    "partial_significance_test": {
+      "definition": "A test of whether a specific predictor or subset of predictors contributes significantly to the model after accounting for all other predictors.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Partial tests ask 'does this predictor add anything beyond what the others already explain?' — they test marginal contribution.",
+      "common_confusion": null,
+      "example_use": "Testing whether adding quadratic terms to a regression significantly improves fit."
+    },
+    "t_test_for_individual_regression_coefficients": {
+      "definition": "A t-test for H₀: βⱼ = 0, using T = β̂ⱼ/SE(β̂ⱼ) ~ t(n-p-1) under H₀.",
+      "formula": "T = β̂ⱼ / SE(β̂ⱼ)  ~  t(n-p-1)  under  H₀: βⱼ=0",
+      "parameters": null,
+      "intuition": "This test asks whether predictor Xⱼ is significantly associated with Y after controlling for all other predictors.",
+      "common_confusion": "A non-significant t-test does not mean Xⱼ has no effect — it may be masked by multicollinearity or low power.",
+      "example_use": "Testing whether the coefficient on 'years of education' is significantly different from zero."
+    },
+    "t_test_for_regression_coefficients": {
+      "definition": "The general t-test procedure for any single regression coefficient, testing H₀: βⱼ = β₀ for a specified value β₀.",
+      "formula": "T = (β̂ⱼ - β₀) / SE(β̂ⱼ)  ~  t(n-p-1)",
+      "parameters": null,
+      "intuition": "Tests whether a coefficient equals any specified null value, not just zero.",
+      "common_confusion": null,
+      "example_use": "Testing whether the price elasticity coefficient equals -1: H₀: β = -1."
+    },
+    "f_statistic": {
+      "definition": "The overall F-statistic for the regression, testing H₀: β₁=...=βₚ=0 (all slopes are zero): F = (SSR/p)/(SSE/(n-p-1)).",
+      "formula": "F = (SSR/p) / (SSE/(n-p-1))  ~  F(p, n-p-1)  under  H₀",
+      "parameters": null,
+      "intuition": "The F-statistic tests whether the regression explains significantly more variation than a model with no predictors.",
+      "common_confusion": "A significant overall F-test does not mean all predictors are significant — only that at least one is.",
+      "example_use": "F = 45.3 with p < 0.001 means the predictors jointly explain significant variation in Y."
+    },
+    "analysis_of_variance": {
+      "definition": "A statistical method for decomposing total variation into explained and unexplained components, testing whether group means differ significantly.",
+      "formula": "F = MSR/MSE = [SSR/df_R] / [SSE/df_E]",
+      "parameters": null,
+      "intuition": "ANOVA asks whether the variation between group means is larger than the variation within groups — a signal-to-noise ratio test.",
+      "common_confusion": "ANOVA is a special case of linear regression with categorical predictors. The F-test in ANOVA and regression are the same procedure.",
+      "example_use": "One-way ANOVA tests whether mean exam scores differ across three teaching methods."
+    },
+    "scatterplot": {
+      "definition": "A graphical display of bivariate data where each observation is plotted as a point with X and Y coordinates.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The scatterplot is the first step in regression analysis — it reveals the direction, strength, and form of the X-Y relationship.",
+      "common_confusion": null,
+      "example_use": "A scatterplot of height vs. weight with a fitted regression line."
+    },
+    "scatterplot_matrix": {
+      "definition": "A grid of scatterplots showing all pairwise relationships among multiple variables simultaneously.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The scatterplot matrix gives a quick visual overview of all bivariate relationships in a dataset, revealing correlations and potential collinearity.",
+      "common_confusion": null,
+      "example_use": "A 4×4 scatterplot matrix for predictors age, education, experience, and salary."
+    },
+    "data_transformation": {
+      "definition": "The application of a mathematical function to a variable to improve the fit of a regression model or satisfy assumptions.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Transformations can linearize curved relationships, stabilize variance, and normalize skewed distributions.",
+      "common_confusion": "Log transformations change the interpretation of coefficients — a coefficient on log(X) measures the effect of a percentage change in X.",
+      "example_use": "Taking the log of income to normalize its right-skewed distribution in a regression."
+    },
+    "centering_variables": {
+      "definition": "Subtracting the mean from a predictor (X̃ = X - X̄) to give the intercept a meaningful interpretation and reduce numerical issues.",
+      "formula": "X̃ᵢ = Xᵢ - X̄",
+      "parameters": null,
+      "intuition": "Centering makes the intercept equal E[Y|X=X̄] rather than E[Y|X=0] — often more interpretable when X=0 is outside the data range.",
+      "common_confusion": "Centering does not change the slope estimates or p-values in simple regression, only the intercept. In models with interactions it can reduce multicollinearity.",
+      "example_use": "Centering age at its mean so the intercept represents expected outcome for average-aged participants."
+    },
+    "orthogonal_polynomial_transformation": {
+      "definition": "The representation of polynomial terms (X, X², X³,...) using orthogonal basis functions to reduce multicollinearity among polynomial predictors.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Raw polynomial terms X, X², X³ are highly correlated. Orthogonal polynomials decorrelate them, making estimation more stable.",
+      "common_confusion": null,
+      "example_use": "R's poly() function generates orthogonal polynomial terms for polynomial regression."
+    },
+    "polynomial_regression_model": {
+      "definition": "A linear model using polynomial terms of a predictor to fit nonlinear relationships: Y = β₀ + β₁X + β₂X² + ... + βₖXᵏ + ε.",
+      "formula": "Y = β₀ + β₁X + β₂X² + ... + βₖXᵏ + ε",
+      "parameters": ["k: degree of the polynomial"],
+      "intuition": "Polynomial regression stretches the linear model to fit curves while remaining linear in parameters.",
+      "common_confusion": "Higher degree polynomials overfit. The degree should be chosen by cross-validation or AIC, not by fitting until the residuals look random.",
+      "example_use": "Fitting a quadratic curve to dose-response data where the effect levels off at high doses."
+    },
+    "interaction_regression_model": {
+      "definition": "A linear model including product terms X₁X₂ to model how the effect of one predictor changes with the value of another.",
+      "formula": "Y = β₀ + β₁X₁ + β₂X₂ + β₃X₁X₂ + ε",
+      "parameters": null,
+      "intuition": "Including an interaction term allows the slope of X₁ to vary with X₂, modeling 'it depends' relationships.",
+      "common_confusion": "The coefficients on X₁ and X₂ in an interaction model are not main effects in isolation — they are effects when the other variable is zero.",
+      "example_use": "Modeling whether the effect of exercise on weight loss depends on diet quality."
+    },
+    "normal_error_model": {
+      "definition": "The linear regression model with normally distributed errors: Y = Xβ + ε, ε ~ N(0, σ²I).",
+      "formula": "Y = Xβ + ε,  ε ~ N(0, σ²I)",
+      "parameters": null,
+      "intuition": "The normal error model enables exact (non-asymptotic) inference — t-tests and F-tests are exact, not just approximate.",
+      "common_confusion": "The normal error model is sufficient but not necessary for OLS to be BLUE (Gauss-Markov only requires zero mean, homoscedasticity, and uncorrelated errors).",
+      "example_use": "The normal error model is the standard assumption underlying regression t-tests and F-tests."
+    },
+    "principal_component_regression": {
+      "definition": "A regression method that first reduces predictors to principal components and then regresses Y on the selected components, addressing multicollinearity.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "PCR replaces correlated predictors with uncorrelated principal components, solving multicollinearity at the cost of interpretability.",
+      "common_confusion": "PCR selects components by variance in X, not by association with Y. Components with small variance might still be important predictors of Y.",
+      "example_use": "When 20 correlated financial indicators are used as predictors, PCR reduces them to 5 uncorrelated components."
+    },
+    "ridge_regression": {
+      "definition": "A regularized regression method that adds a penalty λΣβⱼ² to the OLS objective, shrinking coefficients toward zero to handle multicollinearity.",
+      "formula": "β̂_ridge = argmin_β [Σ(yᵢ - xᵢᵀβ)² + λΣβⱼ²] = (XᵀX + λI)⁻¹Xᵀy",
+      "parameters": ["λ: regularization parameter (λ≥0); larger λ means more shrinkage"],
+      "intuition": "Ridge regression trades a small increase in bias for a large decrease in variance — useful when predictors are collinear.",
+      "common_confusion": "Ridge regression shrinks coefficients but never sets them exactly to zero. For variable selection, use Lasso (L1 penalty).",
+      "example_use": "Applying ridge regression to a genetics dataset with thousands of correlated SNP predictors."
+    },
+    "coefficients": {
+      "definition": "The estimated parameters β̂₀, β̂₁, ..., β̂ₚ in a regression model, quantifying the relationship between each predictor and the response.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Coefficients are the model's description of how the world works — each one measures the contribution of one predictor to the response.",
+      "common_confusion": "Coefficient magnitudes are not directly comparable unless predictors are on the same scale. Standardized coefficients enable comparison.",
+      "example_use": "A coefficient of 2.3 on 'years of experience' means each additional year is associated with a 2.3-unit increase in the response."
+    },
+    "sum_of_squares": {
+      "definition": "The general term for sums of squared deviations used in regression analysis, including SST, SSR, and SSE.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Sums of squares partition variation — they are the building blocks of R², F-tests, and ANOVA tables.",
+      "common_confusion": null,
+      "example_use": "The ANOVA table organizes SSR, SSE, and SST along with their degrees of freedom and mean squares."
+    },
+    "model_components": {
+      "definition": "The structural parts of a regression model: the systematic component (Xβ) capturing the predictable variation and the random component (ε) capturing unexplained variation.",
+      "formula": "Y = systematic component + random component = Xβ + ε",
+      "parameters": null,
+      "intuition": "Every regression model decomposes Y into what can be explained by the predictors and what cannot.",
+      "common_confusion": null,
+      "example_use": "In Y = 3 + 2X + ε, the systematic component is 3+2X and ε is the random component."
+    },
+    "predictor_types": {
+      "definition": "The classification of regression predictors by their nature: numeric (continuous/discrete), categorical (nominal/ordinal), polynomial, or interaction terms.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Different predictor types require different encodings and have different interpretations in the regression model.",
+      "common_confusion": null,
+      "example_use": "A regression model may include a mix of numeric, categorical, and interaction predictors."
+    },
+    "linear_relationship_structure": {
+      "definition": "The assumption and structural form that the conditional mean of Y is a linear function of the parameters (though not necessarily of the predictors themselves).",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The linear structure is what makes OLS analytically tractable — it ensures a unique closed-form solution.",
+      "common_confusion": null,
+      "example_use": "Y = β₀ + β₁X + β₂X² is linear in parameters (β₀, β₁, β₂) even though it is nonlinear in X."
+    },
+    "design_matrix_representation": {
+      "definition": "The matrix formulation of the regression model as Y = Xβ + ε, compactly representing all observations and predictors.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The design matrix representation allows the entire regression problem to be solved in one compact matrix equation.",
+      "common_confusion": null,
+      "example_use": "β̂ = (XᵀX)⁻¹Xᵀy is the OLS solution derived from the design matrix representation."
+    },
+    "estimation": {
+      "definition": "The process of using sample data to determine the regression coefficients β, most commonly via ordinary least squares.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Estimation converts the abstract regression model into specific numerical values that best describe the data.",
+      "common_confusion": null,
+      "example_use": "Estimating β in Y = Xβ + ε by minimizing SSE gives β̂ = (XᵀX)⁻¹Xᵀy."
+    },
+    "estimator_distribution": {
+      "definition": "The probability distribution of the OLS estimator β̂, which is N(β, σ²(XᵀX)⁻¹) under the normal error model.",
+      "formula": "β̂ ~ N(β, σ²(XᵀX)⁻¹)",
+      "parameters": null,
+      "intuition": "Knowing the distribution of β̂ enables inference — confidence intervals and hypothesis tests for regression coefficients.",
+      "common_confusion": null,
+      "example_use": "The t-statistic for testing H₀: βⱼ=0 is derived from the distribution of β̂ⱼ."
+    },
+    "model_fit_and_variance_decomposition": {
+      "definition": "The assessment of how well a regression model fits the data, summarized by R², adjusted R², and the ANOVA decomposition SST = SSR + SSE.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Model fit quantifies how much of Y's variation the model captures — high fit means the predictors explain most of the variation.",
+      "common_confusion": null,
+      "example_use": "An ANOVA table presenting SSR, SSE, R², and the F-statistic summarizes overall model fit."
+    },
+    "predictions": {
+      "definition": "The use of the fitted regression model to generate estimated values of Y for given predictor values, either in-sample or out-of-sample.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Predictions are the practical output of regression — the model's best estimates of Y for any given X.",
+      "common_confusion": null,
+      "example_use": "Generating predictions for a new dataset using a fitted regression model."
+    },
+    "residuals_and_diagnostics": {
+      "definition": "The set of tools for examining regression model fit and assumption violations through analysis of residuals and influence measures.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Residual diagnostics are the quality-control step of regression — they catch problems before conclusions are drawn.",
+      "common_confusion": null,
+      "example_use": "Checking residuals vs. fitted values, QQ-plots, and Cook's distance plots to validate a regression model."
+    },
+    "regression_assumptions": {
+      "definition": "The conditions required for OLS to have desirable properties: linearity, homoscedasticity, independent errors, normality of errors, and no perfect multicollinearity.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Regression assumptions are the rules the data-generating process must follow for OLS inference to be valid.",
+      "common_confusion": "Not all assumptions are equally important. Normality matters mainly for small samples; independence and correct specification matter always.",
+      "example_use": "Checking all regression assumptions before reporting results ensures valid inference."
+    },
+    "predictor_dependence": {
+      "definition": "The presence of correlation or linear relationships among predictors in a regression model, potentially causing multicollinearity.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "When predictors are correlated, the model struggles to separate their individual effects.",
+      "common_confusion": null,
+      "example_use": "Height and weight as predictors of athletic performance are dependent, complicating coefficient interpretation."
+    },
+    "collinearity_diagnostics": {
+      "definition": "Statistical tools for detecting multicollinearity in regression models, including VIF, tolerance, condition numbers, and correlation matrices.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Collinearity diagnostics reveal whether coefficient estimates are being inflated by predictor correlation.",
+      "common_confusion": null,
+      "example_use": "Examining VIF values and the correlation matrix before finalizing a multiple regression model."
+    },
+    "leverage_structure": {
+      "definition": "The pattern of leverage values across observations, determined by the design matrix structure and how far each observation's X values are from the center.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Understanding leverage structure helps identify which observations have the most influence over the fitted regression.",
+      "common_confusion": null,
+      "example_use": "Examining the leverage structure to identify observations that may unduly influence the regression line."
+    },
+    "hypothesis_testing_in_regression": {
+      "definition": "The application of hypothesis testing to regression parameters — testing whether individual coefficients, groups of coefficients, or the overall model are statistically significant.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Hypothesis tests in regression separate signal from noise — they ask whether observed associations are stronger than expected by chance.",
+      "common_confusion": null,
+      "example_use": "t-tests for individual coefficients and F-tests for groups of coefficients are the main hypothesis tests in regression."
+    },
+    "data_visualization": {
+      "definition": "The use of graphical methods to explore and communicate patterns in regression data, including scatterplots, residual plots, and partial regression plots.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Visualization reveals what numerical summaries cannot — nonlinearity, outliers, and heteroscedasticity are often visible in plots before formal tests.",
+      "common_confusion": null,
+      "example_use": "Creating a scatterplot matrix before fitting a multiple regression model."
+    },
+    "data_transformation_methods": {
+      "definition": "The set of techniques for transforming variables to improve linearity, stabilize variance, or normalize distributions in regression analysis.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Transformations are tools for making data better-behaved — common choices include log, square root, and Box-Cox transforms.",
+      "common_confusion": null,
+      "example_use": "Applying log transformation to a right-skewed response variable before fitting a linear regression."
+    },
+    "regression_model_extensions": {
+      "definition": "Models that extend basic linear regression to handle nonlinearity, multicollinearity, or non-normal responses, including ridge regression, PCR, and polynomial regression.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Extensions of linear regression expand its applicability — they handle situations where the basic model fails.",
+      "common_confusion": null,
+      "example_use": "Ridge regression, LASSO, and polynomial regression are common extensions of basic OLS."
+    },
+    "interaction": {
+      "definition": "A statistical phenomenon where the relationship between a predictor and the response depends on the value of another variable, requiring product terms in the model.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Interaction means the effects of predictors are not simply additive — the whole is different from the sum of parts.",
+      "common_confusion": "Statistical interaction and mechanistic interaction are different concepts. Statistical interaction is about model fit, not causation.",
+      "example_use": "The interaction between drug dose and patient age in predicting treatment response."
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "domain": "Probability Distributions",
+  "generated": "2026-04-12",
+  "nodes": {
+    "exponential_family": {
+      "definition": "A broad class of distributions whose PDF/PMF can be written in the form h(x) exp(η(θ)·T(x) - A(θ)), unifying many common distributions under one framework.",
+      "formula": "f(x|θ) = h(x) exp(η(θ)·T(x) - A(θ))",
+      "parameters": ["η(θ): natural parameter", "T(x): sufficient statistic", "A(θ): log-partition function (normalizing constant)", "h(x): base measure"],
+      "intuition": "The exponential family is the 'right' family for statistical modeling — it has sufficient statistics, conjugate priors, and connects naturally to GLMs.",
+      "common_confusion": "Not all distributions belong to the exponential family. The uniform distribution U(0,θ) and Cauchy distribution do not.",
+      "example_use": "Normal, Bernoulli, Poisson, Binomial, Gamma, and Beta all belong to the exponential family."
+    },
+    "bernoulli_distribution": {
+      "definition": "The distribution of a single binary trial with probability p of success, taking values 0 (failure) or 1 (success).",
+      "formula": "P(X = x) = p^x (1-p)^(1-x),  x ∈ {0, 1}",
+      "parameters": ["p: probability of success, p ∈ (0,1)"],
+      "intuition": "The Bernoulli is the simplest possible distribution — a single weighted coin flip.",
+      "common_confusion": "The Bernoulli is a special case of Binomial(1, p). The Binomial counts successes over n trials.",
+      "example_use": "Whether a single email is spam (1) or not (0) follows a Bernoulli distribution."
+    },
+    "binomial_distribution": {
+      "definition": "The distribution of the number of successes in n independent Bernoulli trials each with success probability p.",
+      "formula": "P(X = k) = C(n,k) p^k (1-p)^(n-k),  k = 0, 1, ..., n",
+      "parameters": ["n: number of trials (positive integer)", "p: success probability, p ∈ (0,1)"],
+      "intuition": "Count how many times an event occurs in a fixed number of independent tries — that count follows a Binomial.",
+      "common_confusion": "Requires independence between trials. If sampling without replacement from a small population, use the Hypergeometric instead.",
+      "example_use": "The number of heads in 20 coin flips follows Binomial(20, 0.5)."
+    },
+    "geometric_distribution": {
+      "definition": "The distribution of the number of Bernoulli trials needed to get the first success, or equivalently the number of failures before the first success.",
+      "formula": "P(X = k) = (1-p)^(k-1) p,  k = 1, 2, 3, ...",
+      "parameters": ["p: success probability per trial"],
+      "intuition": "The Geometric counts how long you wait for the first success — it is the discrete analogue of the Exponential distribution.",
+      "common_confusion": "Two conventions exist: counting the trial of first success (starting at 1) vs. counting failures before first success (starting at 0). Check which is being used.",
+      "example_use": "The number of job applications until the first offer follows a Geometric distribution."
+    },
+    "poisson_distribution": {
+      "definition": "The distribution of the number of events occurring in a fixed interval when events happen at a constant average rate and independently of each other.",
+      "formula": "P(X = k) = e^(-λ) λ^k / k!,  k = 0, 1, 2, ...",
+      "parameters": ["λ: average rate (events per interval), λ > 0"],
+      "intuition": "The Poisson models rare events in continuous time or space — customer arrivals, radioactive decay, typos per page.",
+      "common_confusion": "The Poisson assumes events are independent and the rate is constant. Clustering or time-varying rates violate these assumptions.",
+      "example_use": "If a call center receives 10 calls per hour on average, the number per hour follows Poisson(10)."
+    },
+    "trinomial_distribution": {
+      "definition": "The distribution of counts in three categories for n independent trials, each resulting in category 1, 2, or 3 with probabilities p₁, p₂, p₃.",
+      "formula": "P(X₁=k₁, X₂=k₂, X₃=k₃) = n!/(k₁!k₂!k₃!) p₁^k₁ p₂^k₂ p₃^k₃",
+      "parameters": ["n: number of trials", "p₁, p₂, p₃: category probabilities (sum to 1)"],
+      "intuition": "The Trinomial is the three-category version of the Binomial, itself a special case of the Multinomial.",
+      "common_confusion": null,
+      "example_use": "Classifying n voters as Democrat, Republican, or Independent follows a Trinomial distribution."
+    },
+    "uniform_distribution": {
+      "definition": "The distribution that assigns equal probability density to all values in an interval [a, b].",
+      "formula": "f(x) = 1/(b-a)  for  x ∈ [a,b],  else 0",
+      "parameters": ["a: lower bound", "b: upper bound (b > a)"],
+      "intuition": "All outcomes in the interval are equally likely — the distribution of 'complete ignorance' about a bounded quantity.",
+      "common_confusion": "The discrete uniform and continuous uniform are different distributions. The continuous uniform is not a member of the exponential family.",
+      "example_use": "A random number generator producing values in [0, 1] follows Uniform(0, 1)."
+    },
+    "normal_distribution": {
+      "definition": "A continuous symmetric bell-shaped distribution fully characterized by its mean μ and variance σ², arising naturally as the limit of sums of independent random variables.",
+      "formula": "f(x) = (1 / σ√2π) exp(-(x-μ)² / 2σ²)",
+      "parameters": ["μ: mean (location)", "σ²: variance (spread), σ > 0"],
+      "intuition": "The normal distribution is the universal shape of averages. By the CLT, means of large samples are approximately normal regardless of the original distribution.",
+      "common_confusion": "Real data is never exactly normal. The normal distribution is a useful approximation, not a fact about the world.",
+      "example_use": "Measurement errors, standardized test scores, and OLS residuals are commonly modeled as normal."
+    },
+    "students_t_distribution": {
+      "definition": "A symmetric bell-shaped distribution with heavier tails than the normal, arising when estimating the mean of a normal population with unknown variance from a small sample.",
+      "formula": "f(t) ∝ (1 + t²/ν)^(-(ν+1)/2)",
+      "parameters": ["ν: degrees of freedom (ν > 0); heavier tails for smaller ν"],
+      "intuition": "When σ² is unknown and estimated from data, there is extra uncertainty — the t-distribution accounts for this by having fatter tails than the normal.",
+      "common_confusion": "As ν → ∞, the t-distribution converges to the standard normal. For ν > 30, the difference is negligible in practice.",
+      "example_use": "The one-sample t-test statistic (x̄ - μ₀)/(s/√n) follows a t(n-1) distribution under H₀."
+    },
+    "chi_square_distribution": {
+      "definition": "The distribution of the sum of squares of ν independent standard normal random variables.",
+      "formula": "If Z₁,...,Zᵥ ~iid N(0,1), then X = Z₁² + ... + Zᵥ² ~ χ²(ν)",
+      "parameters": ["ν: degrees of freedom (positive integer)"],
+      "intuition": "The chi-square distribution naturally arises whenever you sum squared normal quantities — sample variances, goodness-of-fit statistics.",
+      "common_confusion": "The chi-square distribution is right-skewed and only takes non-negative values. It is not symmetric like the normal.",
+      "example_use": "The test statistic (n-1)S²/σ² follows χ²(n-1) when sampling from a normal population."
+    },
+    "f_distribution": {
+      "definition": "The distribution of the ratio of two independent chi-square random variables, each divided by their degrees of freedom.",
+      "formula": "If U ~ χ²(d₁) and V ~ χ²(d₂) independently, then F = (U/d₁)/(V/d₂) ~ F(d₁, d₂)",
+      "parameters": ["d₁: numerator degrees of freedom", "d₂: denominator degrees of freedom"],
+      "intuition": "The F-distribution compares two variances — it is the natural distribution for ANOVA and regression F-tests.",
+      "common_confusion": "The F-distribution is right-skewed and only takes positive values. An F-statistic less than 1 suggests the numerator variance is smaller.",
+      "example_use": "The ANOVA F-statistic for testing equality of group means follows an F distribution under H₀."
+    },
+    "gamma_distribution": {
+      "definition": "A flexible two-parameter family for positive continuous variables, generalizing the Exponential and chi-square distributions.",
+      "formula": "f(x) = x^(α-1) e^(-x/β) / (β^α Γ(α)),  x > 0",
+      "parameters": ["α: shape parameter (α > 0)", "β: scale parameter (β > 0)", "Mean = αβ,  Variance = αβ²"],
+      "intuition": "The Gamma models waiting times until the α-th event in a Poisson process — it is the continuous analogue of the Negative Binomial.",
+      "common_confusion": "The Exponential distribution is Gamma(1, β). The chi-square with ν df is Gamma(ν/2, 2).",
+      "example_use": "Insurance claim sizes and precipitation amounts are often modeled with the Gamma distribution."
+    },
+    "exponential_distribution": {
+      "definition": "The distribution of waiting times between events in a Poisson process, characterized by the memoryless property.",
+      "formula": "f(x) = λ e^(-λx),  x > 0",
+      "parameters": ["λ: rate parameter (λ > 0); mean = 1/λ"],
+      "intuition": "The Exponential is the only continuous memoryless distribution — past waiting time gives no information about future waiting time.",
+      "common_confusion": "Memorylessness is a very strong assumption. Most real lifetimes and wait times do not satisfy it.",
+      "example_use": "Time between customer arrivals in a Poisson process follows an Exponential distribution."
+    },
+    "beta_distribution": {
+      "definition": "A flexible distribution on [0, 1] used to model probabilities, proportions, and other bounded quantities.",
+      "formula": "f(x) = x^(α-1)(1-x)^(β-1) / B(α,β),  x ∈ (0,1)",
+      "parameters": ["α: shape parameter (α > 0)", "β: shape parameter (β > 0)", "Mean = α/(α+β)"],
+      "intuition": "The Beta is the natural distribution for a probability — it lives on [0,1] and can be symmetric, skewed, U-shaped, or uniform.",
+      "common_confusion": "Beta(1,1) is the Uniform(0,1). The Beta is the conjugate prior for the Bernoulli/Binomial likelihood.",
+      "example_use": "In Bayesian analysis, the Beta distribution is used as a prior for an unknown probability p."
+    },
+    "bernoulli_type_distributions": {
+      "definition": "The family of distributions built from binary (success/failure) Bernoulli trials, including the Bernoulli, Binomial, and Geometric.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "All Bernoulli-type distributions model processes built from repeated binary outcomes.",
+      "common_confusion": null,
+      "example_use": "Modeling the number of successes in repeated independent trials uses Bernoulli-type distributions."
+    },
+    "poisson_type_distributions": {
+      "definition": "The family of distributions related to Poisson processes, modeling counts of events occurring at a constant rate.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Poisson-type distributions describe how many events happen in a given period when events are rare and independent.",
+      "common_confusion": null,
+      "example_use": "Count data in ecology, epidemiology, and queuing theory often follows Poisson-type distributions."
+    },
+    "multinomial_type_distributions": {
+      "definition": "Distributions generalizing the Binomial to three or more categories, including the Trinomial and Multinomial.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "When each trial can result in one of k > 2 categories, the joint count distribution is Multinomial-type.",
+      "common_confusion": null,
+      "example_use": "Modeling the distribution of votes across multiple political parties uses a Multinomial distribution."
+    },
+    "normal_based_distributions": {
+      "definition": "The family of distributions derived from the normal distribution, including the t, chi-square, and F distributions.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "When you square, sum, or ratio normal random variables, you get distributions from this family — the basis of classical inference.",
+      "common_confusion": null,
+      "example_use": "Classical hypothesis tests for means and variances all rely on normal-based sampling distributions."
+    },
+    "gamma_based_distributions": {
+      "definition": "The family of distributions related to the Gamma, including the Exponential and Beta, all sharing the Gamma function in their normalizing constants.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Gamma-based distributions model positive continuous quantities and arise naturally in Bayesian conjugate analysis.",
+      "common_confusion": null,
+      "example_use": "Bayesian inference for Poisson rates uses a Gamma prior, producing a Gamma posterior."
+    },
+    "discrete_distributions": {
+      "definition": "The class of probability distributions over countable outcome spaces, where probabilities are assigned to individual values.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Discrete distributions model count data and categorical outcomes where values are enumerable.",
+      "common_confusion": null,
+      "example_use": "The number of errors in a document, number of arrivals per hour, and binary outcomes are all modeled with discrete distributions."
+    },
+    "continuous_distributions": {
+      "definition": "The class of probability distributions over uncountable outcome spaces, where probability is assigned to intervals via a density function.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Continuous distributions model measurements that can take any value in a range, like height, temperature, or time.",
+      "common_confusion": null,
+      "example_use": "Physical measurements, financial returns, and regression errors are typically modeled with continuous distributions."
+    },
+    "distribution_families": {
+      "definition": "Collections of related probability distributions grouped by their mathematical form or the types of phenomena they model.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Distribution families organize the space of distributions into meaningful clusters — knowing a family tells you what kinds of data it is suited for.",
+      "common_confusion": null,
+      "example_use": "The exponential family unifies normal, Poisson, Binomial, and Gamma under a single mathematical framework."
+    }
+  }
+}

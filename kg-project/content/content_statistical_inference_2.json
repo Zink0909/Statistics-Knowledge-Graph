@@ -1,0 +1,462 @@
+{
+  "domain": "Statistical Inference",
+  "generated": "2026-04-12",
+  "nodes": {
+    "bayesian_inference": {
+      "definition": "A framework for statistical inference that treats parameters as random variables with prior distributions, updating beliefs to a posterior distribution using observed data via Bayes' theorem.",
+      "formula": "p(θ|x) = p(x|θ) p(θ) / p(x)  ∝  p(x|θ) p(θ)",
+      "parameters": null,
+      "intuition": "Bayesian inference formalizes learning: start with prior beliefs about a parameter, observe data, and update to posterior beliefs.",
+      "common_confusion": "Bayesian credible intervals have the intuitive interpretation ('95% probability the parameter is here') that frequentist confidence intervals do not.",
+      "example_use": "Given a Beta prior on p and Binomial data, the posterior is also Beta — a conjugate pair."
+    },
+    "prior_probability": {
+      "definition": "A probability distribution over the parameter θ that encodes beliefs about θ before observing any data: p(θ).",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The prior is your starting belief — it can be informative (based on past knowledge) or non-informative (expressing ignorance).",
+      "common_confusion": "The choice of prior matters most when data is sparse. With large samples, the likelihood dominates and the posterior is insensitive to the prior.",
+      "example_use": "A Beta(2, 2) prior on a probability p expresses a mild belief that p is near 0.5."
+    },
+    "non_informative_prior": {
+      "definition": "A prior distribution that attempts to express minimal prior knowledge, allowing the data to dominate the posterior.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "A non-informative prior tries to 'let the data speak' — it contributes as little information as possible beyond defining the parameter space.",
+      "common_confusion": "There is no uniquely 'correct' non-informative prior. Jeffreys priors are invariant to reparameterization, but even these involve choices.",
+      "example_use": "A Uniform(0,1) prior on p or a Jeffreys prior p(θ) ∝ √I(θ) are common non-informative choices."
+    },
+    "posterior_distribution": {
+      "definition": "The conditional distribution of the parameter θ given the observed data x, combining prior beliefs and likelihood information.",
+      "formula": "p(θ|x) ∝ L(θ; x) · p(θ)",
+      "parameters": null,
+      "intuition": "The posterior is everything you know about the parameter after seeing the data — it replaces the prior as your updated belief.",
+      "common_confusion": "The posterior is a full distribution, not just a point. Point summaries (mean, median, mode) lose uncertainty information.",
+      "example_use": "With a Beta(α,β) prior and Binomial(n, p) likelihood with k successes: posterior is Beta(α+k, β+n-k)."
+    },
+    "posterior_probability": {
+      "definition": "A probability computed from the posterior distribution, such as P(θ ∈ A | x) for some set A.",
+      "formula": "P(θ ∈ A | x) = ∫_A p(θ|x) dθ",
+      "parameters": null,
+      "intuition": "Posterior probabilities are direct, interpretable probability statements about the parameter — e.g., 'there is a 92% chance the drug reduces risk.'",
+      "common_confusion": null,
+      "example_use": "P(p > 0.5 | data) is a posterior probability that a treatment effect exceeds 50%."
+    },
+    "posterior_mean": {
+      "definition": "The expected value of the parameter under the posterior distribution: E[θ|x] = ∫ θ p(θ|x) dθ.",
+      "formula": "E[θ|x] = ∫ θ p(θ|x) dθ",
+      "parameters": null,
+      "intuition": "The posterior mean is the Bayes estimator under squared error loss — the optimal single-number summary of the posterior.",
+      "common_confusion": "The posterior mean is not the same as the MLE or the posterior mode (MAP). They coincide only under specific conditions.",
+      "example_use": "For Beta(α+k, β+n-k) posterior: E[p|data] = (α+k)/(α+β+n)."
+    },
+    "posterior_median": {
+      "definition": "The value that divides the posterior distribution in half: P(θ ≤ median | x) = 0.5.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The posterior median is the Bayes estimator under absolute error loss — preferred when the posterior is skewed.",
+      "common_confusion": null,
+      "example_use": "For skewed posteriors like the Gamma, the median may be preferred over the mean as a point estimate."
+    },
+    "bayesian_point_estimation": {
+      "definition": "The derivation of a single-value estimate of a parameter from the posterior distribution, typically the posterior mean, median, or mode.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Bayesian point estimation collapses the posterior to a single number — the choice of summary depends on the loss function.",
+      "common_confusion": null,
+      "example_use": "The posterior mean minimizes expected squared error loss; the posterior median minimizes expected absolute error loss."
+    },
+    "bayesian_point_estimate": {
+      "definition": "The specific numerical value obtained by summarizing the posterior distribution with a point statistic such as the mean, median, or MAP.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Just as a frequentist produces a point estimate from data, a Bayesian produces a point estimate from the posterior.",
+      "common_confusion": null,
+      "example_use": "The posterior mean (α+k)/(α+β+n) is a Bayesian point estimate of the Binomial probability p."
+    },
+    "bayesian_interval_estimation": {
+      "definition": "The construction of a credible interval from the posterior distribution, providing a range that contains the parameter with specified posterior probability.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Bayesian intervals have the direct probabilistic interpretation that frequentist CIs lack — they are regions of high posterior probability.",
+      "common_confusion": null,
+      "example_use": "A 95% Bayesian credible interval means P(θ ∈ [L, U] | data) = 0.95."
+    },
+    "credible_interval": {
+      "definition": "An interval [L, U] such that the posterior probability of θ lying within it equals the specified level: P(L ≤ θ ≤ U | x) = 1-α.",
+      "formula": "P(L ≤ θ ≤ U | x) = 1 - α",
+      "parameters": ["1-α: credible level (e.g. 0.95)"],
+      "intuition": "A 95% credible interval directly says: given the data, we believe there is a 95% probability the parameter is in this range.",
+      "common_confusion": "The credible interval and confidence interval are numerically similar in many problems but have fundamentally different interpretations.",
+      "example_use": "A 95% credible interval for μ from a normal-normal conjugate model."
+    },
+    "equal_tail_interval": {
+      "definition": "A credible interval formed by cutting equal probability from each tail of the posterior: [F⁻¹(α/2), F⁻¹(1-α/2)].",
+      "formula": "[θ_{α/2}, θ_{1-α/2}]  where  P(θ < θ_{α/2}|x) = α/2",
+      "parameters": null,
+      "intuition": "The equal-tail interval splits the excluded probability evenly between both tails — the natural extension of two-sided frequentist CIs.",
+      "common_confusion": "The equal-tail interval is not the shortest possible interval. For skewed posteriors, the HPD interval is shorter.",
+      "example_use": "For a symmetric posterior like N(μ, σ²), the equal-tail and HPD intervals coincide."
+    },
+    "highest_posterior_density_interval": {
+      "definition": "The shortest credible interval [L, U] that contains probability 1-α, defined by the property that the posterior density at L and U are equal.",
+      "formula": "HPD: {θ : p(θ|x) ≥ c}  for the largest c such that P(θ ∈ HPD|x) ≥ 1-α",
+      "parameters": null,
+      "intuition": "The HPD is the most concentrated region of the posterior with the required probability — it excludes the lowest-density tails.",
+      "common_confusion": "For multimodal posteriors, the HPD may be a disjoint union of intervals.",
+      "example_use": "For a skewed posterior, the HPD interval is shorter than the equal-tail interval."
+    },
+    "equal_tail_credible_interval_method": {
+      "definition": "The procedure for constructing an equal-tail credible interval by taking quantiles from the posterior distribution.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "In practice, equal-tail intervals are computed by taking the α/2 and 1-α/2 quantiles of posterior samples.",
+      "common_confusion": null,
+      "example_use": "Sort 10,000 MCMC posterior samples; the 2.5th and 97.5th percentiles give a 95% equal-tail credible interval."
+    },
+    "highest_posterior_density_interval_method": {
+      "definition": "The procedure for constructing an HPD interval from posterior samples, typically by finding the shortest interval containing the required fraction of samples.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Slide a window of the required width across sorted posterior samples and find the position where the window is narrowest.",
+      "common_confusion": null,
+      "example_use": "The HDInterval package in R computes HPD intervals from MCMC samples."
+    },
+    "hypothesis_testing": {
+      "definition": "A formal procedure for deciding between a null hypothesis H₀ and an alternative hypothesis H₁ based on observed data.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Hypothesis testing formalizes the question 'is this effect real or just noise?' using a decision rule with controlled error rates.",
+      "common_confusion": "Failing to reject H₀ is not the same as accepting H₀. Absence of evidence is not evidence of absence.",
+      "example_use": "Testing whether a new drug has a different mean effect than placebo using a two-sample t-test."
+    },
+    "null_hypothesis": {
+      "definition": "The default hypothesis H₀ representing 'no effect,' 'no difference,' or a specific parameter value, which is rejected only if evidence is strong enough.",
+      "formula": "H₀: θ = θ₀  (or  θ ≤ θ₀,  θ ≥ θ₀)",
+      "parameters": null,
+      "intuition": "The null hypothesis is the position of skepticism — we assume nothing is happening until the data forces us to conclude otherwise.",
+      "common_confusion": "The p-value is P(data this extreme | H₀ is true), not P(H₀ is true | data).",
+      "example_use": "H₀: μ = 0 (the treatment has no effect)."
+    },
+    "alternative_hypothesis": {
+      "definition": "The hypothesis H₁ that is accepted when evidence against H₀ is sufficiently strong, representing the effect or difference of interest.",
+      "formula": "H₁: θ ≠ θ₀  (two-sided)  or  θ > θ₀  /  θ < θ₀  (one-sided)",
+      "parameters": null,
+      "intuition": "The alternative is what you believe is true if the null is wrong — the scientific claim you are trying to support.",
+      "common_confusion": "The alternative hypothesis should be specified before seeing the data to avoid data dredging.",
+      "example_use": "H₁: μ ≠ 0 (two-sided) or H₁: μ > 0 (one-sided)."
+    },
+    "simple_hypothesis": {
+      "definition": "A hypothesis that specifies a single, fully determined distribution — the parameter is pinned to an exact value.",
+      "formula": "H: θ = θ₀",
+      "parameters": null,
+      "intuition": "A simple hypothesis leaves no free parameters — it uniquely specifies the data-generating distribution.",
+      "common_confusion": null,
+      "example_use": "H₀: p = 0.5 for a coin flip probability is a simple hypothesis."
+    },
+    "composite_hypothesis": {
+      "definition": "A hypothesis that specifies a range of parameter values rather than a single point, leaving the distribution not fully determined.",
+      "formula": "H: θ ∈ Θ₀  (where Θ₀ contains more than one point)",
+      "parameters": null,
+      "intuition": "Most alternative hypotheses in practice are composite — H₁: μ > 0 includes infinitely many possible values of μ.",
+      "common_confusion": null,
+      "example_use": "H₁: μ > 0 is a composite hypothesis; it does not specify how much greater than 0 the mean is."
+    },
+    "test_statistic": {
+      "definition": "A function of the sample data that measures how far the data is from what H₀ predicts, used to make the rejection decision.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The test statistic compresses the data into a single number that summarizes the evidence against H₀.",
+      "common_confusion": "The test statistic must have a known distribution under H₀ to compute a valid p-value.",
+      "example_use": "The t-statistic T = (X̄ - μ₀)/(S/√n) measures how many standard errors the sample mean is from the null value."
+    },
+    "critical_value": {
+      "definition": "The threshold for the test statistic beyond which H₀ is rejected, determined by the significance level α and the null distribution.",
+      "formula": "Reject H₀ if |T| > t_{α/2, n-1}  (two-sided t-test)",
+      "parameters": null,
+      "intuition": "The critical value is the border of the rejection region — extreme test statistics beyond it indicate implausible data under H₀.",
+      "common_confusion": "The critical value depends on both the significance level and the null distribution, not on the data.",
+      "example_use": "For a one-sided z-test at α=0.05: critical value z* = 1.645."
+    },
+    "decision_rule": {
+      "definition": "The rule specifying when to reject H₀ based on the test statistic, typically defined by the rejection region or a comparison to the critical value.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The decision rule converts the test statistic into a binary decision: reject or fail to reject.",
+      "common_confusion": null,
+      "example_use": "Reject H₀ if the p-value < 0.05, or equivalently if |T| > 1.96 for a two-sided z-test."
+    },
+    "acceptance_region": {
+      "definition": "The set of test statistic values for which H₀ is not rejected.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The acceptance region is the 'normal' range of the test statistic under H₀ — data that lands here is consistent with the null.",
+      "common_confusion": "Falling in the acceptance region does not prove H₀ is true — it only means there is insufficient evidence against it.",
+      "example_use": "For a two-sided z-test at α=0.05: acceptance region is |z| ≤ 1.96."
+    },
+    "rejection_region": {
+      "definition": "The set of test statistic values for which H₀ is rejected, also called the critical region.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The rejection region captures the most extreme test statistics — values that would be very unlikely if H₀ were true.",
+      "common_confusion": null,
+      "example_use": "For a one-sided z-test at α=0.05: rejection region is z > 1.645."
+    },
+    "p_value": {
+      "definition": "The probability of observing a test statistic at least as extreme as the one obtained, assuming H₀ is true.",
+      "formula": "p = P(|T| ≥ |t_obs| | H₀)",
+      "parameters": null,
+      "intuition": "A small p-value means the observed data would be very unlikely under H₀ — strong evidence against the null.",
+      "common_confusion": "The p-value is NOT the probability H₀ is true, nor the probability the result occurred by chance. It is a conditional probability given H₀.",
+      "example_use": "p = 0.03 means if H₀ were true, we would see a result this extreme or more in only 3% of experiments."
+    },
+    "significance_level": {
+      "definition": "The pre-specified probability threshold α below which the p-value must fall to reject H₀, representing the acceptable Type I error rate.",
+      "formula": "Reject H₀ if p-value < α",
+      "parameters": ["α: common values are 0.01, 0.05, 0.10"],
+      "intuition": "The significance level is the maximum tolerable rate of false rejections — choosing α=0.05 means accepting a 5% chance of incorrectly rejecting a true H₀.",
+      "common_confusion": "The significance level is set before the analysis, not after seeing the p-value. Choosing α after seeing data invalidates the test.",
+      "example_use": "At α=0.05, a p-value of 0.03 leads to rejection; p=0.07 does not."
+    },
+    "type_i_error": {
+      "definition": "Rejecting H₀ when it is actually true — a false positive. Its probability is the significance level α.",
+      "formula": "P(reject H₀ | H₀ true) = α",
+      "parameters": null,
+      "intuition": "Type I error is a false alarm — concluding there is an effect when there isn't one.",
+      "common_confusion": "α controls Type I error, not Type II error. Decreasing α reduces false positives but increases false negatives.",
+      "example_use": "Concluding a drug is effective when it is actually no better than placebo is a Type I error."
+    },
+    "type_ii_error": {
+      "definition": "Failing to reject H₀ when H₁ is actually true — a false negative. Its probability is β; power = 1-β.",
+      "formula": "P(fail to reject H₀ | H₁ true) = β",
+      "parameters": null,
+      "intuition": "Type II error is a missed detection — failing to notice a real effect that exists.",
+      "common_confusion": "Type II error rate β depends on the true parameter value under H₁ and the sample size. It is not fixed like α.",
+      "example_use": "Failing to detect that a drug is effective when it truly works is a Type II error."
+    },
+    "one_sided_test": {
+      "definition": "A hypothesis test with a directional alternative: H₁: θ > θ₀ or H₁: θ < θ₀, with the entire rejection region in one tail.",
+      "formula": "Reject if T > t_{α, n-1}  (upper one-sided)",
+      "parameters": null,
+      "intuition": "Use a one-sided test when you have a specific directional prediction and are only interested in effects in that direction.",
+      "common_confusion": "One-sided tests are more powerful than two-sided tests for detecting effects in the specified direction, but provide no protection against effects in the other direction.",
+      "example_use": "Testing H₁: μ_new > μ_old when you only care if the new drug is better, not worse."
+    },
+    "two_sided_test": {
+      "definition": "A hypothesis test with a non-directional alternative: H₁: θ ≠ θ₀, with the rejection region split between both tails.",
+      "formula": "Reject if |T| > t_{α/2, n-1}",
+      "parameters": null,
+      "intuition": "Use a two-sided test when you want to detect effects in either direction — the default choice in most analyses.",
+      "common_confusion": "A two-sided test at level α has α/2 in each tail, making the critical values more extreme than a one-sided test.",
+      "example_use": "Testing H₁: μ ≠ 0 to detect any non-zero treatment effect."
+    },
+    "hypothesis_testing_using_p_values": {
+      "definition": "The procedure of computing a p-value from the test statistic and comparing it to α to make the reject/fail-to-reject decision.",
+      "formula": "Reject H₀ iff p-value < α",
+      "parameters": null,
+      "intuition": "P-value testing provides a continuous measure of evidence against H₀ — smaller p-values indicate stronger evidence.",
+      "common_confusion": "A p-value of 0.049 and 0.051 are not meaningfully different, despite falling on opposite sides of the α=0.05 threshold.",
+      "example_use": "Compute z-statistic, look up P(Z > z_obs) in normal table, compare to 0.05."
+    },
+    "z_test": {
+      "definition": "A hypothesis test using a standard normal test statistic, applicable when σ is known or the sample size is large.",
+      "formula": "Z = (X̄ - μ₀) / (σ/√n)  ~  N(0,1)  under H₀",
+      "parameters": null,
+      "intuition": "The z-test measures how many standard errors the sample mean is from the null value — extreme z-values indicate the data is inconsistent with H₀.",
+      "common_confusion": "The z-test requires σ to be known. In practice σ is almost always unknown, making the t-test more appropriate for small samples.",
+      "example_use": "Testing H₀: μ = 100 with known σ = 15 and n = 64: Z = (X̄ - 100)/(15/8)."
+    },
+    "two_sample_z_test": {
+      "definition": "A z-test comparing the means of two independent populations when both population standard deviations are known.",
+      "formula": "Z = (X̄₁ - X̄₂) / √(σ₁²/n₁ + σ₂²/n₂)",
+      "parameters": null,
+      "intuition": "Test whether two groups have the same mean when the population variances are known (rare in practice).",
+      "common_confusion": null,
+      "example_use": "Comparing mean scores of two large student cohorts when historical variance estimates are available."
+    },
+    "one_sample_t_test": {
+      "definition": "A hypothesis test for the mean of a normal population with unknown variance, using the t-distribution.",
+      "formula": "T = (X̄ - μ₀) / (S/√n)  ~  t(n-1)  under H₀",
+      "parameters": null,
+      "intuition": "The most common test for a single mean — replace the unknown σ with S and account for the extra uncertainty via the t-distribution.",
+      "common_confusion": "The t-test assumes normality of the population. For large samples the CLT makes it robust to departures from normality.",
+      "example_use": "Testing whether the mean exam score equals 70: T = (X̄ - 70)/(S/√n) with n-1 df."
+    },
+    "two_sample_t_test": {
+      "definition": "A hypothesis test comparing the means of two independent normal populations with unknown variances.",
+      "formula": "T = (X̄₁ - X̄₂) / SE(X̄₁ - X̄₂)  ~  t(df)  under H₀: μ₁=μ₂",
+      "parameters": null,
+      "intuition": "Test whether two groups have the same mean when variances are unknown — the most common two-group comparison.",
+      "common_confusion": "The pooled t-test assumes equal variances; Welch's t-test does not. Welch's is generally safer to use.",
+      "example_use": "Comparing mean blood pressure between a treatment group and a control group."
+    },
+    "wald_test": {
+      "definition": "A hypothesis test based on the asymptotic normality of the MLE: W = (θ̂ - θ₀)² / Var(θ̂) ~ χ²(1) under H₀.",
+      "formula": "W = (θ̂ - θ₀)ᵀ [Var(θ̂)]⁻¹ (θ̂ - θ₀)  ~  χ²(p)  under H₀",
+      "parameters": null,
+      "intuition": "The Wald test asks: is the MLE far enough from the null value (relative to its uncertainty) to reject H₀?",
+      "common_confusion": "The Wald test is not invariant to reparameterization — testing H₀: θ=1 vs H₀: log θ=0 may give different p-values.",
+      "example_use": "The z-tests in logistic regression output are Wald tests for each coefficient."
+    },
+    "likelihood_ratio_test": {
+      "definition": "A hypothesis test comparing the maximum likelihood under H₀ to the unrestricted maximum likelihood: LRT = -2 log Λ ~ χ²(df) under H₀.",
+      "formula": "LRT = -2 log[L(θ̂₀)/L(θ̂)] = 2[ℓ(θ̂) - ℓ(θ̂₀)]  ~  χ²(p-q)",
+      "parameters": ["df = difference in number of free parameters between H₁ and H₀ models"],
+      "intuition": "LRT asks: how much better does the unrestricted model fit compared to the restricted model? Large improvement → reject H₀.",
+      "common_confusion": "The LRT is asymptotically equivalent to the Wald and score tests but often has better finite-sample properties.",
+      "example_use": "Testing whether a set of regression coefficients are jointly zero using LRT (equivalent to the F-test in linear regression)."
+    },
+    "chi_square_test_for_population_variance": {
+      "definition": "A hypothesis test for a normal population variance using the test statistic (n-1)S²/σ₀² ~ χ²(n-1) under H₀: σ²=σ₀².",
+      "formula": "χ² = (n-1)S²/σ₀²  ~  χ²(n-1)  under H₀",
+      "parameters": null,
+      "intuition": "Test whether the sample variance is consistent with a hypothesized population variance.",
+      "common_confusion": "This test is very sensitive to non-normality of the population, more so than t-tests for the mean.",
+      "example_use": "Testing whether the variance of a manufacturing process equals the target specification value."
+    },
+    "bayesian_testing_concepts": {
+      "definition": "The framework for hypothesis testing within Bayesian inference, using posterior probabilities and Bayes factors rather than p-values.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Bayesian testing directly computes the probability that a hypothesis is true given the data, rather than the probability of data given the hypothesis.",
+      "common_confusion": null,
+      "example_use": "Computing P(H₀|data) and P(H₁|data) using Bayes factors to compare models."
+    },
+    "bayesian_p_value": {
+      "definition": "A Bayesian measure of evidence against a model, computed as the posterior probability of observing data as extreme as or more extreme than the observed data.",
+      "formula": "p_B = P(T(X_rep) ≥ T(x_obs) | x_obs)",
+      "parameters": null,
+      "intuition": "The Bayesian p-value checks model fit by comparing observed test statistics to those from posterior predictive replications.",
+      "common_confusion": "The Bayesian p-value is not equivalent to the frequentist p-value and should not be compared to α=0.05 in the same way.",
+      "example_use": "Posterior predictive p-values are used in Bayesian model checking to assess whether the model fits the data."
+    },
+    "degrees_of_freedom": {
+      "definition": "The number of independent pieces of information available to estimate a parameter, after accounting for constraints imposed by estimated quantities.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Degrees of freedom count how many values are 'free to vary' — each estimated parameter uses up one degree of freedom.",
+      "common_confusion": "The sample variance uses n-1 df because one df is lost by estimating the mean. Forgetting this leads to incorrect inference.",
+      "example_use": "The t-statistic for a sample mean of size n follows t(n-1), with n-1 degrees of freedom."
+    },
+    "difference_of_population_means": {
+      "definition": "The parameter μ₁ - μ₂ representing the true difference between the means of two populations.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "The difference of means is the most natural measure of group comparison — zero means no difference, positive or negative indicates direction.",
+      "common_confusion": null,
+      "example_use": "Estimating the difference in mean recovery times between two treatment protocols."
+    },
+    "duality_of_significance_tests_and_confidence_intervals": {
+      "definition": "The correspondence between hypothesis tests and confidence intervals: H₀: θ = θ₀ is rejected at level α if and only if θ₀ is outside the 1-α confidence interval.",
+      "formula": "Reject H₀: θ=θ₀ at level α  ⟺  θ₀ ∉ CI_{1-α}(θ)",
+      "parameters": null,
+      "intuition": "CIs and tests are two sides of the same coin — a CI is the set of all null values that would not be rejected.",
+      "common_confusion": null,
+      "example_use": "A 95% CI for μ that excludes 0 is equivalent to rejecting H₀: μ=0 at the 5% level."
+    },
+    "likelihood_function": {
+      "definition": "The function L(θ; x) = f(x; θ) viewed as a function of θ for fixed observed data x, quantifying how well each parameter value explains the data.",
+      "formula": "L(θ; x) = ∏ᵢ f(xᵢ; θ)  (IID case)",
+      "parameters": null,
+      "intuition": "The likelihood function maps each parameter value to how probable the observed data would be — its peak locates the MLE.",
+      "common_confusion": null,
+      "example_use": "Plotting the likelihood as a function of μ for normal data shows a bell-shaped function peaked at X̄."
+    },
+    "likelihood_inference": {
+      "definition": "A unified framework for statistical inference based on the likelihood function, encompassing MLEs, likelihood ratio tests, and profile likelihoods.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Likelihood inference says the likelihood function contains all relevant information about the parameter given the data and the model.",
+      "common_confusion": null,
+      "example_use": "Profile likelihood confidence intervals for a parameter of interest, nuisance parameters profiled out."
+    },
+    "numerical_maximization": {
+      "definition": "The use of iterative algorithms to find the maximum of the log-likelihood function when a closed-form solution is unavailable.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "When calculus cannot solve the score equations analytically, numerical algorithms climb the log-likelihood surface step by step.",
+      "common_confusion": null,
+      "example_use": "Gradient ascent, Newton-Raphson, and EM algorithm are all numerical maximization methods used in statistical computing."
+    },
+    "sufficient_statistic": {
+      "definition": "A statistic T(X) that captures all information about parameter θ contained in the data: the distribution of X given T(X) does not depend on θ.",
+      "formula": "f(x|θ) = g(T(x), θ) · h(x)  (factorization theorem)",
+      "parameters": null,
+      "intuition": "A sufficient statistic is a lossless compression of the data for the purpose of inference — knowing T(X) is as good as knowing all of X.",
+      "common_confusion": "Sufficiency is relative to a model. T(X) = X̄ is sufficient for μ in a normal model but not in general.",
+      "example_use": "The sample total Σ Xᵢ is a sufficient statistic for p in a Binomial model."
+    },
+    "two_sample_inference": {
+      "definition": "Statistical inference about the difference between two populations, using independent samples from each.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Two-sample inference asks whether two groups are different — the comparison is the fundamental question of many experiments.",
+      "common_confusion": null,
+      "example_use": "Comparing mean test scores between students taught by two different methods."
+    },
+    "confidence_interval_estimation": {
+      "definition": "The process of constructing a confidence interval for a parameter using sample data and knowledge of the estimator's sampling distribution.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "CI estimation is the practical procedure: collect data, compute the point estimate and its standard error, then form the interval.",
+      "common_confusion": null,
+      "example_use": "Estimating a population proportion with a 95% Wald CI: p̂ ± 1.96√(p̂(1-p̂)/n)."
+    },
+    "population_parameters": {
+      "definition": "Numerical characteristics of a population distribution — such as the mean, variance, or proportion — that statistical inference aims to estimate.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Population parameters are the unknowns that describe the true state of the world; sample statistics are our imperfect glimpses of them.",
+      "common_confusion": null,
+      "example_use": "μ, σ², and p are population parameters estimated by X̄, S², and p̂ respectively."
+    },
+    "summary_statistics": {
+      "definition": "Numerical summaries computed from sample data that describe key features of the data, such as location, spread, and shape.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Summary statistics compress raw data into interpretable numbers — the mean, median, standard deviation, and quartiles are the most common.",
+      "common_confusion": null,
+      "example_use": "Reporting the mean, standard deviation, minimum, and maximum of a dataset as summary statistics."
+    },
+    "statistical_estimation": {
+      "definition": "The branch of statistical inference concerned with using sample data to approximate unknown population parameters or functions thereof.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Statistical estimation is the science of making good guesses from incomplete information — trading off bias, variance, and computational cost.",
+      "common_confusion": null,
+      "example_use": "Estimating the proportion of defective items in a production line from a quality control sample."
+    },
+    "alternative_estimation_methods": {
+      "definition": "Parameter estimation approaches other than maximum likelihood, including method of moments, least squares, and Bayesian methods.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "MLE is not always the best or most practical estimation method — alternatives trade efficiency for simplicity, robustness, or computational convenience.",
+      "common_confusion": null,
+      "example_use": "Method of moments is simpler to compute than MLE for mixture models."
+    },
+    "bootstrap_methods": {
+      "definition": "A family of resampling-based procedures for approximating sampling distributions and constructing confidence intervals without analytical formulas.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Bootstrap methods use the data itself to simulate sampling variability — they are a computational alternative to analytical inference.",
+      "common_confusion": null,
+      "example_use": "Bootstrap the regression coefficient to get a CI that is robust to non-normal residuals."
+    },
+    "large_sample_inference": {
+      "definition": "Inference methods that rely on asymptotic approximations (typically the CLT or MLE theory) that become valid as sample size grows.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Large-sample methods trade exact results for generality — they work for almost any distribution when n is large enough.",
+      "common_confusion": "How large n needs to be depends on the problem. For heavy-tailed distributions, n may need to be very large for the CLT approximation to be adequate.",
+      "example_use": "Wald confidence intervals for MLE estimates rely on large-sample normality of the MLE."
+    },
+    "classical_test_procedures": {
+      "definition": "The standard frequentist hypothesis tests derived from normal distribution theory: z-tests, t-tests, F-tests, and chi-square tests.",
+      "formula": null,
+      "parameters": null,
+      "intuition": "Classical tests are the workhorses of applied statistics — each is derived from the sampling distribution of a key statistic under H₀.",
+      "common_confusion": null,
+      "example_use": "The one-sample t-test, two-sample t-test, and F-test for ANOVA are the most commonly used classical test procedures."
+    }
+  }
+}
