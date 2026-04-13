@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getNode, getOutEdges, getInEdges, getNode as gn } from "../lib/graphUtils";
 import { DOMAIN_COLOR, DOMAIN_BG, EDGE_COLOR, EDGE_DESCRIPTION, EDGE_TYPES } from "../lib/constants";
 import type { EdgeType, KGEdge } from "../types";
-import DomainBadge from "../components/ui/DomainBadge";
+import ContentCard from "../components/ui/ContentCard";
 
 function EdgeGroup({ et, edges, idKey }: { et: EdgeType; edges: KGEdge[]; idKey: "s" | "t" }) {
   const navigate = useNavigate();
@@ -56,12 +56,11 @@ export default function ConceptPage() {
   const domColor = (DOMAIN_COLOR as Record<string, string>)[node.domain] ?? "#888";
   const domBg    = (DOMAIN_BG   as Record<string, string>)[node.domain] ?? "#f5f5f5";
 
-  // Group by edge type
   const outByType = EDGE_TYPES.reduce<Record<EdgeType, KGEdge[]>>(
     (acc, et) => { acc[et] = outEdges.filter(e => e.et === et); return acc; },
     {} as Record<EdgeType, KGEdge[]>
   );
-  const inByType  = EDGE_TYPES.reduce<Record<EdgeType, KGEdge[]>>(
+  const inByType = EDGE_TYPES.reduce<Record<EdgeType, KGEdge[]>>(
     (acc, et) => { acc[et] = inEdges.filter(e => e.et === et); return acc; },
     {} as Record<EdgeType, KGEdge[]>
   );
@@ -124,11 +123,11 @@ export default function ConceptPage() {
           </div>
         </div>
 
-        {/* Stats row */}
+        {/* Stats */}
         <div className="grid grid-cols-4 gap-3 mb-6">
           {[
-            { label: "Outgoing",  value: outEdges.length },
-            { label: "Incoming",  value: inEdges.length  },
+            { label: "Outgoing",     value: outEdges.length },
+            { label: "Incoming",     value: inEdges.length  },
             { label: "Unique types", value: new Set([...outEdges, ...inEdges].map(e => e.et)).size },
             { label: "Avg confidence",
               value: (([...outEdges, ...inEdges].reduce((s, e) => s + e.c, 0) /
@@ -141,12 +140,16 @@ export default function ConceptPage() {
           ))}
         </div>
 
+        {/* Content */}
+        <div className="mb-6">
+          <h2 className="text-sm font-semibold text-stone-700 mb-3">Concept overview</h2>
+          <ContentCard nodeId={node.id} />
+        </div>
+
         {/* Relationships */}
         <div className="grid grid-cols-2 gap-6">
           <div className="card px-5 py-4">
-            <h2 className="text-sm font-semibold text-stone-700 mb-4">
-              Outgoing relationships
-            </h2>
+            <h2 className="text-sm font-semibold text-stone-700 mb-4">Outgoing relationships</h2>
             {EDGE_TYPES.filter(et => outByType[et].length > 0).map(et => (
               <EdgeGroup key={et} et={et} edges={outByType[et]} idKey="t" />
             ))}
@@ -156,9 +159,7 @@ export default function ConceptPage() {
           </div>
 
           <div className="card px-5 py-4">
-            <h2 className="text-sm font-semibold text-stone-700 mb-4">
-              Incoming relationships
-            </h2>
+            <h2 className="text-sm font-semibold text-stone-700 mb-4">Incoming relationships</h2>
             {EDGE_TYPES.filter(et => inByType[et].length > 0).map(et => (
               <EdgeGroup key={et} et={et} edges={inByType[et]} idKey="s" />
             ))}
@@ -167,6 +168,7 @@ export default function ConceptPage() {
             )}
           </div>
         </div>
+
       </div>
     </div>
   );
