@@ -3,7 +3,7 @@ import { getNode, getOutEdges, getInEdges, getNode as gn } from "../lib/graphUti
 import { DOMAIN_COLOR, DOMAIN_BG, EDGE_COLOR, EDGE_DESCRIPTION, EDGE_TYPES } from "../lib/constants";
 import type { EdgeType, KGEdge } from "../types";
 import DomainBadge from "../components/ui/DomainBadge";
-import { CONTENT } from "../data/content";
+import { NODE_CONTENT } from "../data/content";
 import ContentCard from "../components/ui/ContentCard";
 
 function EdgeGroup({ et, edges, idKey }: { et: EdgeType; edges: KGEdge[]; idKey: "s" | "t" }) {
@@ -150,8 +150,8 @@ export default function ConceptPage() {
         </div>
 
         {/* Content card */}
-        {CONTENT[node.id] && (() => {
-          const c = CONTENT[node.id];
+        {NODE_CONTENT[node.id] && (() => {
+          const c = NODE_CONTENT[node.id];
           return (
             <div className="card px-6 py-5 mb-6 space-y-4">
               {/* Definition */}
@@ -192,18 +192,18 @@ export default function ConceptPage() {
               </div>
 
               {/* Confusion */}
-              {c.confusion && (
+              {c.common_confusion && (
                 <div className="border-l-2 border-amber-300 pl-3">
                   <div className="text-[10px] font-semibold text-amber-600 uppercase tracking-wider mb-1">Common confusion</div>
-                  <p className="text-sm text-stone-600 leading-relaxed">{c.confusion}</p>
+                  <p className="text-sm text-stone-600 leading-relaxed">{c.common_confusion}</p>
                 </div>
               )}
 
               {/* Example */}
-              {c.example && (
+              {c.example_use && (
                 <div className="border-l-2 border-stone-200 pl-3">
                   <div className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">Example</div>
-                  <p className="text-sm text-stone-600 leading-relaxed">{c.example}</p>
+                  <p className="text-sm text-stone-600 leading-relaxed">{c.example_use}</p>
                 </div>
               )}
             </div>
