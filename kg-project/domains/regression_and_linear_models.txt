@@ -1,0 +1,97 @@
+# Domain: Regression and Linear Models
+# Format: id | canonical_name | node_type | structural_role
+# node_type: Concept / Method / Model / Conceptual Organizer
+# structural_role: Core / Branch / Subbranch / Leaf
+#
+regression_framework | Regression Framework | Concept | Core
+regression_analysis | Regression Analysis | Concept | Branch
+linear_regression | Linear Regression | Concept | Leaf
+simple_linear_regression | Simple Linear Regression | Concept | Leaf
+multiple_linear_regression | Multiple Linear Regression | Concept | Leaf
+variables_in_regression | Variables in Regression | Concept | Branch
+dependent_variable | Dependent Variable | Concept | Leaf
+independent_variable | Independent Variable | Concept | Leaf
+predictor_types | Predictor Types | Concept | Branch
+numeric_variable | Numeric Variable | Concept | Leaf
+categorical_variable | Categorical Variable | Concept | Subbranch
+factor_variable | Factor Variable | Concept | Leaf
+nominal_predictor | Nominal Predictor | Concept | Leaf
+categorical_predictor | Categorical Predictor | Concept | Leaf
+reference_level | Reference Level | Concept | Leaf
+polynomial_predictor | Polynomial Predictor | Concept | Leaf
+linear_relationship_structure | Linear Relationship Structure | Concept | Core
+linear_relationship | Linear Relationship | Concept | Leaf
+linear_trend | Linear Trend | Concept | Leaf
+intercept | Intercept | Concept | Leaf
+slope | Slope | Concept | Leaf
+error_term | Error Term | Concept | Leaf
+variance_of_the_error_term | Variance of the Error Term | Concept | Leaf
+interaction | Interaction | Concept | Branch
+interaction_effect | Interaction Effect | Concept | Leaf
+design_matrix_representation | Design Matrix Representation | Concept | Core
+design_matrix | Design Matrix | Concept | Subbranch
+dummy_variable | Dummy Variable | Concept | Leaf
+dummy_encoding | Dummy Encoding | Method | Leaf
+dummy_variable_encoding | Dummy Variable Encoding | Method | Leaf
+estimation | Estimation | Concept | Core
+ordinary_least_squares | Ordinary Least Squares | Method | Subbranch
+best_linear_unbiased_estimator | Best Linear Unbiased Estimator | Concept | Leaf
+coefficients | Coefficients | Concept | Branch
+partial_regression_coefficient | Partial Regression Coefficient | Concept | Leaf
+estimator_distribution | Estimator Distribution | Concept | Branch
+distribution_of_ols_estimators | Distribution of OLS Estimators | Concept | Leaf
+model_fit_and_variance_decomposition | Model Fit and Variance Decomposition | Concept | Core
+sum_of_squares | Sum of Squares | Concept | Branch
+total_sum_of_squares | Total Sum of Squares | Concept | Leaf
+regression_sum_of_squares | Regression Sum of Squares | Concept | Leaf
+residual_sum_of_squares | Residual Sum of Squares | Concept | Leaf
+sum_of_squared_errors | Sum of Squared Errors | Concept | Leaf
+variance_decomposition | Variance Decomposition | Concept | Leaf
+coefficient_of_determination | Coefficient of Determination | Concept | Leaf
+predictions | Predictions | Concept | Core
+prediction | Prediction | Concept | Leaf
+fitted_value | Fitted Value | Concept | Leaf
+residuals_and_diagnostics | Residuals and Diagnostics | Concept | Core
+residual | Residual | Concept | Branch
+standardized_residual | Standardized Residual | Concept | Leaf
+studentized_residual | Studentized Residual | Concept | Leaf
+residual_variance | Residual Variance | Concept | Leaf
+residual_analysis | Residual Analysis | Method | Branch
+residual_plot | Residual Plot | Method | Leaf
+outlier | Outlier | Concept | Branch
+cooks_distance | Cook’s Distance | Concept | Leaf
+leverage_structure | Leverage Structure | Concept | Branch
+hat_matrix | Hat Matrix | Concept | Leaf
+leverage | Leverage | Concept | Leaf
+high_leverage_point | High Leverage Point | Concept | Leaf
+regression_assumptions | Regression Assumptions | Concept | Core
+homoscedasticity | Homoscedasticity | Concept | Leaf
+normality_of_errors | Normality of Errors | Concept | Leaf
+predictor_dependence | Predictor Dependence | Concept | Core
+pairwise_correlation | Pairwise Correlation | Concept | Branch
+pearson_correlation_coefficient | Pearson Correlation Coefficient | Concept | Leaf
+multicollinearity | Multicollinearity | Concept | Branch
+perfect_multicollinearity | Perfect Multicollinearity | Concept | Leaf
+linear_dependence_among_predictors | Linear Dependence among Predictors | Concept | Leaf
+collinearity_diagnostics | Collinearity Diagnostics | Concept | Branch
+variance_inflation_factor | Variance Inflation Factor | Concept | Leaf
+tolerance | Tolerance | Concept | Leaf
+hypothesis_testing_in_regression | Hypothesis Testing in Regression | Concept | Core
+partial_significance_test | Partial Significance Test | Concept | Leaf
+t_test_for_individual_regression_coefficients | t-test for Individual Regression Coefficients | Method | Leaf
+t_test_for_regression_coefficients | t-test for Regression Coefficients | Method | Leaf
+f_statistic | F Statistic | Concept | Leaf
+analysis_of_variance | Analysis of Variance | Concept | Core
+data_visualization | Data Visualization | Concept | Core
+scatterplot | Scatterplot | Method | Leaf
+scatterplot_matrix | Scatterplot Matrix | Method | Leaf
+data_transformation_methods | Data Transformation Methods | Concept | Core
+data_transformation | Data Transformation | Method | Leaf
+centering_variables | Centering Variables | Method | Leaf
+orthogonal_polynomial_transformation | Orthogonal Polynomial Transformation | Method | Leaf
+regression_model_extensions | Regression Model Extensions | Concept | Core
+polynomial_regression_model | Polynomial Regression Model | Model | Leaf
+interaction_regression_model | Interaction Regression Model | Model | Leaf
+normal_error_model | Normal Error Model | Model | Leaf
+principal_component_regression | Principal Component Regression | Model | Leaf
+ridge_regression | Ridge Regression | Model | Leaf

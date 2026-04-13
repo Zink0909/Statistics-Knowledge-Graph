@@ -1,0 +1,502 @@
+{
+  "edge_type": "measures",
+  "description": "A is a quantity or diagnostic tool whose purpose is to quantify, assess, or detect B. Example: variance_inflation_factor measures multicollinearity.",
+  "edges": [
+    {
+      "source": {
+        "id": "variance_inflation_factor",
+        "canonical_name": "Variance Inflation Factor",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "multicollinearity",
+        "canonical_name": "Multicollinearity",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "VIF is specifically designed to quantify the severity of multicollinearity among predictors."
+    },
+    {
+      "source": {
+        "id": "tolerance",
+        "canonical_name": "Tolerance",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "multicollinearity",
+        "canonical_name": "Multicollinearity",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Tolerance = 1/VIF; it measures multicollinearity just as VIF does."
+    },
+    {
+      "source": {
+        "id": "correlation_matrix_inspection",
+        "canonical_name": "Correlation Matrix Inspection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "multicollinearity",
+        "canonical_name": "Multicollinearity",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 0.9,
+      "generated_by": "llm",
+      "notes": "Inspecting the correlation matrix is a standard diagnostic for detecting pairwise multicollinearity among predictors. Note: correlation matrix inspection only captures bivariate linear relationships; VIF is more sensitive for detecting multicollinearity in the presence of multiple correlated predictors simultaneously."
+    },
+    {
+      "source": {
+        "id": "cooks_distance",
+        "canonical_name": "Cook's Distance",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "outlier",
+        "canonical_name": "Outlier",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 0.8,
+      "generated_by": "llm",
+      "notes": "Cook's Distance measures influence, which combines both outlier (residual) and leverage components; using outlier as target is a simplification. A more precise target would be an influence-point concept, but no such node exists in the domain list. Confidence lowered to 0.80 to reflect this approximation. Agent 6 review (S3-003)."
+    },
+    {
+      "source": {
+        "id": "hat_matrix",
+        "canonical_name": "Hat Matrix",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "leverage",
+        "canonical_name": "Leverage",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "The diagonal elements of the hat matrix directly define the leverage values for each observation."
+    },
+    {
+      "source": {
+        "id": "leverage_diagnostic",
+        "canonical_name": "Leverage Diagnostic",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "leverage",
+        "canonical_name": "Leverage",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Leverage diagnostic tools are used to identify and quantify high-leverage observations."
+    },
+    {
+      "source": {
+        "id": "residual_plot",
+        "canonical_name": "Residual Plot",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "homoscedasticity",
+        "canonical_name": "Homoscedasticity",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Residual plots are used to visually assess the homoscedasticity assumption of regression models."
+    },
+    {
+      "source": {
+        "id": "residual_plot",
+        "canonical_name": "Residual Plot",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "Q-Q residual plots are used to assess the normality of error terms."
+    },
+    {
+      "source": {
+        "id": "standardized_residual",
+        "canonical_name": "Standardized Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "outlier",
+        "canonical_name": "Outlier",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Standardized residuals are used to identify outlying observations in regression."
+    },
+    {
+      "source": {
+        "id": "studentized_residual",
+        "canonical_name": "Studentized Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "outlier",
+        "canonical_name": "Outlier",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Studentized residuals provide a more precise outlier detection tool than standardized residuals."
+    },
+    {
+      "source": {
+        "id": "r_squared",
+        "canonical_name": "R-squared",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "goodness_of_fit",
+        "canonical_name": "Goodness of Fit",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "R-squared is the standard measure of goodness of fit for regression models. Note: r_squared (Model Evaluation and Selection domain) and coefficient_of_determination (Regression and Linear Models domain) represent the same statistical concept in different domain contexts; both measures edges to goodness_of_fit are intentionally retained to capture cross-domain coverage."
+    },
+    {
+      "source": {
+        "id": "adjusted_r_squared",
+        "canonical_name": "Adjusted R-squared",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "goodness_of_fit",
+        "canonical_name": "Goodness of Fit",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Adjusted R-squared measures goodness of fit while penalizing for the number of predictors."
+    },
+    {
+      "source": {
+        "id": "in_sample_mse",
+        "canonical_name": "In-Sample MSE",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "goodness_of_fit",
+        "canonical_name": "Goodness of Fit",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "In-sample MSE measures training-set fit quality."
+    },
+    {
+      "source": {
+        "id": "expected_out_of_sample_mse",
+        "canonical_name": "Expected Out-of-Sample MSE",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "generalization_error",
+        "canonical_name": "Generalization Error",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Expected out-of-sample MSE is a direct measure of generalization error."
+    },
+    {
+      "source": {
+        "id": "deviance",
+        "canonical_name": "Deviance",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "model_fit",
+        "canonical_name": "Model Fit",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "In GLMs, deviance measures the discrepancy between the fitted model and the saturated model."
+    },
+    {
+      "source": {
+        "id": "akaike_information_criterion",
+        "canonical_name": "Akaike Information Criterion",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "prediction_error",
+        "canonical_name": "Prediction Error",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "AIC is an information criterion that estimates relative prediction error (via Kullback-Leibler divergence); it balances fit against complexity but its primary purpose is to estimate out-of-sample prediction error, not to quantify model complexity as such. Target corrected from model_complexity to prediction_error during Agent 6 review (S3-001)."
+    },
+    {
+      "source": {
+        "id": "bayesian_information_criterion",
+        "canonical_name": "Bayesian Information Criterion",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "prediction_error",
+        "canonical_name": "Prediction Error",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 0.85,
+      "generated_by": "llm",
+      "notes": "BIC is a penalized likelihood criterion used for model selection; like AIC it estimates prediction error (with a stronger complexity penalty based on sample size). Target corrected from model_complexity to prediction_error during Agent 6 review (S3-002). Confidence set to 0.85."
+    },
+    {
+      "source": {
+        "id": "mallows_cp",
+        "canonical_name": "Mallows' Cp",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "prediction_error",
+        "canonical_name": "Prediction Error",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Mallows' Cp estimates prediction error and is used for variable selection."
+    },
+    {
+      "source": {
+        "id": "bias",
+        "canonical_name": "Bias",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "estimator",
+        "canonical_name": "Estimator",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Bias quantifies the systematic deviation of an estimator from the true parameter value."
+    },
+    {
+      "source": {
+        "id": "standard_error",
+        "canonical_name": "Standard Error",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "estimator",
+        "canonical_name": "Estimator",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Standard error quantifies the sampling variability of an estimator."
+    },
+    {
+      "source": {
+        "id": "sample_variance",
+        "canonical_name": "Sample Variance",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "variance",
+        "canonical_name": "Variance",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Sample variance is the standard estimator and measure of population variance."
+    },
+    {
+      "source": {
+        "id": "sample_mean",
+        "canonical_name": "Sample Mean",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "population_mean",
+        "canonical_name": "Population Mean",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Sample mean is used to estimate and measure the population mean."
+    },
+    {
+      "source": {
+        "id": "pearson_correlation_coefficient",
+        "canonical_name": "Pearson Correlation Coefficient",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "correlation",
+        "canonical_name": "Correlation",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Pearson correlation coefficient quantifies linear correlation between two variables."
+    },
+    {
+      "source": {
+        "id": "coefficient_of_determination",
+        "canonical_name": "Coefficient of Determination",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "goodness_of_fit",
+        "canonical_name": "Goodness of Fit",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "The coefficient of determination (R²) measures regression goodness of fit. Note: coefficient_of_determination (Regression and Linear Models domain) and r_squared (Model Evaluation and Selection domain) represent the same statistical concept in different domain contexts; both measures edges to goodness_of_fit are intentionally retained to capture cross-domain coverage."
+    },
+    {
+      "source": {
+        "id": "residual_variance",
+        "canonical_name": "Residual Variance",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "variance_of_the_error_term",
+        "canonical_name": "Variance of the Error Term",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Residual variance is the estimator of the error term variance in regression."
+    },
+    {
+      "source": {
+        "id": "pairwise_correlation",
+        "canonical_name": "Pairwise Correlation",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "multicollinearity",
+        "canonical_name": "Multicollinearity",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "measures",
+      "confidence": 0.9,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review (S4-001): pairwise correlation between predictors is a fundamental diagnostic for multicollinearity. Complements correlation_matrix_inspection (index 2) at the individual predictor-pair level."
+    },
+    {
+      "source": {
+        "id": "f_statistic",
+        "canonical_name": "F Statistic",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "goodness_of_fit",
+        "canonical_name": "Goodness of Fit",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 0.88,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review (S4-002): the overall F statistic in regression tests whether the model explains a significant portion of variance, directly assessing goodness of fit. Confidence 0.88 as F-statistic is primarily a test statistic rather than a standalone fit measure."
+    },
+    {
+      "source": {
+        "id": "generalization_error",
+        "canonical_name": "Generalization Error",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "overfitting",
+        "canonical_name": "Overfitting",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 0.92,
+      "generated_by": "human",
+      "notes": "Moved from corresponds_to.json during Agent 6 review (S3-002): generalization_error quantifies and diagnoses overfitting — a measures relationship. Overfitting causes elevated generalization error; generalization_error is the diagnostic quantity that detects it."
+    },
+    {
+      "source": {
+        "id": "consistency",
+        "canonical_name": "Consistency",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "estimator",
+        "canonical_name": "Estimator",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "measures",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "Added during graph construction (isolated node fix): consistency is a large-sample property that measures estimator quality — an estimator is consistent if it converges in probability to the true parameter as n grows. Parallel to bias measures estimator."
+    },
+    {
+      "source": {
+        "id": "stepwise_selection",
+        "canonical_name": "Stepwise Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "model_complexity",
+        "canonical_name": "Model Complexity",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 0.88,
+      "generated_by": "human",
+      "notes": "Stepwise selection navigates model complexity by iteratively adding/removing predictors based on fit criteria."
+    },
+    {
+      "source": {
+        "id": "mallows_cp",
+        "canonical_name": "Mallows' Cp",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "model_complexity",
+        "canonical_name": "Model Complexity",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "measures",
+      "confidence": 0.9,
+      "generated_by": "human",
+      "notes": "Mallows' Cp penalizes model complexity and is used to compare models in subset selection."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+# Domain: Probability Theory
+# Format: id | canonical_name | node_type | structural_role
+# node_type: Concept / Method / Model / Conceptual Organizer
+# structural_role: Core / Branch / Subbranch / Leaf
+#
+random_variables | Random Variables | Concept | Core
+discrete_random_variables | Discrete Random Variables | Concept | Branch
+probability_mass_function | Probability Mass Function | Concept | Leaf
+continuous_random_variables | Continuous Random Variables | Concept | Branch
+probability_density_function | Probability Density Function | Concept | Leaf
+distribution_functions | Distribution Functions | Concept | Branch
+cumulative_distribution_function | Cumulative Distribution Function (CDF) | Concept | Leaf
+joint_distributions | Joint Distributions | Concept | Branch
+joint_probability_mass_function | Joint Probability Mass Function | Concept | Leaf
+joint_probability_density_function | Joint Probability Density Function | Concept | Leaf
+marginal_distribution | Marginal Distribution | Concept | Leaf
+functions_of_random_variables | Functions of Random Variables | Concept | Branch
+linear_combination_of_random_variables | Linear Combination of Random Variables | Concept | Leaf
+distribution_of_sum_of_independent_random_variables | Distribution of a Sum of Independent Random Variables | Concept | Subbranch
+convolution_of_probability_density_functions | Convolution of Probability Density Functions | Concept | Leaf
+conditional_probability_and_conditional_distributions | Conditional Probability and Conditional Distributions | Concept | Core
+conditional_probability | Conditional Probability | Concept | Branch
+chain_rule_for_probabilities | Chain Rule for Probabilities | Concept | Leaf
+conditional_distribution | Conditional Distribution | Concept | Leaf
+conditional_expectation | Conditional Expectation | Concept | Leaf
+independence_structure | Independence Structure | Concept | Core
+independent_random_variables | Independent Random Variables | Concept | Leaf
+independent_identically_distributed_random_variables | Independent and Identically Distributed Random Variables | Concept | Leaf
+mutual_independence | Mutual Independence | Concept | Leaf
+expectation_and_moments | Expectation and Moments | Concept | Core
+expected_value | Expected Value | Concept | Leaf
+variance | Variance | Concept | Leaf
+covariance | Covariance | Concept | Leaf
+correlation | Correlation | Concept | Leaf
+limit_laws | Limit Laws | Concept | Core
+weak_law_of_large_numbers | Weak Law of Large Numbers | Concept | Leaf
+central_limit_theorem | Central Limit Theorem | Concept | Leaf
+probability_inequalities | Probability Inequalities | Concept | Core
+chebyshev_inequality | Chebyshev Inequality | Concept | Leaf

@@ -1,0 +1,21 @@
+# Domain: Generalized Linear Models
+# Format: id | canonical_name | node_type | structural_role
+# node_type: Concept / Method / Model / Conceptual Organizer
+# structural_role: Core / Branch / Subbranch / Leaf
+#
+generalized_linear_model | Generalized Linear Model | Model | Core
+model_components | Model Components | Concept | Branch
+random_component | Random Component | Concept | Leaf
+systematic_component | Systematic Component | Concept | Subbranch
+linear_predictor | Linear Predictor | Concept | Leaf
+link_function | Link Function | Concept | Leaf
+model_fit | Model Fit | Concept | Branch
+deviance | Deviance | Concept | Leaf
+link_functions | Link Functions | Concept | Core
+logit_link | Logit Link | Method | Leaf
+glm_regression_models | GLM Regression Models | Concept | Core
+logistic_regression_model | Logistic Regression Model | Model | Leaf
+poisson_regression_model | Poisson Regression Model | Model | Leaf
+gamma_regression_model | Gamma Regression Model | Model | Leaf
+hierarchical_model | Hierarchical Model | Model | Leaf
+logistic_function | Logistic Function | Concept | Leaf

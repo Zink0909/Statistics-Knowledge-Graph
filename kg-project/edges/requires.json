@@ -1,0 +1,1558 @@
+{
+  "edge_type": "requires",
+  "description": "A 的定义或运作在逻辑上依赖 B，缺少 B 则 A 无法定义或无意义",
+  "edges": [
+    {
+      "source": {
+        "id": "maximum_likelihood_estimation",
+        "canonical_name": "Maximum Likelihood Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood",
+        "canonical_name": "Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "log_likelihood",
+        "canonical_name": "Log-Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood",
+        "canonical_name": "Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "maximum_likelihood_estimator",
+        "canonical_name": "Maximum Likelihood Estimator",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "maximum_likelihood_estimation",
+        "canonical_name": "Maximum Likelihood Estimation",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "score_function",
+        "canonical_name": "Score Function",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "log_likelihood",
+        "canonical_name": "Log-Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "fisher_information",
+        "canonical_name": "Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "score_function",
+        "canonical_name": "Score Function",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "likelihood_ratio",
+        "canonical_name": "Likelihood Ratio",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood",
+        "canonical_name": "Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "likelihood_ratio_test",
+        "canonical_name": "Likelihood Ratio Test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood_ratio",
+        "canonical_name": "Likelihood Ratio",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "observed_fisher_information",
+        "canonical_name": "Observed Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "log_likelihood",
+        "canonical_name": "Log-Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "expected_fisher_information",
+        "canonical_name": "Expected Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "score_function",
+        "canonical_name": "Score Function",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "prior_probability",
+        "canonical_name": "Prior Probability",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood",
+        "canonical_name": "Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bayesian_point_estimate",
+        "canonical_name": "Bayesian Point Estimate",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "credible_interval",
+        "canonical_name": "Credible Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bootstrap",
+        "canonical_name": "Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "empirical_distribution",
+        "canonical_name": "Empirical Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bootstrapped_sampling_distribution",
+        "canonical_name": "Bootstrapped Sampling Distribution",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bootstrap",
+        "canonical_name": "Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "sampling_distribution",
+        "canonical_name": "Sampling Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.75,
+      "generated_by": "llm",
+      "notes": "Target may be too broad; confidence interval construction technically relies on the sampling distribution of the estimator. A more precise target might be estimator or standard_error. Confidence lowered to 0.75 pending expert review."
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "test_statistic",
+        "canonical_name": "Test Statistic",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "null_hypothesis",
+        "canonical_name": "Null Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "p_value",
+        "canonical_name": "P-value",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "test_statistic",
+        "canonical_name": "Test Statistic",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "p_value",
+        "canonical_name": "P-value",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "null_hypothesis",
+        "canonical_name": "Null Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "decision_rule",
+        "canonical_name": "Decision Rule",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "critical_value",
+        "canonical_name": "Critical Value",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "residual",
+        "canonical_name": "Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "fitted_value",
+        "canonical_name": "Fitted Value",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "variance_decomposition",
+        "canonical_name": "Variance Decomposition",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual_sum_of_squares",
+        "canonical_name": "Residual Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "coefficient_of_determination",
+        "canonical_name": "Coefficient of Determination",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual_sum_of_squares",
+        "canonical_name": "Residual Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "coefficient_of_determination",
+        "canonical_name": "Coefficient of Determination",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "total_sum_of_squares",
+        "canonical_name": "Total Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bias",
+        "canonical_name": "Bias",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "estimator",
+        "canonical_name": "Estimator",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "unbiased_estimator",
+        "canonical_name": "Unbiased Estimator",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "estimator",
+        "canonical_name": "Estimator",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "standard_error",
+        "canonical_name": "Standard Error",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "sampling_distribution",
+        "canonical_name": "Sampling Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "rejection_region",
+        "canonical_name": "Rejection Region",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "critical_value",
+        "canonical_name": "Critical Value",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "acceptance_region",
+        "canonical_name": "Acceptance Region",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "critical_value",
+        "canonical_name": "Critical Value",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "type_i_error",
+        "canonical_name": "Type I Error",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "null_hypothesis",
+        "canonical_name": "Null Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "type_ii_error",
+        "canonical_name": "Type II Error",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "alternative_hypothesis",
+        "canonical_name": "Alternative Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "posterior_mean",
+        "canonical_name": "Posterior Mean",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "posterior_median",
+        "canonical_name": "Posterior Median",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "equal_tail_interval",
+        "canonical_name": "Equal-tail Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "highest_posterior_density_interval",
+        "canonical_name": "Highest Posterior Density Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bias_corrected_estimate",
+        "canonical_name": "Bias-corrected Estimate",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bias",
+        "canonical_name": "Bias",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "large_sample_confidence_interval_using_mle",
+        "canonical_name": "Large Sample Confidence Interval using MLE",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "maximum_likelihood_estimator",
+        "canonical_name": "Maximum Likelihood Estimator",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "large_sample_confidence_interval_using_mle",
+        "canonical_name": "Large Sample Confidence Interval using MLE",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "fisher_information",
+        "canonical_name": "Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "wald_confidence_interval",
+        "canonical_name": "Wald Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "standard_error",
+        "canonical_name": "Standard Error",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "deviance",
+        "canonical_name": "Deviance",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "likelihood",
+        "canonical_name": "Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "adjusted_r_squared",
+        "canonical_name": "Adjusted R-squared",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "residual_sum_of_squares",
+        "canonical_name": "Residual Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "r_squared",
+        "canonical_name": "R-squared",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "residual_sum_of_squares",
+        "canonical_name": "Residual Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "studentized_residual",
+        "canonical_name": "Studentized Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual",
+        "canonical_name": "Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "standardized_residual",
+        "canonical_name": "Standardized Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual",
+        "canonical_name": "Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "cooks_distance",
+        "canonical_name": "Cook's Distance",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual",
+        "canonical_name": "Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "cooks_distance",
+        "canonical_name": "Cook's Distance",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "leverage",
+        "canonical_name": "Leverage",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.92,
+      "generated_by": "llm",
+      "notes": "Cook's distance combines residual magnitude and leverage; removing leverage makes the concept incomplete."
+    },
+    {
+      "source": {
+        "id": "leverage",
+        "canonical_name": "Leverage",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "hat_matrix",
+        "canonical_name": "Hat Matrix",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "high_leverage_point",
+        "canonical_name": "High Leverage Point",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "leverage",
+        "canonical_name": "Leverage",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "akaike_information_criterion",
+        "canonical_name": "Akaike Information Criterion",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "likelihood",
+        "canonical_name": "Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bayesian_information_criterion",
+        "canonical_name": "Bayesian Information Criterion",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "likelihood",
+        "canonical_name": "Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "marginal_distribution",
+        "canonical_name": "Marginal Distribution",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "joint_probability_mass_function",
+        "canonical_name": "Joint Probability Mass Function",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.88,
+      "generated_by": "llm",
+      "notes": "Marginal distributions are derived by summing/integrating a joint distribution; without a joint distribution the marginal cannot be defined. Confidence slightly below 1.0 because the target is the discrete case only; a parallel edge to joint_probability_density_function could be added for completeness."
+    },
+    {
+      "source": {
+        "id": "convolution_of_probability_density_functions",
+        "canonical_name": "Convolution of Probability Density Functions",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "probability_density_function",
+        "canonical_name": "Probability Density Function",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "linear_combination_of_random_variables",
+        "canonical_name": "Linear Combination of Random Variables",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "expected_value",
+        "canonical_name": "Expected Value",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.8,
+      "generated_by": "llm",
+      "notes": "Semantic boundary is ambiguous: the expected value of a linear combination uses expected_value as a concept but this resembles a uses/applies relationship rather than a hard logical dependency. Confidence capped at 0.80 pending review."
+    },
+    {
+      "source": {
+        "id": "covariance",
+        "canonical_name": "Covariance",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "expected_value",
+        "canonical_name": "Expected Value",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "correlation",
+        "canonical_name": "Correlation",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "covariance",
+        "canonical_name": "Covariance",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "variance",
+        "canonical_name": "Variance",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "expected_value",
+        "canonical_name": "Expected Value",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "conditional_expectation",
+        "canonical_name": "Conditional Expectation",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "conditional_distribution",
+        "canonical_name": "Conditional Distribution",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "conditional_distribution",
+        "canonical_name": "Conditional Distribution",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "conditional_probability",
+        "canonical_name": "Conditional Probability",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "chain_rule_for_probabilities",
+        "canonical_name": "Chain Rule for Probabilities",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "conditional_probability",
+        "canonical_name": "Conditional Probability",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "design_matrix",
+        "canonical_name": "Design Matrix",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "link_function",
+        "canonical_name": "Link Function",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "linear_predictor",
+        "canonical_name": "Linear Predictor",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "mallows_cp",
+        "canonical_name": "Mallows' Cp",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "residual_sum_of_squares",
+        "canonical_name": "Residual Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "wald_test",
+        "canonical_name": "Wald Test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "fisher_information",
+        "canonical_name": "Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.9,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review (S4-002): the Wald test statistic is constructed using the Fisher information (or its estimate) to compute the standard error of the MLE. Logical dependency on Fisher information."
+    },
+    {
+      "source": {
+        "id": "marginal_distribution",
+        "canonical_name": "Marginal Distribution",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "joint_probability_density_function",
+        "canonical_name": "Joint Probability Density Function",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.92,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review (S4-003): marginal distribution of continuous variables is derived by integrating out the joint PDF. Complements the existing marginal_distribution -> joint_probability_mass_function edge for the discrete case."
+    },
+    {
+      "source": {
+        "id": "normal_error_model",
+        "canonical_name": "Normal Error Model",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "Moved from assumes.json during Agent 6 review (S3-001): normality_of_errors is constitutive of the normal_error_model — without this assumption the model is undefined and degenerates into a plain linear regression model. This is a hard logical dependency (requires), not a conditional assumption."
+    },
+    {
+      "source": {
+        "id": "parameter",
+        "canonical_name": "Parameter",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "parameter_space",
+        "canonical_name": "Parameter Space",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "Added during graph construction (isolated node fix): defining a parameter requires a parameter space over which it is defined — the set of all admissible values. Without a parameter space the parameter has no domain of definition."
+    },
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "error_term",
+        "canonical_name": "Error Term",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "OLS model is defined over the error term; the regression equation y = Xβ + ε requires ε."
+    },
+    {
+      "source": {
+        "id": "linear_regression",
+        "canonical_name": "Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "intercept",
+        "canonical_name": "Intercept",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "A linear regression model requires an intercept term (unless explicitly suppressed)."
+    },
+    {
+      "source": {
+        "id": "linear_regression",
+        "canonical_name": "Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "slope",
+        "canonical_name": "Slope",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "Linear regression requires slope coefficient(s) to define the linear relationship."
+    },
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "variance_of_the_error_term",
+        "canonical_name": "Variance of the Error Term",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.93,
+      "generated_by": "human",
+      "notes": "OLS estimation and inference depend on the variance of the error term σ²."
+    },
+    {
+      "source": {
+        "id": "generalized_linear_model",
+        "canonical_name": "Generalized Linear Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "linear_predictor",
+        "canonical_name": "Linear Predictor",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "GLM is defined as having a linear predictor η = Xβ; without it GLM cannot be defined."
+    },
+    {
+      "source": {
+        "id": "generalized_linear_model",
+        "canonical_name": "Generalized Linear Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "link_function",
+        "canonical_name": "Link Function",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "GLM requires a link function g connecting the linear predictor to the mean: μ = g⁻¹(η)."
+    },
+    {
+      "source": {
+        "id": "generalized_linear_model",
+        "canonical_name": "Generalized Linear Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "random_component",
+        "canonical_name": "Random Component",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "GLM is defined by three components; the random component specifying the response distribution is one of them."
+    },
+    {
+      "source": {
+        "id": "generalized_linear_model",
+        "canonical_name": "Generalized Linear Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "systematic_component",
+        "canonical_name": "Systematic Component",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "The systematic component (linear predictor part) is a defining element of the GLM framework."
+    },
+    {
+      "source": {
+        "id": "linear_regression",
+        "canonical_name": "Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "dependent_variable",
+        "canonical_name": "Dependent Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "Linear regression requires a dependent variable (response) to be defined."
+    },
+    {
+      "source": {
+        "id": "linear_regression",
+        "canonical_name": "Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "independent_variable",
+        "canonical_name": "Independent Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "Linear regression requires at least one independent variable (predictor)."
+    },
+    {
+      "source": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "conditional_distribution",
+        "canonical_name": "Conditional Distribution",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "The posterior distribution is a conditional distribution P(θ|data); its definition requires the concept of conditional distribution."
+    },
+    {
+      "source": {
+        "id": "bayesian_inference",
+        "canonical_name": "Bayesian Inference",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "conditional_probability",
+        "canonical_name": "Conditional Probability",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "Bayesian inference is grounded in conditional probability: P(θ|data) ∝ P(data|θ)P(θ)."
+    },
+    {
+      "source": {
+        "id": "independent_random_variables",
+        "canonical_name": "Independent Random Variables",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "joint_probability_density_function",
+        "canonical_name": "Joint Probability Density Function",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.93,
+      "generated_by": "human",
+      "notes": "Independence of continuous random variables is defined in terms of factorisation of the joint PDF."
+    },
+    {
+      "source": {
+        "id": "maximum_likelihood_estimation",
+        "canonical_name": "Maximum Likelihood Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "parameter",
+        "canonical_name": "Parameter",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "MLE estimates a parameter; the concept of a parameter is a logical prerequisite for defining MLE."
+    },
+    {
+      "source": {
+        "id": "decision_rule",
+        "canonical_name": "Decision Rule",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "rejection_region",
+        "canonical_name": "Rejection Region",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "Decision rule defines the rejection region: reject H₀ when test statistic falls in rejection region."
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "decision_rule",
+        "canonical_name": "Decision Rule",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "Hypothesis testing requires a decision rule to map test statistics to reject/fail-to-reject outcomes."
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "critical_value",
+        "canonical_name": "Critical Value",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "Classical hypothesis testing is defined in terms of a critical value that demarcates the rejection region."
+    },
+    {
+      "source": {
+        "id": "polynomial_regression_model",
+        "canonical_name": "Polynomial Regression Model",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "orthogonal_polynomial_transformation",
+        "canonical_name": "Orthogonal Polynomial Transformation",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.9,
+      "generated_by": "human",
+      "notes": "Polynomial regression often uses orthogonal polynomial transformation to reduce collinearity."
+    },
+    {
+      "source": {
+        "id": "frequentist_inference",
+        "canonical_name": "Frequentist Inference",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "sampling_distribution",
+        "canonical_name": "Sampling Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "Frequentist inference is grounded in the concept of sampling distributions and repeated sampling."
+    },
+    {
+      "source": {
+        "id": "linear_regression",
+        "canonical_name": "Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "linear_relationship",
+        "canonical_name": "Linear Relationship",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "Linear regression assumes a linear relationship between predictors and response."
+    },
+    {
+      "source": {
+        "id": "logistic_regression_model",
+        "canonical_name": "Logistic Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "logit_link",
+        "canonical_name": "Logit Link",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "Logistic regression is defined by the logit link function connecting linear predictor to probability."
+    },
+    {
+      "source": {
+        "id": "logit_link",
+        "canonical_name": "Logit Link",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "logistic_function",
+        "canonical_name": "Logistic Function",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "The logit link is the inverse of the logistic function; its definition depends on the logistic function."
+    },
+    {
+      "source": {
+        "id": "probability_density_function",
+        "canonical_name": "Probability Density Function",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "cumulative_distribution_function",
+        "canonical_name": "Cumulative Distribution Function (CDF)",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "The PDF is defined as the derivative of the CDF; the CDF is the more fundamental concept."
+    },
+    {
+      "source": {
+        "id": "probability_mass_function",
+        "canonical_name": "Probability Mass Function",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "cumulative_distribution_function",
+        "canonical_name": "Cumulative Distribution Function (CDF)",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.93,
+      "generated_by": "human",
+      "notes": "The PMF and CDF are related: the CDF is the cumulative sum of the PMF; CDF is the foundational representation."
+    },
+    {
+      "source": {
+        "id": "chebyshev_inequality",
+        "canonical_name": "Chebyshev Inequality",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "variance",
+        "canonical_name": "Variance",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "Chebyshev's inequality is stated in terms of variance: P(|X-μ| ≥ kσ) ≤ 1/k². Requires variance."
+    },
+    {
+      "source": {
+        "id": "chebyshev_inequality",
+        "canonical_name": "Chebyshev Inequality",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "expected_value",
+        "canonical_name": "Expected Value",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "Chebyshev's inequality is centered around the mean (expected value)."
+    },
+    {
+      "source": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "confidence_level",
+        "canonical_name": "Confidence Level",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "A confidence interval is defined at a specified confidence level (1-α); the concept requires confidence_level."
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "significance_level",
+        "canonical_name": "Significance Level",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "Hypothesis testing is performed at a specified significance level α; the framework requires this concept."
+    },
+    {
+      "source": {
+        "id": "interaction_regression_model",
+        "canonical_name": "Interaction Regression Model",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "interaction_effect",
+        "canonical_name": "Interaction Effect",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "requires",
+      "confidence": 0.99,
+      "generated_by": "human",
+      "notes": "An interaction regression model is defined by the presence of interaction effects between predictors."
+    },
+    {
+      "source": {
+        "id": "all_subsets_regression",
+        "canonical_name": "All Subsets Regression",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "model_complexity",
+        "canonical_name": "Model Complexity",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "requires",
+      "confidence": 0.9,
+      "generated_by": "human",
+      "notes": "All subsets regression exhaustively searches across models of varying complexity."
+    }
+  ]
+}

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Statistical Learning KG</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#F7F6F3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a18}
+body{display:flex;flex-direction:column}
+
+/* ── Toolbar ── */
+#tb{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 18px;
+  background:#ffffff;
+  border-bottom:1px solid #E8E6DF;
+  flex-shrink:0;flex-wrap:wrap;
+}
+#tb-title{font-size:13px;font-weight:600;letter-spacing:-.01em;color:#111}
+.tb-sep{width:1px;height:18px;background:#E8E6DF;flex-shrink:0}
+.lbl{font-size:11px;color:#999;white-space:nowrap}
+.tb-select{
+  font-size:12px;padding:4px 8px;height:28px;
+  border-radius:6px;border:1px solid #E0DED7;
+  background:#FAFAF8;color:#1a1a18;outline:none;cursor:pointer;
+}
+.tb-select:focus{border-color:#AAA}
+#search{
+  font-size:12px;padding:4px 10px;height:28px;
+  border-radius:6px;border:1px solid #E0DED7;
+  background:#FAFAF8;color:#1a1a18;outline:none;width:160px;
+}
+#search:focus{border-color:#AAA}
+#btn-back{
+  display:none;font-size:12px;padding:4px 12px;
+  border-radius:6px;border:1px solid #E0DED7;
+  background:#FAFAF8;cursor:pointer;color:#1a1a18;
+  transition:background .15s;
+}
+#btn-back:hover{background:#EDEBE4}
+#stats{font-size:11px;color:#C0BEB7;margin-left:auto;white-space:nowrap}
+
+/* ── Main ── */
+#main{display:flex;flex:1;min-height:0;overflow:hidden}
+#cv-wrap{flex:1;position:relative;overflow:hidden}
+canvas{display:block;position:absolute;top:0;left:0;cursor:default}
+
+/* ── Panel ── */
+#panel{
+  width:260px;
+  border-left:1px solid #E8E6DF;
+  background:#FFFFFF;
+  overflow-y:auto;
+  flex-shrink:0;
+  display:flex;flex-direction:column;
+}
+#panel-top{padding:16px;flex:1}
+
+/* Legend */
+.leg-section{margin-bottom:16px}
+.sec-label{
+  font-size:10px;font-weight:600;color:#C0BEB7;
+  text-transform:uppercase;letter-spacing:.08em;
+  margin-bottom:8px;
+}
+.leg-row{display:flex;align-items:center;gap:7px;margin-bottom:4px;cursor:pointer;border-radius:5px;padding:2px 4px;transition:background .1s}
+.leg-row:hover{background:#F4F2EB}
+.leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;opacity:.8}
+.leg-lbl{font-size:11px;color:#666}
+.eli{display:flex;align-items:center;gap:7px;margin-bottom:3px}
+.eline-w{width:22px;height:10px;display:flex;align-items:center;flex-shrink:0}
+.eline{height:1.5px;width:100%;border-radius:1px}
+.et-lbl{font-size:11px;color:#888}
+
+/* Hint */
+#hint{
+  font-size:11px;color:#C0BEB7;line-height:2;
+  margin-top:4px;
+}
+
+/* Ego banner */
+#ego-banner{
+  display:none;
+  margin-bottom:12px;
+  padding:8px 10px;
+  background:#F4F2EB;
+  border-radius:6px;
+  font-size:11px;color:#666;line-height:1.6;
+  border-left:3px solid #CCC;
+}
+
+/* Node detail */
+#node-detail{display:none;margin-top:2px}
+#node-detail h3{
+  font-size:15px;font-weight:600;
+  margin-bottom:8px;line-height:1.35;
+  color:#111;
+}
+.badges{margin-bottom:6px}
+.badge{
+  display:inline-block;
+  padding:2px 8px;border-radius:10px;
+  font-size:10px;font-weight:500;
+  margin:0 3px 3px 0;
+}
+.nd-meta{font-size:11px;color:#AAA;margin-bottom:4px;line-height:1.6}
+.nd-tip{
+  font-size:10px;color:#C8C6BF;
+  margin-bottom:12px;
+  padding:6px 8px;
+  background:#F9F8F5;
+  border-radius:5px;
+}
+.nb-head{
+  font-size:10px;font-weight:600;color:#C0BEB7;
+  text-transform:uppercase;letter-spacing:.05em;
+  margin:12px 0 4px;
+}
+.nb-item{
+  padding:4px 8px;border-radius:5px;
+  cursor:pointer;font-size:11px;color:#555;
+  display:flex;align-items:baseline;gap:5px;
+  line-height:1.45;transition:background .1s;
+}
+.nb-item:hover{background:#F4F2EB;color:#111}
+.nb-et{font-size:10px;flex-shrink:0;font-weight:500}
+.nb-more{font-size:10px;color:#C0BEB7;padding:2px 8px}
+
+/* Hover tooltip */
+#tooltip{
+  position:fixed;
+  display:none;
+  background:#111;color:#fff;
+  font-size:11px;padding:5px 9px;
+  border-radius:5px;pointer-events:none;
+  max-width:180px;line-height:1.4;
+  z-index:100;
+}
+
+/* Panel footer */
+#panel-footer{
+  padding:12px 16px;
+  border-top:1px solid #F0EEE7;
+  font-size:10px;color:#C8C6BF;
+  line-height:1.6;
+  flex-shrink:0;
+}
+</style>
+</head>
+<body>
+
+<div id="tb">
+  <span id="tb-title">Statistical Learning KG</span>
+  <div class="tb-sep"></div>
+  <span class="lbl">Domain</span>
+  <select class="tb-select" id="sel-domain">
+    <option value="">All domains</option>
+    <option>Probability Theory</option>
+    <option>Probability Distributions</option>
+    <option>Statistical Inference</option>
+    <option>Regression and Linear Models</option>
+    <option>Generalized Linear Models</option>
+    <option>Model Evaluation and Selection</option>
+  </select>
+  <span class="lbl">Edge</span>
+  <select class="tb-select" id="sel-etype">
+    <option value="">All</option>
+    <option>instance_of</option><option>requires</option><option>assumes</option>
+    <option>uses_distribution</option><option>measures</option><option>produces</option>
+    <option>corresponds_to</option><option>implemented_by</option>
+  </select>
+  <input id="search" type="text" placeholder="Search concept...">
+  <button id="btn-back">← Overview</button>
+  <span id="stats"></span>
+</div>
+
+<div id="main">
+  <div id="cv-wrap"><canvas id="cv"></canvas></div>
+  <div id="panel">
+    <div id="panel-top">
+      <div id="ego-banner"></div>
+
+      <div id="legend-wrap">
+        <div class="leg-section">
+          <div class="sec-label">Domain</div>
+          <div id="leg-dom"></div>
+        </div>
+        <div class="leg-section">
+          <div class="sec-label">Edge type</div>
+          <div id="leg-et"></div>
+        </div>
+        <div id="hint">
+          Showing top concepts by connectivity.<br>
+          Click a node to explore its structure.<br><br>
+          <span style="color:#D0CEC7">Scroll · zoom &nbsp; Drag · pan</span>
+        </div>
+      </div>
+
+      <div id="node-detail"></div>
+    </div>
+    <div id="panel-footer">
+      307 concepts &nbsp;·&nbsp; 490 relationships &nbsp;·&nbsp; 6 domains
+    </div>
+  </div>
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────────────
+var ALL_NODES = [{"id": "generalized_linear_model", "label": "Generalized Linear Model", "domain": "Generalized Linear Models", "role": "Core", "type": "Model", "deg": 7}, {"id": "model_components", "label": "Model Components", "domain": "Generalized Linear Models", "role": "Branch", "type": "Concept", "deg": 7}, {"id": "random_component", "label": "Random Component", "domain": "Generalized Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "systematic_component", "label": "Systematic Component", "domain": "Generalized Linear Models", "role": "Subbranch", "type": "Concept", "deg": 3}, {"id": "linear_predictor", "label": "Linear Predictor", "domain": "Generalized Linear Models", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "link_function", "label": "Link Function", "domain": "Generalized Linear Models", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "model_fit", "label": "Model Fit", "domain": "Generalized Linear Models", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "deviance", "label": "Deviance", "domain": "Generalized Linear Models", "role": "Leaf", "type": "Concept", "deg": 5}, {"id": "link_functions", "label": "Link Functions", "domain": "Generalized Linear Models", "role": "Core", "type": "Concept", "deg": 3}, {"id": "logit_link", "label": "Logit Link", "domain": "Generalized Linear Models", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "glm_regression_models", "label": "GLM Regression Models", "domain": "Generalized Linear Models", "role": "Core", "type": "Concept", "deg": 4}, {"id": "logistic_regression_model", "label": "Logistic Regression Model", "domain": "Generalized Linear Models", "role": "Leaf", "type": "Model", "deg": 8}, {"id": "poisson_regression_model", "label": "Poisson Regression Model", "domain": "Generalized Linear Models", "role": "Leaf", "type": "Model", "deg": 6}, {"id": "gamma_regression_model", "label": "Gamma Regression Model", "domain": "Generalized Linear Models", "role": "Leaf", "type": "Model", "deg": 4}, {"id": "hierarchical_model", "label": "Hierarchical Model", "domain": "Generalized Linear Models", "role": "Leaf", "type": "Model", "deg": 1}, {"id": "logistic_function", "label": "Logistic Function", "domain": "Generalized Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "foundations_of_model_evaluation", "label": "Foundations of Model Evaluation", "domain": "Model Evaluation and Selection", "role": "Core", "type": "Concept", "deg": 0}, {"id": "goodness_of_fit", "label": "Goodness of Fit", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Concept", "deg": 8}, {"id": "in_sample_mse", "label": "In-Sample MSE", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "adjusted_r_squared", "label": "Adjusted R-squared", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "r_squared", "label": "R-squared", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "prediction_error", "label": "Prediction Error", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Concept", "deg": 5}, {"id": "expected_out_of_sample_mse", "label": "Expected Out-of-Sample MSE", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "generalization_error", "label": "Generalization Error", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Concept", "deg": 5}, {"id": "model_complexity", "label": "Model Complexity", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Concept", "deg": 6}, {"id": "parsimony_principle", "label": "Parsimony Principle", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "overfitting", "label": "Overfitting", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "penalty_term", "label": "Penalty Term", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "model_diagnostics", "label": "Model Diagnostics", "domain": "Model Evaluation and Selection", "role": "Core", "type": "Concept", "deg": 2}, {"id": "leverage_diagnostic", "label": "Leverage Diagnostic", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 2}, {"id": "correlation_matrix_inspection", "label": "Correlation Matrix Inspection", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 2}, {"id": "model_selection", "label": "Model Selection", "domain": "Model Evaluation and Selection", "role": "Core", "type": "Concept", "deg": 0}, {"id": "information_criteria", "label": "Information Criteria", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Concept", "deg": 4}, {"id": "akaike_information_criterion", "label": "Akaike Information Criterion", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 5}, {"id": "bayesian_information_criterion", "label": "Bayesian Information Criterion", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 5}, {"id": "cp_based_selection", "label": "Cp-based Selection", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "mallows_cp", "label": "Mallows' Cp", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 5}, {"id": "subset_selection_methods", "label": "Subset Selection Methods", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "all_subsets_regression", "label": "All Subsets Regression", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "stepwise_selection_methods", "label": "Stepwise Selection Methods", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Concept", "deg": 6}, {"id": "stepwise_selection", "label": "Stepwise Selection", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "forward_stepwise_selection", "label": "Forward Stepwise Selection", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "backward_stepwise_selection", "label": "Backward Stepwise Selection", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "hypothesis_based_model_comparison", "label": "Hypothesis-based Model Comparison", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Concept", "deg": 4}, {"id": "anova_model_comparison", "label": "ANOVA Model Comparison", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "f_test_for_nested_models", "label": "F-test for Nested Models", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "resampling_and_validation", "label": "Resampling and Validation", "domain": "Model Evaluation and Selection", "role": "Core", "type": "Concept", "deg": 3}, {"id": "resampling", "label": "Resampling", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Method", "deg": 2}, {"id": "data_splitting", "label": "Data Splitting", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Method", "deg": 2}, {"id": "cross_validation", "label": "Cross Validation", "domain": "Model Evaluation and Selection", "role": "Branch", "type": "Concept", "deg": 5}, {"id": "k_fold_cross_validation", "label": "K-Fold Cross Validation", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 5}, {"id": "leave_one_out_cross_validation", "label": "Leave-One-Out Cross Validation", "domain": "Model Evaluation and Selection", "role": "Leaf", "type": "Method", "deg": 5}, {"id": "distribution_families", "label": "Distribution Families", "domain": "Probability Distributions", "role": "Core", "type": "Conceptual Organizer", "deg": 1}, {"id": "exponential_family", "label": "Exponential Family", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 5}, {"id": "discrete_distributions", "label": "Discrete Distributions", "domain": "Probability Distributions", "role": "Core", "type": "Conceptual Organizer", "deg": 3}, {"id": "bernoulli_type_distributions", "label": "Bernoulli-Type Distributions", "domain": "Probability Distributions", "role": "Branch", "type": "Conceptual Organizer", "deg": 4}, {"id": "bernoulli_distribution", "label": "Bernoulli Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 3}, {"id": "binomial_distribution", "label": "Binomial Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 2}, {"id": "geometric_distribution", "label": "Geometric Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 1}, {"id": "poisson_type_distributions", "label": "Poisson-Type Distributions", "domain": "Probability Distributions", "role": "Branch", "type": "Conceptual Organizer", "deg": 2}, {"id": "poisson_distribution", "label": "Poisson Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 3}, {"id": "multinomial_type_distributions", "label": "Multinomial-Type Distributions", "domain": "Probability Distributions", "role": "Branch", "type": "Conceptual Organizer", "deg": 2}, {"id": "trinomial_distribution", "label": "Trinomial Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 1}, {"id": "continuous_distributions", "label": "Continuous Distributions", "domain": "Probability Distributions", "role": "Core", "type": "Conceptual Organizer", "deg": 3}, {"id": "uniform_distribution", "label": "Uniform Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 1}, {"id": "normal_based_distributions", "label": "Normal-Based Distributions", "domain": "Probability Distributions", "role": "Branch", "type": "Conceptual Organizer", "deg": 5}, {"id": "normal_distribution", "label": "Normal Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 13}, {"id": "students_t_distribution", "label": "Student's t Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 8}, {"id": "chi_square_distribution", "label": "Chi-square Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 4}, {"id": "f_distribution", "label": "F Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 4}, {"id": "gamma_based_distributions", "label": "Gamma-Based Distributions", "domain": "Probability Distributions", "role": "Branch", "type": "Conceptual Organizer", "deg": 4}, {"id": "gamma_distribution", "label": "Gamma Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 2}, {"id": "exponential_distribution", "label": "Exponential Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 1}, {"id": "beta_distribution", "label": "Beta Distribution", "domain": "Probability Distributions", "role": "Leaf", "type": "Model", "deg": 1}, {"id": "random_variables", "label": "Random Variables", "domain": "Probability Theory", "role": "Core", "type": "Concept", "deg": 0}, {"id": "discrete_random_variables", "label": "Discrete Random Variables", "domain": "Probability Theory", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "probability_mass_function", "label": "Probability Mass Function", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "continuous_random_variables", "label": "Continuous Random Variables", "domain": "Probability Theory", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "probability_density_function", "label": "Probability Density Function", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "distribution_functions", "label": "Distribution Functions", "domain": "Probability Theory", "role": "Branch", "type": "Concept", "deg": 1}, {"id": "cumulative_distribution_function", "label": "Cumulative Distribution Function (CDF)", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "joint_distributions", "label": "Joint Distributions", "domain": "Probability Theory", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "joint_probability_mass_function", "label": "Joint Probability Mass Function", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "joint_probability_density_function", "label": "Joint Probability Density Function", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "marginal_distribution", "label": "Marginal Distribution", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "functions_of_random_variables", "label": "Functions of Random Variables", "domain": "Probability Theory", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "linear_combination_of_random_variables", "label": "Linear Combination of Random Variables", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "distribution_of_sum_of_independent_random_variables", "label": "Distribution of a Sum of Independent Random Variables", "domain": "Probability Theory", "role": "Subbranch", "type": "Concept", "deg": 2}, {"id": "convolution_of_probability_density_functions", "label": "Convolution of Probability Density Functions", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "conditional_probability_and_conditional_distributions", "label": "Conditional Probability and Conditional Distributions", "domain": "Probability Theory", "role": "Core", "type": "Concept", "deg": 3}, {"id": "conditional_probability", "label": "Conditional Probability", "domain": "Probability Theory", "role": "Branch", "type": "Concept", "deg": 4}, {"id": "chain_rule_for_probabilities", "label": "Chain Rule for Probabilities", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "conditional_distribution", "label": "Conditional Distribution", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "conditional_expectation", "label": "Conditional Expectation", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "independence_structure", "label": "Independence Structure", "domain": "Probability Theory", "role": "Core", "type": "Concept", "deg": 3}, {"id": "independent_random_variables", "label": "Independent Random Variables", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "independent_identically_distributed_random_variables", "label": "Independent and Identically Distributed Random Variables", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 5}, {"id": "mutual_independence", "label": "Mutual Independence", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "expectation_and_moments", "label": "Expectation and Moments", "domain": "Probability Theory", "role": "Core", "type": "Concept", "deg": 4}, {"id": "expected_value", "label": "Expected Value", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 6}, {"id": "variance", "label": "Variance", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 5}, {"id": "covariance", "label": "Covariance", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "correlation", "label": "Correlation", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "limit_laws", "label": "Limit Laws", "domain": "Probability Theory", "role": "Core", "type": "Concept", "deg": 2}, {"id": "weak_law_of_large_numbers", "label": "Weak Law of Large Numbers", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "central_limit_theorem", "label": "Central Limit Theorem", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "probability_inequalities", "label": "Probability Inequalities", "domain": "Probability Theory", "role": "Core", "type": "Concept", "deg": 1}, {"id": "chebyshev_inequality", "label": "Chebyshev Inequality", "domain": "Probability Theory", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "regression_framework", "label": "Regression Framework", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 0}, {"id": "regression_analysis", "label": "Regression Analysis", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 1}, {"id": "linear_regression", "label": "Linear Regression", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 10}, {"id": "simple_linear_regression", "label": "Simple Linear Regression", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "multiple_linear_regression", "label": "Multiple Linear Regression", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "variables_in_regression", "label": "Variables in Regression", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "dependent_variable", "label": "Dependent Variable", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "independent_variable", "label": "Independent Variable", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "predictor_types", "label": "Predictor Types", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 3}, {"id": "numeric_variable", "label": "Numeric Variable", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "categorical_variable", "label": "Categorical Variable", "domain": "Regression and Linear Models", "role": "Subbranch", "type": "Concept", "deg": 6}, {"id": "factor_variable", "label": "Factor Variable", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "nominal_predictor", "label": "Nominal Predictor", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "categorical_predictor", "label": "Categorical Predictor", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "reference_level", "label": "Reference Level", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "polynomial_predictor", "label": "Polynomial Predictor", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "linear_relationship_structure", "label": "Linear Relationship Structure", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 2}, {"id": "linear_relationship", "label": "Linear Relationship", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "linear_trend", "label": "Linear Trend", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "intercept", "label": "Intercept", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "slope", "label": "Slope", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "error_term", "label": "Error Term", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "variance_of_the_error_term", "label": "Variance of the Error Term", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "interaction", "label": "Interaction", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 1}, {"id": "interaction_effect", "label": "Interaction Effect", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "design_matrix_representation", "label": "Design Matrix Representation", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 5}, {"id": "design_matrix", "label": "Design Matrix", "domain": "Regression and Linear Models", "role": "Subbranch", "type": "Concept", "deg": 4}, {"id": "dummy_variable", "label": "Dummy Variable", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "dummy_encoding", "label": "Dummy Encoding", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "dummy_variable_encoding", "label": "Dummy Variable Encoding", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Method", "deg": 2}, {"id": "estimation", "label": "Estimation", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 1}, {"id": "ordinary_least_squares", "label": "Ordinary Least Squares", "domain": "Regression and Linear Models", "role": "Subbranch", "type": "Method", "deg": 12}, {"id": "best_linear_unbiased_estimator", "label": "Best Linear Unbiased Estimator", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "coefficients", "label": "Coefficients", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 4}, {"id": "partial_regression_coefficient", "label": "Partial Regression Coefficient", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "estimator_distribution", "label": "Estimator Distribution", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 1}, {"id": "distribution_of_ols_estimators", "label": "Distribution of OLS Estimators", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "model_fit_and_variance_decomposition", "label": "Model Fit and Variance Decomposition", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 2}, {"id": "sum_of_squares", "label": "Sum of Squares", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 4}, {"id": "total_sum_of_squares", "label": "Total Sum of Squares", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "regression_sum_of_squares", "label": "Regression Sum of Squares", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "residual_sum_of_squares", "label": "Residual Sum of Squares", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 8}, {"id": "sum_of_squared_errors", "label": "Sum of Squared Errors", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "variance_decomposition", "label": "Variance Decomposition", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "coefficient_of_determination", "label": "Coefficient of Determination", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "predictions", "label": "Predictions", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 2}, {"id": "prediction", "label": "Prediction", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "fitted_value", "label": "Fitted Value", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 5}, {"id": "residuals_and_diagnostics", "label": "Residuals and Diagnostics", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 0}, {"id": "residual", "label": "Residual", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 7}, {"id": "standardized_residual", "label": "Standardized Residual", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "studentized_residual", "label": "Studentized Residual", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "residual_variance", "label": "Residual Variance", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "residual_analysis", "label": "Residual Analysis", "domain": "Regression and Linear Models", "role": "Branch", "type": "Method", "deg": 3}, {"id": "residual_plot", "label": "Residual Plot", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "outlier", "label": "Outlier", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 4}, {"id": "cooks_distance", "label": "Cook’s Distance", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "leverage_structure", "label": "Leverage Structure", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 3}, {"id": "hat_matrix", "label": "Hat Matrix", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "leverage", "label": "Leverage", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 6}, {"id": "high_leverage_point", "label": "High Leverage Point", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "regression_assumptions", "label": "Regression Assumptions", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 2}, {"id": "homoscedasticity", "label": "Homoscedasticity", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 5}, {"id": "normality_of_errors", "label": "Normality of Errors", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 12}, {"id": "predictor_dependence", "label": "Predictor Dependence", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 0}, {"id": "pairwise_correlation", "label": "Pairwise Correlation", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "pearson_correlation_coefficient", "label": "Pearson Correlation Coefficient", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "multicollinearity", "label": "Multicollinearity", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 6}, {"id": "perfect_multicollinearity", "label": "Perfect Multicollinearity", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "linear_dependence_among_predictors", "label": "Linear Dependence among Predictors", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "collinearity_diagnostics", "label": "Collinearity Diagnostics", "domain": "Regression and Linear Models", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "variance_inflation_factor", "label": "Variance Inflation Factor", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "tolerance", "label": "Tolerance", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "hypothesis_testing_in_regression", "label": "Hypothesis Testing in Regression", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 5}, {"id": "partial_significance_test", "label": "Partial Significance Test", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "t_test_for_individual_regression_coefficients", "label": "t-test for Individual Regression Coefficients", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "t_test_for_regression_coefficients", "label": "t-test for Regression Coefficients", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Method", "deg": 2}, {"id": "f_statistic", "label": "F Statistic", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "analysis_of_variance", "label": "Analysis of Variance", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 0}, {"id": "data_visualization", "label": "Data Visualization", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 4}, {"id": "scatterplot", "label": "Scatterplot", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "scatterplot_matrix", "label": "Scatterplot Matrix", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Method", "deg": 2}, {"id": "data_transformation_methods", "label": "Data Transformation Methods", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 5}, {"id": "data_transformation", "label": "Data Transformation", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Method", "deg": 1}, {"id": "centering_variables", "label": "Centering Variables", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "orthogonal_polynomial_transformation", "label": "Orthogonal Polynomial Transformation", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "regression_model_extensions", "label": "Regression Model Extensions", "domain": "Regression and Linear Models", "role": "Core", "type": "Concept", "deg": 5}, {"id": "polynomial_regression_model", "label": "Polynomial Regression Model", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Model", "deg": 2}, {"id": "interaction_regression_model", "label": "Interaction Regression Model", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Model", "deg": 2}, {"id": "normal_error_model", "label": "Normal Error Model", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Model", "deg": 3}, {"id": "principal_component_regression", "label": "Principal Component Regression", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Model", "deg": 2}, {"id": "ridge_regression", "label": "Ridge Regression", "domain": "Regression and Linear Models", "role": "Leaf", "type": "Model", "deg": 4}, {"id": "foundations_of_inference", "label": "Foundations of Inference", "domain": "Statistical Inference", "role": "Core", "type": "Concept", "deg": 2}, {"id": "frequentist_inference", "label": "Frequentist Inference", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "parameter", "label": "Parameter", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 4}, {"id": "parameter_space", "label": "Parameter Space", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "continuous_parameter", "label": "Continuous Parameter", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "discrete_parameter", "label": "Discrete Parameter", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "population_parameters", "label": "Population Parameters", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 3}, {"id": "population_mean", "label": "Population Mean", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "population_variance", "label": "Population Variance", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "population_proportion", "label": "Population Proportion", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "independent_random_samples", "label": "Independent Random Samples", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 10}, {"id": "empirical_distribution", "label": "Empirical Distribution", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "summary_statistics", "label": "Summary Statistics", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 4}, {"id": "sample_mean", "label": "Sample Mean", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "sample_variance", "label": "Sample Variance", "domain": "Statistical Inference", "role": "Subbranch", "type": "Concept", "deg": 4}, {"id": "sample_standard_deviation", "label": "Sample Standard Deviation", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "sample_covariance", "label": "Sample Covariance", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "sample_proportion", "label": "Sample Proportion", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "sampling_distributions", "label": "Sampling Distributions", "domain": "Statistical Inference", "role": "Core", "type": "Concept", "deg": 3}, {"id": "sampling_distribution", "label": "Sampling Distribution", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "standard_error", "label": "Standard Error", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "bootstrapped_sampling_distribution", "label": "Bootstrapped Sampling Distribution", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "large_sample_inference", "label": "Large Sample Inference", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "large_sample_distribution_of_the_mle", "label": "Large Sample Distribution of the MLE", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "normal_approximation", "label": "Normal Approximation", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "statistical_estimation", "label": "Statistical Estimation", "domain": "Statistical Inference", "role": "Core", "type": "Concept", "deg": 0}, {"id": "point_estimation", "label": "Point Estimation", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 6}, {"id": "estimator", "label": "Estimator", "domain": "Statistical Inference", "role": "Subbranch", "type": "Concept", "deg": 9}, {"id": "unbiased_estimator", "label": "Unbiased Estimator", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "bias", "label": "Bias", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "consistency", "label": "Consistency", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "estimate", "label": "Estimate", "domain": "Statistical Inference", "role": "Subbranch", "type": "Concept", "deg": 2}, {"id": "bias_corrected_estimate", "label": "Bias-corrected Estimate", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "interval_estimation", "label": "Interval Estimation", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 6}, {"id": "confidence_interval", "label": "Confidence Interval", "domain": "Statistical Inference", "role": "Subbranch", "type": "Concept", "deg": 12}, {"id": "confidence_level", "label": "Confidence Level", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "large_sample_confidence_interval", "label": "Large Sample Confidence Interval", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "t_confidence_interval", "label": "t Confidence Interval", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "confidence_interval_for_difference_of_means", "label": "Confidence Interval for Difference of Means", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "confidence_interval_for_population_variance", "label": "Confidence Interval for Population Variance", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 2}, {"id": "large_sample_confidence_interval_using_mle", "label": "Large Sample Confidence Interval using MLE", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 6}, {"id": "wald_confidence_interval", "label": "Wald Confidence Interval", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 5}, {"id": "likelihood_based_inference", "label": "Likelihood-Based Inference", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 6}, {"id": "likelihood", "label": "Likelihood", "domain": "Statistical Inference", "role": "Subbranch", "type": "Concept", "deg": 9}, {"id": "log_likelihood", "label": "Log-Likelihood", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "maximum_likelihood_estimation", "label": "Maximum Likelihood Estimation", "domain": "Statistical Inference", "role": "Subbranch", "type": "Method", "deg": 9}, {"id": "maximum_likelihood_estimator", "label": "Maximum Likelihood Estimator", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "regularity_conditions", "label": "Regularity Conditions", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 5}, {"id": "numerical_maximization_methods", "label": "Numerical Maximization Methods", "domain": "Statistical Inference", "role": "Subbranch", "type": "Method", "deg": 5}, {"id": "newton_raphson_method", "label": "Newton-Raphson Method", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "bisection_method", "label": "Bisection Method", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 2}, {"id": "fisher_information", "label": "Fisher Information", "domain": "Statistical Inference", "role": "Subbranch", "type": "Concept", "deg": 6}, {"id": "expected_fisher_information", "label": "Expected Fisher Information", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "observed_fisher_information", "label": "Observed Fisher Information", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "score_function", "label": "Score Function", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "likelihood_ratio", "label": "Likelihood Ratio", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "alternative_estimation_methods", "label": "Alternative Estimation Methods", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "method_of_moments", "label": "Method of Moments", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "least_squares_estimation", "label": "Least Squares Estimation", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "bootstrap_methods", "label": "Bootstrap Methods", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 4}, {"id": "bootstrap", "label": "Bootstrap", "domain": "Statistical Inference", "role": "Subbranch", "type": "Method", "deg": 8}, {"id": "non_parametric_bootstrap", "label": "Non-parametric Bootstrap", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "parametric_bootstrap", "label": "Parametric Bootstrap", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "bootstrap_percentile_method", "label": "Bootstrap Percentile Method", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "bayesian_inference", "label": "Bayesian Inference", "domain": "Statistical Inference", "role": "Core", "type": "Concept", "deg": 3}, {"id": "prior_probability", "label": "Prior Probability", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 2}, {"id": "non_informative_prior", "label": "Non-informative Prior", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "posterior_distribution", "label": "Posterior Distribution", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 12}, {"id": "posterior_probability", "label": "Posterior Probability", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 1}, {"id": "posterior_mean", "label": "Posterior Mean", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "posterior_median", "label": "Posterior Median", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "bayesian_point_estimation", "label": "Bayesian Point Estimation", "domain": "Statistical Inference", "role": "Branch", "type": "Method", "deg": 2}, {"id": "bayesian_point_estimate", "label": "Bayesian Point Estimate", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "bayesian_interval_estimation", "label": "Bayesian Interval Estimation", "domain": "Statistical Inference", "role": "Branch", "type": "Method", "deg": 3}, {"id": "credible_interval", "label": "Credible Interval", "domain": "Statistical Inference", "role": "Subbranch", "type": "Concept", "deg": 10}, {"id": "equal_tail_interval", "label": "Equal-tail Interval", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "highest_posterior_density_interval", "label": "Highest Posterior Density Interval", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "equal_tail_credible_interval_method", "label": "Equal-tail Credible Interval Method", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "highest_posterior_density_interval_method", "label": "Highest Posterior Density Interval Method", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "hypothesis_testing", "label": "Hypothesis Testing", "domain": "Statistical Inference", "role": "Core", "type": "Concept", "deg": 16}, {"id": "hypothesis", "label": "Hypothesis", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 4}, {"id": "null_hypothesis", "label": "Null Hypothesis", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 5}, {"id": "alternative_hypothesis", "label": "Alternative Hypothesis", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "simple_hypothesis", "label": "Simple Hypothesis", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "composite_hypothesis", "label": "Composite Hypothesis", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "test_statistic", "label": "Test Statistic", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "critical_value", "label": "Critical Value", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 4}, {"id": "decision_rule", "label": "Decision Rule", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "acceptance_region", "label": "Acceptance Region", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "rejection_region", "label": "Rejection Region", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 3}, {"id": "p_value", "label": "P-value", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "significance_level", "label": "Significance Level", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "type_i_error", "label": "Type I Error", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "type_ii_error", "label": "Type II Error", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}, {"id": "one_sided_test", "label": "One-sided Test", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 2}, {"id": "two_sided_test", "label": "Two-sided Test", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 2}, {"id": "hypothesis_testing_using_p_values", "label": "Hypothesis Testing using P-values", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 2}, {"id": "classical_test_procedures", "label": "Classical Test Procedures", "domain": "Statistical Inference", "role": "Branch", "type": "Concept", "deg": 6}, {"id": "z_test", "label": "Z-test", "domain": "Statistical Inference", "role": "Subbranch", "type": "Method", "deg": 5}, {"id": "two_sample_z_test", "label": "Two Sample Z-test", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 3}, {"id": "one_sample_t_test", "label": "One Sample t-test", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "two_sample_t_test", "label": "Two Sample t-test", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "wald_test", "label": "Wald Test", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 5}, {"id": "likelihood_ratio_test", "label": "Likelihood Ratio Test", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "chi_square_test_for_population_variance", "label": "Chi-square Test for Population Variance", "domain": "Statistical Inference", "role": "Leaf", "type": "Method", "deg": 4}, {"id": "bayesian_testing_concepts", "label": "Bayesian Testing Concepts", "domain": "Statistical Inference", "role": "Core", "type": "Concept", "deg": 1}, {"id": "bayesian_p_value", "label": "Bayesian P-value", "domain": "Statistical Inference", "role": "Leaf", "type": "Concept", "deg": 2}];
+var ALL_EDGES = [{"s": "probability_mass_function", "t": "discrete_random_variables", "et": "instance_of"}, {"s": "probability_density_function", "t": "continuous_random_variables", "et": "instance_of"}, {"s": "cumulative_distribution_function", "t": "distribution_functions", "et": "instance_of"}, {"s": "joint_probability_mass_function", "t": "joint_distributions", "et": "instance_of"}, {"s": "joint_probability_density_function", "t": "joint_distributions", "et": "instance_of"}, {"s": "linear_combination_of_random_variables", "t": "functions_of_random_variables", "et": "instance_of"}, {"s": "distribution_of_sum_of_independent_random_variables", "t": "functions_of_random_variables", "et": "instance_of"}, {"s": "convolution_of_probability_density_functions", "t": "distribution_of_sum_of_independent_random_variables", "et": "instance_of"}, {"s": "conditional_probability", "t": "conditional_probability_and_conditional_distributions", "et": "instance_of"}, {"s": "conditional_distribution", "t": "conditional_probability_and_conditional_distributions", "et": "instance_of"}, {"s": "conditional_expectation", "t": "conditional_probability_and_conditional_distributions", "et": "instance_of"}, {"s": "independent_random_variables", "t": "independence_structure", "et": "instance_of"}, {"s": "independent_identically_distributed_random_variables", "t": "independence_structure", "et": "instance_of"}, {"s": "mutual_independence", "t": "independence_structure", "et": "instance_of"}, {"s": "expected_value", "t": "expectation_and_moments", "et": "instance_of"}, {"s": "variance", "t": "expectation_and_moments", "et": "instance_of"}, {"s": "covariance", "t": "expectation_and_moments", "et": "instance_of"}, {"s": "correlation", "t": "expectation_and_moments", "et": "instance_of"}, {"s": "weak_law_of_large_numbers", "t": "limit_laws", "et": "instance_of"}, {"s": "central_limit_theorem", "t": "limit_laws", "et": "instance_of"}, {"s": "chebyshev_inequality", "t": "probability_inequalities", "et": "instance_of"}, {"s": "exponential_family", "t": "distribution_families", "et": "instance_of"}, {"s": "bernoulli_type_distributions", "t": "discrete_distributions", "et": "instance_of"}, {"s": "bernoulli_distribution", "t": "bernoulli_type_distributions", "et": "instance_of"}, {"s": "binomial_distribution", "t": "bernoulli_type_distributions", "et": "instance_of"}, {"s": "geometric_distribution", "t": "bernoulli_type_distributions", "et": "instance_of"}, {"s": "poisson_type_distributions", "t": "discrete_distributions", "et": "instance_of"}, {"s": "poisson_distribution", "t": "poisson_type_distributions", "et": "instance_of"}, {"s": "multinomial_type_distributions", "t": "discrete_distributions", "et": "instance_of"}, {"s": "trinomial_distribution", "t": "multinomial_type_distributions", "et": "instance_of"}, {"s": "uniform_distribution", "t": "continuous_distributions", "et": "instance_of"}, {"s": "normal_based_distributions", "t": "continuous_distributions", "et": "instance_of"}, {"s": "normal_distribution", "t": "normal_based_distributions", "et": "instance_of"}, {"s": "students_t_distribution", "t": "normal_based_distributions", "et": "instance_of"}, {"s": "chi_square_distribution", "t": "normal_based_distributions", "et": "instance_of"}, {"s": "f_distribution", "t": "normal_based_distributions", "et": "instance_of"}, {"s": "gamma_based_distributions", "t": "continuous_distributions", "et": "instance_of"}, {"s": "gamma_distribution", "t": "gamma_based_distributions", "et": "instance_of"}, {"s": "exponential_distribution", "t": "gamma_based_distributions", "et": "instance_of"}, {"s": "beta_distribution", "t": "gamma_based_distributions", "et": "instance_of"}, {"s": "normal_distribution", "t": "exponential_family", "et": "instance_of"}, {"s": "bernoulli_distribution", "t": "exponential_family", "et": "instance_of"}, {"s": "poisson_distribution", "t": "exponential_family", "et": "instance_of"}, {"s": "binomial_distribution", "t": "exponential_family", "et": "instance_of"}, {"s": "frequentist_inference", "t": "foundations_of_inference", "et": "instance_of"}, {"s": "continuous_parameter", "t": "parameter", "et": "instance_of"}, {"s": "discrete_parameter", "t": "parameter", "et": "instance_of"}, {"s": "population_mean", "t": "population_parameters", "et": "instance_of"}, {"s": "population_variance", "t": "population_parameters", "et": "instance_of"}, {"s": "population_proportion", "t": "population_parameters", "et": "instance_of"}, {"s": "sample_mean", "t": "summary_statistics", "et": "instance_of"}, {"s": "sample_variance", "t": "summary_statistics", "et": "instance_of"}, {"s": "sample_standard_deviation", "t": "sample_variance", "et": "instance_of"}, {"s": "sample_covariance", "t": "summary_statistics", "et": "instance_of"}, {"s": "sample_proportion", "t": "summary_statistics", "et": "instance_of"}, {"s": "sampling_distribution", "t": "sampling_distributions", "et": "instance_of"}, {"s": "standard_error", "t": "sampling_distributions", "et": "instance_of"}, {"s": "bootstrapped_sampling_distribution", "t": "sampling_distributions", "et": "instance_of"}, {"s": "large_sample_distribution_of_the_mle", "t": "large_sample_inference", "et": "instance_of"}, {"s": "normal_approximation", "t": "large_sample_inference", "et": "instance_of"}, {"s": "estimator", "t": "point_estimation", "et": "instance_of"}, {"s": "unbiased_estimator", "t": "estimator", "et": "instance_of"}, {"s": "estimate", "t": "point_estimation", "et": "instance_of"}, {"s": "bias_corrected_estimate", "t": "estimate", "et": "instance_of"}, {"s": "confidence_interval", "t": "interval_estimation", "et": "instance_of"}, {"s": "large_sample_confidence_interval", "t": "confidence_interval", "et": "instance_of"}, {"s": "t_confidence_interval", "t": "confidence_interval", "et": "instance_of"}, {"s": "confidence_interval_for_difference_of_means", "t": "confidence_interval", "et": "instance_of"}, {"s": "confidence_interval_for_population_variance", "t": "confidence_interval", "et": "instance_of"}, {"s": "large_sample_confidence_interval_using_mle", "t": "confidence_interval", "et": "instance_of"}, {"s": "wald_confidence_interval", "t": "confidence_interval", "et": "instance_of"}, {"s": "likelihood", "t": "likelihood_based_inference", "et": "instance_of"}, {"s": "log_likelihood", "t": "likelihood", "et": "instance_of"}, {"s": "maximum_likelihood_estimation", "t": "likelihood_based_inference", "et": "instance_of"}, {"s": "maximum_likelihood_estimator", "t": "maximum_likelihood_estimation", "et": "instance_of"}, {"s": "numerical_maximization_methods", "t": "likelihood_based_inference", "et": "instance_of"}, {"s": "newton_raphson_method", "t": "numerical_maximization_methods", "et": "instance_of"}, {"s": "bisection_method", "t": "numerical_maximization_methods", "et": "instance_of"}, {"s": "fisher_information", "t": "likelihood_based_inference", "et": "instance_of"}, {"s": "expected_fisher_information", "t": "fisher_information", "et": "instance_of"}, {"s": "observed_fisher_information", "t": "fisher_information", "et": "instance_of"}, {"s": "score_function", "t": "likelihood_based_inference", "et": "instance_of"}, {"s": "likelihood_ratio", "t": "likelihood_based_inference", "et": "instance_of"}, {"s": "method_of_moments", "t": "alternative_estimation_methods", "et": "instance_of"}, {"s": "least_squares_estimation", "t": "alternative_estimation_methods", "et": "instance_of"}, {"s": "bootstrap", "t": "bootstrap_methods", "et": "instance_of"}, {"s": "non_parametric_bootstrap", "t": "bootstrap", "et": "instance_of"}, {"s": "parametric_bootstrap", "t": "bootstrap", "et": "instance_of"}, {"s": "bootstrap_percentile_method", "t": "bootstrap", "et": "instance_of"}, {"s": "non_informative_prior", "t": "prior_probability", "et": "instance_of"}, {"s": "posterior_probability", "t": "posterior_distribution", "et": "instance_of"}, {"s": "posterior_mean", "t": "posterior_distribution", "et": "instance_of"}, {"s": "posterior_median", "t": "posterior_distribution", "et": "instance_of"}, {"s": "bayesian_point_estimate", "t": "bayesian_point_estimation", "et": "instance_of"}, {"s": "credible_interval", "t": "bayesian_interval_estimation", "et": "instance_of"}, {"s": "equal_tail_interval", "t": "credible_interval", "et": "instance_of"}, {"s": "highest_posterior_density_interval", "t": "credible_interval", "et": "instance_of"}, {"s": "null_hypothesis", "t": "hypothesis", "et": "instance_of"}, {"s": "alternative_hypothesis", "t": "hypothesis", "et": "instance_of"}, {"s": "simple_hypothesis", "t": "hypothesis", "et": "instance_of"}, {"s": "composite_hypothesis", "t": "hypothesis", "et": "instance_of"}, {"s": "one_sided_test", "t": "hypothesis_testing", "et": "instance_of"}, {"s": "two_sided_test", "t": "hypothesis_testing", "et": "instance_of"}, {"s": "hypothesis_testing_using_p_values", "t": "hypothesis_testing", "et": "instance_of"}, {"s": "z_test", "t": "classical_test_procedures", "et": "instance_of"}, {"s": "two_sample_z_test", "t": "z_test", "et": "instance_of"}, {"s": "one_sample_t_test", "t": "classical_test_procedures", "et": "instance_of"}, {"s": "two_sample_t_test", "t": "classical_test_procedures", "et": "instance_of"}, {"s": "wald_test", "t": "classical_test_procedures", "et": "instance_of"}, {"s": "likelihood_ratio_test", "t": "classical_test_procedures", "et": "instance_of"}, {"s": "chi_square_test_for_population_variance", "t": "classical_test_procedures", "et": "instance_of"}, {"s": "bayesian_p_value", "t": "bayesian_testing_concepts", "et": "instance_of"}, {"s": "linear_regression", "t": "regression_analysis", "et": "instance_of"}, {"s": "simple_linear_regression", "t": "linear_regression", "et": "instance_of"}, {"s": "multiple_linear_regression", "t": "linear_regression", "et": "instance_of"}, {"s": "dependent_variable", "t": "variables_in_regression", "et": "instance_of"}, {"s": "independent_variable", "t": "variables_in_regression", "et": "instance_of"}, {"s": "numeric_variable", "t": "predictor_types", "et": "instance_of"}, {"s": "categorical_variable", "t": "predictor_types", "et": "instance_of"}, {"s": "factor_variable", "t": "categorical_variable", "et": "instance_of"}, {"s": "nominal_predictor", "t": "categorical_variable", "et": "instance_of"}, {"s": "categorical_predictor", "t": "categorical_variable", "et": "instance_of"}, {"s": "reference_level", "t": "categorical_variable", "et": "instance_of"}, {"s": "polynomial_predictor", "t": "predictor_types", "et": "instance_of"}, {"s": "linear_relationship", "t": "linear_relationship_structure", "et": "instance_of"}, {"s": "linear_trend", "t": "linear_relationship_structure", "et": "instance_of"}, {"s": "intercept", "t": "model_components", "et": "instance_of"}, {"s": "slope", "t": "model_components", "et": "instance_of"}, {"s": "error_term", "t": "model_components", "et": "instance_of"}, {"s": "variance_of_the_error_term", "t": "model_components", "et": "instance_of"}, {"s": "interaction_effect", "t": "interaction", "et": "instance_of"}, {"s": "design_matrix", "t": "design_matrix_representation", "et": "instance_of"}, {"s": "dummy_variable", "t": "design_matrix_representation", "et": "instance_of"}, {"s": "dummy_encoding", "t": "design_matrix_representation", "et": "instance_of"}, {"s": "dummy_variable_encoding", "t": "design_matrix_representation", "et": "instance_of"}, {"s": "ordinary_least_squares", "t": "estimation", "et": "instance_of"}, {"s": "partial_regression_coefficient", "t": "coefficients", "et": "instance_of"}, {"s": "distribution_of_ols_estimators", "t": "estimator_distribution", "et": "instance_of"}, {"s": "total_sum_of_squares", "t": "sum_of_squares", "et": "instance_of"}, {"s": "regression_sum_of_squares", "t": "sum_of_squares", "et": "instance_of"}, {"s": "residual_sum_of_squares", "t": "sum_of_squares", "et": "instance_of"}, {"s": "sum_of_squared_errors", "t": "sum_of_squares", "et": "instance_of"}, {"s": "variance_decomposition", "t": "model_fit_and_variance_decomposition", "et": "instance_of"}, {"s": "coefficient_of_determination", "t": "model_fit_and_variance_decomposition", "et": "instance_of"}, {"s": "prediction", "t": "predictions", "et": "instance_of"}, {"s": "fitted_value", "t": "predictions", "et": "instance_of"}, {"s": "standardized_residual", "t": "residual", "et": "instance_of"}, {"s": "studentized_residual", "t": "residual", "et": "instance_of"}, {"s": "residual_plot", "t": "residual_analysis", "et": "instance_of"}, {"s": "cooks_distance", "t": "outlier", "et": "instance_of"}, {"s": "hat_matrix", "t": "leverage_structure", "et": "instance_of"}, {"s": "leverage", "t": "leverage_structure", "et": "instance_of"}, {"s": "high_leverage_point", "t": "leverage_structure", "et": "instance_of"}, {"s": "homoscedasticity", "t": "regression_assumptions", "et": "instance_of"}, {"s": "normality_of_errors", "t": "regression_assumptions", "et": "instance_of"}, {"s": "pearson_correlation_coefficient", "t": "pairwise_correlation", "et": "instance_of"}, {"s": "perfect_multicollinearity", "t": "multicollinearity", "et": "instance_of"}, {"s": "linear_dependence_among_predictors", "t": "multicollinearity", "et": "instance_of"}, {"s": "variance_inflation_factor", "t": "collinearity_diagnostics", "et": "instance_of"}, {"s": "tolerance", "t": "collinearity_diagnostics", "et": "instance_of"}, {"s": "partial_significance_test", "t": "hypothesis_testing_in_regression", "et": "instance_of"}, {"s": "t_test_for_individual_regression_coefficients", "t": "hypothesis_testing_in_regression", "et": "instance_of"}, {"s": "t_test_for_regression_coefficients", "t": "hypothesis_testing_in_regression", "et": "instance_of"}, {"s": "f_statistic", "t": "hypothesis_testing_in_regression", "et": "instance_of"}, {"s": "scatterplot", "t": "data_visualization", "et": "instance_of"}, {"s": "scatterplot_matrix", "t": "data_visualization", "et": "instance_of"}, {"s": "data_transformation", "t": "data_transformation_methods", "et": "instance_of"}, {"s": "centering_variables", "t": "data_transformation_methods", "et": "instance_of"}, {"s": "orthogonal_polynomial_transformation", "t": "data_transformation_methods", "et": "instance_of"}, {"s": "polynomial_regression_model", "t": "regression_model_extensions", "et": "instance_of"}, {"s": "interaction_regression_model", "t": "regression_model_extensions", "et": "instance_of"}, {"s": "normal_error_model", "t": "regression_model_extensions", "et": "instance_of"}, {"s": "principal_component_regression", "t": "regression_model_extensions", "et": "instance_of"}, {"s": "ridge_regression", "t": "regression_model_extensions", "et": "instance_of"}, {"s": "ridge_regression", "t": "linear_regression", "et": "instance_of"}, {"s": "principal_component_regression", "t": "linear_regression", "et": "instance_of"}, {"s": "random_component", "t": "model_components", "et": "instance_of"}, {"s": "systematic_component", "t": "model_components", "et": "instance_of"}, {"s": "linear_predictor", "t": "systematic_component", "et": "instance_of"}, {"s": "link_function", "t": "model_components", "et": "instance_of"}, {"s": "deviance", "t": "model_fit", "et": "instance_of"}, {"s": "logit_link", "t": "link_functions", "et": "instance_of"}, {"s": "logistic_regression_model", "t": "glm_regression_models", "et": "instance_of"}, {"s": "poisson_regression_model", "t": "glm_regression_models", "et": "instance_of"}, {"s": "gamma_regression_model", "t": "glm_regression_models", "et": "instance_of"}, {"s": "hierarchical_model", "t": "glm_regression_models", "et": "instance_of"}, {"s": "logistic_function", "t": "link_functions", "et": "instance_of"}, {"s": "logistic_regression_model", "t": "generalized_linear_model", "et": "instance_of"}, {"s": "poisson_regression_model", "t": "generalized_linear_model", "et": "instance_of"}, {"s": "gamma_regression_model", "t": "generalized_linear_model", "et": "instance_of"}, {"s": "in_sample_mse", "t": "goodness_of_fit", "et": "instance_of"}, {"s": "adjusted_r_squared", "t": "goodness_of_fit", "et": "instance_of"}, {"s": "r_squared", "t": "goodness_of_fit", "et": "instance_of"}, {"s": "expected_out_of_sample_mse", "t": "prediction_error", "et": "instance_of"}, {"s": "generalization_error", "t": "prediction_error", "et": "instance_of"}, {"s": "parsimony_principle", "t": "model_complexity", "et": "instance_of"}, {"s": "overfitting", "t": "model_complexity", "et": "instance_of"}, {"s": "penalty_term", "t": "model_complexity", "et": "instance_of"}, {"s": "leverage_diagnostic", "t": "model_diagnostics", "et": "instance_of"}, {"s": "correlation_matrix_inspection", "t": "model_diagnostics", "et": "instance_of"}, {"s": "akaike_information_criterion", "t": "information_criteria", "et": "instance_of"}, {"s": "bayesian_information_criterion", "t": "information_criteria", "et": "instance_of"}, {"s": "mallows_cp", "t": "cp_based_selection", "et": "instance_of"}, {"s": "all_subsets_regression", "t": "subset_selection_methods", "et": "instance_of"}, {"s": "stepwise_selection", "t": "stepwise_selection_methods", "et": "instance_of"}, {"s": "forward_stepwise_selection", "t": "stepwise_selection_methods", "et": "instance_of"}, {"s": "backward_stepwise_selection", "t": "stepwise_selection_methods", "et": "instance_of"}, {"s": "anova_model_comparison", "t": "hypothesis_based_model_comparison", "et": "instance_of"}, {"s": "f_test_for_nested_models", "t": "hypothesis_based_model_comparison", "et": "instance_of"}, {"s": "resampling", "t": "resampling_and_validation", "et": "instance_of"}, {"s": "data_splitting", "t": "resampling_and_validation", "et": "instance_of"}, {"s": "cross_validation", "t": "resampling_and_validation", "et": "instance_of"}, {"s": "k_fold_cross_validation", "t": "cross_validation", "et": "instance_of"}, {"s": "leave_one_out_cross_validation", "t": "cross_validation", "et": "instance_of"}, {"s": "data_splitting", "t": "resampling", "et": "instance_of"}, {"s": "bayesian_inference", "t": "foundations_of_inference", "et": "instance_of"}, {"s": "linear_trend", "t": "linear_relationship", "et": "instance_of"}, {"s": "maximum_likelihood_estimation", "t": "likelihood", "et": "requires"}, {"s": "log_likelihood", "t": "likelihood", "et": "requires"}, {"s": "maximum_likelihood_estimator", "t": "maximum_likelihood_estimation", "et": "requires"}, {"s": "score_function", "t": "log_likelihood", "et": "requires"}, {"s": "fisher_information", "t": "score_function", "et": "requires"}, {"s": "likelihood_ratio", "t": "likelihood", "et": "requires"}, {"s": "likelihood_ratio_test", "t": "likelihood_ratio", "et": "requires"}, {"s": "observed_fisher_information", "t": "log_likelihood", "et": "requires"}, {"s": "expected_fisher_information", "t": "score_function", "et": "requires"}, {"s": "posterior_distribution", "t": "prior_probability", "et": "requires"}, {"s": "posterior_distribution", "t": "likelihood", "et": "requires"}, {"s": "bayesian_point_estimate", "t": "posterior_distribution", "et": "requires"}, {"s": "credible_interval", "t": "posterior_distribution", "et": "requires"}, {"s": "bootstrap", "t": "empirical_distribution", "et": "requires"}, {"s": "bootstrapped_sampling_distribution", "t": "bootstrap", "et": "requires"}, {"s": "hypothesis_testing", "t": "test_statistic", "et": "requires"}, {"s": "hypothesis_testing", "t": "null_hypothesis", "et": "requires"}, {"s": "p_value", "t": "test_statistic", "et": "requires"}, {"s": "p_value", "t": "null_hypothesis", "et": "requires"}, {"s": "decision_rule", "t": "critical_value", "et": "requires"}, {"s": "residual", "t": "fitted_value", "et": "requires"}, {"s": "variance_decomposition", "t": "residual_sum_of_squares", "et": "requires"}, {"s": "coefficient_of_determination", "t": "residual_sum_of_squares", "et": "requires"}, {"s": "coefficient_of_determination", "t": "total_sum_of_squares", "et": "requires"}, {"s": "bias", "t": "estimator", "et": "requires"}, {"s": "unbiased_estimator", "t": "estimator", "et": "requires"}, {"s": "standard_error", "t": "sampling_distribution", "et": "requires"}, {"s": "rejection_region", "t": "critical_value", "et": "requires"}, {"s": "acceptance_region", "t": "critical_value", "et": "requires"}, {"s": "type_i_error", "t": "null_hypothesis", "et": "requires"}, {"s": "type_ii_error", "t": "alternative_hypothesis", "et": "requires"}, {"s": "posterior_mean", "t": "posterior_distribution", "et": "requires"}, {"s": "posterior_median", "t": "posterior_distribution", "et": "requires"}, {"s": "equal_tail_interval", "t": "posterior_distribution", "et": "requires"}, {"s": "highest_posterior_density_interval", "t": "posterior_distribution", "et": "requires"}, {"s": "bias_corrected_estimate", "t": "bias", "et": "requires"}, {"s": "large_sample_confidence_interval_using_mle", "t": "maximum_likelihood_estimator", "et": "requires"}, {"s": "large_sample_confidence_interval_using_mle", "t": "fisher_information", "et": "requires"}, {"s": "wald_confidence_interval", "t": "standard_error", "et": "requires"}, {"s": "deviance", "t": "likelihood", "et": "requires"}, {"s": "adjusted_r_squared", "t": "residual_sum_of_squares", "et": "requires"}, {"s": "r_squared", "t": "residual_sum_of_squares", "et": "requires"}, {"s": "studentized_residual", "t": "residual", "et": "requires"}, {"s": "standardized_residual", "t": "residual", "et": "requires"}, {"s": "cooks_distance", "t": "residual", "et": "requires"}, {"s": "cooks_distance", "t": "leverage", "et": "requires"}, {"s": "leverage", "t": "hat_matrix", "et": "requires"}, {"s": "high_leverage_point", "t": "leverage", "et": "requires"}, {"s": "akaike_information_criterion", "t": "likelihood", "et": "requires"}, {"s": "bayesian_information_criterion", "t": "likelihood", "et": "requires"}, {"s": "marginal_distribution", "t": "joint_probability_mass_function", "et": "requires"}, {"s": "convolution_of_probability_density_functions", "t": "probability_density_function", "et": "requires"}, {"s": "covariance", "t": "expected_value", "et": "requires"}, {"s": "correlation", "t": "covariance", "et": "requires"}, {"s": "variance", "t": "expected_value", "et": "requires"}, {"s": "conditional_expectation", "t": "conditional_distribution", "et": "requires"}, {"s": "conditional_distribution", "t": "conditional_probability", "et": "requires"}, {"s": "chain_rule_for_probabilities", "t": "conditional_probability", "et": "requires"}, {"s": "ordinary_least_squares", "t": "design_matrix", "et": "requires"}, {"s": "link_function", "t": "linear_predictor", "et": "requires"}, {"s": "mallows_cp", "t": "residual_sum_of_squares", "et": "requires"}, {"s": "wald_test", "t": "fisher_information", "et": "requires"}, {"s": "marginal_distribution", "t": "joint_probability_density_function", "et": "requires"}, {"s": "normal_error_model", "t": "normality_of_errors", "et": "requires"}, {"s": "parameter", "t": "parameter_space", "et": "requires"}, {"s": "ordinary_least_squares", "t": "error_term", "et": "requires"}, {"s": "linear_regression", "t": "intercept", "et": "requires"}, {"s": "linear_regression", "t": "slope", "et": "requires"}, {"s": "ordinary_least_squares", "t": "variance_of_the_error_term", "et": "requires"}, {"s": "generalized_linear_model", "t": "linear_predictor", "et": "requires"}, {"s": "generalized_linear_model", "t": "link_function", "et": "requires"}, {"s": "generalized_linear_model", "t": "random_component", "et": "requires"}, {"s": "generalized_linear_model", "t": "systematic_component", "et": "requires"}, {"s": "linear_regression", "t": "dependent_variable", "et": "requires"}, {"s": "linear_regression", "t": "independent_variable", "et": "requires"}, {"s": "posterior_distribution", "t": "conditional_distribution", "et": "requires"}, {"s": "bayesian_inference", "t": "conditional_probability", "et": "requires"}, {"s": "independent_random_variables", "t": "joint_probability_density_function", "et": "requires"}, {"s": "maximum_likelihood_estimation", "t": "parameter", "et": "requires"}, {"s": "decision_rule", "t": "rejection_region", "et": "requires"}, {"s": "hypothesis_testing", "t": "decision_rule", "et": "requires"}, {"s": "hypothesis_testing", "t": "critical_value", "et": "requires"}, {"s": "polynomial_regression_model", "t": "orthogonal_polynomial_transformation", "et": "requires"}, {"s": "frequentist_inference", "t": "sampling_distribution", "et": "requires"}, {"s": "linear_regression", "t": "linear_relationship", "et": "requires"}, {"s": "logistic_regression_model", "t": "logit_link", "et": "requires"}, {"s": "logit_link", "t": "logistic_function", "et": "requires"}, {"s": "probability_density_function", "t": "cumulative_distribution_function", "et": "requires"}, {"s": "probability_mass_function", "t": "cumulative_distribution_function", "et": "requires"}, {"s": "chebyshev_inequality", "t": "variance", "et": "requires"}, {"s": "chebyshev_inequality", "t": "expected_value", "et": "requires"}, {"s": "confidence_interval", "t": "confidence_level", "et": "requires"}, {"s": "hypothesis_testing", "t": "significance_level", "et": "requires"}, {"s": "interaction_regression_model", "t": "interaction_effect", "et": "requires"}, {"s": "all_subsets_regression", "t": "model_complexity", "et": "requires"}, {"s": "ordinary_least_squares", "t": "homoscedasticity", "et": "assumes"}, {"s": "ordinary_least_squares", "t": "normality_of_errors", "et": "assumes"}, {"s": "best_linear_unbiased_estimator", "t": "homoscedasticity", "et": "assumes"}, {"s": "best_linear_unbiased_estimator", "t": "independent_random_samples", "et": "assumes"}, {"s": "maximum_likelihood_estimation", "t": "regularity_conditions", "et": "assumes"}, {"s": "t_confidence_interval", "t": "normality_of_errors", "et": "assumes"}, {"s": "large_sample_confidence_interval", "t": "independent_identically_distributed_random_variables", "et": "assumes"}, {"s": "large_sample_distribution_of_the_mle", "t": "regularity_conditions", "et": "assumes"}, {"s": "logistic_regression_model", "t": "independent_random_samples", "et": "assumes"}, {"s": "poisson_regression_model", "t": "independent_random_samples", "et": "assumes"}, {"s": "distribution_of_ols_estimators", "t": "normality_of_errors", "et": "assumes"}, {"s": "one_sample_t_test", "t": "normality_of_errors", "et": "assumes"}, {"s": "two_sample_t_test", "t": "normality_of_errors", "et": "assumes"}, {"s": "chi_square_test_for_population_variance", "t": "normality_of_errors", "et": "assumes"}, {"s": "pearson_correlation_coefficient", "t": "normality_of_errors", "et": "assumes"}, {"s": "wald_test", "t": "regularity_conditions", "et": "assumes"}, {"s": "bootstrap", "t": "independent_random_samples", "et": "assumes"}, {"s": "central_limit_theorem", "t": "independent_identically_distributed_random_variables", "et": "assumes"}, {"s": "weak_law_of_large_numbers", "t": "independent_identically_distributed_random_variables", "et": "assumes"}, {"s": "z_test", "t": "normality_of_errors", "et": "assumes"}, {"s": "two_sample_z_test", "t": "independent_random_samples", "et": "assumes"}, {"s": "normal_approximation", "t": "independent_identically_distributed_random_variables", "et": "assumes"}, {"s": "ridge_regression", "t": "homoscedasticity", "et": "assumes"}, {"s": "confidence_interval_for_difference_of_means", "t": "normality_of_errors", "et": "assumes"}, {"s": "confidence_interval_for_difference_of_means", "t": "independent_random_samples", "et": "assumes"}, {"s": "ordinary_least_squares", "t": "independent_random_samples", "et": "assumes"}, {"s": "gamma_regression_model", "t": "independent_random_samples", "et": "assumes"}, {"s": "k_fold_cross_validation", "t": "independent_random_samples", "et": "assumes"}, {"s": "leave_one_out_cross_validation", "t": "independent_random_samples", "et": "assumes"}, {"s": "wald_confidence_interval", "t": "regularity_conditions", "et": "assumes"}, {"s": "large_sample_confidence_interval_using_mle", "t": "regularity_conditions", "et": "assumes"}, {"s": "t_confidence_interval", "t": "students_t_distribution", "et": "uses_distribution"}, {"s": "confidence_interval_for_difference_of_means", "t": "students_t_distribution", "et": "uses_distribution"}, {"s": "one_sample_t_test", "t": "students_t_distribution", "et": "uses_distribution"}, {"s": "two_sample_t_test", "t": "students_t_distribution", "et": "uses_distribution"}, {"s": "confidence_interval_for_population_variance", "t": "chi_square_distribution", "et": "uses_distribution"}, {"s": "chi_square_test_for_population_variance", "t": "chi_square_distribution", "et": "uses_distribution"}, {"s": "z_test", "t": "normal_distribution", "et": "uses_distribution"}, {"s": "two_sample_z_test", "t": "normal_distribution", "et": "uses_distribution"}, {"s": "large_sample_confidence_interval", "t": "normal_distribution", "et": "uses_distribution"}, {"s": "normal_approximation", "t": "normal_distribution", "et": "uses_distribution"}, {"s": "wald_test", "t": "normal_distribution", "et": "uses_distribution"}, {"s": "wald_confidence_interval", "t": "normal_distribution", "et": "uses_distribution"}, {"s": "likelihood_ratio_test", "t": "chi_square_distribution", "et": "uses_distribution"}, {"s": "large_sample_distribution_of_the_mle", "t": "normal_distribution", "et": "uses_distribution"}, {"s": "large_sample_confidence_interval_using_mle", "t": "normal_distribution", "et": "uses_distribution"}, {"s": "distribution_of_ols_estimators", "t": "normal_distribution", "et": "uses_distribution"}, {"s": "t_test_for_individual_regression_coefficients", "t": "students_t_distribution", "et": "uses_distribution"}, {"s": "t_test_for_regression_coefficients", "t": "students_t_distribution", "et": "uses_distribution"}, {"s": "f_statistic", "t": "f_distribution", "et": "uses_distribution"}, {"s": "normal_error_model", "t": "normal_distribution", "et": "uses_distribution"}, {"s": "logistic_regression_model", "t": "bernoulli_distribution", "et": "uses_distribution"}, {"s": "poisson_regression_model", "t": "poisson_distribution", "et": "uses_distribution"}, {"s": "gamma_regression_model", "t": "gamma_distribution", "et": "uses_distribution"}, {"s": "f_test_for_nested_models", "t": "f_distribution", "et": "uses_distribution"}, {"s": "studentized_residual", "t": "students_t_distribution", "et": "uses_distribution"}, {"s": "anova_model_comparison", "t": "f_distribution", "et": "uses_distribution"}, {"s": "variance_inflation_factor", "t": "multicollinearity", "et": "measures"}, {"s": "tolerance", "t": "multicollinearity", "et": "measures"}, {"s": "correlation_matrix_inspection", "t": "multicollinearity", "et": "measures"}, {"s": "hat_matrix", "t": "leverage", "et": "measures"}, {"s": "leverage_diagnostic", "t": "leverage", "et": "measures"}, {"s": "residual_plot", "t": "homoscedasticity", "et": "measures"}, {"s": "residual_plot", "t": "normality_of_errors", "et": "measures"}, {"s": "standardized_residual", "t": "outlier", "et": "measures"}, {"s": "studentized_residual", "t": "outlier", "et": "measures"}, {"s": "r_squared", "t": "goodness_of_fit", "et": "measures"}, {"s": "adjusted_r_squared", "t": "goodness_of_fit", "et": "measures"}, {"s": "in_sample_mse", "t": "goodness_of_fit", "et": "measures"}, {"s": "expected_out_of_sample_mse", "t": "generalization_error", "et": "measures"}, {"s": "deviance", "t": "model_fit", "et": "measures"}, {"s": "akaike_information_criterion", "t": "prediction_error", "et": "measures"}, {"s": "mallows_cp", "t": "prediction_error", "et": "measures"}, {"s": "bias", "t": "estimator", "et": "measures"}, {"s": "standard_error", "t": "estimator", "et": "measures"}, {"s": "sample_variance", "t": "variance", "et": "measures"}, {"s": "sample_mean", "t": "population_mean", "et": "measures"}, {"s": "pearson_correlation_coefficient", "t": "correlation", "et": "measures"}, {"s": "coefficient_of_determination", "t": "goodness_of_fit", "et": "measures"}, {"s": "residual_variance", "t": "variance_of_the_error_term", "et": "measures"}, {"s": "pairwise_correlation", "t": "multicollinearity", "et": "measures"}, {"s": "f_statistic", "t": "goodness_of_fit", "et": "measures"}, {"s": "generalization_error", "t": "overfitting", "et": "measures"}, {"s": "consistency", "t": "estimator", "et": "measures"}, {"s": "stepwise_selection", "t": "model_complexity", "et": "measures"}, {"s": "mallows_cp", "t": "model_complexity", "et": "measures"}, {"s": "ordinary_least_squares", "t": "fitted_value", "et": "produces"}, {"s": "ordinary_least_squares", "t": "residual", "et": "produces"}, {"s": "ordinary_least_squares", "t": "coefficients", "et": "produces"}, {"s": "ordinary_least_squares", "t": "residual_sum_of_squares", "et": "produces"}, {"s": "maximum_likelihood_estimation", "t": "maximum_likelihood_estimator", "et": "produces"}, {"s": "bootstrap_percentile_method", "t": "confidence_interval", "et": "produces"}, {"s": "non_parametric_bootstrap", "t": "bootstrapped_sampling_distribution", "et": "produces"}, {"s": "residual_analysis", "t": "residual_plot", "et": "produces"}, {"s": "ordinary_least_squares", "t": "distribution_of_ols_estimators", "et": "produces"}, {"s": "dummy_encoding", "t": "dummy_variable", "et": "produces"}, {"s": "dummy_variable_encoding", "t": "design_matrix", "et": "produces"}, {"s": "method_of_moments", "t": "estimator", "et": "produces"}, {"s": "least_squares_estimation", "t": "estimator", "et": "produces"}, {"s": "bayesian_point_estimation", "t": "bayesian_point_estimate", "et": "produces"}, {"s": "equal_tail_credible_interval_method", "t": "credible_interval", "et": "produces"}, {"s": "highest_posterior_density_interval_method", "t": "credible_interval", "et": "produces"}, {"s": "k_fold_cross_validation", "t": "generalization_error", "et": "produces"}, {"s": "leave_one_out_cross_validation", "t": "generalization_error", "et": "produces"}, {"s": "logistic_regression_model", "t": "fitted_value", "et": "produces"}, {"s": "logistic_regression_model", "t": "deviance", "et": "produces"}, {"s": "poisson_regression_model", "t": "fitted_value", "et": "produces"}, {"s": "poisson_regression_model", "t": "deviance", "et": "produces"}, {"s": "ridge_regression", "t": "coefficients", "et": "produces"}, {"s": "logistic_regression_model", "t": "coefficients", "et": "produces"}, {"s": "joint_probability_density_function", "t": "marginal_distribution", "et": "produces"}, {"s": "centering_variables", "t": "design_matrix", "et": "produces"}, {"s": "residual_analysis", "t": "scatterplot", "et": "produces"}, {"s": "confidence_interval", "t": "hypothesis_testing", "et": "corresponds_to"}, {"s": "confidence_level", "t": "significance_level", "et": "corresponds_to"}, {"s": "acceptance_region", "t": "rejection_region", "et": "corresponds_to"}, {"s": "alternative_hypothesis", "t": "null_hypothesis", "et": "corresponds_to"}, {"s": "type_i_error", "t": "type_ii_error", "et": "corresponds_to"}, {"s": "population_mean", "t": "sample_mean", "et": "corresponds_to"}, {"s": "population_variance", "t": "sample_variance", "et": "corresponds_to"}, {"s": "expected_out_of_sample_mse", "t": "in_sample_mse", "et": "corresponds_to"}, {"s": "backward_stepwise_selection", "t": "forward_stepwise_selection", "et": "corresponds_to"}, {"s": "interval_estimation", "t": "point_estimation", "et": "corresponds_to"}, {"s": "bayesian_inference", "t": "frequentist_inference", "et": "corresponds_to"}, {"s": "expected_value", "t": "variance", "et": "corresponds_to"}, {"s": "continuous_random_variables", "t": "discrete_random_variables", "et": "corresponds_to"}, {"s": "composite_hypothesis", "t": "simple_hypothesis", "et": "corresponds_to"}, {"s": "one_sided_test", "t": "two_sided_test", "et": "corresponds_to"}, {"s": "equal_tail_interval", "t": "highest_posterior_density_interval", "et": "corresponds_to"}, {"s": "akaike_information_criterion", "t": "bayesian_information_criterion", "et": "corresponds_to"}, {"s": "k_fold_cross_validation", "t": "leave_one_out_cross_validation", "et": "corresponds_to"}, {"s": "non_parametric_bootstrap", "t": "parametric_bootstrap", "et": "corresponds_to"}, {"s": "regression_sum_of_squares", "t": "residual_sum_of_squares", "et": "corresponds_to"}, {"s": "expected_fisher_information", "t": "observed_fisher_information", "et": "corresponds_to"}, {"s": "confidence_interval", "t": "credible_interval", "et": "corresponds_to"}, {"s": "numerical_maximization_methods", "t": "newton_raphson_method", "et": "implemented_by"}, {"s": "numerical_maximization_methods", "t": "bisection_method", "et": "implemented_by"}, {"s": "point_estimation", "t": "maximum_likelihood_estimation", "et": "implemented_by"}, {"s": "point_estimation", "t": "method_of_moments", "et": "implemented_by"}, {"s": "point_estimation", "t": "least_squares_estimation", "et": "implemented_by"}, {"s": "interval_estimation", "t": "t_confidence_interval", "et": "implemented_by"}, {"s": "interval_estimation", "t": "wald_confidence_interval", "et": "implemented_by"}, {"s": "interval_estimation", "t": "bootstrap_percentile_method", "et": "implemented_by"}, {"s": "interval_estimation", "t": "large_sample_confidence_interval_using_mle", "et": "implemented_by"}, {"s": "bayesian_interval_estimation", "t": "equal_tail_credible_interval_method", "et": "implemented_by"}, {"s": "bayesian_interval_estimation", "t": "highest_posterior_density_interval_method", "et": "implemented_by"}, {"s": "bootstrap_methods", "t": "non_parametric_bootstrap", "et": "implemented_by"}, {"s": "bootstrap_methods", "t": "parametric_bootstrap", "et": "implemented_by"}, {"s": "bootstrap_methods", "t": "bootstrap_percentile_method", "et": "implemented_by"}, {"s": "hypothesis_testing", "t": "z_test", "et": "implemented_by"}, {"s": "hypothesis_testing", "t": "one_sample_t_test", "et": "implemented_by"}, {"s": "hypothesis_testing", "t": "two_sample_t_test", "et": "implemented_by"}, {"s": "hypothesis_testing", "t": "wald_test", "et": "implemented_by"}, {"s": "hypothesis_testing", "t": "likelihood_ratio_test", "et": "implemented_by"}, {"s": "subset_selection_methods", "t": "all_subsets_regression", "et": "implemented_by"}, {"s": "stepwise_selection_methods", "t": "forward_stepwise_selection", "et": "implemented_by"}, {"s": "stepwise_selection_methods", "t": "backward_stepwise_selection", "et": "implemented_by"}, {"s": "stepwise_selection_methods", "t": "stepwise_selection", "et": "implemented_by"}, {"s": "cross_validation", "t": "k_fold_cross_validation", "et": "implemented_by"}, {"s": "cross_validation", "t": "leave_one_out_cross_validation", "et": "implemented_by"}, {"s": "link_functions", "t": "logit_link", "et": "implemented_by"}, {"s": "hypothesis_testing_in_regression", "t": "t_test_for_individual_regression_coefficients", "et": "implemented_by"}, {"s": "information_criteria", "t": "akaike_information_criterion", "et": "implemented_by"}, {"s": "information_criteria", "t": "bayesian_information_criterion", "et": "implemented_by"}, {"s": "cp_based_selection", "t": "mallows_cp", "et": "implemented_by"}, {"s": "hypothesis_based_model_comparison", "t": "anova_model_comparison", "et": "implemented_by"}, {"s": "hypothesis_based_model_comparison", "t": "f_test_for_nested_models", "et": "implemented_by"}, {"s": "data_transformation_methods", "t": "centering_variables", "et": "implemented_by"}, {"s": "data_transformation_methods", "t": "orthogonal_polynomial_transformation", "et": "implemented_by"}, {"s": "hypothesis_testing", "t": "hypothesis_testing_using_p_values", "et": "implemented_by"}, {"s": "design_matrix_representation", "t": "dummy_encoding", "et": "implemented_by"}, {"s": "hypothesis_testing", "t": "chi_square_test_for_population_variance", "et": "implemented_by"}, {"s": "credible_interval", "t": "equal_tail_credible_interval_method", "et": "implemented_by"}, {"s": "credible_interval", "t": "highest_posterior_density_interval_method", "et": "implemented_by"}, {"s": "maximum_likelihood_estimation", "t": "newton_raphson_method", "et": "implemented_by"}, {"s": "categorical_variable", "t": "dummy_encoding", "et": "implemented_by"}, {"s": "data_visualization", "t": "scatterplot", "et": "implemented_by"}, {"s": "data_visualization", "t": "scatterplot_matrix", "et": "implemented_by"}];
+
+// ── Config ────────────────────────────────────────────────────────────────────
+// Muted, low-saturation domain palette
+var DCOL = {
+  'Probability Theory':            '#7B74C8',
+  'Probability Distributions':     '#2E9E6E',
+  'Statistical Inference':         '#3A82C4',
+  'Regression and Linear Models':  '#C85A28',
+  'Generalized Linear Models':     '#B84070',
+  'Model Evaluation and Selection':'#A86C14'
+};
+// Very muted versions for non-focused state
+var DCOL_DIM = {
+  'Probability Theory':            '#C8C4E8',
+  'Probability Distributions':     '#A8D8C4',
+  'Statistical Inference':         '#A8C8E8',
+  'Regression and Linear Models':  '#E8C0A8',
+  'Generalized Linear Models':     '#E0B0C8',
+  'Model Evaluation and Selection':'#E0CCA8'
+};
+var DSHORT = {
+  'Probability Theory':            'Prob. Theory',
+  'Probability Distributions':     'Prob. Distributions',
+  'Statistical Inference':         'Statistical Inference',
+  'Regression and Linear Models':  'Regression',
+  'Generalized Linear Models':     'GLM',
+  'Model Evaluation and Selection':'Model Eval.'
+};
+// Edge colors — subtle, low saturation
+var ECOL = {
+  instance_of:       '#C8C5BC',
+  requires:          '#D04040',
+  assumes:           '#C47800',
+  uses_distribution: '#2E9E6E',
+  measures:          '#3A82C4',
+  produces:          '#7B74C8',
+  corresponds_to:    '#B84070',
+  implemented_by:    '#AAAAAA'
+};
+
+// Node size by structural role — clear hierarchy
+var ROLE_SIZE = { 'Core':9, 'Branch':7, 'Subbranch':5.5, 'Leaf':4 };
+function nr(node){ return ROLE_SIZE[node.role] || 4; }
+
+// ── Legends ───────────────────────────────────────────────────────────────────
+(function(){
+  var d = document.getElementById('leg-dom');
+  Object.keys(DCOL).forEach(function(k){
+    var row = document.createElement('div');
+    row.className = 'leg-row';
+    row.innerHTML = '<span class="leg-dot" style="background:'+DCOL[k]+'"></span><span class="leg-lbl">'+DSHORT[k]+'</span>';
+    row.addEventListener('click', function(){
+      var sel = document.getElementById('sel-domain');
+      sel.value = sel.value === k ? '' : k;
+      sel.dispatchEvent(new Event('change'));
+    });
+    d.appendChild(row);
+  });
+  var e = document.getElementById('leg-et');
+  Object.keys(ECOL).forEach(function(k){
+    var isDash = k === 'corresponds_to';
+    var s = isDash
+      ? 'border-top:1.5px dashed '+ECOL[k]+';background:none;height:0'
+      : 'background:'+ECOL[k];
+    e.innerHTML += '<div class="eli"><span class="eline-w"><span class="eline" style="'+s+'"></span></span><span class="et-lbl">'+k+'</span></div>';
+  });
+})();
+
+// ── Canvas ────────────────────────────────────────────────────────────────────
+var canvas = document.getElementById('cv');
+var ctx    = canvas.getContext('2d');
+var wrap   = document.getElementById('cv-wrap');
+var DPR    = Math.min(window.devicePixelRatio||1, 2);
+var W=0, H=0;
+
+function resizeCanvas(){
+  var r = wrap.getBoundingClientRect();
+  W = r.width; H = r.height;
+  canvas.width  = Math.floor(W*DPR);
+  canvas.height = Math.floor(H*DPR);
+  canvas.style.width  = W+'px';
+  canvas.style.height = H+'px';
+}
+
+// ── Pan/zoom (no D3) ──────────────────────────────────────────────────────────
+var pan = {x:0,y:0}, scale = 1;
+function s2w(sx,sy){ return {x:(sx-pan.x)/scale, y:(sy-pan.y)/scale}; }
+
+// ── State ─────────────────────────────────────────────────────────────────────
+var nodes=[], links=[];
+var selId=null, hoverId=null;
+var egoMode=false, egoRoot=null;
+var simRunning=false, simAlpha=1, simStep=0, simMaxSteps=300;
+var domainFilter='', etypeFilter='';
+
+// ── Simulation ────────────────────────────────────────────────────────────────
+function simTick(){
+  if(!simRunning) return;
+  simStep++;
+  simAlpha *= 0.975;
+  if(simStep > simMaxSteps){ simRunning=false; render(); return; }
+
+  var nmap = {};
+  nodes.forEach(function(n){ nmap[n.id]=n; });
+
+  // Link force
+  links.forEach(function(l){
+    var s = typeof l.source==='object' ? l.source : nmap[l.source];
+    var t = typeof l.target==='object' ? l.target : nmap[l.target];
+    if(!s||!t) return;
+    var dx=t.x-s.x, dy=t.y-s.y, d=Math.sqrt(dx*dx+dy*dy)||1;
+    var target = egoMode ? 90 : 85;
+    var str = 0.35*simAlpha;
+    var f = (d-target)/d*str;
+    if(s.fx===undefined){s.vx+=dx*f; s.vy+=dy*f;}
+    if(t.fx===undefined){t.vx-=dx*f; t.vy-=dy*f;}
+  });
+
+  // Repulsion — only nearby pairs
+  for(var i=0;i<nodes.length;i++){
+    for(var j=i+1;j<nodes.length;j++){
+      var a=nodes[i],b=nodes[j];
+      var dx=b.x-a.x, dy=b.y-a.y, d=Math.sqrt(dx*dx+dy*dy)||1;
+      if(d>250) continue;
+      var rep = -180*simAlpha/(d*d);
+      var fx=dx/d*rep, fy=dy/d*rep;
+      if(a.fx===undefined){a.vx+=fx;a.vy+=fy;}
+      if(b.fx===undefined){b.vx-=fx;b.vy-=fy;}
+    }
+  }
+
+  // Center gravity
+  nodes.forEach(function(n){
+    if(n.fx!==undefined) return;
+    n.vx += (W/2-n.x)*0.012*simAlpha;
+    n.vy += (H/2-n.y)*0.012*simAlpha;
+  });
+
+  // Collision
+  for(var i=0;i<nodes.length;i++){
+    for(var j=i+1;j<nodes.length;j++){
+      var a=nodes[i],b=nodes[j];
+      var dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1;
+      var minD=nr(a)+nr(b)+3;
+      if(d<minD){
+        var f=(minD-d)/d*0.5;
+        if(a.fx===undefined){a.vx-=dx*f;a.vy-=dy*f;}
+        if(b.fx===undefined){b.vx+=dx*f;b.vy+=dy*f;}
+      }
+    }
+  }
+
+  // Integrate
+  nodes.forEach(function(n){
+    if(n.fx!==undefined){n.x=n.fx;n.y=n.fy;n.vx=0;n.vy=0;return;}
+    n.vx*=0.55; n.vy*=0.55;
+    n.x+=n.vx; n.y+=n.vy;
+  });
+
+  render();
+  requestAnimationFrame(simTick);
+}
+
+function startSim(maxSteps, alpha){
+  simRunning=true; simStep=0;
+  simAlpha=alpha||1; simMaxSteps=maxSteps||300;
+  requestAnimationFrame(simTick);
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function render(){
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  ctx.clearRect(0,0,W,H);
+  ctx.save();
+  ctx.translate(pan.x,pan.y);
+  ctx.scale(scale,scale);
+
+  // Highlighted set
+  var hl={};
+  if(selId){
+    hl[selId]=1; // 1=selected
+    links.forEach(function(l){
+      var s=typeof l.source==='object'?l.source.id:l.source;
+      var t=typeof l.target==='object'?l.target.id:l.target;
+      if(s===selId) hl[t]=2; // 2=neighbor
+      if(t===selId) hl[s]=2;
+    });
+  }
+  var hasHL = selId!=null;
+
+  // Edges — only draw edges connected to highlighted node when selection active
+  links.forEach(function(l){
+    var s=typeof l.source==='object'?l.source:nodes.find(function(n){return n.id===l.source;});
+    var t=typeof l.target==='object'?l.target:nodes.find(function(n){return n.id===l.target;});
+    if(!s||!t) return;
+
+    var bothHL = hasHL && hl[s.id] && hl[t.id];
+    var show   = !hasHL || bothHL;
+    if(!show) return;
+
+    var c = ECOL[l.et]||'#bbb';
+    ctx.globalAlpha = hasHL ? 0.65 : 0.3;
+    ctx.strokeStyle = c;
+    ctx.lineWidth   = hasHL ? 1.5 : 0.8;
+
+    var dx=t.x-s.x, dy=t.y-s.y, dist=Math.sqrt(dx*dx+dy*dy)||1;
+    var tr=nr(t), sr=nr(s);
+    var ex=t.x-dx/dist*tr,   ey=t.y-dy/dist*tr;
+    var sx2=s.x+dx/dist*sr,  sy2=s.y+dy/dist*sr;
+
+    ctx.beginPath();
+    l.et==='corresponds_to' ? ctx.setLineDash([3,3]) : ctx.setLineDash([]);
+    ctx.moveTo(sx2,sy2); ctx.lineTo(ex,ey); ctx.stroke();
+    ctx.setLineDash([]);
+
+    if(l.et!=='corresponds_to' && hasHL){
+      var ang=Math.atan2(dy,dx), ah=5.5;
+      ctx.globalAlpha=0.75; ctx.fillStyle=c;
+      ctx.beginPath(); ctx.moveTo(ex,ey);
+      ctx.lineTo(ex-ah*Math.cos(ang-.42),ey-ah*Math.sin(ang-.42));
+      ctx.lineTo(ex-ah*Math.cos(ang+.42),ey-ah*Math.sin(ang+.42));
+      ctx.closePath(); ctx.fill();
+    }
+  });
+
+  // Nodes — back to front (small first)
+  var sorted = nodes.slice().sort(function(a,b){ return nr(a)-nr(b); });
+  sorted.forEach(function(n){
+    var r  = nr(n);
+    var hl_level = hl[n.id]||0;
+    var isSel    = n.id===selId;
+    var isRoot   = egoMode&&n.id===egoRoot;
+    var isHover  = n.id===hoverId;
+
+    // Color based on state
+    var fillC;
+    if(!hasHL){
+      fillC = DCOL[n.domain]||'#aaa';
+    } else if(hl_level===1){
+      fillC = DCOL[n.domain]||'#aaa'; // selected: full color
+    } else if(hl_level===2){
+      fillC = DCOL[n.domain]||'#aaa'; // neighbor: full color
+    } else {
+      fillC = '#DDDBD4'; // non-relevant: neutral gray
+    }
+
+    var alpha = hasHL ? (hl_level>0?1:0.25) : 1;
+
+    // Outer glow for Core/Branch nodes
+    if((n.role==='Core'||n.role==='Branch') && (!hasHL||hl_level>0)){
+      ctx.globalAlpha = alpha*0.12;
+      ctx.beginPath(); ctx.arc(n.x,n.y,r+5,0,2*Math.PI);
+      ctx.fillStyle = DCOL[n.domain]||'#aaa'; ctx.fill();
+    }
+
+    ctx.globalAlpha = alpha;
+    ctx.beginPath(); ctx.arc(n.x,n.y,r,0,2*Math.PI);
+    ctx.fillStyle = fillC; ctx.fill();
+
+    // Ring for selected/root
+    if(isRoot||isSel){
+      ctx.strokeStyle = DCOL[n.domain]||'#aaa';
+      ctx.lineWidth   = isRoot?3:2;
+      ctx.globalAlpha = 1; ctx.stroke();
+      if(isRoot){
+        ctx.beginPath(); ctx.arc(n.x,n.y,r+8,0,2*Math.PI);
+        ctx.globalAlpha=0.2; ctx.lineWidth=2; ctx.stroke();
+      }
+    }
+
+    // Hover ring
+    if(isHover && !isSel){
+      ctx.strokeStyle='#888'; ctx.lineWidth=1.5;
+      ctx.globalAlpha=0.4; ctx.stroke();
+    }
+
+    // Labels
+    var showLbl =
+      isRoot ||
+      (hasHL && hl_level>0) ||
+      (!hasHL && (n.role==='Core'||n.deg>=9)) ||
+      scale>2.2;
+
+    if(showLbl){
+      var fs  = Math.max(8.5, 10.5/scale);
+      var bold = isRoot||isSel||(n.role==='Core'&&!hasHL);
+      ctx.font      = (bold?'600 ':'400 ')+fs+'px -apple-system,sans-serif';
+      ctx.textAlign = 'center';
+      ctx.globalAlpha = alpha*(hasHL&&hl_level>0?0.95:0.75);
+      ctx.fillStyle   = '#1a1a18';
+      var lbl = n.label.length>24 ? n.label.slice(0,23)+'…' : n.label;
+      ctx.fillText(lbl, n.x, n.y-r-4);
+    }
+  });
+
+  ctx.globalAlpha=1; ctx.restore();
+}
+
+// ── Hit test ──────────────────────────────────────────────────────────────────
+function hitNode(sx,sy){
+  var w = s2w(sx,sy);
+  for(var i=nodes.length-1;i>=0;i--){
+    var n=nodes[i];
+    var dx=n.x-w.x, dy=n.y-w.y;
+    if(dx*dx+dy*dy<=(nr(n)+6)*(nr(n)+6)) return n;
+  }
+  return null;
+}
+
+// ── Overview (default) ────────────────────────────────────────────────────────
+function buildOverview(doReset){
+  var q = document.getElementById('search').value.toLowerCase().trim();
+
+  var fn;
+  if(q){
+    // Search: show matched node + 1-hop neighbors
+    var m={};
+    ALL_NODES.forEach(function(n){
+      if(n.label.toLowerCase().indexOf(q)>=0||n.id.indexOf(q)>=0) m[n.id]=true;
+    });
+    ALL_EDGES.forEach(function(e){
+      if(m[e.s]) m[e.t]=true;
+      if(m[e.t]) m[e.s]=true;
+    });
+    fn = ALL_NODES.filter(function(n){ return m[n.id]; });
+  } else {
+    // Default: top 20 by degree, filtered by domain
+    fn = ALL_NODES.slice().sort(function(a,b){return b.deg-a.deg;});
+    if(domainFilter) fn=fn.filter(function(n){return n.domain===domainFilter;});
+    fn = fn.slice(0,20);
+  }
+
+  var ns={};fn.forEach(function(n){ns[n.id]=true;});
+  var fe=ALL_EDGES.filter(function(e){return ns[e.s]&&ns[e.t];});
+  if(etypeFilter) fe=fe.filter(function(e){return e.et===etypeFilter;});
+
+  document.getElementById('stats').textContent=fn.length+' nodes shown';
+
+  var pos={};nodes.forEach(function(n){pos[n.id]={x:n.x,y:n.y};});
+  nodes=fn.map(function(n){
+    var p=pos[n.id]||{x:W/2+(Math.random()-.5)*260,y:H/2+(Math.random()-.5)*220};
+    return Object.assign({},n,{x:p.x,y:p.y,vx:0,vy:0});
+  });
+  links=fe.map(function(e){return{source:e.s,target:e.t,et:e.et};});
+  if(doReset){pan={x:0,y:0};scale=1;}
+  startSim(350,1);
+}
+
+// ── Ego layout ────────────────────────────────────────────────────────────────
+function buildEgo(rootId, doReset){
+  egoMode=true; egoRoot=rootId; selId=rootId;
+
+  var fe = etypeFilter ? ALL_EDGES.filter(function(e){return e.et===etypeFilter;}) : ALL_EDGES;
+
+  var d1={},d2={};
+  d1[rootId]=true;
+  fe.forEach(function(e){
+    if(e.s===rootId) d1[e.t]=true;
+    if(e.t===rootId) d1[e.s]=true;
+  });
+  delete d1[rootId];
+  fe.forEach(function(e){
+    if(d1[e.s]&&!d1[e.t]&&e.t!==rootId) d2[e.t]=true;
+    if(d1[e.t]&&!d1[e.s]&&e.s!==rootId) d2[e.s]=true;
+  });
+  // Filter 2nd-hop by domain if set
+  if(domainFilter){
+    Object.keys(d2).forEach(function(k){
+      var nd=ALL_NODES.find(function(n){return n.id===k;});
+      if(nd&&nd.domain!==domainFilter) delete d2[k];
+    });
+  }
+
+  var allIds={};
+  allIds[rootId]=true;
+  Object.keys(d1).forEach(function(k){allIds[k]=true;});
+  Object.keys(d2).forEach(function(k){allIds[k]=true;});
+
+  var cx=W/2, cy=H/2;
+  var r1=Math.min(W,H)*0.21, r2=Math.min(W,H)*0.40;
+  var d1a=Object.keys(d1), d2a=Object.keys(d2);
+
+  nodes = ALL_NODES.filter(function(n){return allIds[n.id];}).map(function(n){
+    if(n.id===rootId) return Object.assign({},n,{x:cx,y:cy,fx:cx,fy:cy,vx:0,vy:0});
+    var i1=d1a.indexOf(n.id);
+    if(i1>=0){
+      var a=(i1/d1a.length)*2*Math.PI-Math.PI/2;
+      return Object.assign({},n,{x:cx+r1*Math.cos(a),y:cy+r1*Math.sin(a),vx:0,vy:0});
+    }
+    var i2=d2a.indexOf(n.id);
+    if(i2>=0){
+      var a=(i2/d2a.length)*2*Math.PI-Math.PI/2;
+      return Object.assign({},n,{x:cx+r2*Math.cos(a),y:cy+r2*Math.sin(a),vx:0,vy:0});
+    }
+    return Object.assign({},n,{x:cx+(Math.random()-.5)*50,y:cy+(Math.random()-.5)*50,vx:0,vy:0});
+  });
+
+  links = fe.filter(function(e){return allIds[e.s]&&allIds[e.t];})
+            .map(function(e){return{source:e.s,target:e.t,et:e.et};});
+
+  if(doReset){pan={x:0,y:0};scale=1;}
+
+  document.getElementById('stats').textContent=nodes.length+' nodes · '+links.length+' edges';
+  document.getElementById('btn-back').style.display='inline-block';
+
+  var rn=ALL_NODES.find(function(n){return n.id===rootId;});
+  if(rn){
+    var eb=document.getElementById('ego-banner');
+    eb.style.display='block';
+    eb.innerHTML='<strong style="color:#333">'+rn.label+'</strong><br>'+
+      '<span style="color:#999">'+d1a.length+' direct connections · '+d2a.length+' second-hop</span>';
+    showDetail(rn, true);
+  }
+
+  startSim(180, 0.5);
+  setTimeout(function(){
+    var root=nodes.find(function(n){return n.id===rootId;});
+    if(root){delete root.fx;delete root.fy;}
+  },1800);
+}
+
+function exitEgo(){
+  egoMode=false; egoRoot=null; selId=null; hoverId=null;
+  document.getElementById('btn-back').style.display='none';
+  document.getElementById('ego-banner').style.display='none';
+  document.getElementById('node-detail').style.display='none';
+  document.getElementById('hint').style.display='block';
+  buildOverview(true);
+}
+
+// ── Detail panel ──────────────────────────────────────────────────────────────
+function showDetail(node, inEgo){
+  document.getElementById('hint').style.display='none';
+  var det = document.getElementById('node-detail');
+  det.style.display='block';
+  var c = DCOL[node.domain]||'#aaa';
+  var outE=[],inE=[];
+  ALL_EDGES.forEach(function(e){
+    if(e.s===node.id){var t=ALL_NODES.find(function(n){return n.id===e.t;});if(t)outE.push({n:t,et:e.et});}
+    if(e.t===node.id){var s=ALL_NODES.find(function(n){return n.id===e.s;});if(s)inE.push({n:s,et:e.et});}
+  });
+  function mkList(arr,lbl){
+    if(!arr.length) return '';
+    var h='<div class="nb-head">'+lbl+'</div>';
+    arr.slice(0,10).forEach(function(e){
+      h+='<div class="nb-item" data-id="'+e.n.id+'">'
+        +'<span class="nb-et" style="color:'+(ECOL[e.et]||'#aaa')+'">'+e.et+'</span>'
+        +e.n.label+'</div>';
+    });
+    if(arr.length>10) h+='<div class="nb-more">+'+(arr.length-10)+' more</div>';
+    return h;
+  }
+  det.innerHTML=
+    '<h3>'+node.label+'</h3>'+
+    '<div class="badges">'+
+    '<span class="badge" style="background:'+c+'18;color:'+c+'">'+(DSHORT[node.domain]||node.domain)+'</span>'+
+    '<span class="badge" style="background:#F0EEE7;color:#666">'+node.role+'</span>'+
+    '<span class="badge" style="background:#F0EEE7;color:#666">'+node.type+'</span>'+
+    '</div>'+
+    '<div class="nd-meta">'+node.deg+' connections</div>'+
+    '<div class="nd-tip">'+(inEgo?'Click any neighbor to re-center.':'Click again to explore ego view.')+'</div>'+
+    mkList(outE,'→ Outgoing ('+outE.length+')')+
+    mkList(inE, '← Incoming ('+inE.length+')');
+
+  det.querySelectorAll('.nb-item').forEach(function(el){
+    el.addEventListener('click', function(){ jumpTo(el.dataset.id); });
+  });
+}
+
+function jumpTo(id){
+  if(egoMode){ buildEgo(id,false); return; }
+  var n=nodes.find(function(x){return x.id===id;});
+  if(n){ selId=id; render(); showDetail(ALL_NODES.find(function(x){return x.id===id;})||n,false); }
+  else { buildEgo(id,false); }
+}
+
+// ── Tooltip ───────────────────────────────────────────────────────────────────
+var tooltip = document.getElementById('tooltip');
+function showTip(node, sx, sy){
+  tooltip.style.display='block';
+  tooltip.style.left=(sx+14)+'px';
+  tooltip.style.top =(sy-8)+'px';
+  tooltip.textContent = node.label;
+}
+function hideTip(){ tooltip.style.display='none'; }
+
+// ── Pointer events ────────────────────────────────────────────────────────────
+var isPan=false, panStart={x:0,y:0}, panOrig={x:0,y:0};
+var dragN=null, dragMoved=false;
+
+canvas.addEventListener('mousedown',function(e){
+  var rect=canvas.getBoundingClientRect();
+  var mx=e.clientX-rect.left, my=e.clientY-rect.top;
+  var h=hitNode(mx,my);
+  if(h){ dragN=h; dragMoved=false; }
+  else { isPan=true; panStart={x:e.clientX,y:e.clientY}; panOrig={x:pan.x,y:pan.y}; }
+});
+
+canvas.addEventListener('mousemove',function(e){
+  var rect=canvas.getBoundingClientRect();
+  var mx=e.clientX-rect.left, my=e.clientY-rect.top;
+
+  if(dragN){
+    var w=s2w(mx,my);
+    dragN.x=w.x; dragN.y=w.y; dragN.fx=w.x; dragN.fy=w.y;
+    dragMoved=true;
+    if(!simRunning){simRunning=true;simAlpha=0.3;simStep=0;simMaxSteps=80;requestAnimationFrame(simTick);}
+    render(); return;
+  }
+  if(isPan){
+    pan.x=panOrig.x+(e.clientX-panStart.x);
+    pan.y=panOrig.y+(e.clientY-panStart.y);
+    render(); return;
+  }
+
+  // Hover
+  var h=hitNode(mx,my);
+  var newHover=h?h.id:null;
+  if(newHover!==hoverId){
+    hoverId=newHover;
+    render();
+    if(h) { showTip(h, e.clientX, e.clientY); canvas.style.cursor='pointer'; }
+    else  { hideTip(); canvas.style.cursor='default'; }
+  } else if(h) {
+    showTip(h, e.clientX, e.clientY);
+  }
+});
+
+canvas.addEventListener('mouseleave',function(){
+  hoverId=null; hideTip(); canvas.style.cursor='default'; render();
+});
+
+canvas.addEventListener('mouseup',function(e){
+  if(dragN){
+    if(!dragMoved){
+      var rect=canvas.getBoundingClientRect();
+      var h=hitNode(e.clientX-rect.left,e.clientY-rect.top);
+      if(h){
+        if(egoMode){ if(h.id!==egoRoot) buildEgo(h.id,false); }
+        else if(selId===h.id){ buildEgo(h.id,true); }
+        else { selId=h.id; render(); showDetail(ALL_NODES.find(function(n){return n.id===h.id;})||h,false); }
+      }
+    }
+    if(dragN){delete dragN.fx;delete dragN.fy;}
+    dragN=null;
+  }
+  isPan=false;
+});
+
+canvas.addEventListener('wheel',function(e){
+  e.preventDefault();
+  var rect=canvas.getBoundingClientRect();
+  var mx=e.clientX-rect.left, my=e.clientY-rect.top;
+  var f=e.deltaY<0?1.12:1/1.12;
+  var ns=Math.max(0.05,Math.min(15,scale*f));
+  pan.x=mx-(mx-pan.x)*(ns/scale);
+  pan.y=my-(my-pan.y)*(ns/scale);
+  scale=ns; render();
+},{passive:false});
+
+// ── Toolbar ───────────────────────────────────────────────────────────────────
+document.getElementById('btn-back').addEventListener('click',exitEgo);
+
+document.getElementById('sel-domain').addEventListener('change',function(){
+  domainFilter=this.value; selId=null;
+  if(egoMode) buildEgo(egoRoot,false);
+  else buildOverview(false);
+});
+document.getElementById('sel-etype').addEventListener('change',function(){
+  etypeFilter=this.value; selId=null;
+  if(egoMode) buildEgo(egoRoot,false);
+  else buildOverview(false);
+});
+
+var st;
+document.getElementById('search').addEventListener('input',function(){
+  clearTimeout(st);
+  st=setTimeout(function(){
+    selId=null;
+    if(!egoMode) buildOverview(false);
+  },300);
+});
+document.getElementById('search').addEventListener('keydown',function(e){
+  if(e.key==='Enter'){
+    var q=this.value.toLowerCase().trim();
+    if(!q) return;
+    var match=ALL_NODES.find(function(n){return n.label.toLowerCase()===q||n.id===q;});
+    if(!match) match=ALL_NODES.find(function(n){return n.label.toLowerCase().indexOf(q)>=0;});
+    if(match){ this.value=''; buildEgo(match.id,true); }
+  }
+});
+
+// ── Resize ────────────────────────────────────────────────────────────────────
+window.addEventListener('resize',function(){
+  resizeCanvas();
+  if(egoMode) buildEgo(egoRoot,false);
+  else render();
+});
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+resizeCanvas();
+buildOverview(true);
+</script>
+</body>
+</html>

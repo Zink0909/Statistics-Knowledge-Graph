@@ -1,0 +1,454 @@
+{
+  "edge_type": "produces",
+  "description": "Executing or applying method/model A yields B as a direct output or result. Example: ordinary_least_squares produces fitted_value.",
+  "edges": [
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "fitted_value",
+        "canonical_name": "Fitted Value",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "OLS fitting directly produces fitted (predicted) values for each observation."
+    },
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual",
+        "canonical_name": "Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "OLS fitting produces residuals (observed minus fitted values) as a direct output."
+    },
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "coefficients",
+        "canonical_name": "Coefficients",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "The core output of OLS estimation is the vector of regression coefficient estimates."
+    },
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual_sum_of_squares",
+        "canonical_name": "Residual Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "OLS minimizes RSS, making RSS a direct output of the estimation procedure."
+    },
+    {
+      "source": {
+        "id": "maximum_likelihood_estimation",
+        "canonical_name": "Maximum Likelihood Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "maximum_likelihood_estimator",
+        "canonical_name": "Maximum Likelihood Estimator",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "The MLE method outputs the maximum likelihood estimator as its direct result."
+    },
+    {
+      "source": {
+        "id": "bootstrap",
+        "canonical_name": "Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bootstrapped_sampling_distribution",
+        "canonical_name": "Bootstrapped Sampling Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "produces",
+      "confidence": 0.75,
+      "generated_by": "llm",
+      "notes": "Bootstrap resampling produces the bootstrapped sampling distribution. Confidence lowered to 0.75 as non_parametric_bootstrap (index 9) is the more specific source for this relationship; this edge represents the general bootstrap concept producing the distribution indirectly via its variants."
+    },
+    {
+      "source": {
+        "id": "bootstrap_percentile_method",
+        "canonical_name": "Bootstrap Percentile Method",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "The bootstrap percentile method produces a confidence interval from bootstrap quantiles."
+    },
+    {
+      "source": {
+        "id": "non_parametric_bootstrap",
+        "canonical_name": "Non-parametric Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bootstrapped_sampling_distribution",
+        "canonical_name": "Bootstrapped Sampling Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Non-parametric bootstrap resampling produces an empirical bootstrapped sampling distribution."
+    },
+    {
+      "source": {
+        "id": "residual_analysis",
+        "canonical_name": "Residual Analysis",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual_plot",
+        "canonical_name": "Residual Plot",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Residual analysis produces residual plots as its primary diagnostic output."
+    },
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "distribution_of_ols_estimators",
+        "canonical_name": "Distribution of OLS Estimators",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 0.9,
+      "generated_by": "llm",
+      "notes": "Under normality of errors assumptions, OLS produces estimators with a known distribution."
+    },
+    {
+      "source": {
+        "id": "dummy_encoding",
+        "canonical_name": "Dummy Encoding",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "dummy_variable",
+        "canonical_name": "Dummy Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Dummy encoding produces dummy (binary indicator) variables from categorical predictors."
+    },
+    {
+      "source": {
+        "id": "dummy_variable_encoding",
+        "canonical_name": "Dummy Variable Encoding",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "design_matrix",
+        "canonical_name": "Design Matrix",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Dummy variable encoding produces the columns of the design matrix for categorical predictors."
+    },
+    {
+      "source": {
+        "id": "method_of_moments",
+        "canonical_name": "Method of Moments",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "estimator",
+        "canonical_name": "Estimator",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "The method of moments produces parameter estimators by equating sample and population moments."
+    },
+    {
+      "source": {
+        "id": "least_squares_estimation",
+        "canonical_name": "Least Squares Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "estimator",
+        "canonical_name": "Estimator",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Least squares estimation produces parameter estimators by minimizing squared residuals."
+    },
+    {
+      "source": {
+        "id": "bayesian_point_estimation",
+        "canonical_name": "Bayesian Point Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bayesian_point_estimate",
+        "canonical_name": "Bayesian Point Estimate",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Bayesian point estimation methods (posterior mean, median, MAP) produce Bayesian point estimates."
+    },
+    {
+      "source": {
+        "id": "equal_tail_credible_interval_method",
+        "canonical_name": "Equal-tail Credible Interval Method",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "credible_interval",
+        "canonical_name": "Credible Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "The equal-tail credible interval method produces a credible interval from posterior quantiles."
+    },
+    {
+      "source": {
+        "id": "highest_posterior_density_interval_method",
+        "canonical_name": "Highest Posterior Density Interval Method",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "credible_interval",
+        "canonical_name": "Credible Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "The HPD interval method produces the highest posterior density credible interval."
+    },
+    {
+      "source": {
+        "id": "k_fold_cross_validation",
+        "canonical_name": "K-Fold Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "generalization_error",
+        "canonical_name": "Generalization Error",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "K-fold cross validation produces an estimate of generalization error."
+    },
+    {
+      "source": {
+        "id": "leave_one_out_cross_validation",
+        "canonical_name": "Leave-One-Out Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "generalization_error",
+        "canonical_name": "Generalization Error",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "LOOCV produces an estimate of generalization error using n-1 training folds."
+    },
+    {
+      "source": {
+        "id": "logistic_regression_model",
+        "canonical_name": "Logistic Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "fitted_value",
+        "canonical_name": "Fitted Value",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Logistic regression produces fitted probability values for each observation."
+    },
+    {
+      "source": {
+        "id": "logistic_regression_model",
+        "canonical_name": "Logistic Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "deviance",
+        "canonical_name": "Deviance",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Logistic regression produces deviance as a goodness-of-fit statistic."
+    },
+    {
+      "source": {
+        "id": "poisson_regression_model",
+        "canonical_name": "Poisson Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "fitted_value",
+        "canonical_name": "Fitted Value",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Poisson regression produces fitted count values for each observation."
+    },
+    {
+      "source": {
+        "id": "poisson_regression_model",
+        "canonical_name": "Poisson Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "deviance",
+        "canonical_name": "Deviance",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 1.0,
+      "generated_by": "llm",
+      "notes": "Poisson regression produces deviance as a model fit measure."
+    },
+    {
+      "source": {
+        "id": "ridge_regression",
+        "canonical_name": "Ridge Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "coefficients",
+        "canonical_name": "Coefficients",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review (S4-001): ridge regression produces shrinkage coefficient estimates as its primary output, analogous to OLS producing coefficients."
+    },
+    {
+      "source": {
+        "id": "logistic_regression_model",
+        "canonical_name": "Logistic Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "coefficients",
+        "canonical_name": "Coefficients",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review (S4-002): logistic regression produces log-odds coefficient estimates in addition to fitted values and deviance."
+    },
+    {
+      "source": {
+        "id": "joint_probability_density_function",
+        "canonical_name": "Joint Probability Density Function",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "marginal_distribution",
+        "canonical_name": "Marginal Distribution",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "produces",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "Moved from corresponds_to.json during Agent 6 review (S3-003): marginal_distribution is obtained by integrating the joint PDF over the other variable(s) — a directional, non-invertible operation. This is a produces relationship, not a symmetric duality."
+    },
+    {
+      "source": {
+        "id": "centering_variables",
+        "canonical_name": "Centering Variables",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "design_matrix",
+        "canonical_name": "Design Matrix",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 0.9,
+      "generated_by": "human",
+      "notes": "Centering variables transforms predictor columns, producing a centered design matrix."
+    },
+    {
+      "source": {
+        "id": "residual_analysis",
+        "canonical_name": "Residual Analysis",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "scatterplot",
+        "canonical_name": "Scatterplot",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "produces",
+      "confidence": 0.88,
+      "generated_by": "human",
+      "notes": "Residual analysis produces scatterplots of residuals vs fitted values or predictors."
+    }
+  ]
+}

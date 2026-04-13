@@ -1,0 +1,41 @@
+# Domain: Model Evaluation and Selection
+# Format: id | canonical_name | node_type | structural_role
+# node_type: Concept / Method / Model / Conceptual Organizer
+# structural_role: Core / Branch / Subbranch / Leaf
+#
+foundations_of_model_evaluation | Foundations of Model Evaluation | Concept | Core
+goodness_of_fit | Goodness of Fit | Concept | Branch
+in_sample_mse | In-Sample MSE | Concept | Leaf
+adjusted_r_squared | Adjusted R-squared | Concept | Leaf
+r_squared | R-squared | Concept | Leaf
+prediction_error | Prediction Error | Concept | Branch
+expected_out_of_sample_mse | Expected Out-of-Sample MSE | Concept | Leaf
+generalization_error | Generalization Error | Concept | Leaf
+model_complexity | Model Complexity | Concept | Branch
+parsimony_principle | Parsimony Principle | Concept | Leaf
+overfitting | Overfitting | Concept | Leaf
+penalty_term | Penalty Term | Concept | Leaf
+model_diagnostics | Model Diagnostics | Concept | Core
+leverage_diagnostic | Leverage Diagnostic | Method | Leaf
+correlation_matrix_inspection | Correlation Matrix Inspection | Method | Leaf
+model_selection | Model Selection | Concept | Core
+information_criteria | Information Criteria | Concept | Branch
+akaike_information_criterion | Akaike Information Criterion | Method | Leaf
+bayesian_information_criterion | Bayesian Information Criterion | Method | Leaf
+cp_based_selection | Cp-based Selection | Concept | Branch
+mallows_cp | Mallows' Cp | Method | Leaf
+subset_selection_methods | Subset Selection Methods | Concept | Branch
+all_subsets_regression | All Subsets Regression | Method | Leaf
+stepwise_selection_methods | Stepwise Selection Methods | Concept | Branch
+stepwise_selection | Stepwise Selection | Method | Leaf
+forward_stepwise_selection | Forward Stepwise Selection | Method | Leaf
+backward_stepwise_selection | Backward Stepwise Selection | Method | Leaf
+hypothesis_based_model_comparison | Hypothesis-based Model Comparison | Concept | Branch
+anova_model_comparison | ANOVA Model Comparison | Method | Leaf
+f_test_for_nested_models | F-test for Nested Models | Method | Leaf
+resampling_and_validation | Resampling and Validation | Concept | Core
+resampling | Resampling | Method | Branch
+data_splitting | Data Splitting | Method | Branch
+cross_validation | Cross Validation | Concept | Branch
+k_fold_cross_validation | K-Fold Cross Validation | Method | Leaf
+leave_one_out_cross_validation | Leave-One-Out Cross Validation | Method | Leaf

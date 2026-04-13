@@ -1,0 +1,27 @@
+# Domain: Probability Distributions
+# Format: id | canonical_name | node_type | structural_role
+# node_type: Concept / Method / Model / Conceptual Organizer
+# structural_role: Core / Branch / Subbranch / Leaf
+#
+distribution_families | Distribution Families | Conceptual Organizer | Core
+exponential_family | Exponential Family | Model | Leaf
+discrete_distributions | Discrete Distributions | Conceptual Organizer | Core
+bernoulli_type_distributions | Bernoulli-Type Distributions | Conceptual Organizer | Branch
+bernoulli_distribution | Bernoulli Distribution | Model | Leaf
+binomial_distribution | Binomial Distribution | Model | Leaf
+geometric_distribution | Geometric Distribution | Model | Leaf
+poisson_type_distributions | Poisson-Type Distributions | Conceptual Organizer | Branch
+poisson_distribution | Poisson Distribution | Model | Leaf
+multinomial_type_distributions | Multinomial-Type Distributions | Conceptual Organizer | Branch
+trinomial_distribution | Trinomial Distribution | Model | Leaf
+continuous_distributions | Continuous Distributions | Conceptual Organizer | Core
+uniform_distribution | Uniform Distribution | Model | Leaf
+normal_based_distributions | Normal-Based Distributions | Conceptual Organizer | Branch
+normal_distribution | Normal Distribution | Model | Leaf
+students_t_distribution | Student's t Distribution | Model | Leaf
+chi_square_distribution | Chi-square Distribution | Model | Leaf
+f_distribution | F Distribution | Model | Leaf
+gamma_based_distributions | Gamma-Based Distributions | Conceptual Organizer | Branch
+gamma_distribution | Gamma Distribution | Model | Leaf
+exponential_distribution | Exponential Distribution | Model | Leaf
+beta_distribution | Beta Distribution | Model | Leaf

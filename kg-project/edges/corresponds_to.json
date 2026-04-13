@@ -1,0 +1,374 @@
+{
+  "edge_type": "corresponds_to",
+  "description": "A and B are dual, symmetric, or structurally equivalent — knowing one determines the other in a specific context. Undirected. Convention: place the more specific concept as source.",
+  "edges": [
+    {
+      "source": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "confidence_level",
+        "canonical_name": "Confidence Level",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "significance_level",
+        "canonical_name": "Significance Level",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "acceptance_region",
+        "canonical_name": "Acceptance Region",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "rejection_region",
+        "canonical_name": "Rejection Region",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "alternative_hypothesis",
+        "canonical_name": "Alternative Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "null_hypothesis",
+        "canonical_name": "Null Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": "Direction: alternative_hypothesis (a) < null_hypothesis (n) alphabetically."
+    },
+    {
+      "source": {
+        "id": "type_i_error",
+        "canonical_name": "Type I Error",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "type_ii_error",
+        "canonical_name": "Type II Error",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bayesian_p_value",
+        "canonical_name": "Bayesian P-value",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "credible_interval",
+        "canonical_name": "Credible Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.8,
+      "generated_by": "llm",
+      "notes": "Confidence reduced to 0.80 during Agent 6 review (S3-006): bayesian_p_value and credible_interval serve analogous but not strictly dual roles in Bayesian inference (scalar tail probability vs. region estimate). This is an analogical rather than strict structural duality."
+    },
+    {
+      "source": {
+        "id": "population_mean",
+        "canonical_name": "Population Mean",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "sample_mean",
+        "canonical_name": "Sample Mean",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": "Direction: population_mean (po) < sample_mean (sa) alphabetically."
+    },
+    {
+      "source": {
+        "id": "population_variance",
+        "canonical_name": "Population Variance",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "sample_variance",
+        "canonical_name": "Sample Variance",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": "Direction: population_variance (po) < sample_variance (sa) alphabetically."
+    },
+    {
+      "source": {
+        "id": "expected_out_of_sample_mse",
+        "canonical_name": "Expected Out-of-Sample MSE",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "in_sample_mse",
+        "canonical_name": "In-Sample MSE",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": "Direction: expected_out_of_sample_mse (e) < in_sample_mse (i) alphabetically."
+    },
+    {
+      "source": {
+        "id": "backward_stepwise_selection",
+        "canonical_name": "Backward Stepwise Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "forward_stepwise_selection",
+        "canonical_name": "Forward Stepwise Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": "Direction: backward_stepwise_selection (b) < forward_stepwise_selection (f) alphabetically."
+    },
+    {
+      "source": {
+        "id": "interval_estimation",
+        "canonical_name": "Interval Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "point_estimation",
+        "canonical_name": "Point Estimation",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": "Direction: interval_estimation (i) < point_estimation (p) alphabetically."
+    },
+    {
+      "source": {
+        "id": "bayesian_inference",
+        "canonical_name": "Bayesian Inference",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "frequentist_inference",
+        "canonical_name": "Frequentist Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": "Direction: bayesian_inference (b) < frequentist_inference (f) alphabetically."
+    },
+    {
+      "source": {
+        "id": "expected_value",
+        "canonical_name": "Expected Value",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "variance",
+        "canonical_name": "Variance",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.9,
+      "generated_by": "llm",
+      "notes": "Expected value and variance are the first and second central moments, forming the canonical location-scale pair that characterizes any distribution up to second order. Together they are sufficient to characterize normal distributions completely, constituting an analytic duality. This duality is weaker than classical test/CI duality; confidence 0.90 reflects this. Per schema Part H: flagged as a borderline corresponds_to pair requiring explicit justification."
+    },
+    {
+      "source": {
+        "id": "continuous_random_variables",
+        "canonical_name": "Continuous Random Variables",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "discrete_random_variables",
+        "canonical_name": "Discrete Random Variables",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "Direction corrected during Agent 6 review (S3-004): continuous_random_variables (c) < discrete_random_variables (d) alphabetically, so source = continuous_random_variables."
+    },
+    {
+      "source": {
+        "id": "composite_hypothesis",
+        "canonical_name": "Composite Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "simple_hypothesis",
+        "canonical_name": "Simple Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.93,
+      "generated_by": "llm",
+      "notes": "Direction corrected during Agent 6 review (S3-005): composite_hypothesis (c) < simple_hypothesis (s) alphabetically, so source = composite_hypothesis."
+    },
+    {
+      "source": {
+        "id": "one_sided_test",
+        "canonical_name": "One-sided Test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "two_sided_test",
+        "canonical_name": "Two-sided Test",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "Direction: one_sided_test (o) < two_sided_test (t) alphabetically. These are symmetric alternative structures for hypothesis tests."
+    },
+    {
+      "source": {
+        "id": "equal_tail_interval",
+        "canonical_name": "Equal-tail Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "highest_posterior_density_interval",
+        "canonical_name": "Highest Posterior Density Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.92,
+      "generated_by": "llm",
+      "notes": "Direction: equal_tail_interval (e) < highest_posterior_density_interval (h) alphabetically. These are the two canonical forms of Bayesian credible intervals — symmetric alternatives for summarizing the posterior."
+    },
+    {
+      "source": {
+        "id": "akaike_information_criterion",
+        "canonical_name": "Akaike Information Criterion",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "bayesian_information_criterion",
+        "canonical_name": "Bayesian Information Criterion",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "Direction: akaike_information_criterion (a) < bayesian_information_criterion (b) alphabetically. AIC and BIC are structurally symmetric penalized likelihood criteria differing in penalty magnitude."
+    },
+    {
+      "source": {
+        "id": "k_fold_cross_validation",
+        "canonical_name": "K-Fold Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "leave_one_out_cross_validation",
+        "canonical_name": "Leave-One-Out Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.92,
+      "generated_by": "llm",
+      "notes": "Direction: k_fold_cross_validation (k) < leave_one_out_cross_validation (l) alphabetically. LOOCV is the limiting case of K-fold (K=n); they are structurally dual validation strategies."
+    },
+    {
+      "source": {
+        "id": "non_parametric_bootstrap",
+        "canonical_name": "Non-parametric Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "parametric_bootstrap",
+        "canonical_name": "Parametric Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.93,
+      "generated_by": "llm",
+      "notes": "Direction: non_parametric_bootstrap (n) < parametric_bootstrap (p) alphabetically. These are symmetric bootstrap variants differing only in whether a parametric distribution is assumed."
+    },
+    {
+      "source": {
+        "id": "regression_sum_of_squares",
+        "canonical_name": "Regression Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual_sum_of_squares",
+        "canonical_name": "Residual Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "Direction: regression_sum_of_squares (re) < residual_sum_of_squares (re) — comparing third character: g < s, so source = regression_sum_of_squares. These two partition the total sum of squares and are structurally complementary."
+    },
+    {
+      "source": {
+        "id": "expected_fisher_information",
+        "canonical_name": "Expected Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "observed_fisher_information",
+        "canonical_name": "Observed Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "Direction: expected_fisher_information (e) < observed_fisher_information (o) alphabetically. These are the two forms of Fisher information — theoretical expectation vs data-based observed value — forming a symmetric pair."
+    },
+    {
+      "source": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "credible_interval",
+        "canonical_name": "Credible Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "corresponds_to",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review (S4-002): credible_interval (Bayesian) and confidence_interval (frequentist) are the canonical dual pair for interval estimation across the two inferential paradigms. Direction: credible (c+r+e) < confidence (c+o) — third char e < o, so source = credible_interval. [Auto-fixed direction: swapped source/target to satisfy alphabetical order convention]"
+    }
+  ]
+}

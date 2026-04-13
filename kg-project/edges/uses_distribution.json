@@ -1,0 +1,438 @@
+{
+  "edge_type": "uses_distribution",
+  "description": "A (a method, test, or model) operates under, derives from, or produces results in terms of distribution B. Example: t_confidence_interval uses_distribution students_t_distribution.",
+  "edges": [
+    {
+      "source": {
+        "id": "t_confidence_interval",
+        "canonical_name": "t Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "students_t_distribution",
+        "canonical_name": "Student's t Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "confidence_interval_for_difference_of_means",
+        "canonical_name": "Confidence Interval for Difference of Means",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "students_t_distribution",
+        "canonical_name": "Student's t Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "one_sample_t_test",
+        "canonical_name": "One Sample t-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "students_t_distribution",
+        "canonical_name": "Student's t Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "two_sample_t_test",
+        "canonical_name": "Two Sample t-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "students_t_distribution",
+        "canonical_name": "Student's t Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "confidence_interval_for_population_variance",
+        "canonical_name": "Confidence Interval for Population Variance",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "chi_square_distribution",
+        "canonical_name": "Chi-square Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "chi_square_test_for_population_variance",
+        "canonical_name": "Chi-square Test for Population Variance",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "chi_square_distribution",
+        "canonical_name": "Chi-square Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "z_test",
+        "canonical_name": "Z-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "two_sample_z_test",
+        "canonical_name": "Two Sample Z-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "large_sample_confidence_interval",
+        "canonical_name": "Large Sample Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "normal_approximation",
+        "canonical_name": "Normal Approximation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "wald_test",
+        "canonical_name": "Wald Test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "wald_confidence_interval",
+        "canonical_name": "Wald Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "likelihood_ratio_test",
+        "canonical_name": "Likelihood Ratio Test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "chi_square_distribution",
+        "canonical_name": "Chi-square Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": "Asymptotic distribution: under the null hypothesis and regularity conditions, the LRT statistic (-2 log lambda) converges in distribution to chi-square with degrees of freedom equal to the difference in parameter dimensions (Wilks theorem). The chi-square approximation is exact only asymptotically."
+    },
+    {
+      "source": {
+        "id": "large_sample_distribution_of_the_mle",
+        "canonical_name": "Large Sample Distribution of the MLE",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "large_sample_confidence_interval_using_mle",
+        "canonical_name": "Large Sample Confidence Interval using MLE",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "distribution_of_ols_estimators",
+        "canonical_name": "Distribution of OLS Estimators",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "t_test_for_individual_regression_coefficients",
+        "canonical_name": "t-test for Individual Regression Coefficients",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "students_t_distribution",
+        "canonical_name": "Student's t Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "t_test_for_regression_coefficients",
+        "canonical_name": "t-test for Regression Coefficients",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "students_t_distribution",
+        "canonical_name": "Student's t Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "f_statistic",
+        "canonical_name": "F Statistic",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "f_distribution",
+        "canonical_name": "F Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "normal_error_model",
+        "canonical_name": "Normal Error Model",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "logistic_regression_model",
+        "canonical_name": "Logistic Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "bernoulli_distribution",
+        "canonical_name": "Bernoulli Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "poisson_regression_model",
+        "canonical_name": "Poisson Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "poisson_distribution",
+        "canonical_name": "Poisson Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "gamma_regression_model",
+        "canonical_name": "Gamma Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "gamma_distribution",
+        "canonical_name": "Gamma Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "f_test_for_nested_models",
+        "canonical_name": "F-test for Nested Models",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "f_distribution",
+        "canonical_name": "F Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "parametric_bootstrap",
+        "canonical_name": "Parametric Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.84,
+      "generated_by": "llm",
+      "notes": "The parametric bootstrap requires a parametric distributional assumption; the normal distribution is the most common choice but the actual distribution is model-dependent. Edge represents the prototypical case only, not a universal relationship. Confidence kept below 0.85 pending expert confirmation."
+    },
+    {
+      "source": {
+        "id": "studentized_residual",
+        "canonical_name": "Studentized Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "students_t_distribution",
+        "canonical_name": "Student's t Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.92,
+      "generated_by": "llm",
+      "notes": "Source is a Concept rather than a Method or Model; retained because the t-distribution is intrinsic to the definition of the studentized residual — the ratio that defines it follows a t-distribution under normality of errors, making this a definitional rather than procedural dependency."
+    },
+    {
+      "source": {
+        "id": "anova_model_comparison",
+        "canonical_name": "ANOVA Model Comparison",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "f_distribution",
+        "canonical_name": "F Distribution",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "uses_distribution",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    }
+  ]
+}

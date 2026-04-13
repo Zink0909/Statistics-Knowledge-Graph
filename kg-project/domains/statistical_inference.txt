@@ -1,0 +1,112 @@
+# Domain: Statistical Inference
+# Format: id | canonical_name | node_type | structural_role
+# node_type: Concept / Method / Model / Conceptual Organizer
+# structural_role: Core / Branch / Subbranch / Leaf
+#
+foundations_of_inference | Foundations of Inference | Concept | Core
+frequentist_inference | Frequentist Inference | Concept | Leaf
+parameter | Parameter | Concept | Branch
+parameter_space | Parameter Space | Concept | Leaf
+continuous_parameter | Continuous Parameter | Concept | Leaf
+discrete_parameter | Discrete Parameter | Concept | Leaf
+population_parameters | Population Parameters | Concept | Branch
+population_mean | Population Mean | Concept | Leaf
+population_variance | Population Variance | Concept | Leaf
+population_proportion | Population Proportion | Concept | Leaf
+independent_random_samples | Independent Random Samples | Concept | Leaf
+empirical_distribution | Empirical Distribution | Concept | Leaf
+summary_statistics | Summary Statistics | Concept | Branch
+sample_mean | Sample Mean | Concept | Leaf
+sample_variance | Sample Variance | Concept | Subbranch
+sample_standard_deviation | Sample Standard Deviation | Concept | Leaf
+sample_covariance | Sample Covariance | Concept | Leaf
+sample_proportion | Sample Proportion | Concept | Leaf
+sampling_distributions | Sampling Distributions | Concept | Core
+sampling_distribution | Sampling Distribution | Concept | Leaf
+standard_error | Standard Error | Concept | Leaf
+bootstrapped_sampling_distribution | Bootstrapped Sampling Distribution | Concept | Leaf
+large_sample_inference | Large Sample Inference | Concept | Branch
+large_sample_distribution_of_the_mle | Large Sample Distribution of the MLE | Concept | Leaf
+normal_approximation | Normal Approximation | Method | Leaf
+statistical_estimation | Statistical Estimation | Concept | Core
+point_estimation | Point Estimation | Concept | Branch
+estimator | Estimator | Concept | Subbranch
+unbiased_estimator | Unbiased Estimator | Concept | Leaf
+bias | Bias | Concept | Leaf
+consistency | Consistency | Concept | Leaf
+estimate | Estimate | Concept | Subbranch
+bias_corrected_estimate | Bias-corrected Estimate | Concept | Leaf
+interval_estimation | Interval Estimation | Concept | Branch
+confidence_interval | Confidence Interval | Concept | Subbranch
+confidence_level | Confidence Level | Concept | Leaf
+large_sample_confidence_interval | Large Sample Confidence Interval | Concept | Leaf
+t_confidence_interval | t Confidence Interval | Method | Leaf
+confidence_interval_for_difference_of_means | Confidence Interval for Difference of Means | Method | Leaf
+confidence_interval_for_population_variance | Confidence Interval for Population Variance | Method | Leaf
+large_sample_confidence_interval_using_mle | Large Sample Confidence Interval using MLE | Method | Leaf
+wald_confidence_interval | Wald Confidence Interval | Method | Leaf
+likelihood_based_inference | Likelihood-Based Inference | Concept | Branch
+likelihood | Likelihood | Concept | Subbranch
+log_likelihood | Log-Likelihood | Concept | Leaf
+maximum_likelihood_estimation | Maximum Likelihood Estimation | Method | Subbranch
+maximum_likelihood_estimator | Maximum Likelihood Estimator | Concept | Leaf
+regularity_conditions | Regularity Conditions | Concept | Leaf
+numerical_maximization_methods | Numerical Maximization Methods | Method | Subbranch
+newton_raphson_method | Newton-Raphson Method | Method | Leaf
+bisection_method | Bisection Method | Method | Leaf
+fisher_information | Fisher Information | Concept | Subbranch
+expected_fisher_information | Expected Fisher Information | Concept | Leaf
+observed_fisher_information | Observed Fisher Information | Concept | Leaf
+score_function | Score Function | Concept | Leaf
+likelihood_ratio | Likelihood Ratio | Concept | Leaf
+alternative_estimation_methods | Alternative Estimation Methods | Concept | Branch
+method_of_moments | Method of Moments | Method | Leaf
+least_squares_estimation | Least Squares Estimation | Method | Leaf
+bootstrap_methods | Bootstrap Methods | Concept | Branch
+bootstrap | Bootstrap | Method | Subbranch
+non_parametric_bootstrap | Non-parametric Bootstrap | Method | Leaf
+parametric_bootstrap | Parametric Bootstrap | Method | Leaf
+bootstrap_percentile_method | Bootstrap Percentile Method | Method | Leaf
+bayesian_inference | Bayesian Inference | Concept | Core
+prior_probability | Prior Probability | Concept | Branch
+non_informative_prior | Non-informative Prior | Concept | Leaf
+posterior_distribution | Posterior Distribution | Concept | Branch
+posterior_probability | Posterior Probability | Concept | Leaf
+posterior_mean | Posterior Mean | Concept | Leaf
+posterior_median | Posterior Median | Concept | Leaf
+bayesian_point_estimation | Bayesian Point Estimation | Method | Branch
+bayesian_point_estimate | Bayesian Point Estimate | Concept | Leaf
+bayesian_interval_estimation | Bayesian Interval Estimation | Method | Branch
+credible_interval | Credible Interval | Concept | Subbranch
+equal_tail_interval | Equal-tail Interval | Concept | Leaf
+highest_posterior_density_interval | Highest Posterior Density Interval | Concept | Leaf
+equal_tail_credible_interval_method | Equal-tail Credible Interval Method | Method | Leaf
+highest_posterior_density_interval_method | Highest Posterior Density Interval Method | Method | Leaf
+hypothesis_testing | Hypothesis Testing | Concept | Core
+hypothesis | Hypothesis | Concept | Branch
+null_hypothesis | Null Hypothesis | Concept | Leaf
+alternative_hypothesis | Alternative Hypothesis | Concept | Leaf
+simple_hypothesis | Simple Hypothesis | Concept | Leaf
+composite_hypothesis | Composite Hypothesis | Concept | Leaf
+test_statistic | Test Statistic | Concept | Leaf
+critical_value | Critical Value | Concept | Leaf
+decision_rule | Decision Rule | Concept | Leaf
+acceptance_region | Acceptance Region | Concept | Leaf
+rejection_region | Rejection Region | Concept | Leaf
+p_value | P-value | Concept | Leaf
+significance_level | Significance Level | Concept | Leaf
+type_i_error | Type I Error | Concept | Leaf
+type_ii_error | Type II Error | Concept | Leaf
+one_sided_test | One-sided Test | Method | Leaf
+two_sided_test | Two-sided Test | Method | Leaf
+hypothesis_testing_using_p_values | Hypothesis Testing using P-values | Method | Leaf
+classical_test_procedures | Classical Test Procedures | Concept | Branch
+z_test | Z-test | Method | Subbranch
+two_sample_z_test | Two Sample Z-test | Method | Leaf
+one_sample_t_test | One Sample t-test | Method | Leaf
+two_sample_t_test | Two Sample t-test | Method | Leaf
+wald_test | Wald Test | Method | Leaf
+likelihood_ratio_test | Likelihood Ratio Test | Method | Leaf
+chi_square_test_for_population_variance | Chi-square Test for Population Variance | Method | Leaf
+bayesian_testing_concepts | Bayesian Testing Concepts | Concept | Core
+bayesian_p_value | Bayesian P-value | Concept | Leaf

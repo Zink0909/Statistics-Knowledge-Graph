@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Statistical Learning KG</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#F7F6F3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a18}
+body{display:flex;flex-direction:column}
+
+/* ── Toolbar ── */
+#tb{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 18px;
+  background:#ffffff;
+  border-bottom:1px solid #E8E6DF;
+  flex-shrink:0;flex-wrap:wrap;
+}
+#tb-title{font-size:13px;font-weight:600;letter-spacing:-.01em;color:#111}
+.tb-sep{width:1px;height:18px;background:#E8E6DF;flex-shrink:0}
+.lbl{font-size:11px;color:#999;white-space:nowrap}
+.tb-select{
+  font-size:12px;padding:4px 8px;height:28px;
+  border-radius:6px;border:1px solid #E0DED7;
+  background:#FAFAF8;color:#1a1a18;outline:none;cursor:pointer;
+}
+.tb-select:focus{border-color:#AAA}
+#search{
+  font-size:12px;padding:4px 10px;height:28px;
+  border-radius:6px;border:1px solid #E0DED7;
+  background:#FAFAF8;color:#1a1a18;outline:none;width:160px;
+}
+#search:focus{border-color:#AAA}
+#btn-back{
+  display:none;font-size:12px;padding:4px 12px;
+  border-radius:6px;border:1px solid #E0DED7;
+  background:#FAFAF8;cursor:pointer;color:#1a1a18;
+  transition:background .15s;
+}
+#btn-back:hover{background:#EDEBE4}
+#stats{font-size:11px;color:#C0BEB7;margin-left:auto;white-space:nowrap}
+
+/* ── Main ── */
+#main{display:flex;flex:1;min-height:0;overflow:hidden}
+#cv-wrap{flex:1;position:relative;overflow:hidden}
+canvas{display:block;position:absolute;top:0;left:0;cursor:default}
+
+/* ── Panel ── */
+#panel{
+  width:260px;
+  border-left:1px solid #E8E6DF;
+  background:#FFFFFF;
+  overflow-y:auto;
+  flex-shrink:0;
+  display:flex;flex-direction:column;
+}
+#panel-top{padding:16px;flex:1}
+
+/* Legend */
+.leg-section{margin-bottom:16px}
+.sec-label{
+  font-size:10px;font-weight:600;color:#C0BEB7;
+  text-transform:uppercase;letter-spacing:.08em;
+  margin-bottom:8px;
+}
+.leg-row{display:flex;align-items:center;gap:7px;margin-bottom:4px;cursor:pointer;border-radius:5px;padding:2px 4px;transition:background .1s}
+.leg-row:hover{background:#F4F2EB}
+.leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;opacity:.8}
+.leg-lbl{font-size:11px;color:#666}
+.eli{display:flex;align-items:center;gap:7px;margin-bottom:3px}
+.eline-w{width:22px;height:10px;display:flex;align-items:center;flex-shrink:0}
+.eline{height:1.5px;width:100%;border-radius:1px}
+.et-lbl{font-size:11px;color:#888}
+
+/* Hint */
+#hint{
+  font-size:11px;color:#C0BEB7;line-height:2;
+  margin-top:4px;
+}
+
+/* Ego banner */
+#ego-banner{
+  display:none;
+  margin-bottom:12px;
+  padding:8px 10px;
+  background:#F4F2EB;
+  border-radius:6px;
+  font-size:11px;color:#666;line-height:1.6;
+  border-left:3px solid #CCC;
+}
+
+/* Node detail */
+#node-detail{display:none;margin-top:2px}
+#node-detail h3{
+  font-size:15px;font-weight:600;
+  margin-bottom:8px;line-height:1.35;
+  color:#111;
+}
+.badges{margin-bottom:6px}
+.badge{
+  display:inline-block;
+  padding:2px 8px;border-radius:10px;
+  font-size:10px;font-weight:500;
+  margin:0 3px 3px 0;
+}
+.nd-meta{font-size:11px;color:#AAA;margin-bottom:4px;line-height:1.6}
+.nd-tip{
+  font-size:10px;color:#C8C6BF;
+  margin-bottom:12px;
+  padding:6px 8px;
+  background:#F9F8F5;
+  border-radius:5px;
+}
+.nb-head{
+  font-size:10px;font-weight:600;color:#C0BEB7;
+  text-transform:uppercase;letter-spacing:.05em;
+  margin:12px 0 4px;
+}
+.nb-item{
+  padding:4px 8px;border-radius:5px;
+  cursor:pointer;font-size:11px;color:#555;
+  display:flex;align-items:baseline;gap:5px;
+  line-height:1.45;transition:background .1s;
+}
+.nb-item:hover{background:#F4F2EB;color:#111}
+.nb-et{font-size:10px;flex-shrink:0;font-weight:500}
+.nb-more{font-size:10px;color:#C0BEB7;padding:2px 8px}
+
+/* Hover tooltip */
+#tooltip{
+  position:fixed;
+  display:none;
+  background:#111;color:#fff;
+  font-size:11px;padding:5px 9px;
+  border-radius:5px;pointer-events:none;
+  max-width:180px;line-height:1.4;
+  z-index:100;
+}
+
+/* Panel footer */
+#panel-footer{
+  padding:12px 16px;
+  border-top:1px solid #F0EEE7;
+  font-size:10px;color:#C8C6BF;
+  line-height:1.6;
+  flex-shrink:0;
+}
+</style>
+</head>
+<body>
+
+<div id="tb">
+  <span id="tb-title">Statistical Learning KG</span>
+  <div class="tb-sep"></div>
+  <span class="lbl">Domain</span>
+  <select class="tb-select" id="sel-domain">
+    <option value="">All domains</option>
+    <option>Probability Theory</option>
+    <option>Probability Distributions</option>
+    <option>Statistical Inference</option>
+    <option>Regression and Linear Models</option>
+    <option>Generalized Linear Models</option>
+    <option>Model Evaluation and Selection</option>
+  </select>
+  <span class="lbl">Edge</span>
+  <select class="tb-select" id="sel-etype">
+    <option value="">All</option>
+    <option>instance_of</option><option>requires</option><option>assumes</option>
+    <option>uses_distribution</option><option>measures</option><option>produces</option>
+    <option>corresponds_to</option><option>implemented_by</option>
+  </select>
+  <input id="search" type="text" placeholder="Search concept...">
+  <button id="btn-back">← Overview</button>
+  <span id="stats"></span>
+</div>
+
+<div id="main">
+  <div id="cv-wrap"><canvas id="cv"></canvas></div>
+  <div id="panel">
+    <div id="panel-top">
+      <div id="ego-banner"></div>
+
+      <div id="legend-wrap">
+        <div class="leg-section">
+          <div class="sec-label">Domain</div>
+          <div id="leg-dom"></div>
+        </div>
+        <div class="leg-section">
+          <div class="sec-label">Edge type</div>
+          <div id="leg-et"></div>
+        </div>
+        <div id="hint">
+          Showing top concepts by connectivity.<br>
+          Click a node to explore its structure.<br><br>
+          <span style="color:#D0CEC7">Scroll · zoom &nbsp; Drag · pan</span>
+        </div>
+      </div>
+
+      <div id="node-detail"></div>
+    </div>
+    <div id="panel-footer">
+      307 concepts &nbsp;·&nbsp; 490 relationships &nbsp;·&nbsp; 6 domains
+    </div>
+  </div>
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────────────
+var ALL_NODES = ALL_NODES_JSON;
+var ALL_EDGES = ALL_EDGES_JSON;
+
+// ── Config ────────────────────────────────────────────────────────────────────
+// Muted, low-saturation domain palette
+var DCOL = {
+  'Probability Theory':            '#7B74C8',
+  'Probability Distributions':     '#2E9E6E',
+  'Statistical Inference':         '#3A82C4',
+  'Regression and Linear Models':  '#C85A28',
+  'Generalized Linear Models':     '#B84070',
+  'Model Evaluation and Selection':'#A86C14'
+};
+// Very muted versions for non-focused state
+var DCOL_DIM = {
+  'Probability Theory':            '#C8C4E8',
+  'Probability Distributions':     '#A8D8C4',
+  'Statistical Inference':         '#A8C8E8',
+  'Regression and Linear Models':  '#E8C0A8',
+  'Generalized Linear Models':     '#E0B0C8',
+  'Model Evaluation and Selection':'#E0CCA8'
+};
+var DSHORT = {
+  'Probability Theory':            'Prob. Theory',
+  'Probability Distributions':     'Prob. Distributions',
+  'Statistical Inference':         'Statistical Inference',
+  'Regression and Linear Models':  'Regression',
+  'Generalized Linear Models':     'GLM',
+  'Model Evaluation and Selection':'Model Eval.'
+};
+// Edge colors — subtle, low saturation
+var ECOL = {
+  instance_of:       '#C8C5BC',
+  requires:          '#D04040',
+  assumes:           '#C47800',
+  uses_distribution: '#2E9E6E',
+  measures:          '#3A82C4',
+  produces:          '#7B74C8',
+  corresponds_to:    '#B84070',
+  implemented_by:    '#AAAAAA'
+};
+
+// Node size by structural role — clear hierarchy
+var ROLE_SIZE = { 'Core':9, 'Branch':7, 'Subbranch':5.5, 'Leaf':4 };
+function nr(node){ return ROLE_SIZE[node.role] || 4; }
+
+// ── Legends ───────────────────────────────────────────────────────────────────
+(function(){
+  var d = document.getElementById('leg-dom');
+  Object.keys(DCOL).forEach(function(k){
+    var row = document.createElement('div');
+    row.className = 'leg-row';
+    row.innerHTML = '<span class="leg-dot" style="background:'+DCOL[k]+'"></span><span class="leg-lbl">'+DSHORT[k]+'</span>';
+    row.addEventListener('click', function(){
+      var sel = document.getElementById('sel-domain');
+      sel.value = sel.value === k ? '' : k;
+      sel.dispatchEvent(new Event('change'));
+    });
+    d.appendChild(row);
+  });
+  var e = document.getElementById('leg-et');
+  Object.keys(ECOL).forEach(function(k){
+    var isDash = k === 'corresponds_to';
+    var s = isDash
+      ? 'border-top:1.5px dashed '+ECOL[k]+';background:none;height:0'
+      : 'background:'+ECOL[k];
+    e.innerHTML += '<div class="eli"><span class="eline-w"><span class="eline" style="'+s+'"></span></span><span class="et-lbl">'+k+'</span></div>';
+  });
+})();
+
+// ── Canvas ────────────────────────────────────────────────────────────────────
+var canvas = document.getElementById('cv');
+var ctx    = canvas.getContext('2d');
+var wrap   = document.getElementById('cv-wrap');
+var DPR    = Math.min(window.devicePixelRatio||1, 2);
+var W=0, H=0;
+
+function resizeCanvas(){
+  var r = wrap.getBoundingClientRect();
+  W = r.width; H = r.height;
+  canvas.width  = Math.floor(W*DPR);
+  canvas.height = Math.floor(H*DPR);
+  canvas.style.width  = W+'px';
+  canvas.style.height = H+'px';
+}
+
+// ── Pan/zoom (no D3) ──────────────────────────────────────────────────────────
+var pan = {x:0,y:0}, scale = 1;
+function s2w(sx,sy){ return {x:(sx-pan.x)/scale, y:(sy-pan.y)/scale}; }
+
+// ── State ─────────────────────────────────────────────────────────────────────
+var nodes=[], links=[];
+var selId=null, hoverId=null;
+var egoMode=false, egoRoot=null;
+var simRunning=false, simAlpha=1, simStep=0, simMaxSteps=300;
+var domainFilter='', etypeFilter='';
+
+// ── Simulation ────────────────────────────────────────────────────────────────
+function simTick(){
+  if(!simRunning) return;
+  simStep++;
+  simAlpha *= 0.975;
+  if(simStep > simMaxSteps){ simRunning=false; render(); return; }
+
+  var nmap = {};
+  nodes.forEach(function(n){ nmap[n.id]=n; });
+
+  // Link force
+  links.forEach(function(l){
+    var s = typeof l.source==='object' ? l.source : nmap[l.source];
+    var t = typeof l.target==='object' ? l.target : nmap[l.target];
+    if(!s||!t) return;
+    var dx=t.x-s.x, dy=t.y-s.y, d=Math.sqrt(dx*dx+dy*dy)||1;
+    var target = egoMode ? 90 : 85;
+    var str = 0.35*simAlpha;
+    var f = (d-target)/d*str;
+    if(s.fx===undefined){s.vx+=dx*f; s.vy+=dy*f;}
+    if(t.fx===undefined){t.vx-=dx*f; t.vy-=dy*f;}
+  });
+
+  // Repulsion — only nearby pairs
+  for(var i=0;i<nodes.length;i++){
+    for(var j=i+1;j<nodes.length;j++){
+      var a=nodes[i],b=nodes[j];
+      var dx=b.x-a.x, dy=b.y-a.y, d=Math.sqrt(dx*dx+dy*dy)||1;
+      if(d>250) continue;
+      var rep = -180*simAlpha/(d*d);
+      var fx=dx/d*rep, fy=dy/d*rep;
+      if(a.fx===undefined){a.vx+=fx;a.vy+=fy;}
+      if(b.fx===undefined){b.vx-=fx;b.vy-=fy;}
+    }
+  }
+
+  // Center gravity
+  nodes.forEach(function(n){
+    if(n.fx!==undefined) return;
+    n.vx += (W/2-n.x)*0.012*simAlpha;
+    n.vy += (H/2-n.y)*0.012*simAlpha;
+  });
+
+  // Collision
+  for(var i=0;i<nodes.length;i++){
+    for(var j=i+1;j<nodes.length;j++){
+      var a=nodes[i],b=nodes[j];
+      var dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1;
+      var minD=nr(a)+nr(b)+3;
+      if(d<minD){
+        var f=(minD-d)/d*0.5;
+        if(a.fx===undefined){a.vx-=dx*f;a.vy-=dy*f;}
+        if(b.fx===undefined){b.vx+=dx*f;b.vy+=dy*f;}
+      }
+    }
+  }
+
+  // Integrate
+  nodes.forEach(function(n){
+    if(n.fx!==undefined){n.x=n.fx;n.y=n.fy;n.vx=0;n.vy=0;return;}
+    n.vx*=0.55; n.vy*=0.55;
+    n.x+=n.vx; n.y+=n.vy;
+  });
+
+  render();
+  requestAnimationFrame(simTick);
+}
+
+function startSim(maxSteps, alpha){
+  simRunning=true; simStep=0;
+  simAlpha=alpha||1; simMaxSteps=maxSteps||300;
+  requestAnimationFrame(simTick);
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function render(){
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  ctx.clearRect(0,0,W,H);
+  ctx.save();
+  ctx.translate(pan.x,pan.y);
+  ctx.scale(scale,scale);
+
+  // Highlighted set
+  var hl={};
+  if(selId){
+    hl[selId]=1; // 1=selected
+    links.forEach(function(l){
+      var s=typeof l.source==='object'?l.source.id:l.source;
+      var t=typeof l.target==='object'?l.target.id:l.target;
+      if(s===selId) hl[t]=2; // 2=neighbor
+      if(t===selId) hl[s]=2;
+    });
+  }
+  var hasHL = selId!=null;
+
+  // Edges — only draw edges connected to highlighted node when selection active
+  links.forEach(function(l){
+    var s=typeof l.source==='object'?l.source:nodes.find(function(n){return n.id===l.source;});
+    var t=typeof l.target==='object'?l.target:nodes.find(function(n){return n.id===l.target;});
+    if(!s||!t) return;
+
+    var bothHL = hasHL && hl[s.id] && hl[t.id];
+    var show   = !hasHL || bothHL;
+    if(!show) return;
+
+    var c = ECOL[l.et]||'#bbb';
+    ctx.globalAlpha = hasHL ? 0.65 : 0.3;
+    ctx.strokeStyle = c;
+    ctx.lineWidth   = hasHL ? 1.5 : 0.8;
+
+    var dx=t.x-s.x, dy=t.y-s.y, dist=Math.sqrt(dx*dx+dy*dy)||1;
+    var tr=nr(t), sr=nr(s);
+    var ex=t.x-dx/dist*tr,   ey=t.y-dy/dist*tr;
+    var sx2=s.x+dx/dist*sr,  sy2=s.y+dy/dist*sr;
+
+    ctx.beginPath();
+    l.et==='corresponds_to' ? ctx.setLineDash([3,3]) : ctx.setLineDash([]);
+    ctx.moveTo(sx2,sy2); ctx.lineTo(ex,ey); ctx.stroke();
+    ctx.setLineDash([]);
+
+    if(l.et!=='corresponds_to' && hasHL){
+      var ang=Math.atan2(dy,dx), ah=5.5;
+      ctx.globalAlpha=0.75; ctx.fillStyle=c;
+      ctx.beginPath(); ctx.moveTo(ex,ey);
+      ctx.lineTo(ex-ah*Math.cos(ang-.42),ey-ah*Math.sin(ang-.42));
+      ctx.lineTo(ex-ah*Math.cos(ang+.42),ey-ah*Math.sin(ang+.42));
+      ctx.closePath(); ctx.fill();
+    }
+  });
+
+  // Nodes — back to front (small first)
+  var sorted = nodes.slice().sort(function(a,b){ return nr(a)-nr(b); });
+  sorted.forEach(function(n){
+    var r  = nr(n);
+    var hl_level = hl[n.id]||0;
+    var isSel    = n.id===selId;
+    var isRoot   = egoMode&&n.id===egoRoot;
+    var isHover  = n.id===hoverId;
+
+    // Color based on state
+    var fillC;
+    if(!hasHL){
+      fillC = DCOL[n.domain]||'#aaa';
+    } else if(hl_level===1){
+      fillC = DCOL[n.domain]||'#aaa'; // selected: full color
+    } else if(hl_level===2){
+      fillC = DCOL[n.domain]||'#aaa'; // neighbor: full color
+    } else {
+      fillC = '#DDDBD4'; // non-relevant: neutral gray
+    }
+
+    var alpha = hasHL ? (hl_level>0?1:0.25) : 1;
+
+    // Outer glow for Core/Branch nodes
+    if((n.role==='Core'||n.role==='Branch') && (!hasHL||hl_level>0)){
+      ctx.globalAlpha = alpha*0.12;
+      ctx.beginPath(); ctx.arc(n.x,n.y,r+5,0,2*Math.PI);
+      ctx.fillStyle = DCOL[n.domain]||'#aaa'; ctx.fill();
+    }
+
+    ctx.globalAlpha = alpha;
+    ctx.beginPath(); ctx.arc(n.x,n.y,r,0,2*Math.PI);
+    ctx.fillStyle = fillC; ctx.fill();
+
+    // Ring for selected/root
+    if(isRoot||isSel){
+      ctx.strokeStyle = DCOL[n.domain]||'#aaa';
+      ctx.lineWidth   = isRoot?3:2;
+      ctx.globalAlpha = 1; ctx.stroke();
+      if(isRoot){
+        ctx.beginPath(); ctx.arc(n.x,n.y,r+8,0,2*Math.PI);
+        ctx.globalAlpha=0.2; ctx.lineWidth=2; ctx.stroke();
+      }
+    }
+
+    // Hover ring
+    if(isHover && !isSel){
+      ctx.strokeStyle='#888'; ctx.lineWidth=1.5;
+      ctx.globalAlpha=0.4; ctx.stroke();
+    }
+
+    // Labels
+    var showLbl =
+      isRoot ||
+      (hasHL && hl_level>0) ||
+      (!hasHL && (n.role==='Core'||n.deg>=9)) ||
+      scale>2.2;
+
+    if(showLbl){
+      var fs  = Math.max(8.5, 10.5/scale);
+      var bold = isRoot||isSel||(n.role==='Core'&&!hasHL);
+      ctx.font      = (bold?'600 ':'400 ')+fs+'px -apple-system,sans-serif';
+      ctx.textAlign = 'center';
+      ctx.globalAlpha = alpha*(hasHL&&hl_level>0?0.95:0.75);
+      ctx.fillStyle   = '#1a1a18';
+      var lbl = n.label.length>24 ? n.label.slice(0,23)+'…' : n.label;
+      ctx.fillText(lbl, n.x, n.y-r-4);
+    }
+  });
+
+  ctx.globalAlpha=1; ctx.restore();
+}
+
+// ── Hit test ──────────────────────────────────────────────────────────────────
+function hitNode(sx,sy){
+  var w = s2w(sx,sy);
+  for(var i=nodes.length-1;i>=0;i--){
+    var n=nodes[i];
+    var dx=n.x-w.x, dy=n.y-w.y;
+    if(dx*dx+dy*dy<=(nr(n)+6)*(nr(n)+6)) return n;
+  }
+  return null;
+}
+
+// ── Overview (default) ────────────────────────────────────────────────────────
+function buildOverview(doReset){
+  var q = document.getElementById('search').value.toLowerCase().trim();
+
+  var fn;
+  if(q){
+    // Search: show matched node + 1-hop neighbors
+    var m={};
+    ALL_NODES.forEach(function(n){
+      if(n.label.toLowerCase().indexOf(q)>=0||n.id.indexOf(q)>=0) m[n.id]=true;
+    });
+    ALL_EDGES.forEach(function(e){
+      if(m[e.s]) m[e.t]=true;
+      if(m[e.t]) m[e.s]=true;
+    });
+    fn = ALL_NODES.filter(function(n){ return m[n.id]; });
+  } else {
+    // Default: top 20 by degree, filtered by domain
+    fn = ALL_NODES.slice().sort(function(a,b){return b.deg-a.deg;});
+    if(domainFilter) fn=fn.filter(function(n){return n.domain===domainFilter;});
+    fn = fn.slice(0,20);
+  }
+
+  var ns={};fn.forEach(function(n){ns[n.id]=true;});
+  var fe=ALL_EDGES.filter(function(e){return ns[e.s]&&ns[e.t];});
+  if(etypeFilter) fe=fe.filter(function(e){return e.et===etypeFilter;});
+
+  document.getElementById('stats').textContent=fn.length+' nodes shown';
+
+  var pos={};nodes.forEach(function(n){pos[n.id]={x:n.x,y:n.y};});
+  nodes=fn.map(function(n){
+    var p=pos[n.id]||{x:W/2+(Math.random()-.5)*260,y:H/2+(Math.random()-.5)*220};
+    return Object.assign({},n,{x:p.x,y:p.y,vx:0,vy:0});
+  });
+  links=fe.map(function(e){return{source:e.s,target:e.t,et:e.et};});
+  if(doReset){pan={x:0,y:0};scale=1;}
+  startSim(350,1);
+}
+
+// ── Ego layout ────────────────────────────────────────────────────────────────
+function buildEgo(rootId, doReset){
+  egoMode=true; egoRoot=rootId; selId=rootId;
+
+  var fe = etypeFilter ? ALL_EDGES.filter(function(e){return e.et===etypeFilter;}) : ALL_EDGES;
+
+  var d1={},d2={};
+  d1[rootId]=true;
+  fe.forEach(function(e){
+    if(e.s===rootId) d1[e.t]=true;
+    if(e.t===rootId) d1[e.s]=true;
+  });
+  delete d1[rootId];
+  fe.forEach(function(e){
+    if(d1[e.s]&&!d1[e.t]&&e.t!==rootId) d2[e.t]=true;
+    if(d1[e.t]&&!d1[e.s]&&e.s!==rootId) d2[e.s]=true;
+  });
+  // Filter 2nd-hop by domain if set
+  if(domainFilter){
+    Object.keys(d2).forEach(function(k){
+      var nd=ALL_NODES.find(function(n){return n.id===k;});
+      if(nd&&nd.domain!==domainFilter) delete d2[k];
+    });
+  }
+
+  var allIds={};
+  allIds[rootId]=true;
+  Object.keys(d1).forEach(function(k){allIds[k]=true;});
+  Object.keys(d2).forEach(function(k){allIds[k]=true;});
+
+  var cx=W/2, cy=H/2;
+  var r1=Math.min(W,H)*0.21, r2=Math.min(W,H)*0.40;
+  var d1a=Object.keys(d1), d2a=Object.keys(d2);
+
+  nodes = ALL_NODES.filter(function(n){return allIds[n.id];}).map(function(n){
+    if(n.id===rootId) return Object.assign({},n,{x:cx,y:cy,fx:cx,fy:cy,vx:0,vy:0});
+    var i1=d1a.indexOf(n.id);
+    if(i1>=0){
+      var a=(i1/d1a.length)*2*Math.PI-Math.PI/2;
+      return Object.assign({},n,{x:cx+r1*Math.cos(a),y:cy+r1*Math.sin(a),vx:0,vy:0});
+    }
+    var i2=d2a.indexOf(n.id);
+    if(i2>=0){
+      var a=(i2/d2a.length)*2*Math.PI-Math.PI/2;
+      return Object.assign({},n,{x:cx+r2*Math.cos(a),y:cy+r2*Math.sin(a),vx:0,vy:0});
+    }
+    return Object.assign({},n,{x:cx+(Math.random()-.5)*50,y:cy+(Math.random()-.5)*50,vx:0,vy:0});
+  });
+
+  links = fe.filter(function(e){return allIds[e.s]&&allIds[e.t];})
+            .map(function(e){return{source:e.s,target:e.t,et:e.et};});
+
+  if(doReset){pan={x:0,y:0};scale=1;}
+
+  document.getElementById('stats').textContent=nodes.length+' nodes · '+links.length+' edges';
+  document.getElementById('btn-back').style.display='inline-block';
+
+  var rn=ALL_NODES.find(function(n){return n.id===rootId;});
+  if(rn){
+    var eb=document.getElementById('ego-banner');
+    eb.style.display='block';
+    eb.innerHTML='<strong style="color:#333">'+rn.label+'</strong><br>'+
+      '<span style="color:#999">'+d1a.length+' direct connections · '+d2a.length+' second-hop</span>';
+    showDetail(rn, true);
+  }
+
+  startSim(180, 0.5);
+  setTimeout(function(){
+    var root=nodes.find(function(n){return n.id===rootId;});
+    if(root){delete root.fx;delete root.fy;}
+  },1800);
+}
+
+function exitEgo(){
+  egoMode=false; egoRoot=null; selId=null; hoverId=null;
+  document.getElementById('btn-back').style.display='none';
+  document.getElementById('ego-banner').style.display='none';
+  document.getElementById('node-detail').style.display='none';
+  document.getElementById('hint').style.display='block';
+  buildOverview(true);
+}
+
+// ── Detail panel ──────────────────────────────────────────────────────────────
+function showDetail(node, inEgo){
+  document.getElementById('hint').style.display='none';
+  var det = document.getElementById('node-detail');
+  det.style.display='block';
+  var c = DCOL[node.domain]||'#aaa';
+  var outE=[],inE=[];
+  ALL_EDGES.forEach(function(e){
+    if(e.s===node.id){var t=ALL_NODES.find(function(n){return n.id===e.t;});if(t)outE.push({n:t,et:e.et});}
+    if(e.t===node.id){var s=ALL_NODES.find(function(n){return n.id===e.s;});if(s)inE.push({n:s,et:e.et});}
+  });
+  function mkList(arr,lbl){
+    if(!arr.length) return '';
+    var h='<div class="nb-head">'+lbl+'</div>';
+    arr.slice(0,10).forEach(function(e){
+      h+='<div class="nb-item" data-id="'+e.n.id+'">'
+        +'<span class="nb-et" style="color:'+(ECOL[e.et]||'#aaa')+'">'+e.et+'</span>'
+        +e.n.label+'</div>';
+    });
+    if(arr.length>10) h+='<div class="nb-more">+'+(arr.length-10)+' more</div>';
+    return h;
+  }
+  det.innerHTML=
+    '<h3>'+node.label+'</h3>'+
+    '<div class="badges">'+
+    '<span class="badge" style="background:'+c+'18;color:'+c+'">'+(DSHORT[node.domain]||node.domain)+'</span>'+
+    '<span class="badge" style="background:#F0EEE7;color:#666">'+node.role+'</span>'+
+    '<span class="badge" style="background:#F0EEE7;color:#666">'+node.type+'</span>'+
+    '</div>'+
+    '<div class="nd-meta">'+node.deg+' connections</div>'+
+    '<div class="nd-tip">'+(inEgo?'Click any neighbor to re-center.':'Click again to explore ego view.')+'</div>'+
+    mkList(outE,'→ Outgoing ('+outE.length+')')+
+    mkList(inE, '← Incoming ('+inE.length+')');
+
+  det.querySelectorAll('.nb-item').forEach(function(el){
+    el.addEventListener('click', function(){ jumpTo(el.dataset.id); });
+  });
+}
+
+function jumpTo(id){
+  if(egoMode){ buildEgo(id,false); return; }
+  var n=nodes.find(function(x){return x.id===id;});
+  if(n){ selId=id; render(); showDetail(ALL_NODES.find(function(x){return x.id===id;})||n,false); }
+  else { buildEgo(id,false); }
+}
+
+// ── Tooltip ───────────────────────────────────────────────────────────────────
+var tooltip = document.getElementById('tooltip');
+function showTip(node, sx, sy){
+  tooltip.style.display='block';
+  tooltip.style.left=(sx+14)+'px';
+  tooltip.style.top =(sy-8)+'px';
+  tooltip.textContent = node.label;
+}
+function hideTip(){ tooltip.style.display='none'; }
+
+// ── Pointer events ────────────────────────────────────────────────────────────
+var isPan=false, panStart={x:0,y:0}, panOrig={x:0,y:0};
+var dragN=null, dragMoved=false;
+
+canvas.addEventListener('mousedown',function(e){
+  var rect=canvas.getBoundingClientRect();
+  var mx=e.clientX-rect.left, my=e.clientY-rect.top;
+  var h=hitNode(mx,my);
+  if(h){ dragN=h; dragMoved=false; }
+  else { isPan=true; panStart={x:e.clientX,y:e.clientY}; panOrig={x:pan.x,y:pan.y}; }
+});
+
+canvas.addEventListener('mousemove',function(e){
+  var rect=canvas.getBoundingClientRect();
+  var mx=e.clientX-rect.left, my=e.clientY-rect.top;
+
+  if(dragN){
+    var w=s2w(mx,my);
+    dragN.x=w.x; dragN.y=w.y; dragN.fx=w.x; dragN.fy=w.y;
+    dragMoved=true;
+    if(!simRunning){simRunning=true;simAlpha=0.3;simStep=0;simMaxSteps=80;requestAnimationFrame(simTick);}
+    render(); return;
+  }
+  if(isPan){
+    pan.x=panOrig.x+(e.clientX-panStart.x);
+    pan.y=panOrig.y+(e.clientY-panStart.y);
+    render(); return;
+  }
+
+  // Hover
+  var h=hitNode(mx,my);
+  var newHover=h?h.id:null;
+  if(newHover!==hoverId){
+    hoverId=newHover;
+    render();
+    if(h) { showTip(h, e.clientX, e.clientY); canvas.style.cursor='pointer'; }
+    else  { hideTip(); canvas.style.cursor='default'; }
+  } else if(h) {
+    showTip(h, e.clientX, e.clientY);
+  }
+});
+
+canvas.addEventListener('mouseleave',function(){
+  hoverId=null; hideTip(); canvas.style.cursor='default'; render();
+});
+
+canvas.addEventListener('mouseup',function(e){
+  if(dragN){
+    if(!dragMoved){
+      var rect=canvas.getBoundingClientRect();
+      var h=hitNode(e.clientX-rect.left,e.clientY-rect.top);
+      if(h){
+        if(egoMode){ if(h.id!==egoRoot) buildEgo(h.id,false); }
+        else if(selId===h.id){ buildEgo(h.id,true); }
+        else { selId=h.id; render(); showDetail(ALL_NODES.find(function(n){return n.id===h.id;})||h,false); }
+      }
+    }
+    if(dragN){delete dragN.fx;delete dragN.fy;}
+    dragN=null;
+  }
+  isPan=false;
+});
+
+canvas.addEventListener('wheel',function(e){
+  e.preventDefault();
+  var rect=canvas.getBoundingClientRect();
+  var mx=e.clientX-rect.left, my=e.clientY-rect.top;
+  var f=e.deltaY<0?1.12:1/1.12;
+  var ns=Math.max(0.05,Math.min(15,scale*f));
+  pan.x=mx-(mx-pan.x)*(ns/scale);
+  pan.y=my-(my-pan.y)*(ns/scale);
+  scale=ns; render();
+},{passive:false});
+
+// ── Toolbar ───────────────────────────────────────────────────────────────────
+document.getElementById('btn-back').addEventListener('click',exitEgo);
+
+document.getElementById('sel-domain').addEventListener('change',function(){
+  domainFilter=this.value; selId=null;
+  if(egoMode) buildEgo(egoRoot,false);
+  else buildOverview(false);
+});
+document.getElementById('sel-etype').addEventListener('change',function(){
+  etypeFilter=this.value; selId=null;
+  if(egoMode) buildEgo(egoRoot,false);
+  else buildOverview(false);
+});
+
+var st;
+document.getElementById('search').addEventListener('input',function(){
+  clearTimeout(st);
+  st=setTimeout(function(){
+    selId=null;
+    if(!egoMode) buildOverview(false);
+  },300);
+});
+document.getElementById('search').addEventListener('keydown',function(e){
+  if(e.key==='Enter'){
+    var q=this.value.toLowerCase().trim();
+    if(!q) return;
+    var match=ALL_NODES.find(function(n){return n.label.toLowerCase()===q||n.id===q;});
+    if(!match) match=ALL_NODES.find(function(n){return n.label.toLowerCase().indexOf(q)>=0;});
+    if(match){ this.value=''; buildEgo(match.id,true); }
+  }
+});
+
+// ── Resize ────────────────────────────────────────────────────────────────────
+window.addEventListener('resize',function(){
+  resizeCanvas();
+  if(egoMode) buildEgo(egoRoot,false);
+  else render();
+});
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+resizeCanvas();
+buildOverview(true);
+</script>
+</body>
+</html>

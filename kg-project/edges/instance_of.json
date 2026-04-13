@@ -1,0 +1,3478 @@
+{
+  "edge_type": "instance_of",
+  "description": "A 是 B 的具体特例或实例",
+  "edges": [
+    {
+      "source": {
+        "id": "probability_mass_function",
+        "canonical_name": "Probability Mass Function",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "discrete_random_variables",
+        "canonical_name": "Discrete Random Variables",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "probability_density_function",
+        "canonical_name": "Probability Density Function",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "continuous_random_variables",
+        "canonical_name": "Continuous Random Variables",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "cumulative_distribution_function",
+        "canonical_name": "Cumulative Distribution Function (CDF)",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "distribution_functions",
+        "canonical_name": "Distribution Functions",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "joint_probability_mass_function",
+        "canonical_name": "Joint Probability Mass Function",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "joint_distributions",
+        "canonical_name": "Joint Distributions",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "joint_probability_density_function",
+        "canonical_name": "Joint Probability Density Function",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "joint_distributions",
+        "canonical_name": "Joint Distributions",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "linear_combination_of_random_variables",
+        "canonical_name": "Linear Combination of Random Variables",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "functions_of_random_variables",
+        "canonical_name": "Functions of Random Variables",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "distribution_of_sum_of_independent_random_variables",
+        "canonical_name": "Distribution of a Sum of Independent Random Variables",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "functions_of_random_variables",
+        "canonical_name": "Functions of Random Variables",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "convolution_of_probability_density_functions",
+        "canonical_name": "Convolution of Probability Density Functions",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "distribution_of_sum_of_independent_random_variables",
+        "canonical_name": "Distribution of a Sum of Independent Random Variables",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "conditional_probability",
+        "canonical_name": "Conditional Probability",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "conditional_probability_and_conditional_distributions",
+        "canonical_name": "Conditional Probability and Conditional Distributions",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "conditional_distribution",
+        "canonical_name": "Conditional Distribution",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "conditional_probability_and_conditional_distributions",
+        "canonical_name": "Conditional Probability and Conditional Distributions",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "conditional_expectation",
+        "canonical_name": "Conditional Expectation",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "conditional_probability_and_conditional_distributions",
+        "canonical_name": "Conditional Probability and Conditional Distributions",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "independent_random_variables",
+        "canonical_name": "Independent Random Variables",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "independence_structure",
+        "canonical_name": "Independence Structure",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "independent_identically_distributed_random_variables",
+        "canonical_name": "Independent and Identically Distributed Random Variables",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "independence_structure",
+        "canonical_name": "Independence Structure",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "mutual_independence",
+        "canonical_name": "Mutual Independence",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "independence_structure",
+        "canonical_name": "Independence Structure",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "expected_value",
+        "canonical_name": "Expected Value",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "expectation_and_moments",
+        "canonical_name": "Expectation and Moments",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "variance",
+        "canonical_name": "Variance",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "expectation_and_moments",
+        "canonical_name": "Expectation and Moments",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "covariance",
+        "canonical_name": "Covariance",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "expectation_and_moments",
+        "canonical_name": "Expectation and Moments",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "correlation",
+        "canonical_name": "Correlation",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "expectation_and_moments",
+        "canonical_name": "Expectation and Moments",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "weak_law_of_large_numbers",
+        "canonical_name": "Weak Law of Large Numbers",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "limit_laws",
+        "canonical_name": "Limit Laws",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "central_limit_theorem",
+        "canonical_name": "Central Limit Theorem",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "limit_laws",
+        "canonical_name": "Limit Laws",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "chebyshev_inequality",
+        "canonical_name": "Chebyshev Inequality",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "probability_inequalities",
+        "canonical_name": "Probability Inequalities",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "exponential_family",
+        "canonical_name": "Exponential Family",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "distribution_families",
+        "canonical_name": "Distribution Families",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bernoulli_type_distributions",
+        "canonical_name": "Bernoulli-Type Distributions",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "discrete_distributions",
+        "canonical_name": "Discrete Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bernoulli_distribution",
+        "canonical_name": "Bernoulli Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "bernoulli_type_distributions",
+        "canonical_name": "Bernoulli-Type Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "binomial_distribution",
+        "canonical_name": "Binomial Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "bernoulli_type_distributions",
+        "canonical_name": "Bernoulli-Type Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "geometric_distribution",
+        "canonical_name": "Geometric Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "bernoulli_type_distributions",
+        "canonical_name": "Bernoulli-Type Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "poisson_type_distributions",
+        "canonical_name": "Poisson-Type Distributions",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "discrete_distributions",
+        "canonical_name": "Discrete Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "poisson_distribution",
+        "canonical_name": "Poisson Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "poisson_type_distributions",
+        "canonical_name": "Poisson-Type Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "multinomial_type_distributions",
+        "canonical_name": "Multinomial-Type Distributions",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "discrete_distributions",
+        "canonical_name": "Discrete Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "trinomial_distribution",
+        "canonical_name": "Trinomial Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "multinomial_type_distributions",
+        "canonical_name": "Multinomial-Type Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "uniform_distribution",
+        "canonical_name": "Uniform Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "continuous_distributions",
+        "canonical_name": "Continuous Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "normal_based_distributions",
+        "canonical_name": "Normal-Based Distributions",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "continuous_distributions",
+        "canonical_name": "Continuous Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "normal_based_distributions",
+        "canonical_name": "Normal-Based Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "students_t_distribution",
+        "canonical_name": "Student's t Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "normal_based_distributions",
+        "canonical_name": "Normal-Based Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "chi_square_distribution",
+        "canonical_name": "Chi-square Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "normal_based_distributions",
+        "canonical_name": "Normal-Based Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "f_distribution",
+        "canonical_name": "F Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "normal_based_distributions",
+        "canonical_name": "Normal-Based Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "gamma_based_distributions",
+        "canonical_name": "Gamma-Based Distributions",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "continuous_distributions",
+        "canonical_name": "Continuous Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "gamma_distribution",
+        "canonical_name": "Gamma Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "gamma_based_distributions",
+        "canonical_name": "Gamma-Based Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "exponential_distribution",
+        "canonical_name": "Exponential Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "gamma_based_distributions",
+        "canonical_name": "Gamma-Based Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "beta_distribution",
+        "canonical_name": "Beta Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "gamma_based_distributions",
+        "canonical_name": "Gamma-Based Distributions",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "normal_distribution",
+        "canonical_name": "Normal Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "exponential_family",
+        "canonical_name": "Exponential Family",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bernoulli_distribution",
+        "canonical_name": "Bernoulli Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "exponential_family",
+        "canonical_name": "Exponential Family",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "poisson_distribution",
+        "canonical_name": "Poisson Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "exponential_family",
+        "canonical_name": "Exponential Family",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "binomial_distribution",
+        "canonical_name": "Binomial Distribution",
+        "domain": "Probability Distributions"
+      },
+      "target": {
+        "id": "exponential_family",
+        "canonical_name": "Exponential Family",
+        "domain": "Probability Distributions"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "frequentist_inference",
+        "canonical_name": "Frequentist Inference",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "foundations_of_inference",
+        "canonical_name": "Foundations of Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "continuous_parameter",
+        "canonical_name": "Continuous Parameter",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "parameter",
+        "canonical_name": "Parameter",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "discrete_parameter",
+        "canonical_name": "Discrete Parameter",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "parameter",
+        "canonical_name": "Parameter",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "population_mean",
+        "canonical_name": "Population Mean",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "population_parameters",
+        "canonical_name": "Population Parameters",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "population_variance",
+        "canonical_name": "Population Variance",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "population_parameters",
+        "canonical_name": "Population Parameters",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "population_proportion",
+        "canonical_name": "Population Proportion",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "population_parameters",
+        "canonical_name": "Population Parameters",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "sample_mean",
+        "canonical_name": "Sample Mean",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "summary_statistics",
+        "canonical_name": "Summary Statistics",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "sample_variance",
+        "canonical_name": "Sample Variance",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "summary_statistics",
+        "canonical_name": "Summary Statistics",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "sample_standard_deviation",
+        "canonical_name": "Sample Standard Deviation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "sample_variance",
+        "canonical_name": "Sample Variance",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "sample_covariance",
+        "canonical_name": "Sample Covariance",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "summary_statistics",
+        "canonical_name": "Summary Statistics",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "sample_proportion",
+        "canonical_name": "Sample Proportion",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "summary_statistics",
+        "canonical_name": "Summary Statistics",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "sampling_distribution",
+        "canonical_name": "Sampling Distribution",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "sampling_distributions",
+        "canonical_name": "Sampling Distributions",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "standard_error",
+        "canonical_name": "Standard Error",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "sampling_distributions",
+        "canonical_name": "Sampling Distributions",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bootstrapped_sampling_distribution",
+        "canonical_name": "Bootstrapped Sampling Distribution",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "sampling_distributions",
+        "canonical_name": "Sampling Distributions",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "large_sample_distribution_of_the_mle",
+        "canonical_name": "Large Sample Distribution of the MLE",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "large_sample_inference",
+        "canonical_name": "Large Sample Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "normal_approximation",
+        "canonical_name": "Normal Approximation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "large_sample_inference",
+        "canonical_name": "Large Sample Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "estimator",
+        "canonical_name": "Estimator",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "point_estimation",
+        "canonical_name": "Point Estimation",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "unbiased_estimator",
+        "canonical_name": "Unbiased Estimator",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "estimator",
+        "canonical_name": "Estimator",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "estimate",
+        "canonical_name": "Estimate",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "point_estimation",
+        "canonical_name": "Point Estimation",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bias_corrected_estimate",
+        "canonical_name": "Bias-corrected Estimate",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "estimate",
+        "canonical_name": "Estimate",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "interval_estimation",
+        "canonical_name": "Interval Estimation",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "large_sample_confidence_interval",
+        "canonical_name": "Large Sample Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "t_confidence_interval",
+        "canonical_name": "t Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "confidence_interval_for_difference_of_means",
+        "canonical_name": "Confidence Interval for Difference of Means",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "confidence_interval_for_population_variance",
+        "canonical_name": "Confidence Interval for Population Variance",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "large_sample_confidence_interval_using_mle",
+        "canonical_name": "Large Sample Confidence Interval using MLE",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "wald_confidence_interval",
+        "canonical_name": "Wald Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "confidence_interval",
+        "canonical_name": "Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "likelihood",
+        "canonical_name": "Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood_based_inference",
+        "canonical_name": "Likelihood-Based Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "log_likelihood",
+        "canonical_name": "Log-Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood",
+        "canonical_name": "Likelihood",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "maximum_likelihood_estimation",
+        "canonical_name": "Maximum Likelihood Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood_based_inference",
+        "canonical_name": "Likelihood-Based Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "maximum_likelihood_estimator",
+        "canonical_name": "Maximum Likelihood Estimator",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "maximum_likelihood_estimation",
+        "canonical_name": "Maximum Likelihood Estimation",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "numerical_maximization_methods",
+        "canonical_name": "Numerical Maximization Methods",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood_based_inference",
+        "canonical_name": "Likelihood-Based Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "newton_raphson_method",
+        "canonical_name": "Newton-Raphson Method",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "numerical_maximization_methods",
+        "canonical_name": "Numerical Maximization Methods",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bisection_method",
+        "canonical_name": "Bisection Method",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "numerical_maximization_methods",
+        "canonical_name": "Numerical Maximization Methods",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "fisher_information",
+        "canonical_name": "Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood_based_inference",
+        "canonical_name": "Likelihood-Based Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "expected_fisher_information",
+        "canonical_name": "Expected Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "fisher_information",
+        "canonical_name": "Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "observed_fisher_information",
+        "canonical_name": "Observed Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "fisher_information",
+        "canonical_name": "Fisher Information",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "score_function",
+        "canonical_name": "Score Function",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood_based_inference",
+        "canonical_name": "Likelihood-Based Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "likelihood_ratio",
+        "canonical_name": "Likelihood Ratio",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood_based_inference",
+        "canonical_name": "Likelihood-Based Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "method_of_moments",
+        "canonical_name": "Method of Moments",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "alternative_estimation_methods",
+        "canonical_name": "Alternative Estimation Methods",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "least_squares_estimation",
+        "canonical_name": "Least Squares Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "alternative_estimation_methods",
+        "canonical_name": "Alternative Estimation Methods",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bootstrap",
+        "canonical_name": "Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bootstrap_methods",
+        "canonical_name": "Bootstrap Methods",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "non_parametric_bootstrap",
+        "canonical_name": "Non-parametric Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bootstrap",
+        "canonical_name": "Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "parametric_bootstrap",
+        "canonical_name": "Parametric Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bootstrap",
+        "canonical_name": "Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bootstrap_percentile_method",
+        "canonical_name": "Bootstrap Percentile Method",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bootstrap",
+        "canonical_name": "Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "non_informative_prior",
+        "canonical_name": "Non-informative Prior",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "prior_probability",
+        "canonical_name": "Prior Probability",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "posterior_probability",
+        "canonical_name": "Posterior Probability",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "posterior_mean",
+        "canonical_name": "Posterior Mean",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "posterior_median",
+        "canonical_name": "Posterior Median",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "posterior_distribution",
+        "canonical_name": "Posterior Distribution",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bayesian_point_estimate",
+        "canonical_name": "Bayesian Point Estimate",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bayesian_point_estimation",
+        "canonical_name": "Bayesian Point Estimation",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "credible_interval",
+        "canonical_name": "Credible Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bayesian_interval_estimation",
+        "canonical_name": "Bayesian Interval Estimation",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "equal_tail_interval",
+        "canonical_name": "Equal-tail Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "credible_interval",
+        "canonical_name": "Credible Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "highest_posterior_density_interval",
+        "canonical_name": "Highest Posterior Density Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "credible_interval",
+        "canonical_name": "Credible Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "null_hypothesis",
+        "canonical_name": "Null Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "hypothesis",
+        "canonical_name": "Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "alternative_hypothesis",
+        "canonical_name": "Alternative Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "hypothesis",
+        "canonical_name": "Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "simple_hypothesis",
+        "canonical_name": "Simple Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "hypothesis",
+        "canonical_name": "Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "composite_hypothesis",
+        "canonical_name": "Composite Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "hypothesis",
+        "canonical_name": "Hypothesis",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "one_sided_test",
+        "canonical_name": "One-sided Test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "two_sided_test",
+        "canonical_name": "Two-sided Test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing_using_p_values",
+        "canonical_name": "Hypothesis Testing using P-values",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "z_test",
+        "canonical_name": "Z-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "classical_test_procedures",
+        "canonical_name": "Classical Test Procedures",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "two_sample_z_test",
+        "canonical_name": "Two Sample Z-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "z_test",
+        "canonical_name": "Z-test",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "one_sample_t_test",
+        "canonical_name": "One Sample t-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "classical_test_procedures",
+        "canonical_name": "Classical Test Procedures",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "two_sample_t_test",
+        "canonical_name": "Two Sample t-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "classical_test_procedures",
+        "canonical_name": "Classical Test Procedures",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "wald_test",
+        "canonical_name": "Wald Test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "classical_test_procedures",
+        "canonical_name": "Classical Test Procedures",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "likelihood_ratio_test",
+        "canonical_name": "Likelihood Ratio Test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "classical_test_procedures",
+        "canonical_name": "Classical Test Procedures",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "chi_square_test_for_population_variance",
+        "canonical_name": "Chi-square Test for Population Variance",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "classical_test_procedures",
+        "canonical_name": "Classical Test Procedures",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bayesian_p_value",
+        "canonical_name": "Bayesian P-value",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bayesian_testing_concepts",
+        "canonical_name": "Bayesian Testing Concepts",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "linear_regression",
+        "canonical_name": "Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "regression_analysis",
+        "canonical_name": "Regression Analysis",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "simple_linear_regression",
+        "canonical_name": "Simple Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "linear_regression",
+        "canonical_name": "Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "multiple_linear_regression",
+        "canonical_name": "Multiple Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "linear_regression",
+        "canonical_name": "Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "dependent_variable",
+        "canonical_name": "Dependent Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "variables_in_regression",
+        "canonical_name": "Variables in Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "independent_variable",
+        "canonical_name": "Independent Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "variables_in_regression",
+        "canonical_name": "Variables in Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "numeric_variable",
+        "canonical_name": "Numeric Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "predictor_types",
+        "canonical_name": "Predictor Types",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "categorical_variable",
+        "canonical_name": "Categorical Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "predictor_types",
+        "canonical_name": "Predictor Types",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "factor_variable",
+        "canonical_name": "Factor Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "categorical_variable",
+        "canonical_name": "Categorical Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "nominal_predictor",
+        "canonical_name": "Nominal Predictor",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "categorical_variable",
+        "canonical_name": "Categorical Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "categorical_predictor",
+        "canonical_name": "Categorical Predictor",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "categorical_variable",
+        "canonical_name": "Categorical Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "reference_level",
+        "canonical_name": "Reference Level",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "categorical_variable",
+        "canonical_name": "Categorical Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "polynomial_predictor",
+        "canonical_name": "Polynomial Predictor",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "predictor_types",
+        "canonical_name": "Predictor Types",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "linear_relationship",
+        "canonical_name": "Linear Relationship",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "linear_relationship_structure",
+        "canonical_name": "Linear Relationship Structure",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "linear_trend",
+        "canonical_name": "Linear Trend",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "linear_relationship_structure",
+        "canonical_name": "Linear Relationship Structure",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "intercept",
+        "canonical_name": "Intercept",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "model_components",
+        "canonical_name": "Model Components",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "slope",
+        "canonical_name": "Slope",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "model_components",
+        "canonical_name": "Model Components",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "error_term",
+        "canonical_name": "Error Term",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "model_components",
+        "canonical_name": "Model Components",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "variance_of_the_error_term",
+        "canonical_name": "Variance of the Error Term",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "model_components",
+        "canonical_name": "Model Components",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "interaction_effect",
+        "canonical_name": "Interaction Effect",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "interaction",
+        "canonical_name": "Interaction",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "design_matrix",
+        "canonical_name": "Design Matrix",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "design_matrix_representation",
+        "canonical_name": "Design Matrix Representation",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "dummy_variable",
+        "canonical_name": "Dummy Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "design_matrix_representation",
+        "canonical_name": "Design Matrix Representation",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "dummy_encoding",
+        "canonical_name": "Dummy Encoding",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "design_matrix_representation",
+        "canonical_name": "Design Matrix Representation",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "dummy_variable_encoding",
+        "canonical_name": "Dummy Variable Encoding",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "design_matrix_representation",
+        "canonical_name": "Design Matrix Representation",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "estimation",
+        "canonical_name": "Estimation",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "partial_regression_coefficient",
+        "canonical_name": "Partial Regression Coefficient",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "coefficients",
+        "canonical_name": "Coefficients",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "distribution_of_ols_estimators",
+        "canonical_name": "Distribution of OLS Estimators",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "estimator_distribution",
+        "canonical_name": "Estimator Distribution",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "total_sum_of_squares",
+        "canonical_name": "Total Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "sum_of_squares",
+        "canonical_name": "Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "regression_sum_of_squares",
+        "canonical_name": "Regression Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "sum_of_squares",
+        "canonical_name": "Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "residual_sum_of_squares",
+        "canonical_name": "Residual Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "sum_of_squares",
+        "canonical_name": "Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "sum_of_squared_errors",
+        "canonical_name": "Sum of Squared Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "sum_of_squares",
+        "canonical_name": "Sum of Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "variance_decomposition",
+        "canonical_name": "Variance Decomposition",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "model_fit_and_variance_decomposition",
+        "canonical_name": "Model Fit and Variance Decomposition",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "coefficient_of_determination",
+        "canonical_name": "Coefficient of Determination",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "model_fit_and_variance_decomposition",
+        "canonical_name": "Model Fit and Variance Decomposition",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "prediction",
+        "canonical_name": "Prediction",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "predictions",
+        "canonical_name": "Predictions",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "fitted_value",
+        "canonical_name": "Fitted Value",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "predictions",
+        "canonical_name": "Predictions",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "standardized_residual",
+        "canonical_name": "Standardized Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual",
+        "canonical_name": "Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "studentized_residual",
+        "canonical_name": "Studentized Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual",
+        "canonical_name": "Residual",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "residual_plot",
+        "canonical_name": "Residual Plot",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "residual_analysis",
+        "canonical_name": "Residual Analysis",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "cooks_distance",
+        "canonical_name": "Cook's Distance",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "outlier",
+        "canonical_name": "Outlier",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hat_matrix",
+        "canonical_name": "Hat Matrix",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "leverage_structure",
+        "canonical_name": "Leverage Structure",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "leverage",
+        "canonical_name": "Leverage",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "leverage_structure",
+        "canonical_name": "Leverage Structure",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "high_leverage_point",
+        "canonical_name": "High Leverage Point",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "leverage_structure",
+        "canonical_name": "Leverage Structure",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "homoscedasticity",
+        "canonical_name": "Homoscedasticity",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "regression_assumptions",
+        "canonical_name": "Regression Assumptions",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "regression_assumptions",
+        "canonical_name": "Regression Assumptions",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "pearson_correlation_coefficient",
+        "canonical_name": "Pearson Correlation Coefficient",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "pairwise_correlation",
+        "canonical_name": "Pairwise Correlation",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "perfect_multicollinearity",
+        "canonical_name": "Perfect Multicollinearity",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "multicollinearity",
+        "canonical_name": "Multicollinearity",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "linear_dependence_among_predictors",
+        "canonical_name": "Linear Dependence among Predictors",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "multicollinearity",
+        "canonical_name": "Multicollinearity",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "variance_inflation_factor",
+        "canonical_name": "Variance Inflation Factor",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "collinearity_diagnostics",
+        "canonical_name": "Collinearity Diagnostics",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "tolerance",
+        "canonical_name": "Tolerance",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "collinearity_diagnostics",
+        "canonical_name": "Collinearity Diagnostics",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "partial_significance_test",
+        "canonical_name": "Partial Significance Test",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "hypothesis_testing_in_regression",
+        "canonical_name": "Hypothesis Testing in Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "t_test_for_individual_regression_coefficients",
+        "canonical_name": "t-test for Individual Regression Coefficients",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "hypothesis_testing_in_regression",
+        "canonical_name": "Hypothesis Testing in Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "t_test_for_regression_coefficients",
+        "canonical_name": "t-test for Regression Coefficients",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "hypothesis_testing_in_regression",
+        "canonical_name": "Hypothesis Testing in Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "f_statistic",
+        "canonical_name": "F Statistic",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "hypothesis_testing_in_regression",
+        "canonical_name": "Hypothesis Testing in Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "scatterplot",
+        "canonical_name": "Scatterplot",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "data_visualization",
+        "canonical_name": "Data Visualization",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "scatterplot_matrix",
+        "canonical_name": "Scatterplot Matrix",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "data_visualization",
+        "canonical_name": "Data Visualization",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "data_transformation",
+        "canonical_name": "Data Transformation",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "data_transformation_methods",
+        "canonical_name": "Data Transformation Methods",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "centering_variables",
+        "canonical_name": "Centering Variables",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "data_transformation_methods",
+        "canonical_name": "Data Transformation Methods",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "orthogonal_polynomial_transformation",
+        "canonical_name": "Orthogonal Polynomial Transformation",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "data_transformation_methods",
+        "canonical_name": "Data Transformation Methods",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "polynomial_regression_model",
+        "canonical_name": "Polynomial Regression Model",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "regression_model_extensions",
+        "canonical_name": "Regression Model Extensions",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "interaction_regression_model",
+        "canonical_name": "Interaction Regression Model",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "regression_model_extensions",
+        "canonical_name": "Regression Model Extensions",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "normal_error_model",
+        "canonical_name": "Normal Error Model",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "regression_model_extensions",
+        "canonical_name": "Regression Model Extensions",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "principal_component_regression",
+        "canonical_name": "Principal Component Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "regression_model_extensions",
+        "canonical_name": "Regression Model Extensions",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "ridge_regression",
+        "canonical_name": "Ridge Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "regression_model_extensions",
+        "canonical_name": "Regression Model Extensions",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "ridge_regression",
+        "canonical_name": "Ridge Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "linear_regression",
+        "canonical_name": "Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "principal_component_regression",
+        "canonical_name": "Principal Component Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "linear_regression",
+        "canonical_name": "Linear Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "random_component",
+        "canonical_name": "Random Component",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "model_components",
+        "canonical_name": "Model Components",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "systematic_component",
+        "canonical_name": "Systematic Component",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "model_components",
+        "canonical_name": "Model Components",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "linear_predictor",
+        "canonical_name": "Linear Predictor",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "systematic_component",
+        "canonical_name": "Systematic Component",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "link_function",
+        "canonical_name": "Link Function",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "model_components",
+        "canonical_name": "Model Components",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "deviance",
+        "canonical_name": "Deviance",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "model_fit",
+        "canonical_name": "Model Fit",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "logit_link",
+        "canonical_name": "Logit Link",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "link_functions",
+        "canonical_name": "Link Functions",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "logistic_regression_model",
+        "canonical_name": "Logistic Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "glm_regression_models",
+        "canonical_name": "GLM Regression Models",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "poisson_regression_model",
+        "canonical_name": "Poisson Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "glm_regression_models",
+        "canonical_name": "GLM Regression Models",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "gamma_regression_model",
+        "canonical_name": "Gamma Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "glm_regression_models",
+        "canonical_name": "GLM Regression Models",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hierarchical_model",
+        "canonical_name": "Hierarchical Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "glm_regression_models",
+        "canonical_name": "GLM Regression Models",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "logistic_function",
+        "canonical_name": "Logistic Function",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "link_functions",
+        "canonical_name": "Link Functions",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "logistic_regression_model",
+        "canonical_name": "Logistic Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "generalized_linear_model",
+        "canonical_name": "Generalized Linear Model",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "poisson_regression_model",
+        "canonical_name": "Poisson Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "generalized_linear_model",
+        "canonical_name": "Generalized Linear Model",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "gamma_regression_model",
+        "canonical_name": "Gamma Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "generalized_linear_model",
+        "canonical_name": "Generalized Linear Model",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "in_sample_mse",
+        "canonical_name": "In-Sample MSE",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "goodness_of_fit",
+        "canonical_name": "Goodness of Fit",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "adjusted_r_squared",
+        "canonical_name": "Adjusted R-squared",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "goodness_of_fit",
+        "canonical_name": "Goodness of Fit",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "r_squared",
+        "canonical_name": "R-squared",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "goodness_of_fit",
+        "canonical_name": "Goodness of Fit",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "expected_out_of_sample_mse",
+        "canonical_name": "Expected Out-of-Sample MSE",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "prediction_error",
+        "canonical_name": "Prediction Error",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "generalization_error",
+        "canonical_name": "Generalization Error",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "prediction_error",
+        "canonical_name": "Prediction Error",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "parsimony_principle",
+        "canonical_name": "Parsimony Principle",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "model_complexity",
+        "canonical_name": "Model Complexity",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "overfitting",
+        "canonical_name": "Overfitting",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "model_complexity",
+        "canonical_name": "Model Complexity",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "penalty_term",
+        "canonical_name": "Penalty Term",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "model_complexity",
+        "canonical_name": "Model Complexity",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "leverage_diagnostic",
+        "canonical_name": "Leverage Diagnostic",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "model_diagnostics",
+        "canonical_name": "Model Diagnostics",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "correlation_matrix_inspection",
+        "canonical_name": "Correlation Matrix Inspection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "model_diagnostics",
+        "canonical_name": "Model Diagnostics",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "akaike_information_criterion",
+        "canonical_name": "Akaike Information Criterion",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "information_criteria",
+        "canonical_name": "Information Criteria",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bayesian_information_criterion",
+        "canonical_name": "Bayesian Information Criterion",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "information_criteria",
+        "canonical_name": "Information Criteria",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "mallows_cp",
+        "canonical_name": "Mallows' Cp",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "cp_based_selection",
+        "canonical_name": "Cp-based Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "all_subsets_regression",
+        "canonical_name": "All Subsets Regression",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "subset_selection_methods",
+        "canonical_name": "Subset Selection Methods",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "stepwise_selection",
+        "canonical_name": "Stepwise Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "stepwise_selection_methods",
+        "canonical_name": "Stepwise Selection Methods",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "forward_stepwise_selection",
+        "canonical_name": "Forward Stepwise Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "stepwise_selection_methods",
+        "canonical_name": "Stepwise Selection Methods",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "backward_stepwise_selection",
+        "canonical_name": "Backward Stepwise Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "stepwise_selection_methods",
+        "canonical_name": "Stepwise Selection Methods",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "anova_model_comparison",
+        "canonical_name": "ANOVA Model Comparison",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "hypothesis_based_model_comparison",
+        "canonical_name": "Hypothesis-based Model Comparison",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "f_test_for_nested_models",
+        "canonical_name": "F-test for Nested Models",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "hypothesis_based_model_comparison",
+        "canonical_name": "Hypothesis-based Model Comparison",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "resampling",
+        "canonical_name": "Resampling",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "resampling_and_validation",
+        "canonical_name": "Resampling and Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "data_splitting",
+        "canonical_name": "Data Splitting",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "resampling_and_validation",
+        "canonical_name": "Resampling and Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "cross_validation",
+        "canonical_name": "Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "resampling_and_validation",
+        "canonical_name": "Resampling and Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "k_fold_cross_validation",
+        "canonical_name": "K-Fold Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "cross_validation",
+        "canonical_name": "Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "leave_one_out_cross_validation",
+        "canonical_name": "Leave-One-Out Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "cross_validation",
+        "canonical_name": "Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "data_splitting",
+        "canonical_name": "Data Splitting",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "resampling",
+        "canonical_name": "Resampling",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "auto",
+      "notes": "Moved from implemented_by.json during Agent 6 review (S3-001): data_splitting is a specific type/variant of resampling, not a concrete algorithmic realization of an abstract concept."
+    },
+    {
+      "source": {
+        "id": "bayesian_inference",
+        "canonical_name": "Bayesian Inference",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "foundations_of_inference",
+        "canonical_name": "Foundations of Inference",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "human",
+      "notes": "Bayesian inference is an instance of the statistical inference framework."
+    },
+    {
+      "source": {
+        "id": "linear_trend",
+        "canonical_name": "Linear Trend",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "linear_relationship",
+        "canonical_name": "Linear Relationship",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "instance_of",
+      "confidence": 1.0,
+      "generated_by": "human",
+      "notes": "A linear trend is a specific manifestation of a linear relationship over time or ordered data."
+    }
+  ]
+}

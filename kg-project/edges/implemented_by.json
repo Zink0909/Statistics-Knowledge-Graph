@@ -1,0 +1,694 @@
+{
+  "edge_type": "implemented_by",
+  "description": "Abstract concept or procedure A is concretely realised through method B. Source is always a concept or procedure; target is always a method.",
+  "edges": [
+    {
+      "source": {
+        "id": "numerical_maximization_methods",
+        "canonical_name": "Numerical Maximization Methods",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "newton_raphson_method",
+        "canonical_name": "Newton-Raphson Method",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "numerical_maximization_methods",
+        "canonical_name": "Numerical Maximization Methods",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bisection_method",
+        "canonical_name": "Bisection Method",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "point_estimation",
+        "canonical_name": "Point Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "maximum_likelihood_estimation",
+        "canonical_name": "Maximum Likelihood Estimation",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "point_estimation",
+        "canonical_name": "Point Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "method_of_moments",
+        "canonical_name": "Method of Moments",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "point_estimation",
+        "canonical_name": "Point Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "least_squares_estimation",
+        "canonical_name": "Least Squares Estimation",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "interval_estimation",
+        "canonical_name": "Interval Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "t_confidence_interval",
+        "canonical_name": "t Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "interval_estimation",
+        "canonical_name": "Interval Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "wald_confidence_interval",
+        "canonical_name": "Wald Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "interval_estimation",
+        "canonical_name": "Interval Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bootstrap_percentile_method",
+        "canonical_name": "Bootstrap Percentile Method",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "interval_estimation",
+        "canonical_name": "Interval Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "large_sample_confidence_interval_using_mle",
+        "canonical_name": "Large Sample Confidence Interval using MLE",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bayesian_interval_estimation",
+        "canonical_name": "Bayesian Interval Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "equal_tail_credible_interval_method",
+        "canonical_name": "Equal-tail Credible Interval Method",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bayesian_interval_estimation",
+        "canonical_name": "Bayesian Interval Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "highest_posterior_density_interval_method",
+        "canonical_name": "Highest Posterior Density Interval Method",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bootstrap_methods",
+        "canonical_name": "Bootstrap Methods",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "non_parametric_bootstrap",
+        "canonical_name": "Non-parametric Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bootstrap_methods",
+        "canonical_name": "Bootstrap Methods",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "parametric_bootstrap",
+        "canonical_name": "Parametric Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bootstrap_methods",
+        "canonical_name": "Bootstrap Methods",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "bootstrap_percentile_method",
+        "canonical_name": "Bootstrap Percentile Method",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "z_test",
+        "canonical_name": "Z-test",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "one_sample_t_test",
+        "canonical_name": "One Sample t-test",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "two_sample_t_test",
+        "canonical_name": "Two Sample t-test",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "wald_test",
+        "canonical_name": "Wald Test",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "likelihood_ratio_test",
+        "canonical_name": "Likelihood Ratio Test",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "subset_selection_methods",
+        "canonical_name": "Subset Selection Methods",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "all_subsets_regression",
+        "canonical_name": "All Subsets Regression",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "stepwise_selection_methods",
+        "canonical_name": "Stepwise Selection Methods",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "forward_stepwise_selection",
+        "canonical_name": "Forward Stepwise Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "stepwise_selection_methods",
+        "canonical_name": "Stepwise Selection Methods",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "backward_stepwise_selection",
+        "canonical_name": "Backward Stepwise Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "stepwise_selection_methods",
+        "canonical_name": "Stepwise Selection Methods",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "stepwise_selection",
+        "canonical_name": "Stepwise Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "cross_validation",
+        "canonical_name": "Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "k_fold_cross_validation",
+        "canonical_name": "K-Fold Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "cross_validation",
+        "canonical_name": "Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "leave_one_out_cross_validation",
+        "canonical_name": "Leave-One-Out Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "link_functions",
+        "canonical_name": "Link Functions",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "logit_link",
+        "canonical_name": "Logit Link",
+        "domain": "Generalized Linear Models"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing_in_regression",
+        "canonical_name": "Hypothesis Testing in Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "t_test_for_individual_regression_coefficients",
+        "canonical_name": "t-test for Individual Regression Coefficients",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "information_criteria",
+        "canonical_name": "Information Criteria",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "akaike_information_criterion",
+        "canonical_name": "Akaike Information Criterion",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "information_criteria",
+        "canonical_name": "Information Criteria",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "bayesian_information_criterion",
+        "canonical_name": "Bayesian Information Criterion",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "cp_based_selection",
+        "canonical_name": "Cp-based Selection",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "mallows_cp",
+        "canonical_name": "Mallows' Cp",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_based_model_comparison",
+        "canonical_name": "Hypothesis-based Model Comparison",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "anova_model_comparison",
+        "canonical_name": "ANOVA Model Comparison",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_based_model_comparison",
+        "canonical_name": "Hypothesis-based Model Comparison",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "f_test_for_nested_models",
+        "canonical_name": "F-test for Nested Models",
+        "domain": "Model Evaluation and Selection"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.99,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "data_transformation_methods",
+        "canonical_name": "Data Transformation Methods",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "centering_variables",
+        "canonical_name": "Centering Variables",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "data_transformation_methods",
+        "canonical_name": "Data Transformation Methods",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "orthogonal_polynomial_transformation",
+        "canonical_name": "Orthogonal Polynomial Transformation",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "hypothesis_testing_using_p_values",
+        "canonical_name": "Hypothesis Testing using P-values",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "design_matrix_representation",
+        "canonical_name": "Design Matrix Representation",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "dummy_encoding",
+        "canonical_name": "Dummy Encoding",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": "Design matrix representation as an abstract framework is implemented via dummy encoding for categorical predictors — a standard technique in all regression texts. Confidence raised to 0.97 during Agent 6 review (S4-002)."
+    },
+    {
+      "source": {
+        "id": "hypothesis_testing",
+        "canonical_name": "Hypothesis Testing",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "chi_square_test_for_population_variance",
+        "canonical_name": "Chi-square Test for Population Variance",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "credible_interval",
+        "canonical_name": "Credible Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "equal_tail_credible_interval_method",
+        "canonical_name": "Equal-tail Credible Interval Method",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review: credible_interval is concretely constructed via the equal-tail method. Corrects erroneous instance_of edge deleted from instance_of.json (S3-006)."
+    },
+    {
+      "source": {
+        "id": "credible_interval",
+        "canonical_name": "Credible Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "highest_posterior_density_interval_method",
+        "canonical_name": "Highest Posterior Density Interval Method",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review: credible_interval is concretely constructed via the HPD interval method. Corrects erroneous instance_of edge deleted from instance_of.json (S3-007)."
+    },
+    {
+      "source": {
+        "id": "maximum_likelihood_estimation",
+        "canonical_name": "Maximum Likelihood Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "newton_raphson_method",
+        "canonical_name": "Newton-Raphson Method",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review (S4-001): MLE objective functions lacking closed-form solutions are routinely maximized via Newton-Raphson. Complements numerical_maximization_methods -> newton_raphson_method by connecting the MLE concept directly to its primary numerical implementation."
+    },
+    {
+      "source": {
+        "id": "categorical_variable",
+        "canonical_name": "Categorical Variable",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "dummy_encoding",
+        "canonical_name": "Dummy Encoding",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "Categorical variables are incorporated into regression models via dummy encoding."
+    },
+    {
+      "source": {
+        "id": "data_visualization",
+        "canonical_name": "Data Visualization",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "scatterplot",
+        "canonical_name": "Scatterplot",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "Scatterplot is a concrete implementation of data visualization for bivariate relationships."
+    },
+    {
+      "source": {
+        "id": "data_visualization",
+        "canonical_name": "Data Visualization",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "scatterplot_matrix",
+        "canonical_name": "Scatterplot Matrix",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "implemented_by",
+      "confidence": 0.97,
+      "generated_by": "human",
+      "notes": "Scatterplot matrix is a concrete visualization tool for multivariate relationships."
+    }
+  ]
+}

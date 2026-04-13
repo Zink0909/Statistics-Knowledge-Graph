@@ -1,0 +1,502 @@
+{
+  "edge_type": "assumes",
+  "description": "A 成立需要假设 B；违反假设时结论仍存在但最优性或有效性不保证",
+  "edges": [
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "homoscedasticity",
+        "canonical_name": "Homoscedasticity",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.98,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "best_linear_unbiased_estimator",
+        "canonical_name": "Best Linear Unbiased Estimator",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "homoscedasticity",
+        "canonical_name": "Homoscedasticity",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.98,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "best_linear_unbiased_estimator",
+        "canonical_name": "Best Linear Unbiased Estimator",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "independent_random_samples",
+        "canonical_name": "Independent Random Samples",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "maximum_likelihood_estimation",
+        "canonical_name": "Maximum Likelihood Estimation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "regularity_conditions",
+        "canonical_name": "Regularity Conditions",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "t_confidence_interval",
+        "canonical_name": "t Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "Small-sample t CI for a population mean assumes the population is normally distributed. Note: normality_of_errors (Regression and Linear Models domain) is used here as the closest available proxy for population normality, as no dedicated 'population normality' node exists in the domain list. The actual assumption is that the population from which observations are drawn is normally distributed, which is conceptually distinct from regression residual normality."
+    },
+    {
+      "source": {
+        "id": "large_sample_confidence_interval",
+        "canonical_name": "Large Sample Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "independent_identically_distributed_random_variables",
+        "canonical_name": "Independent and Identically Distributed Random Variables",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "large_sample_distribution_of_the_mle",
+        "canonical_name": "Large Sample Distribution of the MLE",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "regularity_conditions",
+        "canonical_name": "Regularity Conditions",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "logistic_regression_model",
+        "canonical_name": "Logistic Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "independent_random_samples",
+        "canonical_name": "Independent Random Samples",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "poisson_regression_model",
+        "canonical_name": "Poisson Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "independent_random_samples",
+        "canonical_name": "Independent Random Samples",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "distribution_of_ols_estimators",
+        "canonical_name": "Distribution of OLS Estimators",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.97,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "one_sample_t_test",
+        "canonical_name": "One Sample t-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "The one-sample t-test assumes normality of the population from which observations are drawn. Note: normality_of_errors (Regression and Linear Models domain) is used here as the closest available proxy for population normality, as no dedicated 'population normality' node exists in the domain list. The actual assumption is that the population from which observations are drawn is normally distributed, which is conceptually distinct from regression residual normality."
+    },
+    {
+      "source": {
+        "id": "two_sample_t_test",
+        "canonical_name": "Two Sample t-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "The two-sample t-test assumes normality of each population being compared. Note: normality_of_errors (Regression and Linear Models domain) is used here as the closest available proxy for population normality, as no dedicated 'population normality' node exists in the domain list. The actual assumption is that the population from which observations are drawn is normally distributed, which is conceptually distinct from regression residual normality."
+    },
+    {
+      "source": {
+        "id": "chi_square_test_for_population_variance",
+        "canonical_name": "Chi-square Test for Population Variance",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "The chi-square test for population variance requires that data are drawn from a normal population; the test statistic follows chi-square exactly only under normality. Note: normality_of_errors (Regression and Linear Models domain) is used here as the closest available proxy for population normality, as no dedicated 'population normality' node exists in the domain list. The actual assumption is that the population from which observations are drawn is normally distributed, which is conceptually distinct from regression residual normality."
+    },
+    {
+      "source": {
+        "id": "pearson_correlation_coefficient",
+        "canonical_name": "Pearson Correlation Coefficient",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": "Inference using the Pearson correlation coefficient assumes bivariate normality of (X, Y), not regression residual normality. Note: normality_of_errors (Regression and Linear Models domain) is used here as the closest available proxy for population normality, as no dedicated 'population normality' node exists in the domain list. The actual assumption is that the population from which observations are drawn is normally distributed, which is conceptually distinct from regression residual normality."
+    },
+    {
+      "source": {
+        "id": "wald_test",
+        "canonical_name": "Wald Test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "regularity_conditions",
+        "canonical_name": "Regularity Conditions",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "bootstrap",
+        "canonical_name": "Bootstrap",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "independent_random_samples",
+        "canonical_name": "Independent Random Samples",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "central_limit_theorem",
+        "canonical_name": "Central Limit Theorem",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "independent_identically_distributed_random_variables",
+        "canonical_name": "Independent and Identically Distributed Random Variables",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "weak_law_of_large_numbers",
+        "canonical_name": "Weak Law of Large Numbers",
+        "domain": "Probability Theory"
+      },
+      "target": {
+        "id": "independent_identically_distributed_random_variables",
+        "canonical_name": "Independent and Identically Distributed Random Variables",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "z_test",
+        "canonical_name": "Z-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.9,
+      "generated_by": "llm",
+      "notes": "Z-test can be applied under large-sample CLT approximation without strict normality; small-sample validity requires population normality. Note: normality_of_errors (Regression and Linear Models domain) is used here as the closest available proxy for population normality, as no dedicated 'population normality' node exists in the domain list. The actual assumption is that the population from which observations are drawn is normally distributed, which is conceptually distinct from regression residual normality."
+    },
+    {
+      "source": {
+        "id": "two_sample_z_test",
+        "canonical_name": "Two Sample Z-test",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "independent_random_samples",
+        "canonical_name": "Independent Random Samples",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "normal_approximation",
+        "canonical_name": "Normal Approximation",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "independent_identically_distributed_random_variables",
+        "canonical_name": "Independent and Identically Distributed Random Variables",
+        "domain": "Probability Theory"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.92,
+      "generated_by": "llm",
+      "notes": "Normal approximation via CLT requires i.i.d. in the classical setting; still executable without i.i.d. but asymptotic guarantee is weakened."
+    },
+    {
+      "source": {
+        "id": "ridge_regression",
+        "canonical_name": "Ridge Regression",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "homoscedasticity",
+        "canonical_name": "Homoscedasticity",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.88,
+      "generated_by": "llm",
+      "notes": "Ridge regression inherits the linear model structure and its frequentist optimality is studied under Gauss-Markov assumptions including homoscedasticity. However, ridge can also be motivated as a Bayesian estimator under a normal prior, in which case homoscedasticity is not strictly required for point estimation. Confidence 0.88 reflects this dual interpretation: homoscedasticity affects the frequentist optimality of the shrinkage estimator but is not required for the Bayesian motivation."
+    },
+    {
+      "source": {
+        "id": "confidence_interval_for_difference_of_means",
+        "canonical_name": "Confidence Interval for Difference of Means",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "normality_of_errors",
+        "canonical_name": "Normality of Errors",
+        "domain": "Regression and Linear Models"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.9,
+      "generated_by": "llm",
+      "notes": "Small-sample CI for difference of means relies on normality of each population; large-sample version relaxes this via CLT. Note: normality_of_errors (Regression and Linear Models domain) is used here as the closest available proxy for population normality, as no dedicated 'population normality' node exists in the domain list. The actual assumption is that the population from which observations are drawn is normally distributed, which is conceptually distinct from regression residual normality."
+    },
+    {
+      "source": {
+        "id": "confidence_interval_for_difference_of_means",
+        "canonical_name": "Confidence Interval for Difference of Means",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "independent_random_samples",
+        "canonical_name": "Independent Random Samples",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "ordinary_least_squares",
+        "canonical_name": "Ordinary Least Squares",
+        "domain": "Regression and Linear Models"
+      },
+      "target": {
+        "id": "independent_random_samples",
+        "canonical_name": "Independent Random Samples",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "gamma_regression_model",
+        "canonical_name": "Gamma Regression Model",
+        "domain": "Generalized Linear Models"
+      },
+      "target": {
+        "id": "independent_random_samples",
+        "canonical_name": "Independent Random Samples",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "llm",
+      "notes": ""
+    },
+    {
+      "source": {
+        "id": "k_fold_cross_validation",
+        "canonical_name": "K-Fold Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "independent_random_samples",
+        "canonical_name": "Independent Random Samples",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.9,
+      "generated_by": "llm",
+      "notes": "Cross-validation estimates generalization error under the assumption that data are exchangeable/i.i.d.; with dependent data (time series) standard k-fold is not valid."
+    },
+    {
+      "source": {
+        "id": "leave_one_out_cross_validation",
+        "canonical_name": "Leave-One-Out Cross Validation",
+        "domain": "Model Evaluation and Selection"
+      },
+      "target": {
+        "id": "independent_random_samples",
+        "canonical_name": "Independent Random Samples",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.9,
+      "generated_by": "llm",
+      "notes": "Same reasoning as k-fold; LOO-CV assumes exchangeability of observations."
+    },
+    {
+      "source": {
+        "id": "wald_confidence_interval",
+        "canonical_name": "Wald Confidence Interval",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "regularity_conditions",
+        "canonical_name": "Regularity Conditions",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.95,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review (S4-002): the Wald CI is derived from the asymptotic normality of the MLE, which holds only under regularity conditions. Analogous to wald_test assumes regularity_conditions."
+    },
+    {
+      "source": {
+        "id": "large_sample_confidence_interval_using_mle",
+        "canonical_name": "Large Sample Confidence Interval using MLE",
+        "domain": "Statistical Inference"
+      },
+      "target": {
+        "id": "regularity_conditions",
+        "canonical_name": "Regularity Conditions",
+        "domain": "Statistical Inference"
+      },
+      "edge_type": "assumes",
+      "confidence": 0.93,
+      "generated_by": "human",
+      "notes": "Added during Agent 6 review (S4-003): this CI method relies on the asymptotic normality of the MLE (large_sample_distribution_of_the_mle), which itself assumes regularity_conditions. Makes the dependency explicit at the method level."
+    }
+  ]
+}
